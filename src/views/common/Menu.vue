@@ -1,5 +1,6 @@
 <template>
   <div class="menu">
+    <Wallets />
     <CLink @click="goAudit" class="item" target="_self">
       {{ $t('common.menu.audit') }}
     </CLink>
@@ -17,11 +18,18 @@
     >
       {{ $t('common.menu.nft') }}
     </CLink>
+    <Networks />
+    <ToggleTheme />
   </div>
 </template>
 
 <script>
 import { TARGET_MAINNET } from '@/utils/env';
+
+import ToggleTheme from '@/components/others/ToggleTheme';
+
+import Wallets from './Wallets';
+import Networks from './Networks';
 
 export default {
   name: 'Menu',
@@ -30,6 +38,11 @@ export default {
       mainnet: TARGET_MAINNET,
     };
   },
+  components: {
+    Wallets,
+    Networks,
+    ToggleTheme,
+  },
   methods: {
     goAudit() {
       window.open('https://github.com/polynetwork/audit-report');
@@ -37,24 +50,36 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .menu {
   display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: end;
   .item {
-    font-size: 14px;
-    font-family: PingFangTC-Medium, PingFangTC;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    font-size: 16px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-text-primary);
     line-height: 20px;
-    padding: 0 40px 0 0;
+    padding: 6px 4px;
+    max-width: 110px;
+    border-radius: 8px;
+    // padding: 0 40px 0 0;
     transition: all ease 0.3s;
   }
   .item:hover {
-    color: rgba(255, 255, 255, 1);
+    color: #fff;
     transition: all ease 0.3s;
+    background-color: var(--color-primary);
   }
   .active {
-    color: rgba(255, 255, 255, 1) !important;
+    color: var(--color-primary);
+    &:hover {
+      color: #fff;
+    }
   }
 }
 </style>
