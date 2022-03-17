@@ -249,6 +249,26 @@ async function lock({
   }
 }
 
+async function isAcceptToken({ chainId, address, tokenHash }) {
+  try {
+    const tokenBasic = store.getters.getTokenBasicByChainIdAndTokenHash({ chainId, tokenHash });
+    const response = await window.starcoin.request({
+      method: 'contract.call_v2',
+      params: [
+        {
+          function_id: '0x1::Account::is_accept_token',
+          type_args: [tokenHash],
+          args: [address],
+        },
+      ],
+    });
+    const result = response ? response[0] : false;
+    return result;
+  } catch (error) {
+    throw convertWalletError(error);
+  }
+}
+
 export default {
   install: init,
   connect,
@@ -256,4 +276,5 @@ export default {
   getAllowance,
   getTransactionStatus,
   lock,
+  isAcceptToken,
 };

@@ -227,6 +227,7 @@ export default {
       MALFORMED_INPUT: 'Malformed input.',
       INSUFFICIENT_FUNDS: 'Insufficient funds.',
       COMMUNICATE_FAILED: 'Communicate failed with wallet.',
+      TOKEN_IS_NOT_ACCEPT: 'Token is not accepted by the address on the target chain.',
     },
     chain: {
       UNKNOWN_ERROR: 'Unknown chain error.',
