@@ -10,6 +10,7 @@ export const WalletName = {
   Binance: 'Binance',
   Cyano: 'Cyano',
   WalletConnect: 'WalletConnnect',
+  StarMask: 'StarMask',
 };
 
 export const ChainId = {
@@ -19,6 +20,9 @@ export const ChainId = {
   Neo: TARGET_MAINNET ? 4 : 5,
   N3: TARGET_MAINNET ? 14 : 88,
   xDai: TARGET_MAINNET ? 20 : 206,
+  HSC: TARGET_MAINNET ? 603 : 603,
+  Harmony: TARGET_MAINNET ? 800 : 800,
+  BYTOM: TARGET_MAINNET ? 701 : 701,
   Bsc: TARGET_MAINNET ? 6 : 79,
   Heco: 7,
   Ok: TARGET_MAINNET ? 12 : 200,
@@ -33,6 +37,8 @@ export const ChainId = {
   Metis: TARGET_MAINNET ? 24 : 300,
   Pixie: TARGET_MAINNET ? 316 : 316,
   Rinkeby: TARGET_MAINNET ? 402 : 402,
+  Oasis1: TARGET_MAINNET ? 501 : 501,
+  Stc: TARGET_MAINNET ? 1 : 318,
 };
 
 export const NetworkChainIdMaps = {
@@ -41,6 +47,9 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 128 : 256]: ChainId.Heco,
   [TARGET_MAINNET ? 66 : 65]: ChainId.Ok,
   [TARGET_MAINNET ? 100 : 77]: ChainId.xDai,
+  [TARGET_MAINNET ? 70 : 70]: ChainId.HSC,
+  [TARGET_MAINNET ? 188 : 189]: ChainId.BYTOM,
+  [TARGET_MAINNET ? 1666600000 : 1666700000]: ChainId.Harmony,
   [TARGET_MAINNET ? 137 : 80001]: ChainId.Polygon,
   [TARGET_MAINNET ? 1718 : 101]: ChainId.Palette,
   [TARGET_MAINNET ? 42161 : 421611]: ChainId.Arbitrum,
@@ -60,6 +69,9 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Heco]: TARGET_MAINNET ? 128 : 256,
   [ChainId.Ok]: TARGET_MAINNET ? 66 : 65,
   [ChainId.xDai]: TARGET_MAINNET ? 100 : 77,
+  [ChainId.Harmony]: TARGET_MAINNET ? 1666600000 : 1666700000,
+  [ChainId.HSC]: TARGET_MAINNET ? 70 : 70,
+  [ChainId.BYTOM]: TARGET_MAINNET ? 188 : 189,
   [ChainId.Polygon]: TARGET_MAINNET ? 137 : 80001,
   [ChainId.Palette]: TARGET_MAINNET ? 1718 : 101,
   [ChainId.Arbitrum]: TARGET_MAINNET ? 42161 : 421611,

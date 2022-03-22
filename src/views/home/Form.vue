@@ -27,7 +27,6 @@
             <img src="@/assets/svg/down2.svg" />
           </CButton>
         </div>
-
         <ValidationProvider
           ref="amountValidation"
           tag="div"

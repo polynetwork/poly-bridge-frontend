@@ -1,5 +1,8 @@
 <template>
-  <div class="menu">
+  <div
+    class="menu"
+    v-if="$route.name === 'home' || $route.name === 'nft' || $route.name === 'token'"
+  >
     <!-- <CLink @click="goAudit" class="item" target="_self">
       {{ $t('common.menu.audit') }}
     </CLink> -->
