@@ -38,6 +38,7 @@ export const WALLETS = [
       ChainId.Oasis,
       ChainId.Oasis1,
       ChainId.Boba,
+      ChainId.Kcc,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -65,6 +66,7 @@ export const WALLETS = [
       ChainId.Rinkeby,
       ChainId.Boba,
       ChainId.Oasis,
+      ChainId.Kcc,
     ],
     icon: require('@/assets/png/coinbase.png'),
     downloadUrl:
@@ -215,6 +217,20 @@ export const CHAINS = [
       : '0x5906777d34257a2b479c291871C9BFdFB922D67D',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'HSC',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Kcc,
+    nativeFee: false,
+    icon: require('@/assets/png/kcc.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://scan-testnet.kcc.network/tx/0x{txHash}'
+      : 'https://scan-testnet.kcc.network/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'ETH',
     selfPay: true,
   },
   {
