@@ -39,6 +39,7 @@ export const ChainId = {
   Rinkeby: TARGET_MAINNET ? 402 : 402,
   Oasis1: TARGET_MAINNET ? 501 : 501,
   Stc: TARGET_MAINNET ? 1 : 318,
+  Kcc: TARGET_MAINNET ? 900 : 900,
 };
 
 export const NetworkChainIdMaps = {
@@ -61,6 +62,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 4 : 4]: ChainId.Rinkeby,
   [TARGET_MAINNET ? 288 : 28]: ChainId.Boba,
   [TARGET_MAINNET ? 42262 : 42261]: ChainId.Oasis,
+  [TARGET_MAINNET ? 321 : 322]: ChainId.Kcc,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -83,6 +85,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Rinkeby]: TARGET_MAINNET ? 4 : 4,
   [ChainId.Boba]: TARGET_MAINNET ? 288 : 28,
   [ChainId.Oasis]: TARGET_MAINNET ? 42262 : 42261,
+  [ChainId.Kcc]: TARGET_MAINNET ? 321 : 322,
 };
 
 export const SingleTransactionStatus = {
