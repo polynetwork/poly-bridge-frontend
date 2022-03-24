@@ -230,7 +230,7 @@ export const CHAINS = [
       ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
       : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'ETH',
+    nftFeeName: 'KCS',
     selfPay: true,
   },
   {
