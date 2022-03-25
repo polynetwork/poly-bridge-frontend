@@ -195,6 +195,8 @@
             <span class="label">{{ $t('home.form.balance') }}:</span>
             <CFlexSpan />
             <span class="value"> {{ $formatNumber(balance) }} </span>
+            <img class="fee-icon" :src="tokenBasic.meta" />
+            <span class="fee-token">{{ fromToken.name }}</span>
             <CTooltip v-if="fromToken.tokenBasicName === 'O3'">
               <img class="tooltip-icon" src="@/assets/svg/question.svg" />
               <template #content>
@@ -821,7 +823,7 @@ export default {
 }
 .field-wrapper {
   display: flex;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(19, 27, 46, 1);
   border-radius: 24px;
   margin-top: 15px;
   height: 100px;
@@ -874,7 +876,7 @@ export default {
   width: stretch;
   height: 100px;
   padding: 30px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(19, 27, 46, 1);
   border-radius: 24px;
   @include child-margin-h(8px);
 }
