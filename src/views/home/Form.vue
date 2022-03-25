@@ -96,7 +96,6 @@
             <CButton class="exchange" :disabled="!toChainId" @click="exchangeFromTo">
               <img class="exchange-icon" src="@/assets/svg/exchange.svg" />
             </CButton>
-
             <div class="field">
               <div class="label">
                 <div class="label-left">
