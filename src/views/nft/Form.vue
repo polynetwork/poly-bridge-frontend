@@ -785,7 +785,7 @@ export default {
 }
 .field-wrapper {
   display: flex;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(19, 27, 46, 1);
   border-radius: 24px;
   margin-top: 15px;
   height: 100px;
@@ -833,7 +833,6 @@ export default {
   width: stretch;
   height: 100px;
   padding: 30px;
-  background: rgba(255, 255, 255, 0.04);
   border-radius: 24px;
   @include child-margin-h(8px);
 }
