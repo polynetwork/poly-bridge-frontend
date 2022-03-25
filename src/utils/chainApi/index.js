@@ -13,10 +13,6 @@ const APIS = {
   [ChainId.Polygon]: () => import('./eth'),
   [ChainId.Arbitrum]: () => import('./eth'),
   [ChainId.xDai]: () => import('./eth'),
-  [ChainId.HSC]: () => import('./eth'),
-  [ChainId.Kcc]: () => import('./eth'),
-  [ChainId.Harmony]: () => import('./eth'),
-  [ChainId.BYTOM]: () => import('./eth'),
   [ChainId.Optimistic]: () => import('./eth'),
   [ChainId.Boba]: () => import('./eth'),
   [ChainId.Fantom]: () => import('./eth'),
@@ -27,8 +23,6 @@ const APIS = {
   [ChainId.Boba]: () => import('./eth'),
   [ChainId.Stc]: () => import('./stc'),
   [ChainId.Oasis]: () => import('./eth'),
-  [ChainId.Oasis1]: () => import('./eth'),
-  [ChainId.Boba]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {

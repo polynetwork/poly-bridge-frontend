@@ -6,9 +6,8 @@
     </CLink>
     <CFlexSpan />
     <Menu class="menu" />
-    <CFlexSpan />
     <Wallets class="wallet" />
-    <!-- <Networks class="network" /> -->
+    <Networks class="network" />
 
     <div class="header-mobile" style="display:none">
       <Wallets />
@@ -66,9 +65,9 @@ export default {
 .header {
   display: flex;
   align-items: center;
-  height: 112px;
+  height: 80px;
   padding: 0 50px;
-  @include child-margin-h(0px);
+  @include child-margin-h(20px);
 }
 
 .brand {

@@ -1,5 +1,7 @@
 <template>
-  <button v-bind="$attrs" :class="b({ fade })" v-on="$listeners">
+  <button v-bind="$attrs"
+          :class="b({ fade })"
+          v-on="$listeners">
     <slot />
   </button>
 </template>
@@ -22,7 +24,7 @@ export default {
   padding: 0;
   border: 0;
   outline: none;
-  background: rgba(255, 255, 255, 0);
+  background: transparent;
   color: inherit;
   transition: all 0.3s;
   cursor: pointer;

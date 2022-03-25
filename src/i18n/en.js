@@ -26,7 +26,7 @@ export default {
       connectWallet: 'Connect {walletName}',
     },
     footer: {
-      copyright: '© 2022 Polynetwork. All rights reserved.',
+      copyright: '© 2021 Polynetwork. All rights reserved.',
     },
   },
   home: {
@@ -39,7 +39,7 @@ export default {
       asset: 'Asset',
       from: 'From',
       to: 'To',
-      chainName: '{chainName}',
+      chainName: '{chainName}\nNetwork',
       amount: 'Amount',
       max: 'MAX',
       balance: 'Balance',
@@ -73,9 +73,6 @@ export default {
     selectChain: {
       title: 'Select Network',
     },
-    selectItem: {
-      title: 'Select Token',
-    },
     connectWallet: {
       title: 'Connect Wallet',
       chainName: '{chainName} Network',
@@ -98,7 +95,6 @@ export default {
     form: {
       chain: 'Chain',
       items: 'Items',
-      item: 'Item',
       search: 'Search',
       result: 'results',
     },
@@ -160,10 +156,6 @@ export default {
       [ChainId.Neo]: 'Neo',
       [ChainId.N3]: 'N3',
       [ChainId.xDai]: 'xDai',
-      [ChainId.HSC]: 'HSC',
-      [ChainId.Kcc]: 'Kcc',
-      [ChainId.Harmony]: 'Harmony',
-      [ChainId.BYTOM]: 'BYTOM',
       [ChainId.Bsc]: 'BNB',
       [ChainId.Heco]: 'Heco',
       [ChainId.Ont]: 'Ontology',
@@ -176,13 +168,11 @@ export default {
       [ChainId.Fantom]: 'Fantom',
       [ChainId.Avalanche]: 'Avalanche',
       [ChainId.Metis]: 'Metis',
-      [ChainId.Pixie]: 'Pixie Chain',
+      [ChainId.Pixie]: 'Pixie',
       [ChainId.Rinkeby]: 'Rinkeby',
       [ChainId.Boba]: 'Boba',
       [ChainId.Stc]: 'Starcoin',
       [ChainId.Oasis]: 'Oasis',
-      [ChainId.Oasis1]: 'Oasis1',
-      [ChainId.Boba]: 'Boba',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -194,10 +184,6 @@ export default {
       [ChainId.Eth]: TARGET_MAINNET ? 'MainNet' : 'Ropsten TestNet',
       [ChainId.Neo]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.xDai]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
-      [ChainId.HSC]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
-      [ChainId.Kcc]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
-      [ChainId.Harmony]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
-      [ChainId.BYTOM]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Bsc]: TARGET_MAINNET ? 'BNB MainNet' : 'BNB TestNet',
       [ChainId.Heco]: TARGET_MAINNET ? 'Heco MainNet' : 'Heco TestNet',
       [ChainId.Ok]: TARGET_MAINNET ? 'OKExChain MainNet' : 'OKExChain TestNet',
@@ -210,8 +196,6 @@ export default {
       [ChainId.Boba]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Stc]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Oasis]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
-      [ChainId.Oasis1]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
-      [ChainId.Boba]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',
