@@ -75,7 +75,7 @@
           </div>
 
           <CButton class="exchange" :disabled="!toChainId">
-            <img class="exchange-icon" src="@/assets/svg/exchange.svg" />
+            <img class="exchange-icon" src="@/assets/svg/arrow-down.svg" />
           </CButton>
 
           <div class="field">
@@ -935,7 +935,6 @@ export default {
   margin-top: 15px;
 }
 .exchange-icon {
-  transform: rotate(90deg);
   height: 15px;
 }
 

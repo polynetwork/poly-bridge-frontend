@@ -27,7 +27,6 @@
             <img src="@/assets/svg/down2.svg" />
           </CButton>
         </div>
-
         <ValidationProvider
           ref="amountValidation"
           tag="div"
@@ -56,19 +55,7 @@
                     </CButton>
                   </div>
                 </div>
-                <div class="label-right">
-                  <div v-if="balance" class="balance">
-                    <span class="label">{{ $t('home.form.balance') }}:</span>
-                    <CFlexSpan />
-                    <span class="value"> {{ $formatNumber(balance) }} </span>
-                    <CTooltip v-if="fromToken.tokenBasicName === 'O3'">
-                      <img class="tooltip-icon" src="@/assets/svg/question.svg" />
-                      <template #content>
-                        {{ $t('home.form.o3ToolTip') }}
-                      </template>
-                    </CTooltip>
-                  </div>
-                </div>
+                <div class="label-right"></div>
               </div>
               <div class="field-wrapper">
                 <CButton
@@ -96,34 +83,33 @@
                     <img class="chevron-right" src="@/assets/svg/down2.svg" />
                   </div>
                 </CButton>
-                <div class="input">
+                <!-- <div class="input">
                   <CInput class="input-inner" v-model="amount" placeholder="0.00" />
                   <CButton v-if="balance" class="use-max" @click="transferAll">
                     {{ $t('home.form.max') }}
                   </CButton>
-                </div>
+                </div> -->
               </div>
-              <div class="input-error">{{ errors[0] }}</div>
+              <!-- <div class="input-error">{{ errors[0] }}</div> -->
             </div>
 
             <CButton class="exchange" :disabled="!toChainId" @click="exchangeFromTo">
               <img class="exchange-icon" src="@/assets/svg/exchange.svg" />
             </CButton>
-
-            <div class="label">
-              <div class="label-left">
-                <div class="label-name">{{ $t('home.form.to') }}</div>
-                <div v-if="toWallet" class="address">
-                  <span class="address-value">
-                    {{ $formatLongText(toWallet.address, { headTailLength: 6 }) }}
-                  </span>
-                  <CButton @click="copy(toWallet.address)">
-                    <img src="@/assets/svg/copy.svg" />
-                  </CButton>
+            <div class="field">
+              <div class="label">
+                <div class="label-left">
+                  <div class="label-name">{{ $t('home.form.to') }}</div>
+                  <div v-if="toWallet" class="address">
+                    <span class="address-value">
+                      {{ $formatLongText(toWallet.address, { headTailLength: 6 }) }}
+                    </span>
+                    <CButton @click="copy(toWallet.address)">
+                      <img src="@/assets/svg/copy.svg" />
+                    </CButton>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="field">
               <div class="field-wrapper">
                 <CButton
                   class="select-chain"
@@ -150,16 +136,25 @@
                     <img class="chevron-right" src="@/assets/svg/down2.svg" />
                   </div>
                 </CButton>
-                <div class="input">
-                  <CInput
-                    class="input-inner input-show"
-                    v-model="amount"
-                    disabled
-                    placeholder="0.00"
-                  />
-                </div>
               </div>
             </div>
+          </div>
+          <div class="field">
+            <div class="label">
+              <div class="label-left">
+                <div class="label-name">{{ $t('home.form.amount') }}</div>
+              </div>
+              <div class="label-right"></div>
+            </div>
+            <div class="field-wrapper">
+              <div class="input">
+                <CInput class="input-inner" v-model="amount" placeholder="0.00" />
+                <CButton v-if="balance" class="use-max" @click="transferAll">
+                  {{ $t('home.form.max') }}
+                </CButton>
+              </div>
+            </div>
+            <div class="input-error">{{ errors[0] }}</div>
           </div>
           <div
             v-if="
@@ -196,6 +191,17 @@
               </CTooltip>
             </el-checkbox>
           </div> -->
+          <div v-if="balance" class="balance">
+            <span class="label">{{ $t('home.form.balance') }}:</span>
+            <CFlexSpan />
+            <span class="value"> {{ $formatNumber(balance) }} </span>
+            <CTooltip v-if="fromToken.tokenBasicName === 'O3'">
+              <img class="tooltip-icon" src="@/assets/svg/question.svg" />
+              <template #content>
+                {{ $t('home.form.o3ToolTip') }}
+              </template>
+            </CTooltip>
+          </div>
           <div v-if="fee" class="fee">
             <span class="label">{{ $t('home.form.maxamount') }}</span>
             <CTooltip>
@@ -823,10 +829,15 @@ export default {
 
 .fields-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   @include child-margin-h(0px);
 }
 
+.fields-row .field {
+  width: 300px;
+  flex: inherit;
+}
 .field {
   flex: 1;
   @include child-margin-v(15px);
@@ -930,14 +941,18 @@ export default {
 .input {
   display: flex;
   align-items: center;
-  padding: 18px 14px;
+  padding: 30px;
   background: rgba(#000000, 0);
   border-radius: 4px;
   text-align: end !important;
-  width: 66%;
+  width: 100%;
 }
 .input-inner {
-  text-align: end !important;
+  text-align: start !important;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 400;
+  font-family: 'DIN Pro';
 }
 .input-show {
   opacity: 0.6;
@@ -960,17 +975,19 @@ export default {
 }
 
 .exchange {
-  margin-top: 15px;
+  margin-top: 34px;
 }
 .exchange-icon {
-  transform: rotate(90deg);
   height: 15px;
 }
 
-.balance > .label,
+.balance > .label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.3);
+}
 .balance > .value {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 1);
 }
 .fee > .label {
   font-size: 14px;
