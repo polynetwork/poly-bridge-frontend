@@ -23,12 +23,11 @@ export default {
 <style lang="scss">
 @include block(c-submit-button) {
   width: stretch;
-  height: 60px;
-  border-radius: 16px;
-  background: linear-gradient(116.19deg, #3ec7eb 16.48%, #282bdb 83.52%);
+  height: 40px;
+  border-radius: 4px;
+  background: linear-gradient(225deg, #3ec7eb 0%, #282bdb 100%);
   font-weight: 500;
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 14px;
   text-transform: uppercase;
   @include child-margin-h(8px);
 

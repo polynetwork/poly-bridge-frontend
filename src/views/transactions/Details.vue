@@ -1,19 +1,12 @@
 <template>
-  <CDialog
+  <CDrawer
     v-bind="$attrs"
     :closeOnClickModal="!confirmingData || failed || finished"
     :closeOnPressEscape="!confirmingData || failed || finished"
     v-on="$listeners"
   >
     <div class="content">
-      <div class="title">
-        {{ $t('transactions.details.title') }}
-        <img
-          class="close-btn"
-          src="@/assets/svg/close.svg"
-          @click="$emit('update:visible', false)"
-        />
-      </div>
+      <div class="title">{{ $t('transactions.details.title') }}</div>
       <div v-if="steps" class="scroll">
         <div v-for="(step, index) in steps" :key="step.chainId" class="step">
           <template v-if="step.chainId != null">
@@ -54,13 +47,10 @@
             >
               {{
                 $t('transactions.details.hash', {
-                  hash: $formatLongText(step.hash || 'N/A', { headTailLength: 8 }),
+                  hash: $formatLongText(step.hash || 'N/A', { headTailLength: 16 }),
                 })
               }}
             </CLink>
-            <CButton v-if="step.hash" @click="copy(step.hash)">
-              <img class="copy-icon" src="@/assets/svg/copy.svg" />
-            </CButton>
             <div
               class="speedup"
               v-if="
@@ -71,8 +61,7 @@
                   step.chainId !== 4 &&
                   step.chainId !== 5 &&
                   step.chainId !== 14 &&
-                  step.chainId !== 88 &&
-                  step.chainId !== 318
+                  step.chainId !== 88
               "
             >
               {{ $t('home.form.speedup') }}
@@ -95,8 +84,7 @@
                   step.chainId !== 4 &&
                   step.chainId !== 5 &&
                   step.chainId !== 14 &&
-                  step.chainId !== 88 &&
-                  step.chainId !== 318
+                  step.chainId !== 88
               "
             >
               {{ $t('home.form.speedUpMSG') }}
@@ -111,8 +99,7 @@
                   step.chainId !== 4 &&
                   step.chainId !== 5 &&
                   step.chainId !== 14 &&
-                  step.chainId !== 88 &&
-                  step.chainId !== 318
+                  step.chainId !== 88
               "
               @click="payTochainFee"
               class="button-submit"
@@ -146,13 +133,12 @@
       :visible.sync="connectWalletVisible"
       :toChainId="steps[2].chainId"
     />
-  </CDialog>
+  </CDrawer>
 </template>
 
 <script>
 import { ChainId, SingleTransactionStatus, TransactionStatus } from '@/utils/enums';
 import { HttpError } from '@/utils/errors';
-import copy from 'clipboard-copy';
 import { getWalletApi } from '@/utils/walletApi';
 import httpApi from '@/utils/httpApi';
 import ConnectWallet from '../home/ConnectWallet';
@@ -271,10 +257,6 @@ export default {
     clearInterval(this.interval);
   },
   methods: {
-    copy(text) {
-      copy(text);
-      this.$message.success(this.$t('messages.copied', { text }));
-    },
     getChain(chainId) {
       return this.$store.getters.getChain(chainId);
     },
@@ -346,7 +328,7 @@ export default {
         this.speedUpMSGFlag = true;
       } catch (error) {
         console.log(error);
-        if (error && error.toString().indexOf('promise') < 0) {
+        if (error.toString().indexOf('promise') < 0) {
           this.selfPayLoading = false;
         }
       }
@@ -373,21 +355,9 @@ export default {
 }
 
 .title {
-  padding: 40px;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .close-btn {
-    width: 30px;
-    cursor: pointer;
-    transition: all 0.3s;
-    &:hover {
-      opacity: 0.6;
-    }
-  }
+  padding: 80px 50px 40px;
+  font-weight: 600;
+  font-size: 40px;
 }
 
 .scroll {
@@ -447,7 +417,7 @@ export default {
   }
 
   ::v-deep .el-progress-bar__inner {
-    background: rgba(62, 199, 235, 1);
+    background: #ffffff;
   }
 }
 
@@ -462,9 +432,6 @@ export default {
   color: #3ec7eb;
   font-size: 14px;
   text-decoration: underline;
-}
-.copy-icon {
-  margin-left: 5px;
 }
 
 .failed-title {
