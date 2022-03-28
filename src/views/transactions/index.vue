@@ -6,7 +6,10 @@
     </div>
     <div class="content">
       <div class="content-inner">
-        <div class="title">{{ $t('transactions.index.title') }}</div>
+        <div class="title">
+          <CLink class="back" :to="{ name: 'home' }"><i class="el-icon-back"></i> Back</CLink>
+          {{ $t('transactions.index.title') }}
+        </div>
 
         <div class="table-wrapper">
           <ElTable :data="transactions.items" class="table">
@@ -237,7 +240,21 @@ export default {
 }
 
 .title {
-  font-size: 20px;
+  font-size: 32px;
+  line-height: 64px;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+  .back {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+  }
 }
 
 .table-wrapper {

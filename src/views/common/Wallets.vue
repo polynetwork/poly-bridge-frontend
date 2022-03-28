@@ -71,7 +71,6 @@ export default {
 <style lang="scss" scoped>
 .wallets {
   @include child-margin-h(4px);
-  width: 136px;
 }
 
 .show-all {

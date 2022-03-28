@@ -7,8 +7,10 @@
     <CFlexSpan />
     <Menu class="menu" />
     <CFlexSpan />
-    <Wallets class="wallet" />
-    <!-- <Networks class="network" /> -->
+    <div class="side-menu">
+      <Wallets class="wallet" />
+      <Networks class="network" />
+    </div>
 
     <div class="header-mobile" style="display:none">
       <Wallets />
@@ -69,12 +71,26 @@ export default {
   height: 112px;
   padding: 0 50px;
   @include child-margin-h(0px);
+  position: relative;
 }
 
 .brand {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   @include child-margin-h(12px);
+}
+.side-menu {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  @include child-margin-h(40px);
 }
 
 .brand-name {
