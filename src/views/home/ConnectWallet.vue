@@ -1,14 +1,7 @@
 <template>
-  <CDialog v-bind="$attrs" v-on="$listeners">
+  <CDrawer v-bind="$attrs" v-on="$listeners">
     <div class="content">
-      <div class="title">
-        {{ $t('home.connectWallet.title') }}
-        <img
-          class="close-btn"
-          src="@/assets/svg/close.svg"
-          @click="$emit('update:visible', false)"
-        />
-      </div>
+      <div class="title">{{ $t('home.connectWallet.title') }}</div>
       <CDivider />
       <div class="scroll">
         <div v-if="fromChain" class="from">
@@ -92,7 +85,7 @@
         </div>
       </div>
     </div>
-  </CDialog>
+  </CDrawer>
 </template>
 
 <script>
@@ -160,21 +153,8 @@ export default {
 }
 
 .title {
-  padding: 40px;
+  padding: 80px 50px 20px;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .close-btn {
-    width: 30px;
-    cursor: pointer;
-    transition: all 0.3s;
-    &:hover {
-      opacity: 0.6;
-    }
-  }
 }
 
 .from,
@@ -207,7 +187,6 @@ export default {
 }
 
 .wallets {
-  width: 100%;
   display: flex;
   flex-direction: column;
   @include child-margin-v(16px);
@@ -243,17 +222,6 @@ export default {
   border-radius: 4px;
   border: 1px solid #ffffff;
   @include child-margin-h(8px);
-  .scroll {
-    .from {
-      width: 45%;
-      .wallets {
-        width: 100%;
-      }
-    }
-    .to {
-      width: 45%;
-    }
-  }
 }
 </style>
 <style lang="scss" scoped>
