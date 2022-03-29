@@ -6,7 +6,14 @@
     v-on="$listeners"
   >
     <div class="content">
-      <div class="title">{{ $t('transactions.details.title') }}</div>
+      <div class="title">
+        {{ $t('transactions.details.title') }}
+        <img
+          class="close-btn"
+          src="@/assets/svg/close.svg"
+          @click="$emit('update:visible', false)"
+        />
+      </div>
       <div v-if="steps" class="scroll">
         <div v-for="(step, index) in steps" :key="step.chainId" class="step">
           <template v-if="step.chainId != null">
@@ -210,11 +217,22 @@ export default {
 }
 
 .title {
-  padding: 80px 50px 40px;
-  font-weight: 600;
-  font-size: 40px;
+  padding: 40px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .close-btn {
+    width: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 }
-
 .scroll {
   flex: 1;
   padding: 40px 50px 40px 80px;
