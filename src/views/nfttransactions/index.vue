@@ -8,7 +8,7 @@
       <div class="content-inner">
         <div class="title">
           <CLink class="back" :to="{ name: 'nft' }"><i class="el-icon-back"></i> Back</CLink>
-          {{ $t('transactions.index.title') }}
+          {{ $t('transactions.index.nfttitle') }}
         </div>
 
         <div class="table-wrapper">
