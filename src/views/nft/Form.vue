@@ -267,7 +267,7 @@ export default {
       detailVisible: false,
       tokenBasicName: DEFAULT_CHAIN_NAME,
       chainBasicName: DEFAULT_CHAIN_NAME,
-      fromChainId: 2,
+      fromChainId: null,
       toChainId: null,
       assetName: '',
       amount: '',
@@ -307,7 +307,7 @@ export default {
       return list;
     },
     chainBasic() {
-      return this.nftChains[0];
+      return this.fromChainId ? this.nftChains[0] : null;
     },
     itemsTotal() {
       const itemsTotal = this.$store.getters.getItems.TotalCount
@@ -347,7 +347,7 @@ export default {
       );
     },
     fromChain() {
-      return this.fromChainId ? this.$store.getters.getChain(this.fromChainId) : this.chainBasic;
+      return this.$store.getters.getChain(this.fromChainId);
     },
     fromToken() {
       return (
@@ -461,6 +461,10 @@ export default {
           this.getAssetMap();
         }
       }
+    },
+    async fromChain(value) {
+      debugger;
+      await this.$store.dispatch('ensureChainWalletReady', value.id);
     },
     fromWallet() {
       this.init();
