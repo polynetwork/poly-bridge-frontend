@@ -73,6 +73,9 @@ export default {
     selectChain: {
       title: 'Select Network',
     },
+    selectAsset: {
+      title: 'Select Asset',
+    },
     selectItem: {
       title: 'Select Token',
     },
