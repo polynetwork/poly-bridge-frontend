@@ -105,7 +105,8 @@ export default {
   },
   transactions: {
     index: {
-      title: 'The historical records',
+      title: 'Transaction Records',
+      nfttitle: 'NFT Transaction Records',
       fromChain: 'Source Chain',
       toChain: 'Destination Chain',
       hash: 'Hash: {hash}',
