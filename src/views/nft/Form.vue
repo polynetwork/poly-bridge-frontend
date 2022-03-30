@@ -454,8 +454,10 @@ export default {
       }
     },
     assets() {
+      debugger;
       if (this.assets[0]) {
         this.assetHash = this.assetHash ? this.assetHash : this.assets[0].Hash;
+        this.assetName = this.assetName ? this.assetName : this.assets[0].Name;
         if (this.fromWallet) {
           this.getItems(this.assetHash, '', this.currentPage);
           this.getAssetMap();
@@ -463,11 +465,10 @@ export default {
       }
     },
     async fromChain(value) {
-      debugger;
       await this.$store.dispatch('ensureChainWalletReady', value.id);
     },
     fromWallet() {
-      this.init();
+      this.connectInit();
     },
     items() {
       console.log(this.items);
@@ -576,6 +577,10 @@ export default {
       };
       this.detailVisible = true;
     },
+    async connectInit() {
+      this.currentPage = 1;
+      this.getAssets();
+    },
     async init() {
       this.currentPage = 1;
       // this.getItemsShow();
@@ -637,19 +642,13 @@ export default {
       };
       this.confirmVisible = true;
     },
-    changeTokenBasicName(tokenBasicName) {
-      this.tokenBasicName = tokenBasicName;
-      this.fromChainId = null;
-      this.toChainId = null;
-      this.clearAmount();
-    },
     changeFromChainId(chainId) {
+      debugger;
       this.fromChainId = chainId;
       this.toChainId = null;
       this.init();
     },
     changeToChainId(chainId) {
-      debugger;
       this.toChainId = chainId;
       const params = {
         SrcChainId: this.fromChainId,
