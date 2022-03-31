@@ -54,10 +54,13 @@
             >
               {{
                 $t('transactions.details.hash', {
-                  hash: $formatLongText(step.hash || 'N/A', { headTailLength: 16 }),
+                  hash: $formatLongText(step.hash || 'N/A', { headTailLength: 8 }),
                 })
               }}
             </CLink>
+            <CButton v-if="step.hash" @click="copy(step.hash)">
+              <img class="copy-icon" src="@/assets/svg/copy.svg" />
+            </CButton>
           </template>
 
           <template v-else-if="step.failed">
@@ -86,6 +89,7 @@
 <script>
 import { ChainId, SingleTransactionStatus, TransactionStatus } from '@/utils/enums';
 import { HttpError } from '@/utils/errors';
+import copy from 'clipboard-copy';
 
 export default {
   name: 'Details',
@@ -168,6 +172,10 @@ export default {
     clearInterval(this.interval);
   },
   methods: {
+    copy(text) {
+      copy(text);
+      this.$message.success(this.$t('messages.copied', { text }));
+    },
     getChain(chainId) {
       return this.$store.getters.getChain(chainId);
     },
@@ -290,7 +298,7 @@ export default {
   }
 
   ::v-deep .el-progress-bar__inner {
-    background: #ffffff;
+    background: rgba(62, 199, 235, 1);
   }
 }
 
@@ -305,6 +313,10 @@ export default {
   color: #3ec7eb;
   font-size: 14px;
   text-decoration: underline;
+}
+
+.copy-icon {
+  margin-left: 5px;
 }
 
 .failed-title {
