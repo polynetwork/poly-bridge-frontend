@@ -454,7 +454,6 @@ export default {
       }
     },
     assets() {
-      debugger;
       if (this.assets[0]) {
         this.assetHash = this.assetHash ? this.assetHash : this.assets[0].Hash;
         this.assetName = this.assetName ? this.assetName : this.assets[0].Name;
@@ -643,7 +642,6 @@ export default {
       this.confirmVisible = true;
     },
     changeFromChainId(chainId) {
-      debugger;
       this.fromChainId = chainId;
       this.toChainId = null;
       this.init();
