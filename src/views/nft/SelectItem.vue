@@ -13,7 +13,7 @@
       <div class="scroll">
         <div v-for="item in items" :key="item.TokenId" class="chain" @click="select(item)">
           <span class="chain-left">
-            <img :src="item.url ? item.url : unknown" />
+            <img class="item-img" :src="item.Image ? item.Image : unknown" />
             <span>{{ item.AssetName }} {{ item.TokenId }}</span>
           </span>
           <img v-if="itemId === item.TokenId" src="@/assets/svg/check.svg" />
@@ -86,7 +86,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 56px;
+  max-height: 160px;
+  min-height: 56px;
+  box-sizing: border-box;
   padding: 0 20px;
   transition: all 0.3s;
   @include child-margin-h(16px);
@@ -100,10 +102,15 @@ export default {
 .chain-left {
   display: flex;
   align-items: center;
+  padding: 16px 0px;
   @include child-margin-h(8px);
 }
 
 .chain-icon {
   width: 24px;
+}
+.item-img {
+  max-height: 120px;
+  max-width: 120px;
 }
 </style>

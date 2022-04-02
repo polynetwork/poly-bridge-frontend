@@ -44,7 +44,7 @@
           </div>
 
           <div class="field">
-            <div class="label">{{ $t('home.form.asset') }}</div>
+            <div class="label">{{ $t('home.form.collection') }}</div>
             <div class="field-wrapper">
               <CButton class="select-token-basic" @click="selectAssetVisible = true">
                 <template v-if="assets">
@@ -64,7 +64,7 @@
                 @click="selectItemVisible = items.length > 0 ? true : false"
               >
                 <template v-if="item">
-                  <img class="selected-img" :src="item.url ? item.url : unknowNFT" />
+                  <img class="selected-img" :src="item.Image ? item.Image : unknowNFT" />
                   {{ item.AssetName }}
                   {{ item.TokenId }}
                 </template>
@@ -839,6 +839,8 @@ export default {
 }
 .selected-img {
   margin-right: 10px;
+  max-width: 24px;
+  max-height: 24px;
 }
 .select-token-basic-icon {
   width: 30px;
