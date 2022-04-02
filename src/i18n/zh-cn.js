@@ -37,6 +37,7 @@ export default {
     form: {
       title: 'Bridge',
       asset: 'Asset',
+      collection: 'Collection',
       from: 'From',
       to: 'To',
       chainName: '{chainName}',
@@ -71,10 +72,10 @@ export default {
       title: 'Select Network',
     },
     selectAsset: {
-      title: 'Select Asset',
+      title: 'Select Collection',
     },
     selectItem: {
-      title: 'Select Token',
+      title: 'Select Item',
     },
     connectWallet: {
       title: 'Connect Wallet',
@@ -112,7 +113,7 @@ export default {
       hash: 'Hash: {hash}',
       amount: 'Amount',
       fee: 'Fee',
-      asset: 'Asset',
+      asset: 'Item',
       time: 'Time',
       status: 'Status',
       pagination: 'Page {page} of {pageCount}',
