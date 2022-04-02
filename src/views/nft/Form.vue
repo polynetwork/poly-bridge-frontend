@@ -325,7 +325,6 @@ export default {
       //   : [];
       // const itemsShow = AssetsShow[0] ? AssetsShow[0].Items : [];
       const items = this.assetHash ? this.$store.getters.getItems.Items : [];
-      console.log(items);
       return this.fromWallet ? items : [];
     },
     itemsShow() {
