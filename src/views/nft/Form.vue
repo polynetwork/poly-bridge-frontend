@@ -46,7 +46,11 @@
           <div class="field">
             <div class="label">{{ $t('home.form.collection') }}</div>
             <div class="field-wrapper">
-              <CButton class="select-token-basic" @click="selectAssetVisible = true">
+              <CButton
+                class="select-token-basic"
+                @click="selectAssetVisible = true"
+                :disabled="assets.length < 1"
+              >
                 <template v-if="assets">
                   {{ assetName }}
                 </template>
@@ -304,7 +308,7 @@ export default {
       } else {
         list = assetsList;
       }
-      return list;
+      return this.fromWallet ? list : [];
     },
     chainBasic() {
       return this.fromChainId ? this.nftChains[0] : null;
@@ -320,7 +324,7 @@ export default {
       //   ? this.$store.getters.getItemsShow.Assets
       //   : [];
       // const itemsShow = AssetsShow[0] ? AssetsShow[0].Items : [];
-      const items = this.$store.getters.getItems ? this.$store.getters.getItems.Items : [];
+      const items = this.assetHash ? this.$store.getters.getItems.Items : [];
       return this.fromWallet ? items : [];
     },
     itemsShow() {
@@ -453,7 +457,7 @@ export default {
         this.$store.dispatch('getAllowance', value);
       }
     },
-    assets() {
+    /* assets() {
       if (this.assets[0]) {
         this.assetHash = this.assetHash ? this.assetHash : this.assets[0].Hash;
         this.assetName = this.assetName ? this.assetName : this.assets[0].Name;
@@ -462,7 +466,7 @@ export default {
           this.getAssetMap();
         }
       }
-    },
+    }, */
     async fromChain(value) {
       await this.$store.dispatch('ensureChainWalletReady', value.id);
     },
@@ -495,19 +499,6 @@ export default {
       }
       if (document.getElementById(id2)) {
         document.getElementById(id2).style.display = 'block';
-      }
-    },
-    showImg($id) {
-      console.log($id.concat('done'));
-      let id1 = 'img';
-      id1 = id1.concat($id);
-      let id2 = 'video';
-      id2 = id2.concat($id);
-      if (document.getElementById(id1)) {
-        document.getElementById(id1).style.display = 'block';
-      }
-      if (document.getElementById(id2)) {
-        document.getElementById(id2).style.display = 'none';
       }
     },
     handleCurrentChange(val) {
@@ -585,6 +576,7 @@ export default {
       // this.getItemsShow();
       this.assetHash = null;
       this.assetName = '';
+      this.item = null;
       this.getAssets();
     },
     getItemsShow() {
@@ -645,6 +637,10 @@ export default {
       this.fromChainId = chainId;
       this.toChainId = null;
       this.init();
+      if (!this.fromWallet) {
+        this.openConnectWallet();
+      }
+      // const a = await this.$store.dispatch('ensureChainWalletReady', this.fromChainId);
     },
     changeToChainId(chainId) {
       this.toChainId = chainId;
