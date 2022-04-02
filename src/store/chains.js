@@ -66,7 +66,6 @@ export default {
     },
     async ensureChainWalletReady({ getters }, chainId) {
       const wallet = getters.getChainConnectedWallet(chainId);
-      const walletApi = await getWalletApi(wallet.name);
       if (!wallet) {
         throw new WalletError('Wallet is not connected.', {
           code: WalletError.CODES.NOT_CONNECTED,
@@ -75,6 +74,7 @@ export default {
           },
         });
       }
+      const walletApi = await getWalletApi(wallet.name);
       if (wallet.chainId !== chainId && wallet.name !== 'StarMask') {
         const fromChainId = ETH_NETWORK_CHAIN_ID_MAPS[chainId];
         const waitChainId = `0x${fromChainId.toString(16)}`;
