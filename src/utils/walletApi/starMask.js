@@ -249,8 +249,24 @@ async function lock({
   }
 }
 
+async function isExists({ address }) {
+  try {
+    const response = await window.starcoin.request({
+      method: 'contract.get_resource',
+      params: [address, `0x1::Account::Balance<0x1::STC::STC>`],
+    });
+    return !(response === null);
+  } catch (error) {
+    throw convertWalletError(error);
+  }
+}
+
 async function isAcceptToken({ chainId, address, tokenHash }) {
   try {
+    const isExistsOnChain = await isExists({ address });
+    if (!isExistsOnChain) {
+      return true;
+    }
     const tokenBasic = store.getters.getTokenBasicByChainIdAndTokenHash({ chainId, tokenHash });
     const response = await window.starcoin.request({
       method: 'contract.call_v2',
@@ -277,4 +293,5 @@ export default {
   getTransactionStatus,
   lock,
   isAcceptToken,
+  isExists,
 };
