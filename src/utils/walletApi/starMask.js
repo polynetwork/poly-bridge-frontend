@@ -118,8 +118,8 @@ async function getBalance({ chainId, address, tokenHash }) {
       method: 'contract.get_resource',
       params: [address, `0x1::Account::Balance<${tokenHash}>`],
     });
-    const result = response?.value[0][1].Struct.value[0][1].U128;
-
+    const result = response ? response.value[0][1].Struct.value[0][1].U128 : 0;
+    console.log(result);
     return integerToDecimal(result, tokenBasic.decimals);
   } catch (error) {
     throw convertWalletError(error);
@@ -183,7 +183,7 @@ async function lock({
     const feeInt = decimalToInteger(fee, feeDecimals);
     const id = 1;
 
-    const functionId = '0x18351d311d32201149a4df2a9fc2db8a::CrossChainScript::lock_with_stc_fee';
+    const functionId = '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript::lock_with_stc_fee';
     const tyArgs = [];
 
     const fromTokenHashHex = (function() {

@@ -1,12 +1,19 @@
 <template>
-  <CDrawer
+  <CDialog
     v-bind="$attrs"
     :closeOnClickModal="!confirmingData || failed || finished"
     :closeOnPressEscape="!confirmingData || failed || finished"
     v-on="$listeners"
   >
     <div class="content">
-      <div class="title">{{ $t('transactions.details.title') }}</div>
+      <div class="title">
+        {{ $t('transactions.details.title') }}
+        <img
+          class="close-btn"
+          src="@/assets/svg/close.svg"
+          @click="$emit('update:visible', false)"
+        />
+      </div>
       <div v-if="steps" class="scroll">
         <div v-for="(step, index) in steps" :key="step.chainId" class="step">
           <template v-if="step.chainId != null">
@@ -47,10 +54,13 @@
             >
               {{
                 $t('transactions.details.hash', {
-                  hash: $formatLongText(step.hash || 'N/A', { headTailLength: 16 }),
+                  hash: $formatLongText(step.hash || 'N/A', { headTailLength: 8 }),
                 })
               }}
             </CLink>
+            <CButton v-if="step.hash" @click="copy(step.hash)">
+              <img class="copy-icon" src="@/assets/svg/copy.svg" />
+            </CButton>
           </template>
 
           <template v-else-if="step.failed">
@@ -73,12 +83,13 @@
         </div>
       </div>
     </div>
-  </CDrawer>
+  </CDialog>
 </template>
 
 <script>
 import { ChainId, SingleTransactionStatus, TransactionStatus } from '@/utils/enums';
 import { HttpError } from '@/utils/errors';
+import copy from 'clipboard-copy';
 
 export default {
   name: 'Details',
@@ -161,6 +172,10 @@ export default {
     clearInterval(this.interval);
   },
   methods: {
+    copy(text) {
+      copy(text);
+      this.$message.success(this.$t('messages.copied', { text }));
+    },
     getChain(chainId) {
       return this.$store.getters.getChain(chainId);
     },
@@ -210,11 +225,22 @@ export default {
 }
 
 .title {
-  padding: 80px 50px 40px;
-  font-weight: 600;
-  font-size: 40px;
+  padding: 40px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .close-btn {
+    width: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 }
-
 .scroll {
   flex: 1;
   padding: 40px 50px 40px 80px;
@@ -272,7 +298,7 @@ export default {
   }
 
   ::v-deep .el-progress-bar__inner {
-    background: #ffffff;
+    background: rgba(62, 199, 235, 1);
   }
 }
 
@@ -287,6 +313,10 @@ export default {
   color: #3ec7eb;
   font-size: 14px;
   text-decoration: underline;
+}
+
+.copy-icon {
+  margin-left: 5px;
 }
 
 .failed-title {

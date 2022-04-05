@@ -2,7 +2,7 @@
   <CDialog v-bind="$attrs" v-on="$listeners">
     <div class="content">
       <div class="title">
-        {{ $t('home.selectChain.title') }}
+        {{ $t('home.selectItem.title') }}
         <img
           class="close-btn"
           src="@/assets/svg/close.svg"
@@ -11,12 +11,12 @@
       </div>
       <CDivider />
       <div class="scroll">
-        <div v-for="chain in chains" :key="chain.id" class="chain" @click="select(chain)">
+        <div v-for="item in items" :key="item.TokenId" class="chain" @click="select(item)">
           <span class="chain-left">
-            <img class="chain-icon" :src="chain.icon" />
-            <span>{{ $formatEnum(chain.id, { type: 'chainName' }) }}</span>
+            <img class="item-img" :src="item.Image ? item.Image : unknown" />
+            <span>{{ item.AssetName }} {{ item.TokenId }}</span>
           </span>
-          <img v-if="chainId === chain.id" src="@/assets/svg/check.svg" />
+          <img v-if="itemId === item.TokenId" src="@/assets/svg/check.svg" />
         </div>
       </div>
     </div>
@@ -25,16 +25,21 @@
 
 <script>
 export default {
-  name: 'SelectChain',
+  name: 'SelectAsset',
   inheritAttrs: false,
   props: {
-    chainId: Number,
-    chains: Array,
+    itemId: String,
+    items: Array,
+  },
+  data() {
+    return {
+      unknown: require('@/assets/svg/unknown.svg'),
+    };
   },
   methods: {
-    select(chain) {
+    select(item) {
       this.$emit('update:visible', false);
-      this.$emit('update:chainId', chain.id);
+      this.$emit('update:item', item);
     },
   },
 };
@@ -44,8 +49,8 @@ export default {
 .content {
   display: flex;
   flex-direction: column;
-  width: 500px;
   padding: 40px;
+  width: 500px;
   height: 100vh;
   background: #171f31;
   box-shadow: 0px 2px 18px 7px rgba(#000000, 0.1);
@@ -81,7 +86,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 56px;
+  max-height: 160px;
+  min-height: 56px;
+  box-sizing: border-box;
   padding: 0 20px;
   transition: all 0.3s;
   @include child-margin-h(16px);
@@ -95,10 +102,15 @@ export default {
 .chain-left {
   display: flex;
   align-items: center;
+  padding: 16px 0px;
   @include child-margin-h(8px);
 }
 
 .chain-icon {
   width: 24px;
+}
+.item-img {
+  max-height: 120px;
+  max-width: 120px;
 }
 </style>

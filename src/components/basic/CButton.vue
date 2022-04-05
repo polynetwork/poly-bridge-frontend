@@ -22,7 +22,7 @@ export default {
   padding: 0;
   border: 0;
   outline: none;
-  background: transparent;
+  background: rgba(255, 255, 255, 0);
   color: inherit;
   transition: all 0.3s;
   cursor: pointer;

@@ -1,14 +1,7 @@
 <template>
-  <CDialog v-bind="$attrs" v-on="$listeners">
+  <CDrawer v-bind="$attrs" v-on="$listeners">
     <div class="content">
-      <div class="title">
-        {{ $t('home.connectWallet.title') }}
-        <img
-          class="close-btn"
-          src="@/assets/svg/close.svg"
-          @click="$emit('update:visible', false)"
-        />
-      </div>
+      <div class="title">{{ $t('home.connectWallet.title') }}</div>
       <CDivider />
       <div class="scroll">
         <div v-if="fromChain" class="from">
@@ -92,7 +85,7 @@
         </div>
       </div>
     </div>
-  </CDialog>
+  </CDrawer>
 </template>
 
 <script>
@@ -136,13 +129,8 @@ export default {
           chainId: chain.id,
           walletName: wallet.name,
         });
-        if (this.fromChainId && !this.toChainId) {
+        if (this.fromWallet && this.toWallet) {
           this.$emit('update:visible', false);
-        }
-        if (this.fromChainId && this.toChainId) {
-          if (this.fromWallet && this.toWallet) {
-            this.$emit('update:visible', false);
-          }
         }
       } else {
         window.open(wallet.downloadUrl);
@@ -156,7 +144,6 @@ export default {
 .content {
   display: flex;
   flex-direction: column;
-  padding: 40px;
   width: 500px;
   height: 100vh;
   background: #171f31;
@@ -164,21 +151,8 @@ export default {
 }
 
 .title {
-  font-size: 24px;
-  line-height: 36px;
+  padding: 80px 50px 20px;
   font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  .close-btn {
-    width: 30px;
-    cursor: pointer;
-    transition: all 0.3s;
-    &:hover {
-      opacity: 0.6;
-    }
-  }
 }
 
 .from,
