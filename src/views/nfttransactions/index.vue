@@ -64,9 +64,9 @@
                 }}
               </CLink>
             </ElTableColumn>
-            <!-- <ElTableColumn :label="$t('transactions.index.collection')">
-              {{ row.asset.name }}
-            </ElTableColumn> -->
+            <ElTableColumn :label="$t('transactions.index.amount')">
+              1
+            </ElTableColumn>
             <ElTableColumn #default="{ row }" min-width="150" :label="$t('transactions.index.fee')">
               {{ $formatNumber(row.fee) }} {{ row.nftFee.name }}
             </ElTableColumn>
