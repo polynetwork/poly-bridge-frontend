@@ -122,7 +122,11 @@ export default {
   },
   computed: {
     chains() {
-      return this.$store.getters.chains.filter(chain => chain.id !== ChainId.Poly);
+      const arr = this.$store.getters.chains.filter(chain => chain.id !== ChainId.Poly);
+      const obj = arr[2];
+      arr.splice(2, 1);
+      arr.push(obj);
+      return arr;
     },
     nftChains() {
       return this.$store.getters.chains.filter(
