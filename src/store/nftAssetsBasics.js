@@ -63,6 +63,7 @@ export default {
       commit('setItems', res.data);
     },
     async getNftFee({ commit }, params) {
+      debugger;
       const res = await httpApi.getNftFee(params);
       commit('setNftFee', res.data);
     },

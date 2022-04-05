@@ -1,5 +1,5 @@
 <template>
-  <CDialog
+  <CDrawer
     v-bind="$attrs"
     :closeOnClickModal="!confirming"
     :closeOnPressEscape="!confirming"
@@ -7,14 +7,7 @@
   >
     <transition v-if="confirmingData" name="fade" mode="out-in">
       <div class="content">
-        <div class="title">
-          {{ $t('home.confirm.title') }}
-          <img
-            class="close-btn"
-            src="@/assets/svg/close.svg"
-            @click="$emit('update:visible', false)"
-          />
-        </div>
+        <div class="title">{{ $t('home.confirm.title') }}</div>
         <CDivider />
         <div v-if="!packing" class="scroll">
           <div class="fields">
@@ -103,7 +96,7 @@
         </div>
       </div>
     </transition>
-  </CDialog>
+  </CDrawer>
 </template>
 
 <script>
@@ -173,8 +166,6 @@ export default {
   },
   methods: {
     async confirm() {
-      debugger;
-      console.log(this.confirmingData);
       await this.$store.dispatch('ensureChainWalletReady', this.confirmingData.fromChainId);
       try {
         this.confirming = true;
@@ -237,21 +228,8 @@ export default {
 }
 
 .title {
-  padding: 40px;
+  padding: 80px 50px 20px;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .close-btn {
-    width: 30px;
-    cursor: pointer;
-    transition: all 0.3s;
-    &:hover {
-      opacity: 0.6;
-    }
-  }
 }
 
 .scroll {
