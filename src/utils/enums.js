@@ -89,6 +89,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Oasis]: TARGET_MAINNET ? 42262 : 42261,
   [ChainId.Kcc]: TARGET_MAINNET ? 321 : 322,
   [ChainId.BscPalette]: TARGET_MAINNET ? 104 : 104,
+  [ChainId.Stc]: TARGET_MAINNET ? 1 : 251,
 };
 
 export const SingleTransactionStatus = {
