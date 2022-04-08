@@ -101,4 +101,12 @@ export default {
 .chain-icon {
   width: 24px;
 }
+
+@media screen and (max-width: 900px) {
+  .content {
+    width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+}
 </style>
