@@ -15,7 +15,7 @@
           <ElTable :data="transactions.items">
             <ElTableColumn width="20" />
             <ElTableColumn
-              #default="{row}"
+              #default="{ row }"
               :label="$t('transactions.index.fromChain')"
               min-width="150"
             >
@@ -41,7 +41,7 @@
               </CLink>
             </ElTableColumn>
             <ElTableColumn
-              #default="{row}"
+              #default="{ row }"
               :label="$t('transactions.index.toChain')"
               min-width="150"
             >
@@ -67,20 +67,24 @@
             <ElTableColumn :label="$t('transactions.index.amount')">
               1
             </ElTableColumn>
-            <ElTableColumn #default="{row}" min-width="150" :label="$t('transactions.index.fee')">
+            <ElTableColumn #default="{ row }" min-width="150" :label="$t('transactions.index.fee')">
               {{ $formatNumber(row.fee) }} {{ row.nftFee.name }}
             </ElTableColumn>
             <ElTableColumn
-              #default="{row}"
+              #default="{ row }"
               :label="$t('transactions.index.asset')"
               prop="tokenBasicName"
             >
               #{{ row.tokenId }}
             </ElTableColumn>
-            <ElTableColumn #default="{row}" :label="$t('transactions.index.time')">
+            <ElTableColumn #default="{ row }" :label="$t('transactions.index.time')">
               {{ $formatTime(row.time) }}
             </ElTableColumn>
-            <ElTableColumn #default="{row}" :label="$t('transactions.index.status')" align="right">
+            <ElTableColumn
+              #default="{ row }"
+              :label="$t('transactions.index.status')"
+              align="right"
+            >
               <CButton class="view-details" @click="viewDetails(row)">
                 {{ $formatEnum(row.status, { type: 'transactionStatus' }) }}
               </CButton>

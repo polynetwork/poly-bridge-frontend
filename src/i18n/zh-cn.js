@@ -111,6 +111,7 @@ export default {
       fromChain: 'Source Chain',
       toChain: 'Destination Chain',
       hash: 'Hash: {hash}',
+      collection: 'Collection',
       amount: 'Amount',
       fee: 'Fee',
       asset: 'Item',

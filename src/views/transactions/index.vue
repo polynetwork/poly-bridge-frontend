@@ -80,7 +80,7 @@
               {{ $formatNumber(row.amount) }} {{ row.tokenBasicName }}
             </ElTableColumn>
             <ElTableColumn #default="{ row }" min-width="120" :label="$t('transactions.index.fee')">
-              {{ $formatNumber(row.fee) }} {{ row.txfeeToken.name }}
+              {{ $formatNumber(row.fee) }} {{ row.txfeeToken ? row.txfeeToken.name : '' }}
             </ElTableColumn>
             <!-- <ElTableColumn :label="$t('transactions.index.asset')"
                            prop="tokenBasicName" /> -->

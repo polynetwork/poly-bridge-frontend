@@ -248,3 +248,25 @@ export default {
   @include child-margin-h(8px);
 }
 </style>
+
+<style lang="scss" scoped>
+@media screen and (max-width: 900px) {
+  .content {
+    width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .connect {
+    width: 100%;
+  }
+  .scroll {
+    display: flex;
+    justify-content: initial;
+    flex-direction: column;
+    padding: 16px 35px;
+    .from {
+      margin-bottom: 20px;
+    }
+  }
+}
+</style>

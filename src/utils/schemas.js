@@ -76,5 +76,8 @@ export const transaction = model({
   time: alias('Time'),
   status: alias('State'),
   tokenId: alias('TokenId'),
+  /* asset: alias('SrcAsset', model({
+    name: alias('Name')
+  })), */
   steps: alias('TransactionState', list(transactionStep)),
 });
