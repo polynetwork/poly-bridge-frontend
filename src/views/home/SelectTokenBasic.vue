@@ -217,9 +217,11 @@ export default {
 @media screen and (max-width: 900px) {
   .content {
     width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
   }
   .header {
-    padding: 80px 20px 40px;
+    padding: 80px 0px 40px !important;
   }
   .hint {
     padding: 0 20px;

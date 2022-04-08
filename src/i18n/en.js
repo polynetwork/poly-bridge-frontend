@@ -58,7 +58,7 @@ export default {
       historyPrefix: 'You can view your',
       historyLink: 'history',
       approveInfinitytip:
-        'After checking, approve the infinite token usage, this behavior may be risky, please judge according to the actual situation',
+        'Tick to approve infinite amount of token to be transferred. Otherwise, the input amount above will be approved. Please be cautious of any potential risk. ',
       approveInfinity: 'Approve Infinity',
       maxamount: 'Max Available Amount',
       warningMsg:

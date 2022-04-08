@@ -119,5 +119,9 @@ export default {
     // align-items: center;
     // @include child-margin-h(20px);
   }
+  .header {
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
 }
 </style>

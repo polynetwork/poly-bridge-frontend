@@ -948,6 +948,7 @@ export default {
   border-radius: 4px;
   text-align: end !important;
   width: 100%;
+  box-sizing: border-box;
 }
 .input-inner {
   text-align: start !important;
@@ -1044,6 +1045,26 @@ export default {
   }
   .chevron-down {
     margin-top: -12px;
+  }
+
+  .fields-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .fields-row > .field {
+    width: 100%;
+  }
+  .exchange-icon {
+    transform: rotate(90deg);
+  }
+  .header {
+    padding-right: 10px;
+  }
+  .footer {
+    box-sizing: content-box;
+  }
+  .form > .card {
+    padding: 20px 10px;
   }
 }
 </style>

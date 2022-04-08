@@ -987,7 +987,7 @@ export default {
 @media screen and (max-width: 900px) {
   .card {
     max-width: 90vw;
-    padding: 20px 30px;
+    padding: 20px 10px;
   }
   .button-submit {
     margin: 20px 0 30px 0 !important;
