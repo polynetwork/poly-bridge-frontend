@@ -8,7 +8,7 @@
       <div class="content-inner">
         <div class="title">
           <CLink class="back" :to="{ name: 'nft' }"><i class="el-icon-back"></i> Back</CLink>
-          {{ $t('transactions.index.nfttitle') }}
+          <span>{{ $t('transactions.index.nfttitle') }}</span>
         </div>
 
         <div class="table-wrapper">
@@ -281,13 +281,19 @@ export default {
   .content {
     margin-top: 40px;
     .title {
-      display: none;
-      // margin-top: 20px;
-      // text-align: center;
+      margin: 30px 0 10px;
+      span {
+        display: none;
+        // margin-top: 20px;
+        // text-align: center;
+      }
     }
     .content-inner {
       margin-top: 0;
     }
+  }
+  .table-wrapper {
+    margin-top: 60px !important;
   }
 }
 </style>
