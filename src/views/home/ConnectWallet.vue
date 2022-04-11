@@ -261,6 +261,9 @@ export default {
   .content {
     width: 100vw;
   }
+  .connect {
+    width: 100%;
+  }
   .scroll {
     display: flex;
     justify-content: initial;

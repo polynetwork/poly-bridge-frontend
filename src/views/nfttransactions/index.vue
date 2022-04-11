@@ -8,11 +8,11 @@
       <div class="content-inner">
         <div class="title">
           <CLink class="back" :to="{ name: 'nft' }"><i class="el-icon-back"></i> Back</CLink>
-          {{ $t('transactions.index.nfttitle') }}
+          <span>{{ $t('transactions.index.nfttitle') }}</span>
         </div>
 
         <div class="table-wrapper">
-          <ElTable :data="transactions.items">
+          <ElTable :data="transactions.items" class="table">
             <ElTableColumn width="20" />
             <ElTableColumn
               #default="{ row }"
@@ -173,8 +173,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.transactions {
-  min-width: 1440px;
+@media screen and (min-width: 900px) {
+  .transactions {
+    min-width: 1440px;
+  }
 }
 
 .top-decoration {
@@ -203,7 +205,9 @@ export default {
 }
 
 .content-inner {
-  width: 1160px;
+  @media screen and (min-width: 900px) {
+    width: 1160px;
+  }
   margin: 40px auto 20px;
   @include child-margin-v(24px);
 }
@@ -258,5 +262,38 @@ export default {
   justify-content: center;
   align-items: center;
   @include child-margin-h(6px);
+}
+</style>
+<style lang="scss" scoped>
+@media screen and (max-width: 900px) {
+  .transactions {
+    max-width: 100vw;
+  }
+  .top-decoration {
+    display: none;
+  }
+  .bottom-decoration-wrapper {
+    display: none;
+  }
+  .table {
+    max-width: 90vw;
+  }
+  .content {
+    margin-top: 40px;
+    .title {
+      margin: 30px 0 10px;
+      span {
+        display: none;
+        // margin-top: 20px;
+        // text-align: center;
+      }
+    }
+    .content-inner {
+      margin-top: 0;
+    }
+  }
+  .table-wrapper {
+    margin-top: 60px !important;
+  }
 }
 </style>

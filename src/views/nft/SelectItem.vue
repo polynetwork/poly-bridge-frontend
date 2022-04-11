@@ -113,4 +113,12 @@ export default {
   max-height: 120px;
   max-width: 120px;
 }
+
+@media screen and (max-width: 900px) {
+  .content {
+    width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+}
 </style>

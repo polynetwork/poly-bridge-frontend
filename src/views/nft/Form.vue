@@ -897,27 +897,6 @@ export default {
   margin-left: 10px;
 }
 
-.input {
-  display: flex;
-  align-items: center;
-  padding: 18px 14px;
-  background: rgba(#000000, 0);
-  border-radius: 4px;
-  text-align: end !important;
-  width: 66%;
-}
-.input-inner {
-  text-align: end !important;
-}
-.input-show {
-  opacity: 0.6;
-}
-.input-error {
-  color: $--color-danger;
-  font-size: 12px;
-  text-align: right;
-}
-
 .use-max {
   margin-left: 10px;
   padding: 5px;
@@ -987,13 +966,16 @@ export default {
 @media screen and (max-width: 900px) {
   .card {
     max-width: 90vw;
-    padding: 20px 30px;
+    padding: 20px 10px;
   }
   .button-submit {
     margin: 20px 0 30px 0 !important;
   }
   .chevron-down {
     margin-top: -12px;
+  }
+  .form > .card {
+    padding: 20px 10px;
   }
 }
 </style>

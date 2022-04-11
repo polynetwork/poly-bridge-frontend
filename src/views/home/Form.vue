@@ -274,6 +274,10 @@
       >
         {{ $t('buttons.next') }}
       </CSubmitButton>
+      <!-- <div v-if="invalid || !valid">
+        Poly Bridge will be suspended now due to network problems. We will resume services once the
+        network is stable. Sorry for the inconvenience.
+      </div> -->
     </div>
 
     <div class="history">
@@ -948,6 +952,7 @@ export default {
   border-radius: 4px;
   text-align: end !important;
   width: 100%;
+  box-sizing: border-box;
 }
 .input-inner {
   text-align: start !important;
@@ -1044,6 +1049,26 @@ export default {
   }
   .chevron-down {
     margin-top: -12px;
+  }
+
+  .fields-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .fields-row > .field {
+    width: 100%;
+  }
+  .exchange-icon {
+    transform: rotate(90deg);
+  }
+  .header {
+    padding-right: 10px;
+  }
+  .footer {
+    box-sizing: content-box;
+  }
+  .form > .card {
+    padding: 20px 10px;
   }
 }
 </style>
