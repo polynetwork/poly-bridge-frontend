@@ -84,7 +84,8 @@ export default {
     @include child-margin-h(0);
   }
   .nft {
-    min-width: 100vw;
+    min-width: 50vw;
+    width: 100vw;
   }
   .top-decoration {
     display: none;
