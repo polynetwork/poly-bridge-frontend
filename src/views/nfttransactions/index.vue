@@ -64,8 +64,11 @@
                 }}
               </CLink>
             </ElTableColumn>
-            <ElTableColumn :label="$t('transactions.index.amount')">
+            <ElTableColumn :label="$t('transactions.index.amount')" width="75">
               1
+            </ElTableColumn>
+            <ElTableColumn #default="{ row }" :label="$t('transactions.index.collection')">
+              {{ row.asset.name }}
             </ElTableColumn>
             <ElTableColumn #default="{ row }" min-width="150" :label="$t('transactions.index.fee')">
               {{ $formatNumber(row.fee) }} {{ row.nftFee.name }}
@@ -146,7 +149,6 @@ export default {
       };
     },
     transactions() {
-      console.log(this.$store.getters.getNftTransactions(this.getTransactionsParams) || {});
       return this.$store.getters.getNftTransactions(this.getTransactionsParams) || {};
     },
   },

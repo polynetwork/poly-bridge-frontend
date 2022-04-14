@@ -83,6 +83,17 @@ export default {
     });
     return result;
   },
+  async getHealthData({ chindIds }) {
+    debugger;
+    const result = await request({
+      method: 'post',
+      url: '/chainhealth',
+      data: {
+        ChainIds: chindIds,
+      },
+    });
+    return result;
+  },
   async getExpectTime({ fromChainId, toChainId }) {
     const result = await request({
       method: 'post',
@@ -222,6 +233,7 @@ export default {
       },
     });
     const transaction = deserialize(schemas.transaction, result.data);
+    debugger;
     return mapTransactionToDo(transaction);
   },
 };
