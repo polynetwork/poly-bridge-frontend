@@ -64,17 +64,20 @@
                 }}
               </CLink>
             </ElTableColumn>
-            <ElTableColumn :label="$t('transactions.index.amount')" width="75">
-              1
-            </ElTableColumn>
-            <ElTableColumn #default="{ row }" :label="$t('transactions.index.collection')">
+            <ElTableColumn :label="$t('transactions.index.amount')" width="75"> 1 </ElTableColumn>
+            <ElTableColumn
+              #default="{ row }"
+              min-width="150"
+              :label="$t('transactions.index.collection')"
+            >
               {{ row.asset.name }}
             </ElTableColumn>
-            <ElTableColumn #default="{ row }" min-width="150" :label="$t('transactions.index.fee')">
+            <ElTableColumn #default="{ row }" min-width="120" :label="$t('transactions.index.fee')">
               {{ $formatNumber(row.fee) }} {{ row.nftFee.name }}
             </ElTableColumn>
             <ElTableColumn
               #default="{ row }"
+              width="60"
               :label="$t('transactions.index.asset')"
               prop="tokenBasicName"
             >
