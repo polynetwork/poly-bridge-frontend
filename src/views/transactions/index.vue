@@ -161,7 +161,6 @@ export default {
       };
     },
     netTransactions() {
-      console.log(this.$store.getters.getTransactions(this.getTransactionsParams));
       return this.$store.getters.getTransactions(this.getTransactionsParams) || {};
     },
   },
@@ -177,9 +176,6 @@ export default {
     netTransactions(value, oldValue) {
       if (oldValue.items) {
         if (value.items.length >= oldValue.items.length) {
-          console.log('value.items.length');
-          console.log(value.items.length);
-          console.log(oldValue.items.length);
           this.transactions = value;
         }
       } else {
