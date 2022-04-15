@@ -262,7 +262,6 @@ export default {
     },
   },
   created() {
-    console.log(this.$route);
     this.interval = setInterval(() => {
       this.getTransaction();
     }, 5000);

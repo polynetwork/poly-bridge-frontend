@@ -433,6 +433,22 @@ export default {
     fee() {
       return this.$store.getters.getNftFee;
     },
+    getChainsHealthParams() {
+      const arr = [];
+      arr.push(0);
+      if (this.fromChain) {
+        arr.push(this.fromChainId);
+      }
+      if (this.toChain) {
+        arr.push(this.toChainId);
+      }
+      return arr;
+    },
+    chainsHealth() {
+      return (
+        this.getChainsHealthParams && this.$store.getters.getHealthData(this.getChainsHealthParams)
+      );
+    },
   },
   watch: {
     async getBalanceParams(value) {
@@ -457,6 +473,12 @@ export default {
         this.$store.dispatch('getAllowance', value);
       }
     },
+    /* async getChainsHealthParams(value) {
+      debugger
+      if (value) {
+        await this.$store.dispatch('getHealthData', value);
+      }
+    }, */
     /* assets() {
       if (this.assets[0]) {
         this.assetHash = this.assetHash ? this.assetHash : this.assets[0].Hash;
