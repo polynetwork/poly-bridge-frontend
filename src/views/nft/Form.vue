@@ -151,7 +151,7 @@
         </div>
       </div>
 
-      <CSubmitButton
+      <!-- <CSubmitButton
         v-if="fromChain && toChain && !(fromWallet && toWallet)"
         @click="connectWalletVisible = true"
       >
@@ -169,7 +169,11 @@
         class="button-submit"
       >
         {{ $t('buttons.next') }}
-      </CSubmitButton>
+      </CSubmitButton> -->
+      <div v-if="invalid || !valid">
+        Poly Bridge will be suspended now due to network problems. We will resume services once the
+        network is stable. Sorry for the inconvenience.
+      </div>
     </div>
 
     <div class="history">
