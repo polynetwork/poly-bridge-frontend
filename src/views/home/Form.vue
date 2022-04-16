@@ -275,7 +275,7 @@
         {{ $t('buttons.next') }}
       </CSubmitButton> -->
       <div v-if="invalid || !valid">
-        Poly Bridge will be suspended now due to network problems. We will resume services once the
+        Poly Bridge is suspended now due to network problems. We will resume services once the
         network is stable. Sorry for the inconvenience.
       </div>
     </div>
