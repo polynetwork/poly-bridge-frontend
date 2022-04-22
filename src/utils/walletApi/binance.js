@@ -41,11 +41,16 @@ function convertWalletError(error) {
 }
 
 async function queryState() {
+  debugger;
+  console.log(await window.BinanceChain.isConnected());
+  console.log(window.BinanceChain);
   const accounts = await window.BinanceChain.request({ method: 'eth_accounts' });
+  console.log(accounts);
   const address = accounts[0] || null;
   const addressHex = await tryToConvertAddressToHex(WalletName.Binance, address);
   const checksumAddress = address && web3.utils.toChecksumAddress(address);
   const network = await window.BinanceChain.request({ method: 'eth_chainId' });
+  debugger;
   store.dispatch('updateWallet', {
     name: WalletName.Binance,
     address: checksumAddress,

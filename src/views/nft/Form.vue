@@ -150,26 +150,33 @@
           }}</span>
         </div>
       </div>
-
-      <CSubmitButton
-        v-if="fromChain && toChain && !(fromWallet && toWallet)"
-        @click="connectWalletVisible = true"
-      >
-        {{ $t('home.form.connectWallet') }}
-      </CSubmitButton>
-      <div v-else-if="fromChain && toChain && item && needApproval" class="approve-wrapper">
-        <CSubmitButton :loading="approving" @click="approve">
-          {{ approving ? $t('buttons.approving') : $t('buttons.approve') }}
+      <div v-if="healthFlag">
+        <CSubmitButton
+          v-if="fromChain && toChain && !(fromWallet && toWallet)"
+          @click="connectWalletVisible = true"
+        >
+          {{ $t('home.form.connectWallet') }}
+        </CSubmitButton>
+        <div v-else-if="fromChain && toChain && item && needApproval" class="approve-wrapper">
+          <CSubmitButton :loading="approving" @click="approve">
+            {{ approving ? $t('buttons.approving') : $t('buttons.approve') }}
+          </CSubmitButton>
+        </div>
+        <CSubmitButton
+          v-else
+          :disabled="!(item && toChain)"
+          @click="openConfirm"
+          class="button-submit"
+        >
+          {{ $t('buttons.next') }}
         </CSubmitButton>
       </div>
-      <CSubmitButton
-        v-else
-        :disabled="!(item && toChain)"
-        @click="openConfirm"
-        class="button-submit"
-      >
-        {{ $t('buttons.next') }}
-      </CSubmitButton>
+      <div v-else>
+        <div v-if="invalid || !valid">
+          Poly Bridge is suspended now due to network problems. We will resume services once the
+          network is stable. Sorry for the inconvenience.
+        </div>
+      </div>
     </div>
 
     <div class="history">
@@ -231,6 +238,7 @@
 </template>
 
 <script>
+import httpApi from '@/utils/httpApi';
 import BigNumber from 'bignumber.js';
 import copy from 'clipboard-copy';
 import { v4 as uuidv4 } from 'uuid';
@@ -290,6 +298,7 @@ export default {
       itemLoading: false,
       needApproval: true,
       defaultImg: 'this.src="'.concat(require('../../assets/svg/back.svg'), '"'),
+      healthFlag: true,
     };
   },
   computed: {
@@ -444,11 +453,6 @@ export default {
       }
       return arr;
     },
-    chainsHealth() {
-      return (
-        this.getChainsHealthParams && this.$store.getters.getHealthData(this.getChainsHealthParams)
-      );
-    },
   },
   watch: {
     async getBalanceParams(value) {
@@ -473,12 +477,6 @@ export default {
         this.$store.dispatch('getAllowance', value);
       }
     },
-    /* async getChainsHealthParams(value) {
-      debugger
-      if (value) {
-        await this.$store.dispatch('getHealthData', value);
-      }
-    }, */
     /* assets() {
       if (this.assets[0]) {
         this.assetHash = this.assetHash ? this.assetHash : this.assets[0].Hash;
@@ -507,8 +505,14 @@ export default {
   },
   created() {
     this.init();
+    this.getChainHealth();
+    this.interval = setInterval(() => {
+      this.getChainHealth();
+    }, 5000);
   },
-  beforeDestroy() {},
+  beforeDestroy() {
+    clearInterval(this.interval);
+  },
   methods: {
     showVideo($id) {
       console.log($id.concat('error'));
@@ -522,6 +526,19 @@ export default {
       if (document.getElementById(id2)) {
         document.getElementById(id2).style.display = 'block';
       }
+    },
+    async getChainHealth() {
+      const chindIds = this.getChainsHealthParams;
+      const res = await httpApi.getHealthData({ chindIds });
+      const polyHealth = res.Result[0];
+      let tempFlag = polyHealth;
+      if (this.fromChainId) {
+        tempFlag = tempFlag && res.Result[this.fromChainId];
+      }
+      if (this.toChainId) {
+        tempFlag = tempFlag && res.Result[this.toChainId];
+      }
+      this.healthFlag = tempFlag;
     },
     handleCurrentChange(val) {
       this.currentPage = val;
@@ -662,6 +679,7 @@ export default {
       if (!this.fromWallet) {
         this.openConnectWallet();
       }
+      this.getChainHealth();
       // const a = await this.$store.dispatch('ensureChainWalletReady', this.fromChainId);
     },
     changeToChainId(chainId) {
@@ -672,6 +690,7 @@ export default {
         DstChainId: this.toChainId,
       };
       this.$store.dispatch('getNftFee', params);
+      this.getChainHealth();
     },
     changeAsset(asset) {
       this.item = null;

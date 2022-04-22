@@ -245,39 +245,42 @@
           </div>
         </ValidationProvider>
       </div>
-
-      <CSubmitButton
-        v-if="fromChain && toChain && !(fromWallet && toWallet)"
-        @click="connectWalletVisible = true"
-      >
-        {{ $t('home.form.connectWallet') }}
-      </CSubmitButton>
-      <div v-else-if="!invalid && fromToken && toToken && needApproval" class="approve-wrapper">
-        <el-checkbox v-model="approveInfinityChecked"
-          >{{ $t('home.form.approveInfinity') }}
-          <CTooltip>
-            <img class="tooltip-icon" src="@/assets/svg/question.svg" />
-            <template #content>
-              {{ $t('home.form.approveInfinitytip') }}
-            </template>
-          </CTooltip>
-        </el-checkbox>
-        <CSubmitButton :loading="approving" @click="approve">
-          {{ approving ? $t('buttons.approving') : $t('buttons.approve') }}
+      <div v-if="healthFlag">
+        <CSubmitButton
+          v-if="fromChain && toChain && !(fromWallet && toWallet)"
+          @click="connectWalletVisible = true"
+        >
+          {{ $t('home.form.connectWallet') }}
+        </CSubmitButton>
+        <div v-else-if="!invalid && fromToken && toToken && needApproval" class="approve-wrapper">
+          <el-checkbox v-model="approveInfinityChecked"
+            >{{ $t('home.form.approveInfinity') }}
+            <CTooltip>
+              <img class="tooltip-icon" src="@/assets/svg/question.svg" />
+              <template #content>
+                {{ $t('home.form.approveInfinitytip') }}
+              </template>
+            </CTooltip>
+          </el-checkbox>
+          <CSubmitButton :loading="approving" @click="approve">
+            {{ approving ? $t('buttons.approving') : $t('buttons.approve') }}
+          </CSubmitButton>
+        </div>
+        <CSubmitButton
+          v-else
+          :disabled="invalid || !(fromToken && toToken)"
+          @click="next"
+          class="button-submit"
+        >
+          {{ $t('buttons.next') }}
         </CSubmitButton>
       </div>
-      <CSubmitButton
-        v-else
-        :disabled="invalid || !(fromToken && toToken)"
-        @click="next"
-        class="button-submit"
-      >
-        {{ $t('buttons.next') }}
-      </CSubmitButton>
-      <!-- <div v-if="invalid || !valid">
-        Poly Bridge will be suspended now due to network problems. We will resume services once the
-        network is stable. Sorry for the inconvenience.
-      </div> -->
+      <div v-else>
+        <div v-if="invalid || !valid">
+          Poly Bridge is suspended now due to network problems. We will resume services once the
+          network is stable. Sorry for the inconvenience.
+        </div>
+      </div>
     </div>
 
     <div class="history">
@@ -324,6 +327,7 @@
 </template>
 
 <script>
+import httpApi from '@/utils/httpApi';
 import BigNumber from 'bignumber.js';
 import copy from 'clipboard-copy';
 import { v4 as uuidv4 } from 'uuid';
@@ -364,6 +368,7 @@ export default {
       approveInfinityChecked: false,
       selfPayChecked: false,
       confirmUuid: uuidv4(),
+      healthFlag: true,
     };
   },
   computed: {
@@ -553,6 +558,17 @@ export default {
     tofee() {
       return this.getToFeeParams && this.$store.getters.getFee(this.getToFeeParams);
     },
+    getChainsHealthParams() {
+      const arr = [];
+      arr.push(0);
+      if (this.fromChain) {
+        arr.push(this.fromChainId);
+      }
+      if (this.toChain) {
+        arr.push(this.toChainId);
+      }
+      return arr;
+    },
   },
   watch: {
     async getBalanceParams(value) {
@@ -599,7 +615,9 @@ export default {
   },
   created() {
     this.$store.dispatch('getTokenBasics');
+    this.getChainHealth();
     this.interval = setInterval(() => {
+      this.getChainHealth();
       if (
         this.getBalanceParams &&
         this.fromWallet &&
@@ -620,6 +638,19 @@ export default {
     clearInterval(this.interval);
   },
   methods: {
+    async getChainHealth() {
+      const chindIds = this.getChainsHealthParams;
+      const res = await httpApi.getHealthData({ chindIds });
+      const polyHealth = res.Result[0];
+      let tempFlag = polyHealth;
+      if (this.fromChainId) {
+        tempFlag = tempFlag && res.Result[this.fromChainId];
+      }
+      if (this.toChainId) {
+        tempFlag = tempFlag && res.Result[this.toChainId];
+      }
+      this.healthFlag = tempFlag;
+    },
     changeTokenBasicName(tokenBasicName) {
       this.tokenBasicName = tokenBasicName;
       this.fromChainId = null;
@@ -630,10 +661,12 @@ export default {
       this.fromChainId = chainId;
       this.toChainId = null;
       this.clearAmount();
+      this.getChainHealth();
     },
     changeToChainId(chainId) {
       this.toChainId = chainId;
       this.clearAmount();
+      this.getChainHealth();
     },
     async exchangeFromTo() {
       await this.$store.dispatch('getTokenMaps', {
@@ -648,6 +681,7 @@ export default {
         this.toChainId = null;
       }
       this.clearAmount();
+      this.getChainHealth();
     },
     copy(text) {
       copy(text);
