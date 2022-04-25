@@ -448,9 +448,6 @@ export default {
       if (this.fromChain) {
         arr.push(this.fromChainId);
       }
-      if (this.toChain) {
-        arr.push(this.toChainId);
-      }
       return arr;
     },
   },
@@ -508,7 +505,7 @@ export default {
     this.getChainHealth();
     this.interval = setInterval(() => {
       this.getChainHealth();
-    }, 5000);
+    }, 60000);
   },
   beforeDestroy() {
     clearInterval(this.interval);

@@ -564,9 +564,6 @@ export default {
       if (this.fromChain) {
         arr.push(this.fromChainId);
       }
-      if (this.toChain) {
-        arr.push(this.toChainId);
-      }
       return arr;
     },
   },
@@ -633,9 +630,13 @@ export default {
         this.$store.dispatch('getAllowance', this.getAllowanceParams);
       }
     }, 5000);
+    this.interval1 = setInterval(() => {
+      this.getChainHealth();
+    }, 60000);
   },
   beforeDestroy() {
     clearInterval(this.interval);
+    clearInterval(this.interval1);
   },
   methods: {
     async getChainHealth() {
