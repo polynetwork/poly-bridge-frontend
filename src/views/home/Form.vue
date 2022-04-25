@@ -647,9 +647,6 @@ export default {
       if (this.fromChainId) {
         tempFlag = tempFlag && res.Result[this.fromChainId];
       }
-      if (this.toChainId) {
-        tempFlag = tempFlag && res.Result[this.toChainId];
-      }
       this.healthFlag = tempFlag;
     },
     changeTokenBasicName(tokenBasicName) {
