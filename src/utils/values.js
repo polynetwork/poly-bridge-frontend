@@ -39,6 +39,7 @@ export const WALLETS = [
       ChainId.Oasis1,
       ChainId.Boba,
       ChainId.Kcc,
+      ChainId.OntEvm,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -536,6 +537,20 @@ export const CHAINS = [
       : '0x6fd13dd4181dDb0f7463e19caC659FD3e9FB8a82',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'BTM',
+    selfPay: true,
+  },
+  {
+    id: ChainId.OntEvm,
+    nativeFee: true,
+    icon: require('@/assets/svg/ONT.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.ont.io/tx/{txHash}'
+      : 'https://explorer.ont.io/testnet/tx/{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x66f1Ad12a2C7A6370CbD20ECD79D17a405061Efe'
+      : '0x66f1Ad12a2C7A6370CbD20ECD79D17a405061Efe',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'ONG',
     selfPay: true,
   },
 ];
