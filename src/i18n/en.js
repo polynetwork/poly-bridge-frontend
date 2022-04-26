@@ -176,6 +176,7 @@ export default {
       [ChainId.Ok]: 'OKExChain',
       [ChainId.Polygon]: 'Polygon',
       [ChainId.Palette]: 'Palette',
+      [ChainId.BscPalette]: 'Bsc Palette',
       [ChainId.Arbitrum]: 'Arbitrum',
       [ChainId.OntEvm]: 'Ontology EVM',
       [ChainId.Optimistic]: 'Optimistic',
@@ -199,6 +200,7 @@ export default {
       [ChainId.Optimistic]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Boba]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Palette]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.BscPalette]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Eth]: TARGET_MAINNET ? 'MainNet' : 'Ropsten TestNet',
       [ChainId.Neo]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.xDai]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -241,6 +243,7 @@ export default {
       MALFORMED_INPUT: 'Malformed input.',
       INSUFFICIENT_FUNDS: 'Insufficient funds.',
       COMMUNICATE_FAILED: 'Communicate failed with wallet.',
+      TOKEN_IS_NOT_ACCEPT: 'Token is not accepted by the address on the target chain.',
     },
     chain: {
       UNKNOWN_ERROR: 'Unknown chain error.',

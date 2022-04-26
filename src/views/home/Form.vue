@@ -740,7 +740,29 @@ export default {
         this.approving = false;
       }
     },
-    next() {
+    async finalCheck() {
+      // Starcoin needs to check is_accept_token first
+      if (this.toWallet.name === 'StarMask') {
+        const walletApi = await getWalletApi(this.toWallet.name);
+        const isAcceptToken = await walletApi.isAcceptToken({
+          chainId: this.toChainId,
+          address: this.toWallet.address,
+          tokenHash: this.toToken.hash,
+        });
+        if (!isAcceptToken) {
+          this.$message.error(
+            `${this.$t('errors.wallet.TOKEN_IS_NOT_ACCEPT')}: ${this.toToken.hash}`,
+          );
+          return false;
+        }
+      }
+      return true;
+    },
+    async next() {
+      const finalCheck = await this.finalCheck();
+      if (!finalCheck) {
+        return;
+      }
       this.confirmingData = {
         fromAddress: this.fromWallet.address,
         toAddress: this.toWallet.address,

@@ -30,6 +30,7 @@ const APIS = {
   [ChainId.Oasis1]: () => import('./eth'),
   [ChainId.Boba]: () => import('./eth'),
   [ChainId.OntEvm]: () => import('./eth'),
+  [ChainId.BscPalette]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {
