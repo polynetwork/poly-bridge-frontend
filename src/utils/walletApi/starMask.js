@@ -15,8 +15,7 @@ const NFT_FEE_TOKEN_HASH = '0x0000000000000000000000000000000000000000';
 const PLT_NFT_FEE_TOKEN_HASH = '0x0000000000000000000000000000000000000103';
 
 const NETWORK_CHAIN_ID_MAPS = {
-  [TARGET_MAINNET ? 1 : 318]: ChainId.Stc,
-  251: 318,
+  [TARGET_MAINNET ? 1 : 251]: ChainId.Stc,
 };
 
 let web3;
@@ -106,6 +105,17 @@ async function connect() {
     await window.starcoin.request({ method: 'stc_requestAccounts' });
     await queryState();
     sessionStorage.setItem(STAR_MASK_CONNECTED_KEY, 'true');
+  } catch (error) {
+    throw convertWalletError(error);
+  }
+}
+
+async function changeChain(waitChainId) {
+  try {
+    await window.starcoin.request({
+      method: 'wallet_switchStarcoinChain',
+      params: [{ chainId: waitChainId }],
+    });
   } catch (error) {
     throw convertWalletError(error);
   }
@@ -249,8 +259,24 @@ async function lock({
   }
 }
 
+async function isExists({ address }) {
+  try {
+    const response = await window.starcoin.request({
+      method: 'contract.get_resource',
+      params: [address, `0x1::Account::Balance<0x1::STC::STC>`],
+    });
+    return !(response === null);
+  } catch (error) {
+    throw convertWalletError(error);
+  }
+}
+
 async function isAcceptToken({ chainId, address, tokenHash }) {
   try {
+    const isExistsOnChain = await isExists({ address });
+    if (!isExistsOnChain) {
+      return true;
+    }
     const tokenBasic = store.getters.getTokenBasicByChainIdAndTokenHash({ chainId, tokenHash });
     const response = await window.starcoin.request({
       method: 'contract.call_v2',
@@ -272,9 +298,11 @@ async function isAcceptToken({ chainId, address, tokenHash }) {
 export default {
   install: init,
   connect,
+  changeChain,
   getBalance,
   getAllowance,
   getTransactionStatus,
   lock,
   isAcceptToken,
+  isExists,
 };
