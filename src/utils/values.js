@@ -23,6 +23,7 @@ export const WALLETS = [
       ChainId.Ok,
       ChainId.Polygon,
       ChainId.Palette,
+      ChainId.BscPalette,
       ChainId.Arbitrum,
       ChainId.xDai,
       ChainId.HSC,
@@ -54,6 +55,7 @@ export const WALLETS = [
       ChainId.Ok,
       ChainId.Polygon,
       ChainId.Palette,
+      ChainId.BscPalette,
       ChainId.Arbitrum,
       ChainId.xDai,
       ChainId.HSC,
@@ -156,7 +158,7 @@ export const CHAINS = [
     lockContractHash: TARGET_MAINNET
       ? '0x81910675DbaF69deE0fD77570BFD07f8E436386A'
       : //   : '0xe498fb7D00468a67A79dE5D4Ca264d3350165280',
-        '0xDc37471Af6a8aB7f45F444c5a3Ef4758281bE32C',
+        '0xc58eF4F49BBbd6bdfFeEA8159481C1AFAfBCFD0e',
     nftLockContractHash: TARGET_MAINNET
       ? '0xe5204d62361A353C665668C858Ea213070CA159c'
       : '0x940300dc3Fc26e3A330a300be766184C0b5Fe019',
@@ -384,6 +386,26 @@ export const CHAINS = [
       : '0x0806e6925e6960E06cD4781e22A636bA233B53De',
     nftFeeContractHash: '0000000000000000000000000000000000000103',
     nftFeeName: 'PLT',
+    selfPay: true,
+  },
+  {
+    id: ChainId.BscPalette,
+    nativeFee: false,
+    icon: require('@/assets/svg/plt.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
+      : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
+    nftexplorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
+      : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x0c5c0b03e897e7b1828f2bc923ea4498ec891060'
+      : '0x0c5c0b03e897e7b1828f2bc923ea4498ec891060',
+    nftLockContractHash: TARGET_MAINNET
+      ? '0x41985E2A8826233618392e38d46d2060fbCC3F2A'
+      : '0x0806e6925e6960E06cD4781e22A636bA233B53De',
+    nftFeeContractHash: '0000000000000000000000000000000000000103',
+    nftFeeName: 'wePLT',
     selfPay: true,
   },
   {

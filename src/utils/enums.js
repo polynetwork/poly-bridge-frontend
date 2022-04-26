@@ -41,6 +41,7 @@ export const ChainId = {
   Stc: TARGET_MAINNET ? 1 : 318,
   Kcc: TARGET_MAINNET ? 900 : 900,
   OntEvm: TARGET_MAINNET ? 333 : 333,
+  BscPalette: TARGET_MAINNET ? 1001 : 1001,
 };
 
 export const NetworkChainIdMaps = {
@@ -65,6 +66,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 42262 : 42261]: ChainId.Oasis,
   [TARGET_MAINNET ? 321 : 322]: ChainId.Kcc,
   [TARGET_MAINNET ? 58 : 5851]: ChainId.OntEvm,
+  [TARGET_MAINNET ? 104 : 104]: ChainId.BscPalette,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -89,6 +91,8 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Oasis]: TARGET_MAINNET ? 42262 : 42261,
   [ChainId.Kcc]: TARGET_MAINNET ? 321 : 322,
   [ChainId.OntEvm]: TARGET_MAINNET ? 58 : 5851,
+  [ChainId.BscPalette]: TARGET_MAINNET ? 104 : 104,
+  [ChainId.Stc]: TARGET_MAINNET ? 1 : 251,
 };
 
 export const SingleTransactionStatus = {

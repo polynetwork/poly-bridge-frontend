@@ -75,7 +75,7 @@ export default {
         });
       }
       const walletApi = await getWalletApi(wallet.name);
-      if (wallet.chainId !== chainId && wallet.name !== 'StarMask') {
+      if (wallet.chainId !== chainId) {
         const fromChainId = ETH_NETWORK_CHAIN_ID_MAPS[chainId];
         const waitChainId = `0x${fromChainId.toString(16)}`;
         try {
