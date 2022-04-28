@@ -84,7 +84,6 @@ export default {
     return result;
   },
   async getHealthData({ chindIds }) {
-    debugger;
     const result = await request({
       method: 'post',
       url: '/chainhealth',
@@ -195,7 +194,6 @@ export default {
     return result;
   },
   async getNftFee(params) {
-    debugger;
     const result = await nftRequest({
       method: 'post',
       url: '/getfee',
@@ -233,7 +231,6 @@ export default {
       },
     });
     const transaction = deserialize(schemas.transaction, result.data);
-    debugger;
     return mapTransactionToDo(transaction);
   },
 };
