@@ -7,7 +7,7 @@ export default {
     healthDataMap: {},
   },
   getters: {
-    getHealthData: state => ({ chindIds }) => state.manualTxDataMap[getStoreKey({ chindIds })],
+    getHealthData: state => ({ chindIds }) => state.healthDataMap[getStoreKey({ chindIds })],
   },
   mutations: {
     setHealthData(state, { params, value }) {
@@ -17,7 +17,8 @@ export default {
   actions: {
     async getHealthData({ commit }, chindIds) {
       const healthData = await httpApi.getHealthData({ chindIds });
-      commit('setHealthData', { params: { chindIds }, value: healthData });
+      const data = healthData.Result;
+      commit('setHealthData', { params: { chindIds }, value: data });
     },
   },
 };

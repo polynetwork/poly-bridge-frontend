@@ -173,7 +173,6 @@ export default {
   },
   methods: {
     async confirm() {
-      debugger;
       console.log(this.confirmingData);
       await this.$store.dispatch('ensureChainWalletReady', this.confirmingData.fromChainId);
       try {

@@ -245,38 +245,41 @@
           </div>
         </ValidationProvider>
       </div>
-
-      <!-- <CSubmitButton
-        v-if="fromChain && toChain && !(fromWallet && toWallet)"
-        @click="connectWalletVisible = true"
-      >
-        {{ $t('home.form.connectWallet') }}
-      </CSubmitButton>
-      <div v-else-if="!invalid && fromToken && toToken && needApproval" class="approve-wrapper">
-        <el-checkbox v-model="approveInfinityChecked"
-          >{{ $t('home.form.approveInfinity') }}
-          <CTooltip>
-            <img class="tooltip-icon" src="@/assets/svg/question.svg" />
-            <template #content>
-              {{ $t('home.form.approveInfinitytip') }}
-            </template>
-          </CTooltip>
-        </el-checkbox>
-        <CSubmitButton :loading="approving" @click="approve">
-          {{ approving ? $t('buttons.approving') : $t('buttons.approve') }}
+      <div v-if="healthFlag">
+        <CSubmitButton
+          v-if="fromChain && toChain && !(fromWallet && toWallet)"
+          @click="connectWalletVisible = true"
+        >
+          {{ $t('home.form.connectWallet') }}
+        </CSubmitButton>
+        <div v-else-if="!invalid && fromToken && toToken && needApproval" class="approve-wrapper">
+          <el-checkbox v-model="approveInfinityChecked"
+            >{{ $t('home.form.approveInfinity') }}
+            <CTooltip>
+              <img class="tooltip-icon" src="@/assets/svg/question.svg" />
+              <template #content>
+                {{ $t('home.form.approveInfinitytip') }}
+              </template>
+            </CTooltip>
+          </el-checkbox>
+          <CSubmitButton :loading="approving" @click="approve">
+            {{ approving ? $t('buttons.approving') : $t('buttons.approve') }}
+          </CSubmitButton>
+        </div>
+        <CSubmitButton
+          v-else
+          :disabled="invalid || !(fromToken && toToken)"
+          @click="next"
+          class="button-submit"
+        >
+          {{ $t('buttons.next') }}
         </CSubmitButton>
       </div>
-      <CSubmitButton
-        v-else
-        :disabled="invalid || !(fromToken && toToken)"
-        @click="next"
-        class="button-submit"
-      >
-        {{ $t('buttons.next') }}
-      </CSubmitButton> -->
-      <div v-if="invalid || !valid">
-        Poly Bridge is suspended now due to network problems. We will resume services once the
-        network is stable. Sorry for the inconvenience.
+      <div v-else>
+        <div v-if="invalid || !valid">
+          Poly Bridge is suspended now due to network problems. We will resume services once the
+          network is stable. Sorry for the inconvenience.
+        </div>
       </div>
     </div>
 
@@ -324,6 +327,7 @@
 </template>
 
 <script>
+import httpApi from '@/utils/httpApi';
 import BigNumber from 'bignumber.js';
 import copy from 'clipboard-copy';
 import { v4 as uuidv4 } from 'uuid';
@@ -364,7 +368,7 @@ export default {
       approveInfinityChecked: false,
       selfPayChecked: false,
       confirmUuid: uuidv4(),
-      closeFlag: false,
+      healthFlag: true,
     };
   },
   computed: {
@@ -554,6 +558,14 @@ export default {
     tofee() {
       return this.getToFeeParams && this.$store.getters.getFee(this.getToFeeParams);
     },
+    getChainsHealthParams() {
+      const arr = [];
+      arr.push(0);
+      if (this.fromChain) {
+        arr.push(this.fromChainId);
+      }
+      return arr;
+    },
   },
   watch: {
     async getBalanceParams(value) {
@@ -600,7 +612,9 @@ export default {
   },
   created() {
     this.$store.dispatch('getTokenBasics');
+    this.getChainHealth();
     this.interval = setInterval(() => {
+      this.getChainHealth();
       if (
         this.getBalanceParams &&
         this.fromWallet &&
@@ -616,11 +630,25 @@ export default {
         this.$store.dispatch('getAllowance', this.getAllowanceParams);
       }
     }, 5000);
+    this.interval1 = setInterval(() => {
+      this.getChainHealth();
+    }, 60000);
   },
   beforeDestroy() {
     clearInterval(this.interval);
+    clearInterval(this.interval1);
   },
   methods: {
+    async getChainHealth() {
+      const chindIds = this.getChainsHealthParams;
+      const res = await httpApi.getHealthData({ chindIds });
+      const polyHealth = res.Result[0];
+      let tempFlag = polyHealth;
+      if (this.fromChainId) {
+        tempFlag = tempFlag && res.Result[this.fromChainId];
+      }
+      this.healthFlag = tempFlag;
+    },
     changeTokenBasicName(tokenBasicName) {
       this.tokenBasicName = tokenBasicName;
       this.fromChainId = null;
@@ -631,10 +659,12 @@ export default {
       this.fromChainId = chainId;
       this.toChainId = null;
       this.clearAmount();
+      this.getChainHealth();
     },
     changeToChainId(chainId) {
       this.toChainId = chainId;
       this.clearAmount();
+      this.getChainHealth();
     },
     async exchangeFromTo() {
       await this.$store.dispatch('getTokenMaps', {
@@ -649,6 +679,7 @@ export default {
         this.toChainId = null;
       }
       this.clearAmount();
+      this.getChainHealth();
     },
     copy(text) {
       copy(text);
@@ -709,7 +740,29 @@ export default {
         this.approving = false;
       }
     },
-    next() {
+    async finalCheck() {
+      // Starcoin needs to check is_accept_token first
+      if (this.toWallet.name === 'StarMask') {
+        const walletApi = await getWalletApi(this.toWallet.name);
+        const isAcceptToken = await walletApi.isAcceptToken({
+          chainId: this.toChainId,
+          address: this.toWallet.address,
+          tokenHash: this.toToken.hash,
+        });
+        if (!isAcceptToken) {
+          this.$message.error(
+            `${this.$t('errors.wallet.TOKEN_IS_NOT_ACCEPT')}: ${this.toToken.hash}`,
+          );
+          return false;
+        }
+      }
+      return true;
+    },
+    async next() {
+      const finalCheck = await this.finalCheck();
+      if (!finalCheck) {
+        return;
+      }
       this.confirmingData = {
         fromAddress: this.fromWallet.address,
         toAddress: this.toWallet.address,
