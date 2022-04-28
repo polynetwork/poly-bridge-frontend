@@ -614,7 +614,6 @@ export default {
     this.$store.dispatch('getTokenBasics');
     this.getChainHealth();
     this.interval = setInterval(() => {
-      this.getChainHealth();
       if (
         this.getBalanceParams &&
         this.fromWallet &&
