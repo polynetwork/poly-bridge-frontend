@@ -479,65 +479,65 @@ export const CHAINS = [
   //   nftFeeName: 'ROSE',
   //   selfPay: true,
   // },
-  // {
-  //   id: ChainId.HSC,
-  //   nativeFee: false,
-  //   icon: require('@/assets/png/hoo.png'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://hooscan.com/tx/0x{txHash}'
-  //     : 'https://hooscan.com/tx/0x{txHash}',
-  //   lockContractHash: TARGET_MAINNET
-  //     ? '0x5906777d34257a2b479c291871C9BFdFB922D67D'
-  //     : '0x5906777d34257a2b479c291871C9BFdFB922D67D',
-  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
-  //   nftFeeName: 'HSC',
-  //   selfPay: true,
-  // },
-  // {
-  //   id: ChainId.Kcc,
-  //   nativeFee: false,
-  //   icon: require('@/assets/png/kcc.png'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://scan-testnet.kcc.network/tx/0x{txHash}'
-  //     : 'https://scan-testnet.kcc.network/tx/0x{txHash}',
-  //   lockContractHash: TARGET_MAINNET
-  //     ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
-  //     : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
-  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
-  //   nftFeeName: 'KCS',
-  //   selfPay: true,
-  // },
-  // {
-  //   id: ChainId.Harmony,
-  //   nativeFee: false,
-  //   icon: require('@/assets/svg/Harmony.svg'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://explorer.harmony.one/tx/0x{txHash}'
-  //     : 'https://explorer.pops.one/tx/0x{txHash}',
-  //   lockContractHash: TARGET_MAINNET
-  //     ? '0xc927f0EF4f25E19a40F0Cb34da841B45c13649fd'
-  //     : '0xc927f0EF4f25E19a40F0Cb34da841B45c13649fd',
-  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
-  //   nftFeeName: 'ONE',
-  //   selfPay: true,
-  // },
-  // {
-  //   id: ChainId.BYTOM,
-  //   nativeFee: false,
-  //   icon: require('@/assets/png/bytom.png'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://bmctestnet.blockmeta.com/tx/0x{txHash}'
-  //     : 'https://bmctestnet.blockmeta.com/tx/0x{txHash}',
-  //   nftexplorerUrl: TARGET_MAINNET
-  //     ? 'https://bmctestnet.blockmeta.com/tx/0x{txHash}'
-  //     : 'https://bmctestnet.blockmeta.com/tx/0x{txHash}',
-  //   nftLockContractHash: TARGET_MAINNET
-  //     ? '0x6fd13dd4181dDb0f7463e19caC659FD3e9FB8a82'
-  //     : '0x6fd13dd4181dDb0f7463e19caC659FD3e9FB8a82',
-  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
-  //   nftFeeName: 'BTM',
-  //   selfPay: true,
-  // },
+  {
+    id: ChainId.HSC,
+    nativeFee: false,
+    icon: require('@/assets/png/hoo.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://hooscan.com/tx/0x{txHash}'
+      : 'https://hooscan.com/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xC0F6d0443bAB01F4E1B843b96452a6DbA530d878'
+      : '0x5906777d34257a2b479c291871C9BFdFB922D67D',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'HSC',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Kcc,
+    nativeFee: false,
+    icon: require('@/assets/png/kcc.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.kcc.io/tx/0x{txHash}'
+      : 'https://scan-testnet.kcc.network/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x5906777d34257a2b479c291871C9BFdFB922D67D'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'KCS',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Harmony,
+    nativeFee: false,
+    icon: require('@/assets/svg/Harmony.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.harmony.one/tx/0x{txHash}'
+      : 'https://explorer.pops.one/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc927f0EF4f25E19a40F0Cb34da841B45c13649fd'
+      : '0xc927f0EF4f25E19a40F0Cb34da841B45c13649fd',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'ONE',
+    selfPay: true,
+  },
+  {
+    id: ChainId.BYTOM,
+    nativeFee: false,
+    icon: require('@/assets/png/bytom.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://https://bmc.blockmeta.com/tx/0x{txHash}'
+      : 'https://bmctestnet.blockmeta.com/tx/0x{txHash}',
+    nftexplorerUrl: TARGET_MAINNET
+      ? 'https://https://bmc.blockmeta.com/tx/0x{txHash}'
+      : 'https://bmctestnet.blockmeta.com/tx/0x{txHash}',
+    nftLockContractHash: TARGET_MAINNET
+      ? '0x33d9bF459b39a888422580916f01C4c44a68a615'
+      : '0x6fd13dd4181dDb0f7463e19caC659FD3e9FB8a82',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'BTM',
+    selfPay: true,
+  },
 ];
 
 export const UNKNOWN_ICON = require('@/assets/svg/unknown.svg');

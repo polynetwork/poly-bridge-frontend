@@ -20,9 +20,9 @@ export const ChainId = {
   Neo: TARGET_MAINNET ? 4 : 5,
   N3: TARGET_MAINNET ? 14 : 88,
   xDai: TARGET_MAINNET ? 20 : 206,
-  HSC: TARGET_MAINNET ? 603 : 603,
-  Harmony: TARGET_MAINNET ? 800 : 800,
-  BYTOM: TARGET_MAINNET ? 701 : 701,
+  HSC: TARGET_MAINNET ? 28 : 603,
+  Harmony: TARGET_MAINNET ? 27 : 800,
+  BYTOM: TARGET_MAINNET ? 29 : 701,
   Bsc: TARGET_MAINNET ? 6 : 79,
   Heco: 7,
   Ok: TARGET_MAINNET ? 12 : 200,
@@ -39,7 +39,7 @@ export const ChainId = {
   Rinkeby: TARGET_MAINNET ? 402 : 402,
   Oasis1: TARGET_MAINNET ? 501 : 501,
   Stc: TARGET_MAINNET ? 1 : 318,
-  Kcc: TARGET_MAINNET ? 900 : 900,
+  Kcc: TARGET_MAINNET ? 30 : 900,
 };
 
 export const NetworkChainIdMaps = {
