@@ -538,7 +538,7 @@ export const CHAINS = [
       ? 'https://explorer.harmony.one/tx/0x{txHash}'
       : 'https://explorer.pops.one/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? '0xc927f0EF4f25E19a40F0Cb34da841B45c13649fd'
+      ? '0x5906777d34257a2b479c291871C9BFdFB922D67D'
       : '0xc927f0EF4f25E19a40F0Cb34da841B45c13649fd',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ONE',
