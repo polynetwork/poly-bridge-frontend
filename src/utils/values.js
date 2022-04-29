@@ -549,10 +549,10 @@ export const CHAINS = [
     nativeFee: false,
     icon: require('@/assets/png/bytom.png'),
     explorerUrl: TARGET_MAINNET
-      ? 'https://https://bmc.blockmeta.com/tx/0x{txHash}'
+      ? 'https://bmc.blockmeta.com/tx/0x{txHash}'
       : 'https://bmctestnet.blockmeta.com/tx/0x{txHash}',
     nftexplorerUrl: TARGET_MAINNET
-      ? 'https://https://bmc.blockmeta.com/tx/0x{txHash}'
+      ? 'https://bmc.blockmeta.com/tx/0x{txHash}'
       : 'https://bmctestnet.blockmeta.com/tx/0x{txHash}',
     nftLockContractHash: TARGET_MAINNET
       ? '0x33d9bF459b39a888422580916f01C4c44a68a615'
