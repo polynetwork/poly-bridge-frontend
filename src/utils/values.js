@@ -645,4 +645,4 @@ export const TOKEN_BASIC_ICONS = {
 export const DEFAULT_TOKEN_BASIC_NAME = 'USDT';
 export const DEFAULT_CHAIN_NAME = 'ETH';
 
-export const TOP_TOKEN_BASIC_NAMES = ['NEO', 'nNEO', 'ETH', 'USDT', 'USDC', 'DAI'];
+export const TOP_TOKEN_BASIC_NAMES = ['NEO', 'BNEO', 'ETH', 'USDT', 'USDC', 'DAI'];
