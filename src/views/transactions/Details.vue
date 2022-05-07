@@ -154,6 +154,7 @@ import { ChainId, SingleTransactionStatus, TransactionStatus } from '@/utils/enu
 import { HttpError } from '@/utils/errors';
 import copy from 'clipboard-copy';
 import { getWalletApi } from '@/utils/walletApi';
+import { toStandardHex } from '@/utils/convertors';
 import httpApi from '@/utils/httpApi';
 import ConnectWallet from '../home/ConnectWallet';
 
@@ -191,6 +192,9 @@ export default {
       return (
         this.transaction && this.$store.getters.getChainConnectedWallet(this.transaction.toChainId)
       );
+    },
+    toChain() {
+      return this.transaction && this.$store.getters.getChain(this.transaction.toChainId);
     },
     mergedTransaction() {
       return (
@@ -333,6 +337,14 @@ export default {
     async sendTx($payload) {
       const self = this;
       console.log(self.toWallet);
+      console.log(self.toChain);
+      const selfccm = toStandardHex(self.toChain.dst_ccm);
+      const apiccm = toStandardHex($payload.dst_ccm);
+      if (selfccm !== apiccm) {
+        this.$message.error('ccm error');
+        this.selfPayLoading = false;
+        return;
+      }
       const walletApi = await getWalletApi(self.toWallet.name);
       const params = {
         data: $payload.data,

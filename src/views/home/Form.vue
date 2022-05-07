@@ -335,6 +335,7 @@ import { DEFAULT_TOKEN_BASIC_NAME } from '@/utils/values';
 import { ChainId } from '@/utils/enums';
 import TransactionDetails from '@/views/transactions/Details';
 import { getWalletApi } from '@/utils/walletApi';
+import { toStandardHex } from '@/utils/convertors';
 import SelectTokenBasic from './SelectTokenBasic';
 import SelectChain from './SelectChain';
 import ConnectWallet from './ConnectWallet';
@@ -648,10 +649,6 @@ export default {
       }
       this.healthFlag = tempFlag;
     },
-    async getWrapperCheck() {
-      const chindId = 2;
-      await httpApi.getWrapperCheck({ chindId });
-    },
     changeTokenBasicName(tokenBasicName) {
       this.tokenBasicName = tokenBasicName;
       this.fromChainId = null;
@@ -709,9 +706,29 @@ export default {
       this.amount = res;
       this.$nextTick(() => this.$refs.amountValidation.validate());
     },
+    async getWrapperCheck() {
+      let flag = false;
+      const chindId = this.fromChainId;
+      const res = await httpApi.getWrapperCheck({ chindId });
+      const arr = [];
+      for (let i = 0; i < res.Wrapper.length; i += 1) {
+        arr.push(toStandardHex(res.Wrapper[i]));
+      }
+      const index = arr.indexOf(this.fromChain.lockContractHash);
+      if (index > -1) {
+        flag = true;
+      }
+      return flag;
+    },
     async approve() {
       await this.$store.dispatch('ensureChainWalletReady', this.fromChainId);
       // const InfinityAmount = 9999999999999
+      const flag = await this.getWrapperCheck();
+      if (!flag) {
+        this.$message.error('wrapper contract error');
+        this.packing = false;
+        return;
+      }
       try {
         this.approving = true;
         const walletApi = await getWalletApi(this.fromWallet.name);

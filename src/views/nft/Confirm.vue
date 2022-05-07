@@ -107,10 +107,12 @@
 </template>
 
 <script>
+import httpApi from '@/utils/httpApi';
 import BigNumber from 'bignumber.js';
 import delay from 'delay';
 import { SingleTransactionStatus } from '@/utils/enums';
 import { getWalletApi } from '@/utils/walletApi';
+import { toStandardHex } from '@/utils/convertors';
 
 export default {
   name: 'Confirm',
@@ -172,7 +174,32 @@ export default {
     },
   },
   methods: {
+    async getWrapperCheck($nftspender) {
+      let flag = false;
+      const chindId = this.confirmingData.fromChainId;
+      const res = await httpApi.getWrapperCheck({ chindId });
+      const arr = [];
+      for (let i = 0; i < res.Wrapper.length; i += 1) {
+        arr.push(toStandardHex(res.Wrapper[i]));
+      }
+      const standardSpender = toStandardHex($nftspender);
+      const index = arr.indexOf(standardSpender);
+      if (index > -1) {
+        flag = true;
+      }
+      return flag;
+    },
     async confirm() {
+      let nftspender = this.fromChain.nftLockContractHash;
+      if (this.confirmingData.fromChainId === 2 && this.confirmingData.toChainId === 8) {
+        nftspender = this.fromChain.pltNftLockContractHash;
+      }
+      const flag = await this.getWrapperCheck(nftspender);
+      if (!flag) {
+        this.$message.error('wrapper contract error');
+        this.packing = false;
+        return;
+      }
       console.log(this.confirmingData);
       await this.$store.dispatch('ensureChainWalletReady', this.confirmingData.fromChainId);
       try {
