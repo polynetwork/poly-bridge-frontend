@@ -566,8 +566,8 @@ export const CHAINS = [
     nativeFee: true,
     icon: require('@/assets/svg/ONT.svg'),
     explorerUrl: TARGET_MAINNET
-      ? 'https://explorer.ont.io/tx/{txHash}'
-      : 'https://explorer.ont.io/testnet/tx/{txHash}',
+      ? 'https://explorer.ont.io/tx/0x{txHash}'
+      : 'https://explorer.ont.io/testnet/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
       ? '0x66f1Ad12a2C7A6370CbD20ECD79D17a405061Efe'
       : '0x66f1Ad12a2C7A6370CbD20ECD79D17a405061Efe',
