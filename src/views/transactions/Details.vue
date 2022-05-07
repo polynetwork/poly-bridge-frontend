@@ -154,6 +154,7 @@ import { ChainId, SingleTransactionStatus, TransactionStatus } from '@/utils/enu
 import { HttpError } from '@/utils/errors';
 import copy from 'clipboard-copy';
 import { getWalletApi } from '@/utils/walletApi';
+import { toStandardHex } from '@/utils/convertors';
 import httpApi from '@/utils/httpApi';
 import ConnectWallet from '../home/ConnectWallet';
 
@@ -337,7 +338,9 @@ export default {
       const self = this;
       console.log(self.toWallet);
       console.log(self.toChain);
-      if (self.toChain.dst_ccm === $payload.dst_ccm) {
+      const selfccm = toStandardHex(self.toChain.dst_ccm);
+      const apiccm = toStandardHex($payload.dst_ccm);
+      if (selfccm !== apiccm) {
         this.$message.error('ccm error');
         this.selfPayLoading = false;
         return;
