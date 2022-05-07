@@ -192,6 +192,9 @@ export default {
         this.transaction && this.$store.getters.getChainConnectedWallet(this.transaction.toChainId)
       );
     },
+    toChain() {
+      return this.transaction && this.$store.getters.getChain(this.transaction.toChainId);
+    },
     mergedTransaction() {
       return (
         this.transaction ||
@@ -333,6 +336,12 @@ export default {
     async sendTx($payload) {
       const self = this;
       console.log(self.toWallet);
+      console.log(self.toChain);
+      if (self.toChain.dst_ccm === $payload.dst_ccm) {
+        this.$message.error('ccm error');
+        this.selfPayLoading = false;
+        return;
+      }
       const walletApi = await getWalletApi(self.toWallet.name);
       const params = {
         data: $payload.data,
