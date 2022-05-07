@@ -614,7 +614,6 @@ export default {
     this.$store.dispatch('getTokenBasics');
     this.getChainHealth();
     this.interval = setInterval(() => {
-      this.getChainHealth();
       if (
         this.getBalanceParams &&
         this.fromWallet &&
@@ -648,6 +647,10 @@ export default {
         tempFlag = tempFlag && res.Result[this.fromChainId];
       }
       this.healthFlag = tempFlag;
+    },
+    async getWrapperCheck() {
+      const chindId = 2;
+      await httpApi.getWrapperCheck({ chindId });
     },
     changeTokenBasicName(tokenBasicName) {
       this.tokenBasicName = tokenBasicName;
