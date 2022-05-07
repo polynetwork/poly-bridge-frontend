@@ -93,6 +93,16 @@ export default {
     });
     return result;
   },
+  async getWrapperCheck({ chindId }) {
+    const result = await request({
+      method: 'post',
+      url: '/wrappercheck',
+      data: {
+        ChainId: chindId,
+      },
+    });
+    return result;
+  },
   async getExpectTime({ fromChainId, toChainId }) {
     const result = await request({
       method: 'post',
