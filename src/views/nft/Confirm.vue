@@ -200,7 +200,6 @@ export default {
         this.packing = false;
         return;
       }
-      console.log(this.confirmingData);
       await this.$store.dispatch('ensureChainWalletReady', this.confirmingData.fromChainId);
       try {
         this.confirming = true;
