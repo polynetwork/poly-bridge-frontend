@@ -335,6 +335,7 @@ import { DEFAULT_TOKEN_BASIC_NAME } from '@/utils/values';
 import { ChainId } from '@/utils/enums';
 import TransactionDetails from '@/views/transactions/Details';
 import { getWalletApi } from '@/utils/walletApi';
+import { toStandardHex } from '@/utils/convertors';
 import SelectTokenBasic from './SelectTokenBasic';
 import SelectChain from './SelectChain';
 import ConnectWallet from './ConnectWallet';
@@ -390,7 +391,7 @@ export default {
     },
     maxAmount() {
       let res;
-      if (this.fee && this.tofee) {
+      if (this.fee) {
         if (Number(this.fee.Balance) > Number(this.balance)) {
           res = this.balance;
         } else {
@@ -399,12 +400,9 @@ export default {
         if (this.fromToken.name === 'C' && res > 2000000000000) {
           res = 2000000000000;
         }
-        if (
-          this.fromToken.hash === '0000000000000000000000000000000000000000' ||
-          this.fromToken.hash === 'deaddeaddeaddeaddeaddeaddeaddeaddead0000'
-        ) {
+        if (this.fee.IsNative) {
           res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-          res = new BigNumber(res).minus(this.tofee.TokenAmount).toNumber();
+          res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
         }
         if (res < 0) {
           res = 0;
@@ -527,17 +525,17 @@ export default {
       }
       return null;
     },
-    getToFeeParams() {
-      if (this.toToken && this.fromChainId) {
-        return {
-          fromChainId: this.toChainId,
-          fromTokenHash: this.toToken.hash,
-          toChainId: this.fromChainId,
-          toTokenHash: this.toToken.hash,
-        };
-      }
-      return null;
-    },
+    // getToFeeParams() {
+    //   if (this.toToken && this.fromChainId) {
+    //     return {
+    //       fromChainId: this.toChainId,
+    //       fromTokenHash: this.toToken.hash,
+    //       toChainId: this.fromChainId,
+    //       toTokenHash: this.toToken.hash,
+    //     };
+    //   }
+    //   return null;
+    // },
     getExpectTimeParams() {
       if (this.fromToken && this.toChainId) {
         return {
@@ -555,9 +553,9 @@ export default {
     fee() {
       return this.getFeeParams && this.$store.getters.getFee(this.getFeeParams);
     },
-    tofee() {
-      return this.getToFeeParams && this.$store.getters.getFee(this.getToFeeParams);
-    },
+    // tofee() {
+    //   return this.getToFeeParams && this.$store.getters.getFee(this.getToFeeParams);
+    // },
     getChainsHealthParams() {
       const arr = [];
       arr.push(0);
@@ -579,11 +577,11 @@ export default {
         this.$store.dispatch('getFee', value);
       }
     },
-    getToFeeParams(value) {
-      if (value) {
-        this.$store.dispatch('getFee', value);
-      }
-    },
+    // getToFeeParams(value) {
+    //   if (value) {
+    //     this.$store.dispatch('getFee', value);
+    //   }
+    // },
     getExpectTimeParams(value) {
       if (value) {
         this.$store.dispatch('getExpectTime', value);
@@ -691,12 +689,9 @@ export default {
       } else {
         res = this.fee.Balance;
       }
-      if (
-        this.fromToken.hash === '0000000000000000000000000000000000000000' ||
-        this.fromToken.hash === 'deaddeaddeaddeaddeaddeaddeaddeaddead0000'
-      ) {
+      if (this.fee.IsNative) {
         res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-        res = new BigNumber(res).minus(this.tofee.TokenAmount).toNumber();
+        res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
       }
       if (res < 0) {
         this.$message.error(this.$t('errors.wallet.INSUFFICIENT_FUNDS'));
@@ -705,9 +700,29 @@ export default {
       this.amount = res;
       this.$nextTick(() => this.$refs.amountValidation.validate());
     },
+    async getWrapperCheck() {
+      let flag = false;
+      const chindId = this.fromChainId;
+      const res = await httpApi.getWrapperCheck({ chindId });
+      const arr = [];
+      for (let i = 0; i < res.Wrapper.length; i += 1) {
+        arr.push(toStandardHex(res.Wrapper[i]));
+      }
+      const index = arr.indexOf(this.fromChain.lockContractHash);
+      if (index > -1) {
+        flag = true;
+      }
+      return flag;
+    },
     async approve() {
       await this.$store.dispatch('ensureChainWalletReady', this.fromChainId);
       // const InfinityAmount = 9999999999999
+      const flag = await this.getWrapperCheck();
+      if (!flag) {
+        this.$message.error('wrapper contract error');
+        this.packing = false;
+        return;
+      }
       try {
         this.approving = true;
         const walletApi = await getWalletApi(this.fromWallet.name);

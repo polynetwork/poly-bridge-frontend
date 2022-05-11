@@ -246,6 +246,7 @@ import { DEFAULT_CHAIN_NAME, UNKNOWN_NFT } from '@/utils/values';
 import { ChainId } from '@/utils/enums';
 import TransactionDetails from '@/views/nfttransactions/Details';
 import { getWalletApi } from '@/utils/walletApi';
+import { toStandardHex } from '@/utils/convertors';
 import SelectTokenBasic from './SelectTokenBasic';
 import SelectChain from './SelectChain';
 import SelectAsset from './SelectAsset';
@@ -542,6 +543,21 @@ export default {
       this.currentShowPage = val;
       this.getItemsShow();
     },
+    async getWrapperCheck($nftspender) {
+      let flag = false;
+      const chindId = this.fromChainId;
+      const res = await httpApi.getWrapperCheck({ chindId });
+      const arr = [];
+      for (let i = 0; i < res.Wrapper.length; i += 1) {
+        arr.push(toStandardHex(res.Wrapper[i]));
+      }
+      const standardSpender = toStandardHex($nftspender);
+      const index = arr.indexOf(standardSpender);
+      if (index > -1) {
+        flag = true;
+      }
+      return flag;
+    },
     async changeItem(item) {
       this.item = item;
       const walletApi = await getWalletApi(this.fromWallet.name);
@@ -552,13 +568,19 @@ export default {
       });
     },
     async approve() {
+      this.approving = true;
+      let nftspender = this.fromChain.nftLockContractHash;
+      if (this.fromChain.id === 2 && this.toChain.id === 8) {
+        nftspender = this.fromChain.pltNftLockContractHash;
+      }
+      const walletApi = await getWalletApi(this.fromWallet.name);
+      const flag = await this.getWrapperCheck(nftspender);
+      if (!flag) {
+        this.$message.error('wrapper contract error');
+        this.approving = false;
+        return;
+      }
       try {
-        this.approving = true;
-        let nftspender = this.fromChain.nftLockContractHash;
-        if (this.fromChain.id === 2 && this.toChain.id === 8) {
-          nftspender = this.fromChain.pltNftLockContractHash;
-        }
-        const walletApi = await getWalletApi(this.fromWallet.name);
         await walletApi.nftApprove({
           address: this.fromWallet.address,
           tokenHash: this.assetHash,
