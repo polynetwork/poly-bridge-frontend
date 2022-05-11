@@ -114,10 +114,12 @@
 </template>
 
 <script>
+import httpApi from '@/utils/httpApi';
 import BigNumber from 'bignumber.js';
 import delay from 'delay';
 import { SingleTransactionStatus } from '@/utils/enums';
 import { getWalletApi } from '@/utils/walletApi';
+import { toStandardHex } from '@/utils/convertors';
 
 export default {
   name: 'Confirm',
@@ -199,9 +201,29 @@ export default {
     },
   },
   methods: {
+    async getWrapperCheck() {
+      let flag = false;
+      const chindId = this.confirmingData.fromChainId;
+      const res = await httpApi.getWrapperCheck({ chindId });
+      const arr = [];
+      for (let i = 0; i < res.Wrapper.length; i += 1) {
+        arr.push(toStandardHex(res.Wrapper[i]));
+      }
+      const index = arr.indexOf(this.fromChain.lockContractHash);
+      if (index > -1) {
+        flag = true;
+      }
+      return flag;
+    },
     async confirm() {
       await this.$store.dispatch('ensureChainWalletReady', this.confirmingData.fromChainId);
       console.log(this.confirmingData);
+      const flag = await this.getWrapperCheck();
+      if (!flag) {
+        this.$message.error('wrapper contract error');
+        this.packing = false;
+        return;
+      }
       try {
         this.confirming = true;
         const walletApi = await getWalletApi(this.fromWallet.name);
