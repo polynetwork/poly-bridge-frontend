@@ -23,7 +23,9 @@ export const WALLETS = [
       ChainId.Ok,
       ChainId.Polygon,
       ChainId.Palette,
-      ChainId.BscPalette,
+      ChainId.BcsPalette,
+      ChainId.BcsPalette2,
+      ChainId.Milkomeda,
       ChainId.Arbitrum,
       ChainId.xDai,
       ChainId.HSC,
@@ -55,7 +57,7 @@ export const WALLETS = [
       ChainId.Ok,
       ChainId.Polygon,
       ChainId.Palette,
-      ChainId.BscPalette,
+      ChainId.BcsPalette,
       ChainId.Arbitrum,
       ChainId.xDai,
       ChainId.HSC,
@@ -428,7 +430,7 @@ export const CHAINS = [
     selfPay: true,
   },
   {
-    id: ChainId.BscPalette,
+    id: ChainId.BcsPalette,
     nativeFee: false,
     icon: require('@/assets/svg/plt.svg'),
     explorerUrl: TARGET_MAINNET
@@ -451,6 +453,29 @@ export const CHAINS = [
     selfPay: true,
   },
   {
+    id: ChainId.BcsPalette2,
+    nativeFee: false,
+    icon: require('@/assets/svg/plt.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
+      : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
+    nftexplorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
+      : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xdF539255E823b9D08aAD0b7D7b89868246f65B5a'
+      : '0xdF539255E823b9D08aAD0b7D7b89868246f65B5a',
+    nftLockContractHash: TARGET_MAINNET
+      ? '0x41985E2A8826233618392e38d46d2060fbCC3F2A'
+      : '0x0806e6925e6960E06cD4781e22A636bA233B53De',
+    dst_ccm: TARGET_MAINNET
+      ? '0xC2CA384247EF3a121E2c4acA754652C7f8D8bA19'
+      : '0xC2CA384247EF3a121E2c4acA754652C7f8D8bA19',
+    nftFeeContractHash: '0000000000000000000000000000000000000103',
+    nftFeeName: 'wePLT',
+    selfPay: true,
+  },
+  {
     id: ChainId.Ok,
     nativeFee: true,
     icon: require('@/assets/jpg/oecd.jpg'),
@@ -466,6 +491,23 @@ export const CHAINS = [
       : '0x60Ab3e4a841c8a2E4148aAfc74C0E63c4B54d109',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'OKT',
+    selfPay: true,
+  },
+  {
+    id: ChainId.MilkOmeda,
+    nativeFee: true,
+    icon: require('@/assets/png/milkomeda.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer-devnet-cardano-evm.c1.milkomeda.com/tx/0x{txHash}'
+      : 'https://explorer-devnet-cardano-evm.c1.milkomeda.com/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xf4B609a3ca7353a8f379069f939964Db351B39c1'
+      : '0xf4B609a3ca7353a8f379069f939964Db351B39c1',
+    dst_ccm: TARGET_MAINNET
+      ? '0xFcf7A3207b7442F29a9f88e2d7638633B494843f'
+      : '0xFcf7A3207b7442F29a9f88e2d7638633B494843f',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'MilkADA',
     selfPay: true,
   },
   {
