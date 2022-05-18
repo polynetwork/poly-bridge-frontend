@@ -494,7 +494,7 @@ export const CHAINS = [
     selfPay: true,
   },
   {
-    id: ChainId.MilkOmeda,
+    id: ChainId.Milkomeda,
     nativeFee: true,
     icon: require('@/assets/png/milkomeda.png'),
     explorerUrl: TARGET_MAINNET
