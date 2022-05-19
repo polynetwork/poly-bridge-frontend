@@ -128,6 +128,7 @@ export default {
     return {
       items: transactions.map(mapTransactionToDo),
       pageCount: result.TotalPage,
+      total: result.TotalCount,
     };
   },
   async getTransaction({ hash }) {
@@ -230,6 +231,7 @@ export default {
     return {
       items: transactions.map(mapTransactionToDo),
       pageCount: result.data.TotalPage,
+      total: result.data.TotalCount,
     };
   },
   async getNftTransaction({ hash }) {
