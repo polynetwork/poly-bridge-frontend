@@ -43,6 +43,8 @@ export const WALLETS = [
       ChainId.Boba,
       ChainId.Kcc,
       ChainId.OntEvm,
+      ChainId.Cube,
+      ChainId.Kava,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -508,6 +510,40 @@ export const CHAINS = [
       : '0xFcf7A3207b7442F29a9f88e2d7638633B494843f',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'MilkADA',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Cube,
+    nativeFee: true,
+    icon: require('@/assets/png/cube1.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://testnet.cubescan.network/en-us/tx/0x{txHash}'
+      : 'https://testnet.cubescan.network/en-us/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x30e6ec356ceF1cfe3c7e14392EA08448382327bD'
+      : '0x30e6ec356ceF1cfe3c7e14392EA08448382327bD',
+    dst_ccm: TARGET_MAINNET
+      ? '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12'
+      : '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'CUBE',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Kava,
+    nativeFee: true,
+    icon: require('@/assets/svg/kava.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.evm-alpha.kava.io/tx/0x{txHash}'
+      : 'https://explorer.evm-alpha.kava.io/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'KAVA',
     selfPay: true,
   },
   {

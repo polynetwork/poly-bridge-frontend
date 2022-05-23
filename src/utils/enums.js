@@ -44,6 +44,8 @@ export const ChainId = {
   BcsPalette: TARGET_MAINNET ? 1001 : 1001,
   BcsPalette2: TARGET_MAINNET ? 1002 : 1002,
   Milkomeda: TARGET_MAINNET ? 810 : 810,
+  Kava: TARGET_MAINNET ? 920 : 920,
+  Cube: TARGET_MAINNET ? 930 : 930,
 };
 
 export const NetworkChainIdMaps = {
@@ -66,11 +68,14 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 4 : 4]: ChainId.Rinkeby,
   [TARGET_MAINNET ? 288 : 28]: ChainId.Boba,
   [TARGET_MAINNET ? 42262 : 42261]: ChainId.Oasis,
+  [TARGET_MAINNET ? 42262 : 42261]: ChainId.Oasis1,
   [TARGET_MAINNET ? 321 : 322]: ChainId.Kcc,
   [TARGET_MAINNET ? 58 : 5851]: ChainId.OntEvm,
   [TARGET_MAINNET ? 104 : 104]: ChainId.BcsPalette,
   [TARGET_MAINNET ? 200 : 200]: ChainId.BcsPalette2,
   [TARGET_MAINNET ? 2001 : 200101]: ChainId.Milkomeda,
+  [TARGET_MAINNET ? 2221 : 2221]: ChainId.Kava,
+  [TARGET_MAINNET ? 1819 : 1819]: ChainId.Cube,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -93,12 +98,15 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Rinkeby]: TARGET_MAINNET ? 4 : 4,
   [ChainId.Boba]: TARGET_MAINNET ? 288 : 28,
   [ChainId.Oasis]: TARGET_MAINNET ? 42262 : 42261,
+  [ChainId.Oasis1]: TARGET_MAINNET ? 42262 : 42261,
   [ChainId.Kcc]: TARGET_MAINNET ? 321 : 322,
   [ChainId.OntEvm]: TARGET_MAINNET ? 58 : 5851,
   [ChainId.BcsPalette]: TARGET_MAINNET ? 104 : 104,
   [ChainId.Stc]: TARGET_MAINNET ? 1 : 251,
   [ChainId.BcsPalette2]: TARGET_MAINNET ? 200 : 200,
   [ChainId.Milkomeda]: TARGET_MAINNET ? 2001 : 200101,
+  [ChainId.Kava]: TARGET_MAINNET ? 2221 : 2221,
+  [ChainId.Cube]: TARGET_MAINNET ? 1819 : 1819,
 };
 
 export const SingleTransactionStatus = {
