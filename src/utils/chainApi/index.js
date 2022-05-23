@@ -33,6 +33,8 @@ const APIS = {
   [ChainId.BcsPalette]: () => import('./eth'),
   [ChainId.BcsPalette2]: () => import('./eth'),
   [ChainId.Milkomeda]: () => import('./eth'),
+  [ChainId.Cube]: () => import('./eth'),
+  [ChainId.Kava]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {
