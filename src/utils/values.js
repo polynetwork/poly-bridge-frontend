@@ -566,8 +566,8 @@ export const CHAINS = [
       ? 'https://stcscan.io/main/transactions/detail/0x{txHash}'
       : 'https://stcscan.io/barnard/transactions/detail/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? 'f8328398c4c8e77b6c5843f5e404be0170d5012e'
-      : 'd63810ca692b43e0ed35bfa40e653d05b2cb3585',
+      ? '0x416b32009fe49fcab1d5f2ba0153838f'
+      : '0x416b32009fe49fcab1d5f2ba0153838f',
     dst_ccm: TARGET_MAINNET
       ? '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript'
       : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript',
