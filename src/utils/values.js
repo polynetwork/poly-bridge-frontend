@@ -174,6 +174,10 @@ export const CHAINS = [
       ? '0x14413419452Aaf089762A0c5e95eD2A13bBC488C'
       : '0xf989E80AAd477cB6059f366C0170a498909C4a55',
     nftFeeName: 'ETH',
+    symbol: 'ETH',
+    name: TARGET_MAINNET ? 'Ethereum Mainnet' : 'Ropsten TestNet',
+    rpcUrl: TARGET_MAINNET ? 'https://mainnet.infura.io/v3/' : 'https://ropsten.infura.io/v3/',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://etherscan.io/' : 'https://ropsten.etherscan.io/',
     selfPay: true,
   },
   {
@@ -216,6 +220,12 @@ export const CHAINS = [
       : '0xF87527a74215777391fE4AfD082FeeED3E5A0ca5',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'xDai',
+    symbol: 'xDai',
+    name: TARGET_MAINNET ? 'xDai Mainnet' : 'xDai Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://rpc.xdaichain.com' : 'https://sokol.poa.network',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://blockscout.com/xdai/mainnet'
+      : 'https://blockscout.com/poa/sokol/',
     selfPay: true,
   },
   {
@@ -233,6 +243,14 @@ export const CHAINS = [
       : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
     nftFeeContractHash: 'deaddeaddeaddeaddeaddeaddeaddeaddead0000',
     nftFeeName: 'Metis',
+    symbol: TARGET_MAINNET ? 'METIS' : 'testMETIS',
+    name: TARGET_MAINNET ? 'Metis Andromeda Mainnet' : 'Metis TESTNET Stardust',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://andromeda.metis.io/?owner=1088'
+      : 'https://stardust.metis.io/?owner=588',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://blockscout.com/xdai/mainnet'
+      : 'https://stardust-explorer.metis.io',
     selfPay: true,
   },
   {
@@ -250,6 +268,12 @@ export const CHAINS = [
       : '0xa65bD4431C38A4dD9c92ebE60dE3cb8C252c04E5',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ETH',
+    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+    name: TARGET_MAINNET ? 'Boba Mainnet' : 'Boba Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://mainnet.bota.network' : 'https://rinkeby.boba.network/',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://blockexplorer.boba.network'
+      : 'https://blockexplorer.rinkeby.boba.network/',
     selfPay: true,
   },
   {
@@ -274,6 +298,12 @@ export const CHAINS = [
       : '0x906bC93FF690d6D3D2C4E7A7dfA4dEbdEF2cD7CA',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'BNB',
+    symbol: TARGET_MAINNET ? 'BNB' : 'BNB',
+    name: TARGET_MAINNET ? 'BNB Mainnet' : 'BNB Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://bsc-dataseed4.ninicoin.io/'
+      : 'https://data-seed-prebsc-1-s1.binance.org:8545/',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://bscscan.com' : 'https://testnet.bscscan.com',
     selfPay: true,
   },
   {
@@ -298,6 +328,12 @@ export const CHAINS = [
       : '0x4772274FE26130339563974F0229e71017230288',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'HT',
+    symbol: TARGET_MAINNET ? 'HT' : 'HT',
+    name: TARGET_MAINNET ? 'HECO Mainnet' : 'HECO Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://http-mainnet-node.huobichain.com'
+      : 'https://http-testnet.hecochain.com',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://hecoinfo.com' : 'https://testnet.hecoinfo.com',
     selfPay: true,
   },
   {
@@ -315,6 +351,12 @@ export const CHAINS = [
       : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ROSE',
+    symbol: TARGET_MAINNET ? 'ROSE' : 'ROSE',
+    name: TARGET_MAINNET ? 'Oasis Mainnet' : 'Oasis Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://emerald.oasis.dev' : 'https://testnet.emerald.oasis.dev',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.emerald.oasis.dev/'
+      : 'https://testnet.explorer.emerald.oasis.dev/',
     selfPay: true,
   },
   {
@@ -338,6 +380,14 @@ export const CHAINS = [
       : '0xDC1045aD8956e14eC51B7824AB26b1360567ab51',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'MATIC',
+    symbol: TARGET_MAINNET ? 'MATIC' : 'MATIC',
+    name: TARGET_MAINNET ? 'Polygon Mainnet' : 'Polygon Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://rpc-mainnet.maticvigil.com/'
+      : 'https://rpc-mumbai.maticvigil.com/',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://polygonscan.com/'
+      : 'https://mumbai.polygonscan.com',
     selfPay: true,
   },
   {
@@ -355,6 +405,12 @@ export const CHAINS = [
       : '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ETH',
+    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+    name: TARGET_MAINNET ? 'Optimistic Ethereum' : 'Optimistic Ethereum (Kovan)',
+    rpcUrl: TARGET_MAINNET ? 'https://mainnet.optimism.io' : 'https://kovan.optimism.io',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://optimistic.etherscan.io'
+      : 'https://kovan-optimistic.etherscan.io',
     selfPay: true,
   },
   {
@@ -372,6 +428,12 @@ export const CHAINS = [
       : '0x1C84D74084c3C3301BE4777A568D78211189c871',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'FTM',
+    symbol: TARGET_MAINNET ? 'FTM' : 'FTM',
+    name: TARGET_MAINNET ? 'FTM Mainnet' : 'FTM Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://ftmnode1.anyswap.exchange'
+      : 'https://rpc.testnet.fantom.network/',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://ftmscan.com/' : 'https://testnet.ftmscan.com/',
     selfPay: true,
   },
   {
@@ -389,6 +451,14 @@ export const CHAINS = [
       : '0xf37D8C2d072b74d6532541B70319ef08f9F6a4a8',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'AVAX',
+    symbol: TARGET_MAINNET ? 'AVAX' : 'AVAX',
+    name: TARGET_MAINNET ? 'Avalanch Mainnet' : 'Avalanch Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://api.avax.network/ext/bc/C/rpc'
+      : 'https://api.avax-test.network/ext/bc/C/rpc',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://avascan.info/blockchain/c/'
+      : 'https://testnet.avascan.info/blockchain/c/',
     selfPay: true,
   },
   {
@@ -406,6 +476,12 @@ export const CHAINS = [
       : '0x3A77dB10eAa7436e608a99643Ab2bEB2E901C72C',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ETH',
+    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+    name: TARGET_MAINNET ? 'Arbitrum Mainnet' : 'Arbitrum Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://arb1.arbitrum.io/rpc' : 'https://rinkeby.arbitrum.io/rpc',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://arbiscan.io/'
+      : 'https://rinkeby-explorer.arbitrum.io/#/',
     selfPay: true,
   },
   {
@@ -429,6 +505,12 @@ export const CHAINS = [
       : '0xB64EE4b7cf935C51233b6ED9b0732D3Bd26E3442',
     nftFeeContractHash: '0000000000000000000000000000000000000103',
     nftFeeName: 'PLT',
+    symbol: TARGET_MAINNET ? 'PLT' : 'PLT',
+    name: TARGET_MAINNET ? 'PLT Mainnet' : 'PLT Testnet',
+    rpcUrl: TARGET_MAINNET ? 'http://13.231.222.1:22000' : 'http://106.75.246.130:22000',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/'
+      : 'http://106.75.251.68/#/chain/',
     selfPay: true,
   },
   {
@@ -452,8 +534,14 @@ export const CHAINS = [
       : '0xf2cae31596433ada66393bde525f80aee97b3112',
     nftFeeContractHash: '0000000000000000000000000000000000000103',
     nftFeeName: 'wePLT',
+    symbol: TARGET_MAINNET ? 'wePLT' : 'wePLT',
+    name: TARGET_MAINNET ? 'BcsPalette Mainnet' : 'BcsPalette Testnet',
+    rpcUrl: TARGET_MAINNET ? 'http://13.231.222.1:22000' : 'http://106.75.246.130:22000',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/'
+      : 'http://106.75.251.68/#/chain/',
     selfPay: true,
-  },
+  } /* waiting */,
   {
     id: ChainId.BcsPalette2,
     nativeFee: false,
@@ -475,8 +563,14 @@ export const CHAINS = [
       : '0xC2CA384247EF3a121E2c4acA754652C7f8D8bA19',
     nftFeeContractHash: '0000000000000000000000000000000000000103',
     nftFeeName: 'wePLT',
+    symbol: TARGET_MAINNET ? 'wePLT' : 'wePLT',
+    name: TARGET_MAINNET ? 'BcsPalette Mainnet' : 'BcsPalette Testnet',
+    rpcUrl: TARGET_MAINNET ? 'http://13.231.222.1:22000' : 'http://106.75.246.130:22000',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/'
+      : 'http://106.75.251.68/#/chain/',
     selfPay: true,
-  },
+  } /* waiting info */,
   {
     id: ChainId.Ok,
     nativeFee: true,
@@ -493,6 +587,12 @@ export const CHAINS = [
       : '0x60Ab3e4a841c8a2E4148aAfc74C0E63c4B54d109',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'OKT',
+    symbol: TARGET_MAINNET ? 'OKT' : 'OKT',
+    name: TARGET_MAINNET ? 'OKEX Mainnet' : 'OKEX Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://exchainrpc.okex.org' : 'https://exchaintestrpc.okex.org',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://www.oklink.com/okexchain/'
+      : 'https://www.oklink.com/okexchain-test/',
     selfPay: true,
   },
   {
@@ -510,6 +610,14 @@ export const CHAINS = [
       : '0xFcf7A3207b7442F29a9f88e2d7638633B494843f',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'MilkADA',
+    symbol: TARGET_MAINNET ? 'MilkADA' : 'MilkADA',
+    name: TARGET_MAINNET ? 'Milkomeda Cardano (C1)' : 'Milkomeda Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://rpc-mainnet-cardano-evm.c1.milkomeda.com'
+      : 'https://rpc-devnet-cardano-evm.c1.milkomeda.com',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer-mainnet-cardano-evm.c1.milkomeda.com'
+      : 'https://explorer-devnet-cardano-evm.c1.milkomeda.com',
     selfPay: true,
   },
   {
@@ -527,8 +635,16 @@ export const CHAINS = [
       : '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'CUBE',
+    symbol: TARGET_MAINNET ? 'CUBE' : 'CUBE',
+    name: TARGET_MAINNET ? 'Cube Mainnet' : 'Cube Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://http-testnet.cube.network'
+      : 'https://http-testnet.cube.network',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://testnet.cubescan.network'
+      : 'https://testnet.cubescan.network',
     selfPay: true,
-  },
+  } /* waiting info */,
   {
     id: ChainId.Kava,
     nativeFee: true,
@@ -544,6 +660,12 @@ export const CHAINS = [
       : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'KAVA',
+    symbol: TARGET_MAINNET ? 'KAVA' : 'KAVA',
+    name: TARGET_MAINNET ? 'KAVA Mainnet' : 'KAVA Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://evm.evm-alpha.kava.io' : 'https://evm.evm-alpha.kava.io',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.evm-alpha.kava.io'
+      : 'https://explorer.evm-alpha.kava.io',
     selfPay: true,
   },
   {
@@ -595,8 +717,16 @@ export const CHAINS = [
       : '0x2E830E0cf3dc8643B497F88C07c8A72EFE24B11f',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'PIX',
+    symbol: TARGET_MAINNET ? 'PIX' : 'PIX',
+    name: TARGET_MAINNET ? 'Pixie Mainnet' : 'Pixie Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://http-testnet.chain.pixie.xyz'
+      : 'https://http-testnet.chain.pixie.xyz',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://scan-testnet.chain.pixie.xyz'
+      : 'https://scan-testnet.chain.pixie.xyz',
     selfPay: true,
-  },
+  } /* waiting info */,
   {
     id: ChainId.Rinkeby,
     nativeFee: false,
@@ -619,6 +749,12 @@ export const CHAINS = [
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ETH',
     selfPay: true,
+    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+    name: TARGET_MAINNET ? 'Rinkeby Test Network' : 'Rinkeby Test Network',
+    rpcUrl: TARGET_MAINNET ? 'https://rinkeby.infura.io/v3/' : 'https://rinkeby.infura.io/v3/',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://rinkeby.etherscan.io'
+      : 'https://rinkeby.etherscan.io',
   },
   {
     id: ChainId.Oasis1,
@@ -632,6 +768,12 @@ export const CHAINS = [
       : '0x87bF79eF2Dd87535f762e47028345dF7527c3206',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ROSE',
+    symbol: TARGET_MAINNET ? 'ROSE' : 'ROSE',
+    name: TARGET_MAINNET ? 'Oasis Mainnet' : 'Oasis Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://emerald.oasis.dev' : 'https://testnet.emerald.oasis.dev',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.emerald.oasis.dev/'
+      : 'https://testnet.explorer.emerald.oasis.dev/',
     selfPay: true,
   },
   {
@@ -649,8 +791,14 @@ export const CHAINS = [
       : '0x0744b1802B9D879AdB2C4ea3b7A9bE38073f3a43',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'HSC',
+    symbol: TARGET_MAINNET ? 'HSC' : 'HSC',
+    name: TARGET_MAINNET ? 'Hoo Smart Chain Mainnet' : 'Hoo Smart Chain Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://http-mainnet.hoosmartchain.com'
+      : 'https://http-mainnet.hoosmartchain.com',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://hooscan.com/' : 'https://hooscan.com/',
     selfPay: true,
-  },
+  } /* waiting info */,
   {
     id: ChainId.Kcc,
     nativeFee: false,
@@ -666,6 +814,12 @@ export const CHAINS = [
       : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'KCS',
+    symbol: TARGET_MAINNET ? 'KCS' : 'KCS',
+    name: TARGET_MAINNET ? 'KCC-MAINNET' : 'KCC-TESTNET',
+    rpcUrl: TARGET_MAINNET ? 'https://rpc-mainnet.kcc.network' : 'https://rpc-testnet.kcc.network',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.kcc.io/en'
+      : 'https://scan-testnet.kcc.network',
     selfPay: true,
   },
   {
@@ -683,6 +837,12 @@ export const CHAINS = [
       : '0x55a59c57a133d1c999b3Eaf5B16ad5c1F2e365c8',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ONE',
+    symbol: 'ONE',
+    name: TARGET_MAINNET ? 'Harmony Mainnet' : 'Harmony Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://api.harmony.one' : 'https://api.s0.b.hmny.io',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.harmony.one/'
+      : 'https://explorer.pops.one/',
     selfPay: true,
   },
   {
@@ -703,6 +863,12 @@ export const CHAINS = [
       : '0x7877Ad76Dd6069035B56137707368C945D2aD452',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'BTM',
+    symbol: TARGET_MAINNET ? 'BTM' : 'BTM',
+    name: TARGET_MAINNET ? 'BMC Mainnet' : 'BMC Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://bmc.bytom.io/' : 'https://testnet.bmcchain.com',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://bmc.blockmeta.com'
+      : 'https://bmctestnet.blockmeta.com',
     selfPay: true,
   },
   {
@@ -720,6 +886,12 @@ export const CHAINS = [
       : '0x74b77cbF04442BBf194380a7e4d99c923e0e56cc',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ONG',
+    symbol: TARGET_MAINNET ? 'ONG' : 'ONG',
+    name: TARGET_MAINNET ? 'Ontology Mainnet' : 'Ontology Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://dappnode2.ont.io:10339' : 'https://polaris1.ont.io:10334',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.ont.io/'
+      : 'https://explorer.ont.io/testnet/',
     selfPay: true,
   },
 ];
