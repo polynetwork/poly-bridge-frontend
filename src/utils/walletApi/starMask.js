@@ -192,8 +192,10 @@ async function lock({
     const feeDecimals = fromChainId === 318 ? 9 : tokenBasic.decimals;
     const feeInt = decimalToInteger(fee, feeDecimals);
     const id = 1;
-
-    const functionId = '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript::lock_with_stc_fee';
+    // testnet
+    // const functionId = '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript::lock_with_stc_fee';
+    // mainnet
+    const functionId = '0xe52552637c5897a2d499fbf08216f73e::CrossChainScript::lock_with_stc_fee';
     const tyArgs = [];
 
     const fromTokenHashHex = (function() {
