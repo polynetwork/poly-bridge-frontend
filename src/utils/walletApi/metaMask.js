@@ -118,13 +118,36 @@ async function connect() {
   }
 }
 
-async function changeChain(waitChainId) {
+async function changeChain(waitChainId, chaindata) {
   try {
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: waitChainId }],
     });
   } catch (error) {
+    // console.log('wallet', error);
+    // if (error.code === 4902) {
+    //   try {
+    //     await window.ethereum.request({
+    //       method: 'wallet_addEthereumChain',
+    //       params: [
+    //         {
+    //           chainId: waitChainId,
+    //           chainName: chaindata.name,
+    //           rpcUrls: [chaindata.rpcUrl],
+    //           blockExplorerUrls: [chaindata.chainExplorerUrl],
+    //           nativeCurrency: {
+    //             name: chaindata.symbol,
+    //             symbol: chaindata.symbol, // 2-6 characters long
+    //             decimals: 18,
+    //           },
+    //         },
+    //       ],
+    //     });
+    //   } catch (addError) {
+    //     throw convertWalletError(addError);
+    //   }
+    // }
     throw convertWalletError(error);
   }
 }

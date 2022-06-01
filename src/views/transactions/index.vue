@@ -143,6 +143,7 @@ export default {
       transactions: {
         items: [],
         pageCount: 0,
+        total: 0,
       },
     };
   },
@@ -175,7 +176,7 @@ export default {
     },
     netTransactions(value, oldValue) {
       if (oldValue.items) {
-        if (value.items.length >= oldValue.items.length) {
+        if (value.total >= this.transactions.total) {
           this.transactions = value;
         }
       } else {

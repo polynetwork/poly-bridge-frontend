@@ -323,6 +323,7 @@ export default {
           // this.$store.dispatch('getManualTxData', this.transaction.steps[1].hash);
           const polyHash = this.transaction.steps[1].hash;
           const result = await httpApi.getManualTxData({ polyHash });
+          debugger;
           this.sendTx(result);
         } catch (error) {
           if (error instanceof HttpError) {
@@ -340,6 +341,7 @@ export default {
       console.log(self.toChain);
       const selfccm = toStandardHex(self.toChain.dst_ccm);
       const apiccm = toStandardHex($payload.dst_ccm);
+      debugger;
       if (selfccm !== apiccm) {
         this.$message.error('ccm error');
         this.selfPayLoading = false;
