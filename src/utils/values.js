@@ -604,7 +604,7 @@ export const CHAINS = [
     nftFeeName: 'KAVA',
     symbol: TARGET_MAINNET ? 'KAVA' : 'KAVA',
     name: TARGET_MAINNET ? 'KAVA Mainnet' : 'KAVA Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://evm.evm-alpha.kava.io' : 'https://evm.evm-alpha.kava.io',
+    rpcUrl: TARGET_MAINNET ? 'https://evm.kava.io' : 'https://evm.evm-alpha.kava.io',
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://explorer.kava.io'
       : 'https://explorer.evm-alpha.kava.io',
