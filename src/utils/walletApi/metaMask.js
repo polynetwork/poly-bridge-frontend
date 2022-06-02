@@ -147,8 +147,9 @@ async function changeChain(waitChainId, chaindata) {
       } catch (addError) {
         throw convertWalletError(addError);
       }
+    } else {
+      throw convertWalletError(error);
     }
-    throw convertWalletError(error);
   }
 }
 
