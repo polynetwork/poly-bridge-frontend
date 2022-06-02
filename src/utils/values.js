@@ -243,7 +243,7 @@ export const CHAINS = [
       : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
     nftFeeContractHash: 'deaddeaddeaddeaddeaddeaddeaddeaddead0000',
     nftFeeName: 'Metis',
-    symbol: TARGET_MAINNET ? 'METIS' : 'testMETIS',
+    symbol: TARGET_MAINNET ? 'METIS' : 'METIS',
     name: TARGET_MAINNET ? 'Metis Andromeda Mainnet' : 'Metis TESTNET Stardust',
     rpcUrl: TARGET_MAINNET
       ? 'https://andromeda.metis.io/?owner=1088'
@@ -336,29 +336,30 @@ export const CHAINS = [
     chainExplorerUrl: TARGET_MAINNET ? 'https://hecoinfo.com' : 'https://testnet.hecoinfo.com',
     selfPay: true,
   },
-  {
-    id: ChainId.Oasis,
-    nativeFee: false,
-    icon: require('@/assets/png/oasis.png'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://explorer.emerald.oasis.dev/tx/0x{txHash}'
-      : 'https://testnet.explorer.emerald.oasis.dev/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xbaf396bD590D23D4F4dF5f21b09bA9F869C4B7A6'
-      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
-    dst_ccm: TARGET_MAINNET
-      ? '0x0C611b42B78e7b5760B8EB9DA9fA1fb34Db86C2c'
-      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'ROSE',
-    symbol: TARGET_MAINNET ? 'ROSE' : 'ROSE',
-    name: TARGET_MAINNET ? 'Oasis Mainnet' : 'Oasis Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://emerald.oasis.dev' : 'https://testnet.emerald.oasis.dev',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://explorer.emerald.oasis.dev/'
-      : 'https://testnet.explorer.emerald.oasis.dev/',
-    selfPay: true,
-  },
+  // not exist on testnet
+  // {
+  //   id: ChainId.Oasis,
+  //   nativeFee: false,
+  //   icon: require('@/assets/png/oasis.png'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://explorer.emerald.oasis.dev/tx/0x{txHash}'
+  //     : 'https://testnet.explorer.emerald.oasis.dev/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0xbaf396bD590D23D4F4dF5f21b09bA9F869C4B7A6'
+  //     : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0x0C611b42B78e7b5760B8EB9DA9fA1fb34Db86C2c'
+  //     : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
+  //   nftFeeName: 'ROSE',
+  //   symbol: TARGET_MAINNET ? 'ROSE' : 'ROSE',
+  //   name: TARGET_MAINNET ? 'Oasis Mainnet' : 'Oasis Testnet',
+  //   rpcUrl: TARGET_MAINNET ? 'https://emerald.oasis.dev' : 'https://testnet.emerald.oasis.dev',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://explorer.emerald.oasis.dev/'
+  //     : 'https://testnet.explorer.emerald.oasis.dev/',
+  //   selfPay: true,
+  // },
   {
     id: ChainId.Polygon,
     nativeFee: true,
@@ -384,7 +385,7 @@ export const CHAINS = [
     name: TARGET_MAINNET ? 'Polygon Mainnet' : 'Polygon Testnet',
     rpcUrl: TARGET_MAINNET
       ? 'https://rpc-mainnet.maticvigil.com/'
-      : 'https://rpc-mumbai.maticvigil.com/',
+      : 'https://rpc-mumbai.matic.today/',
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://polygonscan.com/'
       : 'https://mumbai.polygonscan.com',
@@ -553,8 +554,8 @@ export const CHAINS = [
       ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
       : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? '0xdF539255E823b9D08aAD0b7D7b89868246f65B5a'
-      : '0xdF539255E823b9D08aAD0b7D7b89868246f65B5a',
+      ? '0x7A3C7a75EF1e44800d75101cb2baa53506559c76'
+      : '0x7A3C7a75EF1e44800d75101cb2baa53506559c76',
     nftLockContractHash: TARGET_MAINNET
       ? '0x41985E2A8826233618392e38d46d2060fbCC3F2A'
       : '0x0806e6925e6960E06cD4781e22A636bA233B53De',
@@ -610,7 +611,7 @@ export const CHAINS = [
       : '0xFcf7A3207b7442F29a9f88e2d7638633B494843f',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'MilkADA',
-    symbol: TARGET_MAINNET ? 'MilkADA' : 'MilkADA',
+    symbol: TARGET_MAINNET ? 'MlkADA' : 'MlkADA',
     name: TARGET_MAINNET ? 'Milkomeda Cardano (C1)' : 'Milkomeda Testnet',
     rpcUrl: TARGET_MAINNET
       ? 'https://rpc-mainnet-cardano-evm.c1.milkomeda.com'
@@ -888,7 +889,7 @@ export const CHAINS = [
     nftFeeName: 'ONG',
     symbol: TARGET_MAINNET ? 'ONG' : 'ONG',
     name: TARGET_MAINNET ? 'Ontology Mainnet' : 'Ontology Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://dappnode2.ont.io:10339' : 'https://polaris1.ont.io:10334',
+    rpcUrl: TARGET_MAINNET ? 'https://dappnode2.ont.io:10339' : 'https://polaris1.ont.io:10339',
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://explorer.ont.io/'
       : 'https://explorer.ont.io/testnet/',
