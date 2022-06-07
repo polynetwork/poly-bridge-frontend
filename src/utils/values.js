@@ -337,29 +337,29 @@ export const CHAINS = [
     selfPay: true,
   },
   // not exist on testnet
-  // {
-  //   id: ChainId.Oasis,
-  //   nativeFee: false,
-  //   icon: require('@/assets/png/oasis.png'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://explorer.emerald.oasis.dev/tx/0x{txHash}'
-  //     : 'https://testnet.explorer.emerald.oasis.dev/tx/0x{txHash}',
-  //   lockContractHash: TARGET_MAINNET
-  //     ? '0xbaf396bD590D23D4F4dF5f21b09bA9F869C4B7A6'
-  //     : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
-  //   dst_ccm: TARGET_MAINNET
-  //     ? '0x0C611b42B78e7b5760B8EB9DA9fA1fb34Db86C2c'
-  //     : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
-  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
-  //   nftFeeName: 'ROSE',
-  //   symbol: TARGET_MAINNET ? 'ROSE' : 'ROSE',
-  //   name: TARGET_MAINNET ? 'Oasis Mainnet' : 'Oasis Testnet',
-  //   rpcUrl: TARGET_MAINNET ? 'https://emerald.oasis.dev' : 'https://testnet.emerald.oasis.dev',
-  //   chainExplorerUrl: TARGET_MAINNET
-  //     ? 'https://explorer.emerald.oasis.dev/'
-  //     : 'https://testnet.explorer.emerald.oasis.dev/',
-  //   selfPay: true,
-  // },
+  {
+    id: ChainId.Oasis,
+    nativeFee: false,
+    icon: require('@/assets/png/oasis.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.emerald.oasis.dev/tx/0x{txHash}'
+      : 'https://testnet.explorer.emerald.oasis.dev/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xbaf396bD590D23D4F4dF5f21b09bA9F869C4B7A6'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0x0C611b42B78e7b5760B8EB9DA9fA1fb34Db86C2c'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'ROSE',
+    symbol: TARGET_MAINNET ? 'ROSE' : 'ROSE',
+    name: TARGET_MAINNET ? 'Oasis Mainnet' : 'Oasis Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://emerald.oasis.dev' : 'https://testnet.emerald.oasis.dev',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.emerald.oasis.dev/'
+      : 'https://testnet.explorer.emerald.oasis.dev/',
+    selfPay: true,
+  },
   {
     id: ChainId.Polygon,
     nativeFee: true,
