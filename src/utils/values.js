@@ -270,7 +270,7 @@ export const CHAINS = [
     nftFeeName: 'ETH',
     symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
     name: TARGET_MAINNET ? 'Boba Mainnet' : 'Boba Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://mainnet.bota.network' : 'https://rinkeby.boba.network/',
+    rpcUrl: TARGET_MAINNET ? 'https://mainnet.boba.network' : 'https://rinkeby.boba.network/',
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://blockexplorer.boba.network'
       : 'https://blockexplorer.rinkeby.boba.network/',
@@ -331,7 +331,7 @@ export const CHAINS = [
     symbol: TARGET_MAINNET ? 'HT' : 'HT',
     name: TARGET_MAINNET ? 'HECO Mainnet' : 'HECO Testnet',
     rpcUrl: TARGET_MAINNET
-      ? 'https://http-mainnet-node.huobichain.com'
+      ? 'https://http-mainnet.hecochain.com'
       : 'https://http-testnet.hecochain.com',
     chainExplorerUrl: TARGET_MAINNET ? 'https://hecoinfo.com' : 'https://testnet.hecoinfo.com',
     selfPay: true,
@@ -866,7 +866,7 @@ export const CHAINS = [
     nftFeeName: 'BTM',
     symbol: TARGET_MAINNET ? 'BTM' : 'BTM',
     name: TARGET_MAINNET ? 'BMC Mainnet' : 'BMC Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://bmc.bytom.io/' : 'https://testnet.bmcchain.com',
+    rpcUrl: TARGET_MAINNET ? 'https://mainnet.bmcchain.com/' : 'https://testnet.bmcchain.com',
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://bmc.blockmeta.com'
       : 'https://bmctestnet.blockmeta.com',
