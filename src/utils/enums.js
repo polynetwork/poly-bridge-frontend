@@ -38,7 +38,7 @@ export const ChainId = {
   Pixie: TARGET_MAINNET ? 316 : 316,
   Rinkeby: TARGET_MAINNET ? 402 : 402,
   Oasis1: TARGET_MAINNET ? 501 : 501,
-  Stc: TARGET_MAINNET ? 1 : 318,
+  Stc: TARGET_MAINNET ? 31 : 318,
   Kcc: TARGET_MAINNET ? 900 : 900,
   OntEvm: TARGET_MAINNET ? 333 : 333,
   BcsPalette: TARGET_MAINNET ? 1001 : 1001,
