@@ -692,7 +692,7 @@ export const CHAINS = [
       ? '0xe52552637c5897a2d499fbf08216f73e'
       : '0x416b32009fe49fcab1d5f2ba0153838f',
     dst_ccm: TARGET_MAINNET
-      ? '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript'
+      ? '0xe52552637c5897a2d499fbf08216f73e::CrossChainScript'
       : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript',
     nftFeeContractHash: '0x00000000000000000000000000000001::STC::STC',
     nftFeeName: 'STC',

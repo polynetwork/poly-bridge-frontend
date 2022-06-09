@@ -15,7 +15,7 @@ const NFT_FEE_TOKEN_HASH = '0x0000000000000000000000000000000000000000';
 const PLT_NFT_FEE_TOKEN_HASH = '0x0000000000000000000000000000000000000103';
 
 const NETWORK_CHAIN_ID_MAPS = {
-  [TARGET_MAINNET ? 1 : 251]: ChainId.Stc,
+  [TARGET_MAINNET ? 31 : 251]: ChainId.Stc,
 };
 
 let web3;
@@ -193,7 +193,9 @@ async function lock({
     const feeInt = decimalToInteger(fee, feeDecimals);
     const id = 1;
 
-    const functionId = '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript::lock_with_stc_fee';
+    const functionId = TARGET_MAINNET
+      ? '0xe52552637c5897a2d499fbf08216f73e::CrossChainScript::lock_with_stc_fee'
+      : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript::lock_with_stc_fee';
     const tyArgs = [];
 
     const fromTokenHashHex = (function() {
