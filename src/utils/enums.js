@@ -38,7 +38,7 @@ export const ChainId = {
   Pixie: TARGET_MAINNET ? 316 : 316,
   Rinkeby: TARGET_MAINNET ? 402 : 402,
   Oasis1: TARGET_MAINNET ? 501 : 501,
-  Stc: TARGET_MAINNET ? 1 : 318,
+  Stc: TARGET_MAINNET ? 31 : 318,
   Kcc: TARGET_MAINNET ? 900 : 900,
   OntEvm: TARGET_MAINNET ? 333 : 333,
   BcsPalette: TARGET_MAINNET ? 1001 : 1001,
@@ -102,11 +102,11 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Kcc]: TARGET_MAINNET ? 321 : 322,
   [ChainId.OntEvm]: TARGET_MAINNET ? 58 : 5851,
   [ChainId.BcsPalette]: TARGET_MAINNET ? 104 : 104,
-  [ChainId.Stc]: TARGET_MAINNET ? 1 : 251,
   [ChainId.BcsPalette2]: TARGET_MAINNET ? 101 : 101,
   [ChainId.Milkomeda]: TARGET_MAINNET ? 2001 : 200101,
   [ChainId.Kava]: TARGET_MAINNET ? 2221 : 2221,
   [ChainId.Cube]: TARGET_MAINNET ? 1819 : 1819,
+  [ChainId.Stc]: TARGET_MAINNET ? 1 : 251,
 };
 
 export const SingleTransactionStatus = {
