@@ -190,7 +190,7 @@ async function lock({
     });
 
     const amountInt = decimalToInteger(amount, tokenBasic.decimals);
-    const feeDecimals = fromChainId === 318 ? 9 : tokenBasic.decimals;
+    const feeDecimals = [31, 318].includes(fromChainId) ? 9 : tokenBasic.decimals;
     const feeInt = decimalToInteger(fee, feeDecimals);
     const id = 1;
 
