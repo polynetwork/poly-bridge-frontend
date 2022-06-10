@@ -64,8 +64,8 @@
             <div class="field-wrapper">
               <CButton
                 class="select-token-basic"
-                :disabled="items.length < 1"
-                @click="selectItemVisible = items.length > 0 ? true : false"
+                :disabled="items.TotalCount < 1"
+                @click="selectItemVisible = items.TotalCount > 0 ? true : false"
               >
                 <template v-if="item">
                   <img class="selected-img" :src="item.Image ? item.Image : unknowNFT" />
@@ -208,7 +208,9 @@
       :visible.sync="selectItemVisible"
       :itemId="item ? item.TokenId : null"
       @update:item="changeItem"
+      @update:page="changeItemPage"
       :items="items || []"
+      :page="currentPage"
     />
     <ConnectWallet
       :visible.sync="connectWalletVisible"
@@ -334,7 +336,7 @@ export default {
       //   ? this.$store.getters.getItemsShow.Assets
       //   : [];
       // const itemsShow = AssetsShow[0] ? AssetsShow[0].Items : [];
-      const items = this.assetHash ? this.$store.getters.getItems.Items : [];
+      const items = this.assetHash ? this.$store.getters.getItems : [];
       return this.fromWallet ? items : [];
     },
     itemsShow() {
@@ -567,6 +569,9 @@ export default {
         id: item.TokenId,
       });
     },
+    async changeItemPage(item) {
+      this.handleCurrentChange(item);
+    },
     async approve() {
       this.approving = true;
       let nftspender = this.fromChain.nftLockContractHash;
@@ -710,6 +715,7 @@ export default {
     },
     changeAsset(asset) {
       this.item = null;
+      this.currentPage = 1;
       this.assetHash = asset.Hash;
       this.assetName = asset.Name;
       this.getItems(this.assetHash, '', this.currentPage);
