@@ -103,15 +103,15 @@ export default {
   display: flex;
   align-items: center;
   padding: 16px 0px;
-  @include child-margin-h(8px);
+  @include child-margin-h(30px);
 }
 
 .chain-icon {
   width: 24px;
 }
 .item-img {
-  max-height: 120px;
-  max-width: 120px;
+  height: 120px;
+  width: 120px;
 }
 
 @media screen and (max-width: 900px) {
