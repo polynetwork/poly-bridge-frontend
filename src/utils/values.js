@@ -485,35 +485,35 @@ export const CHAINS = [
       : 'https://rinkeby-explorer.arbitrum.io/#/',
     selfPay: true,
   },
-  // {
-  //   id: ChainId.Palette,
-  //   nativeFee: false,
-  //   icon: require('@/assets/svg/plt.svg'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
-  //     : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
-  //   nftexplorerUrl: TARGET_MAINNET
-  //     ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
-  //     : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
-  //   lockContractHash: TARGET_MAINNET
-  //     ? '0x0A9C412633465fdeE4861CeE02987386100bEAe6'
-  //     : '0x3b855e095b32fcd2811663cba56bbfa6b1781821',
-  //   nftLockContractHash: TARGET_MAINNET
-  //     ? '0x41985E2A8826233618392e38d46d2060fbCC3F2A'
-  //     : '0x0806e6925e6960E06cD4781e22A636bA233B53De',
-  //   dst_ccm: TARGET_MAINNET
-  //     ? '0x1b02EEE12A7bF02922113a70d3D343De4b43f776'
-  //     : '0xB64EE4b7cf935C51233b6ED9b0732D3Bd26E3442',
-  //   nftFeeContractHash: '0000000000000000000000000000000000000103',
-  //   nftFeeName: 'PLT',
-  //   symbol: TARGET_MAINNET ? 'PLT' : 'PLT',
-  //   name: TARGET_MAINNET ? 'PLT Mainnet' : 'PLT Testnet',
-  //   rpcUrl: TARGET_MAINNET ? 'http://13.231.222.1:22000' : 'http://106.75.246.130:22000',
-  //   chainExplorerUrl: TARGET_MAINNET
-  //     ? 'https://palettescan.com/#/chain/'
-  //     : 'http://106.75.251.68/#/chain/',
-  //   selfPay: true,
-  // },
+  {
+    id: ChainId.Palette,
+    nativeFee: false,
+    icon: require('@/assets/svg/plt.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
+      : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
+    nftexplorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
+      : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x0A9C412633465fdeE4861CeE02987386100bEAe6'
+      : '0x3b855e095b32fcd2811663cba56bbfa6b1781821',
+    nftLockContractHash: TARGET_MAINNET
+      ? '0x41985E2A8826233618392e38d46d2060fbCC3F2A'
+      : '0x0806e6925e6960E06cD4781e22A636bA233B53De',
+    dst_ccm: TARGET_MAINNET
+      ? '0x1b02EEE12A7bF02922113a70d3D343De4b43f776'
+      : '0xB64EE4b7cf935C51233b6ED9b0732D3Bd26E3442',
+    nftFeeContractHash: '0000000000000000000000000000000000000103',
+    nftFeeName: 'PLT',
+    symbol: TARGET_MAINNET ? 'PLT' : 'PLT',
+    name: TARGET_MAINNET ? 'PLT Mainnet' : 'PLT Testnet',
+    rpcUrl: TARGET_MAINNET ? 'http://13.231.222.1:22000' : 'http://106.75.246.130:22000',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/'
+      : 'http://106.75.251.68/#/chain/',
+    selfPay: true,
+  },
   // {
   //   id: ChainId.BcsPalette,
   //   nativeFee: false,
