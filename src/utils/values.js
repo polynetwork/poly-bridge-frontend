@@ -407,7 +407,7 @@ export const CHAINS = [
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ETH',
     symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
-    name: TARGET_MAINNET ? 'Optimistic Ethereum' : 'Optimistic Ethereum (Kovan)',
+    name: TARGET_MAINNET ? 'Optimism Ethereum' : 'Optimism Ethereum (Kovan)',
     rpcUrl: TARGET_MAINNET ? 'https://mainnet.optimism.io' : 'https://kovan.optimism.io',
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://optimistic.etherscan.io'
@@ -508,7 +508,7 @@ export const CHAINS = [
     nftFeeName: 'PLT',
     symbol: TARGET_MAINNET ? 'PLT' : 'PLT',
     name: TARGET_MAINNET ? 'PLT Mainnet' : 'PLT Testnet',
-    rpcUrl: TARGET_MAINNET ? 'http://13.231.222.1:22000' : 'http://106.75.246.130:22000',
+    rpcUrl: TARGET_MAINNET ? 'https://palette-rpc.com:22000' : 'http://106.75.246.130:22000',
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://palettescan.com/#/chain/'
       : 'http://106.75.251.68/#/chain/',
