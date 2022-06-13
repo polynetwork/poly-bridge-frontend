@@ -179,7 +179,7 @@ export default {
       [ChainId.BcsPalette]: 'Bcs Palette',
       [ChainId.Arbitrum]: 'Arbitrum',
       [ChainId.OntEvm]: 'Ontology EVM',
-      [ChainId.Optimistic]: 'Optimistic',
+      [ChainId.Optimistic]: 'Optimism',
       [ChainId.Boba]: 'Boba',
       [ChainId.Fantom]: 'Fantom',
       [ChainId.Avalanche]: 'Avalanche',
