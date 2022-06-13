@@ -131,6 +131,7 @@ export default {
     return {
       confirming: false,
       packing: false,
+      confirmFlag: false,
     };
   },
   computed: {
@@ -216,6 +217,10 @@ export default {
       return flag;
     },
     async confirm() {
+      if (this.confirmFlag) {
+        return;
+      }
+      this.confirmFlag = true;
       await this.$store.dispatch('ensureChainWalletReady', this.confirmingData.fromChainId);
       console.log(this.confirmingData);
       const flag = await this.getWrapperCheck();
@@ -266,6 +271,7 @@ export default {
         this.$emit('packed');
         this.$emit('update:visible', false);
       } finally {
+        this.confirmFlag = false;
         this.confirming = false;
         this.packing = false;
       }

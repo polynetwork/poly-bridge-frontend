@@ -145,9 +145,13 @@ async function changeChain(waitChainId, chaindata) {
           ],
         });
       } catch (addError) {
-        throw convertWalletError(addError);
+        if (addError.code !== -32602) {
+          throw convertWalletError(addError);
+        } else {
+          console.log(addError);
+        }
       }
-    } else {
+    } else if (error.code !== -32002 && error.code !== -32602) {
       throw convertWalletError(error);
     }
   }
