@@ -46,6 +46,7 @@ export const ChainId = {
   Milkomeda: TARGET_MAINNET ? 810 : 810,
   Kava: TARGET_MAINNET ? 32 : 920,
   Cube: TARGET_MAINNET ? 930 : 930,
+  Rpx: TARGET_MAINNET ? 27 : 800,
 };
 
 export const NetworkChainIdMaps = {
@@ -100,11 +101,11 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Kcc]: TARGET_MAINNET ? 321 : 322,
   [ChainId.OntEvm]: TARGET_MAINNET ? 58 : 5851,
   [ChainId.BcsPalette]: TARGET_MAINNET ? 104 : 104,
-  [ChainId.Stc]: TARGET_MAINNET ? 1 : 251,
   [ChainId.BcsPalette2]: TARGET_MAINNET ? 101 : 101,
   [ChainId.Milkomeda]: TARGET_MAINNET ? 2001 : 200101,
   [ChainId.Kava]: TARGET_MAINNET ? 2222 : 2221,
   [ChainId.Cube]: TARGET_MAINNET ? 1819 : 1819,
+  [ChainId.Stc]: TARGET_MAINNET ? 1 : 251,
 };
 
 export const SingleTransactionStatus = {
