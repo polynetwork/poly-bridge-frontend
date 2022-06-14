@@ -46,7 +46,7 @@ export const ChainId = {
   Milkomeda: TARGET_MAINNET ? 810 : 810,
   Kava: TARGET_MAINNET ? 32 : 920,
   Cube: TARGET_MAINNET ? 930 : 930,
-  Rpx: TARGET_MAINNET ? 27 : 800,
+  Xrp: TARGET_MAINNET ? 27 : 223,
 };
 
 export const NetworkChainIdMaps = {
