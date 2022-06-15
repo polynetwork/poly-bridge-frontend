@@ -621,31 +621,31 @@ export const CHAINS = [
   //     : 'https://explorer-devnet-cardano-evm.c1.milkomeda.com',
   //   selfPay: true,
   // },
-  // {
-  //   id: ChainId.Cube,
-  //   nativeFee: true,
-  //   icon: require('@/assets/png/cube1.png'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://testnet.cubescan.network/en-us/tx/0x{txHash}'
-  //     : 'https://testnet.cubescan.network/en-us/tx/0x{txHash}',
-  //   lockContractHash: TARGET_MAINNET
-  //     ? '0x30e6ec356ceF1cfe3c7e14392EA08448382327bD'
-  //     : '0x30e6ec356ceF1cfe3c7e14392EA08448382327bD',
-  //   dst_ccm: TARGET_MAINNET
-  //     ? '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12'
-  //     : '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12',
-  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
-  //   nftFeeName: 'CUBE',
-  //   symbol: TARGET_MAINNET ? 'CUBE' : 'CUBE',
-  //   name: TARGET_MAINNET ? 'Cube Mainnet' : 'Cube Testnet',
-  //   rpcUrl: TARGET_MAINNET
-  //     ? 'https://http-testnet.cube.network'
-  //     : 'https://http-testnet.cube.network',
-  //   chainExplorerUrl: TARGET_MAINNET
-  //     ? 'https://testnet.cubescan.network'
-  //     : 'https://testnet.cubescan.network',
-  //   selfPay: true,
-  // } /* waiting info */,
+  {
+    id: ChainId.Cube,
+    nativeFee: true,
+    icon: require('@/assets/png/cube.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://www.cubescan.network/en-us/tx/0x{txHash}'
+      : 'https://testnet.cubescan.network/en-us/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x80C99516c49dB5e1F002c47c9d17ABF6208E8736'
+      : '0x30e6ec356ceF1cfe3c7e14392EA08448382327bD',
+    dst_ccm: TARGET_MAINNET
+      ? '0xab7a3CA9bDcE476F0ECC04c127CFEe0F3D212BC5'
+      : '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'CUBE',
+    symbol: TARGET_MAINNET ? 'CUBE' : 'CUBE',
+    name: TARGET_MAINNET ? 'Cube Mainnet' : 'Cube Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://http-mainnet.cube.network'
+      : 'https://http-testnet.cube.network',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://www.cubescan.network'
+      : 'https://testnet.cubescan.network',
+    selfPay: true,
+  },
   {
     id: ChainId.Kava,
     nativeFee: true,
