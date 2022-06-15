@@ -624,7 +624,7 @@ export const CHAINS = [
   {
     id: ChainId.Cube,
     nativeFee: true,
-    icon: require('@/assets/png/cube.png'),
+    icon: require('@/assets/jpg/cube.jpeg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://www.cubescan.network/en-us/tx/0x{txHash}'
       : 'https://testnet.cubescan.network/en-us/tx/0x{txHash}',
