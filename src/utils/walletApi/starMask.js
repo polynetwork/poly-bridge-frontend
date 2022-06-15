@@ -14,6 +14,7 @@ const STAR_MASK_CONNECTED_KEY = 'STAR_MASK_CONNECTED';
 const NFT_FEE_TOKEN_HASH = '0x0000000000000000000000000000000000000000';
 const PLT_NFT_FEE_TOKEN_HASH = '0x0000000000000000000000000000000000000103';
 
+// for stc network
 const NETWORK_CHAIN_ID_MAPS = {
   [TARGET_MAINNET ? 1 : 251]: ChainId.Stc,
 };
@@ -189,13 +190,13 @@ async function lock({
     });
 
     const amountInt = decimalToInteger(amount, tokenBasic.decimals);
-    const feeDecimals = fromChainId === 318 ? 9 : tokenBasic.decimals;
+    const feeDecimals = [31, 318].includes(fromChainId) ? 9 : tokenBasic.decimals;
     const feeInt = decimalToInteger(fee, feeDecimals);
     const id = 1;
-    // testnet
-    // const functionId = '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript::lock_with_stc_fee';
-    // mainnet
-    const functionId = '0xe52552637c5897a2d499fbf08216f73e::CrossChainScript::lock_with_stc_fee';
+
+    const functionId = TARGET_MAINNET
+      ? '0xe52552637c5897a2d499fbf08216f73e::CrossChainScript::lock_with_stc_fee'
+      : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript::lock_with_stc_fee';
     const tyArgs = [];
 
     const fromTokenHashHex = (function() {

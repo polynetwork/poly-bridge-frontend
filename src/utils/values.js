@@ -621,31 +621,31 @@ export const CHAINS = [
   //     : 'https://explorer-devnet-cardano-evm.c1.milkomeda.com',
   //   selfPay: true,
   // },
-  // {
-  //   id: ChainId.Cube,
-  //   nativeFee: true,
-  //   icon: require('@/assets/png/cube1.png'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://testnet.cubescan.network/en-us/tx/0x{txHash}'
-  //     : 'https://testnet.cubescan.network/en-us/tx/0x{txHash}',
-  //   lockContractHash: TARGET_MAINNET
-  //     ? '0x30e6ec356ceF1cfe3c7e14392EA08448382327bD'
-  //     : '0x30e6ec356ceF1cfe3c7e14392EA08448382327bD',
-  //   dst_ccm: TARGET_MAINNET
-  //     ? '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12'
-  //     : '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12',
-  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
-  //   nftFeeName: 'CUBE',
-  //   symbol: TARGET_MAINNET ? 'CUBE' : 'CUBE',
-  //   name: TARGET_MAINNET ? 'Cube Mainnet' : 'Cube Testnet',
-  //   rpcUrl: TARGET_MAINNET
-  //     ? 'https://http-testnet.cube.network'
-  //     : 'https://http-testnet.cube.network',
-  //   chainExplorerUrl: TARGET_MAINNET
-  //     ? 'https://testnet.cubescan.network'
-  //     : 'https://testnet.cubescan.network',
-  //   selfPay: true,
-  // } /* waiting info */,
+  {
+    id: ChainId.Cube,
+    nativeFee: true,
+    icon: require('@/assets/svg/cube.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://www.cubescan.network/en-us/tx/0x{txHash}'
+      : 'https://testnet.cubescan.network/en-us/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x80C99516c49dB5e1F002c47c9d17ABF6208E8736'
+      : '0x30e6ec356ceF1cfe3c7e14392EA08448382327bD',
+    dst_ccm: TARGET_MAINNET
+      ? '0xab7a3CA9bDcE476F0ECC04c127CFEe0F3D212BC5'
+      : '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'CUBE',
+    symbol: TARGET_MAINNET ? 'CUBE' : 'CUBE',
+    name: TARGET_MAINNET ? 'Cube Mainnet' : 'Cube Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://http-mainnet.cube.network'
+      : 'https://http-testnet.cube.network',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://www.cubescan.network'
+      : 'https://testnet.cubescan.network',
+    selfPay: true,
+  },
   {
     id: ChainId.Kava,
     nativeFee: true,
@@ -689,8 +689,11 @@ export const CHAINS = [
   //     ? 'https://stcscan.io/main/transactions/detail/0x{txHash}'
   //     : 'https://stcscan.io/barnard/transactions/detail/0x{txHash}',
   //   lockContractHash: TARGET_MAINNET
-  //     ? 'f8328398c4c8e77b6c5843f5e404be0170d5012e'
-  //     : 'd63810ca692b43e0ed35bfa40e653d05b2cb3585',
+  //     ? '0xe52552637c5897a2d499fbf08216f73e'
+  //     : '0x416b32009fe49fcab1d5f2ba0153838f',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0xe52552637c5897a2d499fbf08216f73e::CrossChainScript'
+  //     : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript',
   //   nftFeeContractHash: '0x00000000000000000000000000000001::STC::STC',
   //   nftFeeName: 'STC',
   // },
@@ -710,10 +713,21 @@ export const CHAINS = [
   //   nftLockContractHash: TARGET_MAINNET
   //     ? '0x06e3d8Eeb9DC4732e474c26674e08213c6e11921'
   //     : '0x06e3d8Eeb9DC4732e474c26674e08213c6e11921',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0x2E830E0cf3dc8643B497F88C07c8A72EFE24B11f'
+  //     : '0x2E830E0cf3dc8643B497F88C07c8A72EFE24B11f',
   //   nftFeeContractHash: '0000000000000000000000000000000000000000',
   //   nftFeeName: 'PIX',
+  //   symbol: TARGET_MAINNET ? 'PIX' : 'PIX',
+  //   name: TARGET_MAINNET ? 'Pixie Mainnet' : 'Pixie Testnet',
+  //   rpcUrl: TARGET_MAINNET
+  //     ? 'https://http-testnet.chain.pixie.xyz'
+  //     : 'https://http-testnet.chain.pixie.xyz',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://scan-testnet.chain.pixie.xyz'
+  //     : 'https://scan-testnet.chain.pixie.xyz',
   //   selfPay: true,
-  // },
+  // } /* waiting info */,
   // {
   //   id: ChainId.Rinkeby,
   //   nativeFee: false,
@@ -730,9 +744,18 @@ export const CHAINS = [
   //   nftLockContractHash: TARGET_MAINNET
   //     ? '0x25BB8E9C0Cc03B30d09769735208a47d389Ff36c'
   //     : '0x25BB8E9C0Cc03B30d09769735208a47d389Ff36c',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6'
+  //     : '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6',
   //   nftFeeContractHash: '0000000000000000000000000000000000000000',
   //   nftFeeName: 'ETH',
   //   selfPay: true,
+  //   symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+  //   name: TARGET_MAINNET ? 'Rinkeby Test Network' : 'Rinkeby Test Network',
+  //   rpcUrl: TARGET_MAINNET ? 'https://rinkeby.infura.io/v3/' : 'https://rinkeby.infura.io/v3/',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://rinkeby.etherscan.io'
+  //     : 'https://rinkeby.etherscan.io',
   // },
   // {
   //   id: ChainId.Oasis1,
@@ -746,26 +769,12 @@ export const CHAINS = [
   //     : '0x87bF79eF2Dd87535f762e47028345dF7527c3206',
   //   nftFeeContractHash: '0000000000000000000000000000000000000000',
   //   nftFeeName: 'ROSE',
-  //   selfPay: true,
-  // },
-  // {
-  //   id: ChainId.BscPalette,
-  //   nativeFee: false,
-  //   icon: require('@/assets/svg/plt.svg'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
-  //     : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
-  //   nftexplorerUrl: TARGET_MAINNET
-  //     ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
-  //     : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
-  //   lockContractHash: TARGET_MAINNET
-  //     ? '0x0c5c0b03e897e7b1828f2bc923ea4498ec891060'
-  //     : '0x0c5c0b03e897e7b1828f2bc923ea4498ec891060',
-  //   nftLockContractHash: TARGET_MAINNET
-  //     ? '0x41985E2A8826233618392e38d46d2060fbCC3F2A'
-  //     : '0x0806e6925e6960E06cD4781e22A636bA233B53De',
-  //   nftFeeContractHash: '0000000000000000000000000000000000000103',
-  //   nftFeeName: 'wePLT',
+  //   symbol: TARGET_MAINNET ? 'ROSE' : 'ROSE',
+  //   name: TARGET_MAINNET ? 'Oasis Mainnet' : 'Oasis Testnet',
+  //   rpcUrl: TARGET_MAINNET ? 'https://emerald.oasis.dev' : 'https://testnet.emerald.oasis.dev',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://explorer.emerald.oasis.dev/'
+  //     : 'https://testnet.explorer.emerald.oasis.dev/',
   //   selfPay: true,
   // },
   {
