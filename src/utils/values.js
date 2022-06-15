@@ -681,102 +681,102 @@ export const CHAINS = [
       : 'a5c101afa9e04e9dd2c912983795005a49e02efa',
     selfPay: false,
   },
-  {
-    id: ChainId.Stc,
-    nativeFee: false,
-    icon: require('@/assets/svg/stc.svg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://stcscan.io/main/transactions/detail/0x{txHash}'
-      : 'https://stcscan.io/barnard/transactions/detail/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xe52552637c5897a2d499fbf08216f73e'
-      : '0x416b32009fe49fcab1d5f2ba0153838f',
-    dst_ccm: TARGET_MAINNET
-      ? '0xe52552637c5897a2d499fbf08216f73e::CrossChainScript'
-      : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript',
-    nftFeeContractHash: '0x00000000000000000000000000000001::STC::STC',
-    nftFeeName: 'STC',
-  },
-  {
-    id: ChainId.Pixie,
-    nativeFee: true,
-    icon: require('@/assets/svg/pixie.svg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://scan-testnet.chain.pixie.xyz/tx/0x{txHash}'
-      : 'https://scan-testnet.chain.pixie.xyz/tx/0x{txHash}',
-    nftexplorerUrl: TARGET_MAINNET
-      ? 'https://scan-testnet.chain.pixie.xyz/tx/0x{txHash}'
-      : 'https://scan-testnet.chain.pixie.xyz/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xE7Db150e4095Cbb35914b5dC980906C77B5990d2'
-      : '0xE7Db150e4095Cbb35914b5dC980906C77B5990d2',
-    nftLockContractHash: TARGET_MAINNET
-      ? '0x06e3d8Eeb9DC4732e474c26674e08213c6e11921'
-      : '0x06e3d8Eeb9DC4732e474c26674e08213c6e11921',
-    dst_ccm: TARGET_MAINNET
-      ? '0x2E830E0cf3dc8643B497F88C07c8A72EFE24B11f'
-      : '0x2E830E0cf3dc8643B497F88C07c8A72EFE24B11f',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'PIX',
-    symbol: TARGET_MAINNET ? 'PIX' : 'PIX',
-    name: TARGET_MAINNET ? 'Pixie Mainnet' : 'Pixie Testnet',
-    rpcUrl: TARGET_MAINNET
-      ? 'https://http-testnet.chain.pixie.xyz'
-      : 'https://http-testnet.chain.pixie.xyz',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://scan-testnet.chain.pixie.xyz'
-      : 'https://scan-testnet.chain.pixie.xyz',
-    selfPay: true,
-  } /* waiting info */,
-  {
-    id: ChainId.Rinkeby,
-    nativeFee: false,
-    icon: require('@/assets/svg/eth.svg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://rinkeby.etherscan.io/tx/0x{txHash}'
-      : 'https://rinkeby.etherscan.io/tx/0x{txHash}',
-    nftexplorerUrl: TARGET_MAINNET
-      ? 'https://rinkeby.etherscan.io/tx/0x{txHash}'
-      : 'https://rinkeby.etherscan.io/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12'
-      : '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12',
-    nftLockContractHash: TARGET_MAINNET
-      ? '0x25BB8E9C0Cc03B30d09769735208a47d389Ff36c'
-      : '0x25BB8E9C0Cc03B30d09769735208a47d389Ff36c',
-    dst_ccm: TARGET_MAINNET
-      ? '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6'
-      : '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'ETH',
-    selfPay: true,
-    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
-    name: TARGET_MAINNET ? 'Rinkeby Test Network' : 'Rinkeby Test Network',
-    rpcUrl: TARGET_MAINNET ? 'https://rinkeby.infura.io/v3/' : 'https://rinkeby.infura.io/v3/',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://rinkeby.etherscan.io'
-      : 'https://rinkeby.etherscan.io',
-  },
-  {
-    id: ChainId.Oasis1,
-    nativeFee: false,
-    icon: require('@/assets/png/oasis.png'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://explorer.emerald.oasis.dev/tx/0x{txHash}'
-      : 'https://explorer.emerald.oasis.dev/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0x87bF79eF2Dd87535f762e47028345dF7527c3206'
-      : '0x87bF79eF2Dd87535f762e47028345dF7527c3206',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'ROSE',
-    symbol: TARGET_MAINNET ? 'ROSE' : 'ROSE',
-    name: TARGET_MAINNET ? 'Oasis Mainnet' : 'Oasis Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://emerald.oasis.dev' : 'https://testnet.emerald.oasis.dev',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://explorer.emerald.oasis.dev/'
-      : 'https://testnet.explorer.emerald.oasis.dev/',
-    selfPay: true,
-  },
+  // {
+  //   id: ChainId.Stc,
+  //   nativeFee: false,
+  //   icon: require('@/assets/svg/stc.svg'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://stcscan.io/main/transactions/detail/0x{txHash}'
+  //     : 'https://stcscan.io/barnard/transactions/detail/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0xe52552637c5897a2d499fbf08216f73e'
+  //     : '0x416b32009fe49fcab1d5f2ba0153838f',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0xe52552637c5897a2d499fbf08216f73e::CrossChainScript'
+  //     : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript',
+  //   nftFeeContractHash: '0x00000000000000000000000000000001::STC::STC',
+  //   nftFeeName: 'STC',
+  // },
+  // {
+  //   id: ChainId.Pixie,
+  //   nativeFee: true,
+  //   icon: require('@/assets/svg/pixie.svg'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://scan-testnet.chain.pixie.xyz/tx/0x{txHash}'
+  //     : 'https://scan-testnet.chain.pixie.xyz/tx/0x{txHash}',
+  //   nftexplorerUrl: TARGET_MAINNET
+  //     ? 'https://scan-testnet.chain.pixie.xyz/tx/0x{txHash}'
+  //     : 'https://scan-testnet.chain.pixie.xyz/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0xE7Db150e4095Cbb35914b5dC980906C77B5990d2'
+  //     : '0xE7Db150e4095Cbb35914b5dC980906C77B5990d2',
+  //   nftLockContractHash: TARGET_MAINNET
+  //     ? '0x06e3d8Eeb9DC4732e474c26674e08213c6e11921'
+  //     : '0x06e3d8Eeb9DC4732e474c26674e08213c6e11921',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0x2E830E0cf3dc8643B497F88C07c8A72EFE24B11f'
+  //     : '0x2E830E0cf3dc8643B497F88C07c8A72EFE24B11f',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
+  //   nftFeeName: 'PIX',
+  //   symbol: TARGET_MAINNET ? 'PIX' : 'PIX',
+  //   name: TARGET_MAINNET ? 'Pixie Mainnet' : 'Pixie Testnet',
+  //   rpcUrl: TARGET_MAINNET
+  //     ? 'https://http-testnet.chain.pixie.xyz'
+  //     : 'https://http-testnet.chain.pixie.xyz',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://scan-testnet.chain.pixie.xyz'
+  //     : 'https://scan-testnet.chain.pixie.xyz',
+  //   selfPay: true,
+  // } /* waiting info */,
+  // {
+  //   id: ChainId.Rinkeby,
+  //   nativeFee: false,
+  //   icon: require('@/assets/svg/eth.svg'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://rinkeby.etherscan.io/tx/0x{txHash}'
+  //     : 'https://rinkeby.etherscan.io/tx/0x{txHash}',
+  //   nftexplorerUrl: TARGET_MAINNET
+  //     ? 'https://rinkeby.etherscan.io/tx/0x{txHash}'
+  //     : 'https://rinkeby.etherscan.io/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12'
+  //     : '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12',
+  //   nftLockContractHash: TARGET_MAINNET
+  //     ? '0x25BB8E9C0Cc03B30d09769735208a47d389Ff36c'
+  //     : '0x25BB8E9C0Cc03B30d09769735208a47d389Ff36c',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6'
+  //     : '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
+  //   nftFeeName: 'ETH',
+  //   selfPay: true,
+  //   symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+  //   name: TARGET_MAINNET ? 'Rinkeby Test Network' : 'Rinkeby Test Network',
+  //   rpcUrl: TARGET_MAINNET ? 'https://rinkeby.infura.io/v3/' : 'https://rinkeby.infura.io/v3/',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://rinkeby.etherscan.io'
+  //     : 'https://rinkeby.etherscan.io',
+  // },
+  // {
+  //   id: ChainId.Oasis1,
+  //   nativeFee: false,
+  //   icon: require('@/assets/png/oasis.png'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://explorer.emerald.oasis.dev/tx/0x{txHash}'
+  //     : 'https://explorer.emerald.oasis.dev/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0x87bF79eF2Dd87535f762e47028345dF7527c3206'
+  //     : '0x87bF79eF2Dd87535f762e47028345dF7527c3206',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
+  //   nftFeeName: 'ROSE',
+  //   symbol: TARGET_MAINNET ? 'ROSE' : 'ROSE',
+  //   name: TARGET_MAINNET ? 'Oasis Mainnet' : 'Oasis Testnet',
+  //   rpcUrl: TARGET_MAINNET ? 'https://emerald.oasis.dev' : 'https://testnet.emerald.oasis.dev',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://explorer.emerald.oasis.dev/'
+  //     : 'https://testnet.explorer.emerald.oasis.dev/',
+  //   selfPay: true,
+  // },
   {
     id: ChainId.HSC,
     nativeFee: false,

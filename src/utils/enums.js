@@ -103,7 +103,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.BcsPalette2]: TARGET_MAINNET ? 101 : 101,
   [ChainId.Milkomeda]: TARGET_MAINNET ? 2001 : 200101,
   [ChainId.Kava]: TARGET_MAINNET ? 2222 : 2221,
-  [ChainId.Cube]: TARGET_MAINNET ? 1819 : 1819,
+  [ChainId.Cube]: TARGET_MAINNET ? 1818 : 1819,
   [ChainId.Stc]: TARGET_MAINNET ? 1 : 251,
 };
 
