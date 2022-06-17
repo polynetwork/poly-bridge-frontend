@@ -540,7 +540,7 @@ export const MAIN_CHAINS = [
   {
     id: ChainId.Cube,
     nativeFee: true,
-    icon: require('@/assets/png/cube1.png'),
+    icon: require('@/assets/png/cube.png'),
     explorerUrl: TARGET_MAINNET
       ? 'https://www.cubescan.network/en-us/tx/0x{txHash}'
       : 'https://testnet.cubescan.network/en-us/tx/0x{txHash}',
@@ -874,29 +874,29 @@ export const TEST_CHAINS = [
       : 'https://testnet.explorer.emerald.oasis.dev/',
     selfPay: true,
   },
-  {
-    id: ChainId.OntEvm,
-    nativeFee: true,
-    icon: require('@/assets/svg/ONT.svg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://explorer.ont.io/tx/0x{txHash}'
-      : 'https://explorer.ont.io/testnet/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0x66f1Ad12a2C7A6370CbD20ECD79D17a405061Efe'
-      : '0x66f1Ad12a2C7A6370CbD20ECD79D17a405061Efe',
-    dst_ccm: TARGET_MAINNET
-      ? '0x74b77cbF04442BBf194380a7e4d99c923e0e56cc'
-      : '0x74b77cbF04442BBf194380a7e4d99c923e0e56cc',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'ONG',
-    symbol: TARGET_MAINNET ? 'ONG' : 'ONG',
-    name: TARGET_MAINNET ? 'Ontology Mainnet' : 'Ontology Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://dappnode2.ont.io:10339' : 'https://polaris1.ont.io:10339',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://explorer.ont.io/'
-      : 'https://explorer.ont.io/testnet/',
-    selfPay: true,
-  },
+  // {
+  //   id: ChainId.OntEvm,
+  //   nativeFee: true,
+  //   icon: require('@/assets/svg/ONT.svg'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://explorer.ont.io/tx/0x{txHash}'
+  //     : 'https://explorer.ont.io/testnet/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0x66f1Ad12a2C7A6370CbD20ECD79D17a405061Efe'
+  //     : '0x66f1Ad12a2C7A6370CbD20ECD79D17a405061Efe',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0x74b77cbF04442BBf194380a7e4d99c923e0e56cc'
+  //     : '0x74b77cbF04442BBf194380a7e4d99c923e0e56cc',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
+  //   nftFeeName: 'ONG',
+  //   symbol: TARGET_MAINNET ? 'ONG' : 'ONG',
+  //   name: TARGET_MAINNET ? 'Ontology Mainnet' : 'Ontology Testnet',
+  //   rpcUrl: TARGET_MAINNET ? 'https://dappnode2.ont.io:10339' : 'https://polaris1.ont.io:10339',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://explorer.ont.io/'
+  //     : 'https://explorer.ont.io/testnet/',
+  //   selfPay: true,
+  // },
 ];
 
 export const CHAINS = TARGET_MAINNET ? MAIN_CHAINS : MAIN_CHAINS.concat(TEST_CHAINS);
