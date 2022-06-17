@@ -681,22 +681,22 @@ export const CHAINS = [
       : 'a5c101afa9e04e9dd2c912983795005a49e02efa',
     selfPay: false,
   },
-  // {
-  //   id: ChainId.Stc,
-  //   nativeFee: false,
-  //   icon: require('@/assets/svg/stc.svg'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://stcscan.io/main/transactions/detail/0x{txHash}'
-  //     : 'https://stcscan.io/barnard/transactions/detail/0x{txHash}',
-  //   lockContractHash: TARGET_MAINNET
-  //     ? '0xe52552637c5897a2d499fbf08216f73e'
-  //     : '0x416b32009fe49fcab1d5f2ba0153838f',
-  //   dst_ccm: TARGET_MAINNET
-  //     ? '0xe52552637c5897a2d499fbf08216f73e::CrossChainScript'
-  //     : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript',
-  //   nftFeeContractHash: '0x00000000000000000000000000000001::STC::STC',
-  //   nftFeeName: 'STC',
-  // },
+  {
+    id: ChainId.Stc,
+    nativeFee: false,
+    icon: require('@/assets/svg/stc.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://stcscan.io/main/transactions/detail/0x{txHash}'
+      : 'https://stcscan.io/barnard/transactions/detail/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xe52552637c5897a2d499fbf08216f73e'
+      : '0x416b32009fe49fcab1d5f2ba0153838f',
+    dst_ccm: TARGET_MAINNET
+      ? '0xe52552637c5897a2d499fbf08216f73e::CrossChainScript'
+      : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript',
+    nftFeeContractHash: '0x00000000000000000000000000000001::STC::STC',
+    nftFeeName: 'STC',
+  },
   // {
   //   id: ChainId.Pixie,
   //   nativeFee: true,
