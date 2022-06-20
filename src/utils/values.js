@@ -711,35 +711,35 @@ export const MAIN_CHAINS = [
 ];
 
 export const TEST_CHAINS = [
-  {
-    id: ChainId.BcsPalette,
-    nativeFee: false,
-    icon: require('@/assets/svg/plt.svg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
-      : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
-    nftexplorerUrl: TARGET_MAINNET
-      ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
-      : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0x0c5c0b03e897e7b1828f2bc923ea4498ec891060'
-      : '0x0c5c0b03e897e7b1828f2bc923ea4498ec891060',
-    nftLockContractHash: TARGET_MAINNET
-      ? '0x41985E2A8826233618392e38d46d2060fbCC3F2A'
-      : '0x0806e6925e6960E06cD4781e22A636bA233B53De',
-    dst_ccm: TARGET_MAINNET
-      ? '0xf2cae31596433ada66393bde525f80aee97b3112'
-      : '0xf2cae31596433ada66393bde525f80aee97b3112',
-    nftFeeContractHash: '0000000000000000000000000000000000000103',
-    nftFeeName: 'wePLT',
-    symbol: TARGET_MAINNET ? 'wePLT' : 'wePLT',
-    name: TARGET_MAINNET ? 'BcsPalette Mainnet' : 'BcsPalette Testnet',
-    rpcUrl: TARGET_MAINNET ? 'http://13.231.222.1:22000' : 'http://106.75.246.130:22000',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://palettescan.com/#/chain/'
-      : 'http://106.75.251.68/#/chain/',
-    selfPay: true,
-  } /* waiting */,
+  // {
+  //   id: ChainId.BcsPalette,
+  //   nativeFee: false,
+  //   icon: require('@/assets/svg/plt.svg'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
+  //     : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
+  //   nftexplorerUrl: TARGET_MAINNET
+  //     ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
+  //     : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0x0c5c0b03e897e7b1828f2bc923ea4498ec891060'
+  //     : '0x0c5c0b03e897e7b1828f2bc923ea4498ec891060',
+  //   nftLockContractHash: TARGET_MAINNET
+  //     ? '0x41985E2A8826233618392e38d46d2060fbCC3F2A'
+  //     : '0x0806e6925e6960E06cD4781e22A636bA233B53De',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0xf2cae31596433ada66393bde525f80aee97b3112'
+  //     : '0xf2cae31596433ada66393bde525f80aee97b3112',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000103',
+  //   nftFeeName: 'wePLT',
+  //   symbol: TARGET_MAINNET ? 'wePLT' : 'wePLT',
+  //   name: TARGET_MAINNET ? 'BcsPalette Mainnet' : 'BcsPalette Testnet',
+  //   rpcUrl: TARGET_MAINNET ? 'http://13.231.222.1:22000' : 'http://106.75.246.130:22000',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://palettescan.com/#/chain/'
+  //     : 'http://106.75.251.68/#/chain/',
+  //   selfPay: true,
+  // } /* waiting */,
   {
     id: ChainId.BcsPalette2,
     nativeFee: false,
