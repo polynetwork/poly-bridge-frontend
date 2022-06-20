@@ -45,7 +45,7 @@ export const ChainId = {
   BcsPalette2: TARGET_MAINNET ? 1002 : 1002,
   Milkomeda: TARGET_MAINNET ? 810 : 810,
   Kava: TARGET_MAINNET ? 32 : 920,
-  Cube: TARGET_MAINNET ? 930 : 930,
+  Cube: TARGET_MAINNET ? 35 : 930,
   Xrp: TARGET_MAINNET ? 27 : 223,
 };
 
@@ -75,7 +75,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 101 : 101]: ChainId.BcsPalette2,
   [TARGET_MAINNET ? 2001 : 200101]: ChainId.Milkomeda,
   [TARGET_MAINNET ? 2222 : 2221]: ChainId.Kava,
-  [TARGET_MAINNET ? 1819 : 1819]: ChainId.Cube,
+  [TARGET_MAINNET ? 1818 : 1819]: ChainId.Cube,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -104,7 +104,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.BcsPalette2]: TARGET_MAINNET ? 101 : 101,
   [ChainId.Milkomeda]: TARGET_MAINNET ? 2001 : 200101,
   [ChainId.Kava]: TARGET_MAINNET ? 2222 : 2221,
-  [ChainId.Cube]: TARGET_MAINNET ? 1819 : 1819,
+  [ChainId.Cube]: TARGET_MAINNET ? 1818 : 1819,
   [ChainId.Stc]: TARGET_MAINNET ? 1 : 251,
 };
 
