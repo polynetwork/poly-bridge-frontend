@@ -195,6 +195,8 @@ export default {
       [ChainId.Milkomeda]: 'Milkomeda',
       [ChainId.Cube]: 'Cube',
       [ChainId.Kava]: 'Kava',
+      [ChainId.Celo]: 'Celo',
+      [ChainId.CLV]: 'CLV',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -230,6 +232,8 @@ export default {
       [ChainId.Milkomeda]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Cube]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Kava]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Celo]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.CLV]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',
