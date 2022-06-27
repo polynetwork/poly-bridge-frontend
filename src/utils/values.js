@@ -47,6 +47,7 @@ export const WALLETS = [
       ChainId.Kava,
       ChainId.Celo,
       ChainId.CLV,
+      ChainId.zkSync,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -918,6 +919,31 @@ export const TEST_CHAINS = [
     name: TARGET_MAINNET ? 'CLV Mainnet' : 'CLV Testnet',
     rpcUrl: TARGET_MAINNET ? 'https://api-para.clover.finance' : 'https://rpc-3.clover.finance',
     chainExplorerUrl: TARGET_MAINNET ? 'https://clvscan.com/' : 'https://clvscan.com/',
+    selfPay: true,
+  },
+  {
+    id: ChainId.zkSync,
+    nativeFee: true,
+    icon: require('@/assets/jpg/zk.jpeg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://zksync2-testnet.zkscan.io/tx/0x{txHash}'
+      : 'https://zksync2-testnet.zkscan.io/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x44CE604259D6aD2e70046a844745873Ea103EE85'
+      : '0x44CE604259D6aD2e70046a844745873Ea103EE85',
+    dst_ccm: TARGET_MAINNET
+      ? '0x9c5a69789Be33b35c6E47B3879031D7C3AEA3F0C'
+      : '0x9c5a69789Be33b35c6E47B3879031D7C3AEA3F0C',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'ETH',
+    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+    name: TARGET_MAINNET ? 'zkSync alpha testnet' : 'zkSync alpha testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://zksync2-testnet.zksync.dev'
+      : 'https://zksync2-testnet.zksync.dev',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://zksync2-testnet.zkscan.io/'
+      : 'https://zksync2-testnet.zkscan.io/',
     selfPay: true,
   },
   // {

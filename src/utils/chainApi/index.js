@@ -37,6 +37,7 @@ const APIS = {
   [ChainId.Kava]: () => import('./eth'),
   [ChainId.Celo]: () => import('./eth'),
   [ChainId.CLV]: () => import('./eth'),
+  [ChainId.zkSync]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {
