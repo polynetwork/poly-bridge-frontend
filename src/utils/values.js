@@ -45,6 +45,8 @@ export const WALLETS = [
       ChainId.OntEvm,
       ChainId.Cube,
       ChainId.Kava,
+      ChainId.Celo,
+      ChainId.CLV,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -872,6 +874,50 @@ export const TEST_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://explorer.emerald.oasis.dev/'
       : 'https://testnet.explorer.emerald.oasis.dev/',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Celo,
+    nativeFee: true,
+    icon: require('@/assets/png/celo.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.celo.org/tx/0x{txHash}'
+      : 'https://alfajores-blockscout.celo-testnet.org/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'CELO',
+    symbol: TARGET_MAINNET ? 'CELO' : 'CELO',
+    name: TARGET_MAINNET ? 'CELO Mainnet' : 'CELO Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://forno.celo.org' : 'https://alfajores-forno.celo-testnet.org',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.celo.org'
+      : 'https://alfajores-blockscout.celo-testnet.org',
+    selfPay: true,
+  },
+  {
+    id: ChainId.CLV,
+    nativeFee: true,
+    icon: require('@/assets/png/clv.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://clvscan.com/tx/0x{txHash}'
+      : 'https://clvscan.com/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x82E9948acA92412b8094fE649C3f32bEfFFEDb7C'
+      : '0x82E9948acA92412b8094fE649C3f32bEfFFEDb7C',
+    dst_ccm: TARGET_MAINNET
+      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'CLV',
+    symbol: TARGET_MAINNET ? 'CLV' : 'CLV',
+    name: TARGET_MAINNET ? 'CLV Mainnet' : 'CLV Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://api-para.clover.finance' : 'https://rpc-3.clover.finance',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://clvscan.com/' : 'https://clvscan.com/',
     selfPay: true,
   },
   // {
