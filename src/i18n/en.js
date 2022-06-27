@@ -197,6 +197,7 @@ export default {
       [ChainId.Kava]: 'Kava',
       [ChainId.Celo]: 'Celo',
       [ChainId.CLV]: 'CLV',
+      [ChainId.zkSync]: 'zkSync',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -234,6 +235,7 @@ export default {
       [ChainId.Kava]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Celo]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.CLV]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.zkSync]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',
