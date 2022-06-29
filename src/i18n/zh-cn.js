@@ -193,7 +193,7 @@ export default {
       [ChainId.Cube]: 'Cube',
       [ChainId.Kava]: 'Kava',
       [ChainId.Celo]: 'Celo',
-      [ChainId.CLV]: 'CLV',
+      [ChainId.CLV]: 'CLV P-Chain',
       [ChainId.zkSync]: 'zkSync',
     },
     chainNetworkName: {

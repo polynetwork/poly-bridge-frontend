@@ -963,8 +963,10 @@ export default {
 }
 
 .select-chain {
-  width: 50%;
+  width: 100%;
   padding: 35px 0 35px 30px;
+  display: flex;
+  align-items: center;
 }
 
 .select-chain-content {
