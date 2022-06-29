@@ -903,7 +903,7 @@ export const TEST_CHAINS = [
   {
     id: ChainId.CLV,
     nativeFee: true,
-    icon: require('@/assets/png/clv.png'),
+    icon: require('@/assets/svg/clv.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://clvscan.com/tx/0x{txHash}'
       : 'https://clvscan.com/tx/0x{txHash}',

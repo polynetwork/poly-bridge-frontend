@@ -50,7 +50,7 @@
               class="link"
               :href="$format(getChain(step.chainId).explorerUrl, { txHash: step.hash })"
               target="_blank"
-              :disabled="!step.hash"
+              :disabled="!step.hash || step.chainId === 970"
             >
               {{
                 $t('transactions.details.hash', {
@@ -326,6 +326,7 @@ export default {
           debugger;
           this.sendTx(result);
         } catch (error) {
+          this.selfPayLoading = false;
           if (error instanceof HttpError) {
             if (error.code === HttpError.CODES.BAD_REQUEST) {
               return;
