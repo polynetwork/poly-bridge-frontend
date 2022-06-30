@@ -929,8 +929,8 @@ export const TEST_CHAINS = [
       ? 'https://zksync2-testnet.zkscan.io/tx/0x{txHash}'
       : 'https://zksync2-testnet.zkscan.io/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? '0x44CE604259D6aD2e70046a844745873Ea103EE85'
-      : '0x44CE604259D6aD2e70046a844745873Ea103EE85',
+      ? '0x5CcB95B0E39818546ea1F19AC0b190e8164180f9'
+      : '0x5CcB95B0E39818546ea1F19AC0b190e8164180f9',
     dst_ccm: TARGET_MAINNET
       ? '0x9c5a69789Be33b35c6E47B3879031D7C3AEA3F0C'
       : '0x9c5a69789Be33b35c6E47B3879031D7C3AEA3F0C',
