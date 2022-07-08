@@ -169,14 +169,15 @@ export default {
       );
     },
     receivingAmount() {
-      let res;
-      if (this.fromChain.nftFeeName && this.fromChain.nftFeeName !== 'PLT') {
-        res = this.confirmingData && new BigNumber(this.confirmingData.amount).toString();
-      } else {
-        res =
-          this.confirmingData &&
-          new BigNumber(this.confirmingData.amount).minus(this.confirmingData.fee).toString();
-      }
+      // let res;
+      // if (this.fromChain.nftFeeName && this.fromChain.nftFeeName !== 'PLT') {
+      //   res = this.confirmingData && new BigNumber(this.confirmingData.amount).toString();
+      // } else {
+      //   res =
+      //     this.confirmingData &&
+      //     new BigNumber(this.confirmingData.amount).minus(this.confirmingData.fee).toString();
+      // }
+      const res = this.confirmingData && new BigNumber(this.confirmingData.amount).toString();
       return res;
     },
     payAmount() {
@@ -190,7 +191,9 @@ export default {
           res = this.confirmingData && new BigNumber(this.confirmingData.amount).toString();
         }
       } else {
-        res = this.confirmingData && new BigNumber(this.confirmingData.amount).toString();
+        res =
+          this.confirmingData &&
+          new BigNumber(this.confirmingData.amount).plus(this.confirmingData.fee).toString();
       }
       return res;
     },

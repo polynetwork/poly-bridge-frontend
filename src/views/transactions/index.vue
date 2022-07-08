@@ -34,7 +34,7 @@
                   })
                 "
                 target="_blank"
-                :disabled="!row.fromTransactionHash"
+                :disabled="!row.fromTransactionHash || row.fromChainId === 970"
               >
                 {{
                   $t('transactions.index.hash', {
@@ -63,7 +63,7 @@
                   })
                 "
                 target="_blank"
-                :disabled="!row.toTransactionHash"
+                :disabled="!row.toTransactionHash || row.toChainId === 970"
               >
                 {{
                   $t('transactions.index.hash', {
