@@ -162,7 +162,7 @@ export default {
       [ChainId.Eth]: 'Ethereum',
       [ChainId.Neo]: 'Neo',
       [ChainId.N3]: 'N3',
-      [ChainId.xDai]: 'xDai',
+      [ChainId.xDai]: 'Gnosis Chain',
       [ChainId.HSC]: 'HSC',
       [ChainId.Kcc]: 'Kcc',
       [ChainId.Harmony]: 'Harmony',
