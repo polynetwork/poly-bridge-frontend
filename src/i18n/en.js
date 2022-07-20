@@ -165,7 +165,7 @@ export default {
       [ChainId.Eth]: 'Ethereum',
       [ChainId.Neo]: 'Neo',
       [ChainId.N3]: 'N3',
-      [ChainId.xDai]: 'xDai',
+      [ChainId.xDai]: 'Gnosis Chain',
       [ChainId.HSC]: 'HSC',
       [ChainId.Kcc]: 'Kcc',
       [ChainId.Harmony]: 'Harmony',
@@ -196,6 +196,9 @@ export default {
       [ChainId.Cube]: 'Cube',
       [ChainId.Kava]: 'Kava',
       [ChainId.Xrp]: 'Ripple',
+      [ChainId.Celo]: 'Celo',
+      [ChainId.CLV]: 'CLV P-Chain',
+      [ChainId.zkSync]: 'zkSync',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -232,6 +235,9 @@ export default {
       [ChainId.Cube]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Kava]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Xrp]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Celo]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.CLV]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.zkSync]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',

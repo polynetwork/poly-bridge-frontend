@@ -281,6 +281,9 @@
           network is stable. Sorry for the inconvenience.
         </div>
       </div>
+      <div @click="xrpPay()">
+        pay xrp
+      </div>
     </div>
 
     <div class="history">
@@ -636,6 +639,10 @@ export default {
     clearInterval(this.interval1);
   },
   methods: {
+    async xrpPay() {
+      const walletApi = await getWalletApi(this.fromWallet.name);
+      walletApi.goPayload();
+    },
     async getChainHealth() {
       const chindIds = this.getChainsHealthParams;
       const res = await httpApi.getHealthData({ chindIds });
@@ -963,8 +970,10 @@ export default {
 }
 
 .select-chain {
-  width: 50%;
+  width: 100%;
   padding: 35px 0 35px 30px;
+  display: flex;
+  align-items: center;
 }
 
 .select-chain-content {

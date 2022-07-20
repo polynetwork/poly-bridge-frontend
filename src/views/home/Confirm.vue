@@ -210,12 +210,26 @@ export default {
       const chindId = this.confirmingData.fromChainId;
       const res = await httpApi.getWrapperCheck({ chindId });
       const arr = [];
-      for (let i = 0; i < res.Wrapper.length; i += 1) {
-        arr.push(toStandardHex(res.Wrapper[i]));
-      }
-      const index = arr.indexOf(this.fromChain.lockContractHash);
-      if (index > -1) {
-        flag = true;
+      if (chindId !== 223) {
+        for (let i = 0; i < res.Wrapper.length; i += 1) {
+          arr.push(toStandardHex(res.Wrapper[i]));
+        }
+        const index = arr.indexOf(this.fromChain.lockContractHash);
+        if (index > -1) {
+          flag = true;
+        }
+      } else {
+        for (let i = 0; i < res.Wrapper.length; i += 1) {
+          arr.push(res.Wrapper[i]);
+        }
+        const index1 = arr.indexOf(this.fromChain.WrapperContract);
+        const index2 = arr.indexOf(this.fromChain.lockProxyContractHash);
+        if (index1 > -1) {
+          flag = true;
+        }
+        if (index2 > -1) {
+          flag = true;
+        }
       }
       return flag;
     },
@@ -246,6 +260,7 @@ export default {
         });
         this.packing = true;
         let status = SingleTransactionStatus.Pending;
+        debugger;
         this.$emit('update:confirmingData', {
           ...this.confirmingData,
           transactionHash,

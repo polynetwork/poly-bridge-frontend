@@ -477,16 +477,6 @@ export default {
         this.$store.dispatch('getAllowance', value);
       }
     },
-    /* assets() {
-      if (this.assets[0]) {
-        this.assetHash = this.assetHash ? this.assetHash : this.assets[0].Hash;
-        this.assetName = this.assetName ? this.assetName : this.assets[0].Name;
-        if (this.fromWallet) {
-          this.getItems(this.assetHash, '', this.currentPage);
-          this.getAssetMap();
-        }
-      }
-    }, */
     async fromChain(value) {
       await this.$store.dispatch('ensureChainWalletReady', value.id);
     },
@@ -601,31 +591,6 @@ export default {
       } finally {
         this.approving = false;
       }
-    },
-    async tokenSelect(item) {
-      if (!this.fromWallet) {
-        this.connectWalletVisible = true;
-      }
-      const a = await this.$store.dispatch('ensureChainWalletReady', this.fromChainId);
-      this.getAssetMap();
-      const walletApi = await getWalletApi(this.fromWallet.name);
-      const Approval = await walletApi.getNFTApproved({
-        fromChainId: this.fromChainId,
-        tokenHash: this.assetHash,
-        id: item.TokenId,
-      });
-      this.toChainId = null;
-      this.nftData = {
-        fromChainId: this.fromChainId,
-        toChains: this.toChains,
-        toChainId: this.toChainId,
-        nft: item,
-        assetHash: this.assetHash,
-        fromWallet: this.fromWallet,
-        toWallet: null,
-        needApproval: Approval,
-      };
-      this.detailVisible = true;
     },
     async connectInit() {
       this.currentPage = 1;

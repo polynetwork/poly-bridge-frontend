@@ -11,6 +11,7 @@ export const WalletName = {
   Cyano: 'Cyano',
   WalletConnect: 'WalletConnnect',
   StarMask: 'StarMask',
+  XUMM: 'XUMM',
 };
 
 export const ChainId = {
@@ -47,6 +48,9 @@ export const ChainId = {
   Kava: TARGET_MAINNET ? 32 : 920,
   Cube: TARGET_MAINNET ? 35 : 930,
   Xrp: TARGET_MAINNET ? 27 : 223,
+  Celo: TARGET_MAINNET ? 36 : 960,
+  CLV: TARGET_MAINNET ? 37 : 970,
+  zkSync: TARGET_MAINNET ? 940 : 940,
 };
 
 export const NetworkChainIdMaps = {
@@ -76,6 +80,9 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 2001 : 200101]: ChainId.Milkomeda,
   [TARGET_MAINNET ? 2222 : 2221]: ChainId.Kava,
   [TARGET_MAINNET ? 1818 : 1819]: ChainId.Cube,
+  [TARGET_MAINNET ? 42220 : 44787]: ChainId.Celo,
+  [TARGET_MAINNET ? 1024 : 1023]: ChainId.CLV,
+  [TARGET_MAINNET ? 280 : 280]: ChainId.zkSync,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -106,6 +113,9 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Kava]: TARGET_MAINNET ? 2222 : 2221,
   [ChainId.Cube]: TARGET_MAINNET ? 1818 : 1819,
   [ChainId.Stc]: TARGET_MAINNET ? 1 : 251,
+  [ChainId.Celo]: TARGET_MAINNET ? 42220 : 44787,
+  [ChainId.CLV]: TARGET_MAINNET ? 1024 : 1023,
+  [ChainId.zkSync]: TARGET_MAINNET ? 280 : 280,
 };
 
 export const SingleTransactionStatus = {
@@ -121,4 +131,5 @@ export const TransactionStatus = {
   SourceDone: 2,
   SourceConfirmed: 3,
   PolyConfirmed: 4,
+  FromchainFeePending: 11,
 };

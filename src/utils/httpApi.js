@@ -205,7 +205,7 @@ export default {
     return result;
   },
   async getNftFee(params) {
-    const result = await nftRequest({
+    const result = await request({
       method: 'post',
       url: '/getfee',
       data: {

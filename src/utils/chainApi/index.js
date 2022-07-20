@@ -35,6 +35,10 @@ const APIS = {
   [ChainId.Milkomeda]: () => import('./eth'),
   [ChainId.Cube]: () => import('./eth'),
   [ChainId.Kava]: () => import('./eth'),
+  [ChainId.Celo]: () => import('./eth'),
+  [ChainId.CLV]: () => import('./eth'),
+  [ChainId.zkSync]: () => import('./eth'),
+  [ChainId.Xrp]: () => import('./xrp'),
 };
 
 export async function getChainApi(chainId) {
