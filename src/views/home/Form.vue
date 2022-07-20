@@ -693,6 +693,9 @@ export default {
         res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
         res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
       }
+      if (!this.fee.IsNative && this.fromChainId === 3) {
+        res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
+      }
       if (res < 0) {
         this.$message.error(this.$t('errors.wallet.INSUFFICIENT_FUNDS'));
         res = 0;
