@@ -247,7 +247,7 @@ async function lock ({
     const toAddressHex = await toChainApi.addressToHex(toAddress);
     const amountInt = decimalToInteger(amount, tokenBasic.decimals);
     const feeInt = decimalToInteger(fee, tokenBasic.decimals);
-    const hexChainid = utils.num2VarInt(toChainId)
+    const hexChainid = utils.num2VarInt(toChainId);
     let parameters = [
       { type: 'ByteArray', value: fromAddressHex },
       { type: 'ByteArray', value: fromTokenHashReversed },
