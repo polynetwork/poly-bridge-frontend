@@ -49,7 +49,7 @@ export const ChainId = {
   Celo: TARGET_MAINNET ? 36 : 960,
   CLV: TARGET_MAINNET ? 37 : 970,
   zkSync: TARGET_MAINNET ? 940 : 940,
-  Conflux: TARGET_MAINNET ? 980 : 980,
+  Conflux: TARGET_MAINNET ? 38 : 980,
 };
 
 export const NetworkChainIdMaps = {
