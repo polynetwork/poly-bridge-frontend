@@ -6,20 +6,9 @@ import { RippleAPI } from 'ripple-lib';
 import BigNumber from 'bignumber.js';
 import { getChainApi } from '@/utils/chainApi';
 import { Message } from 'element-ui';
-import {
-  integerToDecimal,
-  decimalToInteger,
-  toStandardHex,
-  integerToHex,
-  reverseHex,
-} from '@/utils/convertors';
-import {
-  WalletName,
-  ChainId,
-  SingleTransactionStatus,
-  NetworkChainIdMaps,
-  EthNetworkChainIdMaps,
-} from '@/utils/enums';
+import { decimalToInteger } from '@/utils/convertors';
+import { WalletName, SingleTransactionStatus } from '@/utils/enums';
+import Base58 from 'base58-js';
 
 console.log(XummPkce);
 const auth = new XummPkce('9b461506-fd63-45f7-9e18-6329adf7807b');
@@ -69,7 +58,10 @@ async function init() {
 }
 
 async function getBalance({ chainId, address, tokenHash }) {
+  debugger;
   await api.connect();
+  console.log(await api.getAccountInfo(address));
+  console.log(await api.getAccountObjects(address, 'ledgerHash'));
   const { xrpBalance } = await api.getAccountInfo(address);
   await api.disconnect();
   const balance =
@@ -87,6 +79,7 @@ function connect() {
       console.log('Authorized', /* authorized.jwt, */ authorized);
       authorized.sdk.ping().then(pong => console.log({ pong }));
       sdk = authorized.sdk;
+      console.log(authorized);
       queryState(authorized.me);
     })
     .catch(e => {

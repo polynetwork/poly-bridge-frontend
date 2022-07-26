@@ -281,9 +281,6 @@
           network is stable. Sorry for the inconvenience.
         </div>
       </div>
-      <div @click="xrpPay()">
-        pay xrp
-      </div>
     </div>
 
     <div class="history">
@@ -639,10 +636,6 @@ export default {
     clearInterval(this.interval1);
   },
   methods: {
-    async xrpPay() {
-      const walletApi = await getWalletApi(this.fromWallet.name);
-      walletApi.goPayload();
-    },
     async getChainHealth() {
       const chindIds = this.getChainsHealthParams;
       const res = await httpApi.getHealthData({ chindIds });
@@ -699,6 +692,9 @@ export default {
       if (this.fee.IsNative) {
         res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
         res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
+      }
+      if (!this.fee.IsNative && this.fromChainId === 3) {
+        res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
       }
       if (res < 0) {
         this.$message.error(this.$t('errors.wallet.INSUFFICIENT_FUNDS'));

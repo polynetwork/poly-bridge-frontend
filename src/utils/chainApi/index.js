@@ -39,6 +39,7 @@ const APIS = {
   [ChainId.CLV]: () => import('./eth'),
   [ChainId.zkSync]: () => import('./eth'),
   [ChainId.Xrp]: () => import('./xrp'),
+  [ChainId.Conflux]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {

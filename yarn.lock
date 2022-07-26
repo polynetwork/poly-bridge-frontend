@@ -3401,6 +3401,11 @@ base-x@^3.0.2, base-x@^3.0.5, base-x@^3.0.6, base-x@^3.0.8:
   dependencies:
     safe-buffer "^5.0.1"
 
+base58-js@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmmirror.com/base58-js/-/base58-js-1.0.4.tgz#abf0357edac3d3994cd7ee51df79c031ce3aca3f"
+  integrity sha512-DQtWOeY+JwAUyFaL1KBqL0L81LWUj5S92N39LCiQwBouHz1GNZBqyhJz9ZtIDEtwaBYyoF63x27oqFL0Lu7DUg==
+
 base64-arraybuffer@0.1.5:
   version "0.1.5"
   resolved "https://registry.npm.taobao.org/base64-arraybuffer/download/base64-arraybuffer-0.1.5.tgz#73926771923b5a19747ad666aa5cd4bf9c6e9ce8"
