@@ -196,6 +196,7 @@ export default {
       [ChainId.CLV]: 'CLV P-Chain',
       [ChainId.zkSync]: 'zkSync',
       [ChainId.Conflux]: 'Conflux eSpace',
+      [ChainId.N3T5]: 'N3T5',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -234,6 +235,7 @@ export default {
       [ChainId.CLV]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.zkSync]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Conflux]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.N3T5]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',

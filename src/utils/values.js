@@ -970,6 +970,20 @@ export const TEST_CHAINS = [
       : 'https://evmtestnet.confluxscan.net/',
     selfPay: true,
   },
+  {
+    id: ChainId.N3T5,
+    nativeFee: false,
+    icon: require('@/assets/svg/neo.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://neo3.neotube.io/transaction/{txHash}'
+      : 'https://n3t5.neotube.io/transaction/{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? 'f8328398c4c8e77b6c5843f5e404be0170d5012e'
+      : 'c3ac0347e9c4f65b7fff383201a1551da4301e09',
+    nftFeeContractHash: 'd2a4cff31913016155e38e474a2c06d08be276cf',
+    nftFeeName: 'GAS',
+    selfPay: false,
+  },
   // {
   //   id: ChainId.OntEvm,
   //   nativeFee: true,
