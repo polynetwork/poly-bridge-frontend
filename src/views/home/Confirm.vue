@@ -116,6 +116,7 @@
 <script>
 import httpApi from '@/utils/httpApi';
 import BigNumber from 'bignumber.js';
+import { HttpError } from '@/utils/errors';
 import delay from 'delay';
 import { SingleTransactionStatus } from '@/utils/enums';
 import { getWalletApi } from '@/utils/walletApi';
@@ -132,6 +133,7 @@ export default {
       confirming: false,
       packing: false,
       confirmFlag: false,
+      feeFlag: false,
     };
   },
   computed: {
@@ -279,6 +281,41 @@ export default {
             await delay(5000);
           } catch (error) {
             // ignore error
+          }
+        }
+        debugger;
+        console.log(this.confirmingData.fromChainId);
+        if (this.confirmingData.fromChainId === 223 || this.confirmingData.fromChainId === 27) {
+          try {
+            const feeTransactionHash = await walletApi.payFee({
+              fromAddress: this.confirmingData.fromAddress,
+              fromChainId: this.confirmingData.fromChainId,
+              fromTokenHash: this.confirmingData.fromTokenHash,
+              toChainId: this.confirmingData.toChainId,
+              toAddress: this.confirmingData.toAddress,
+              amount: this.confirmingData.fee,
+              lockTxHash: transactionHash,
+            });
+            while (true) {
+              try {
+                // eslint-disable-next-line no-await-in-loop
+                status = await walletApi.getTransactionStatus({ feeTransactionHash });
+                if (status !== SingleTransactionStatus.Pending) {
+                  break;
+                }
+                // eslint-disable-next-line no-await-in-loop
+                await delay(5000);
+              } catch (error) {
+                // ignore error
+              }
+            }
+          } catch (error) {
+            if (error instanceof HttpError) {
+              if (error.code === HttpError.CODES.BAD_REQUEST) {
+                return;
+              }
+            }
+            throw error;
           }
         }
         this.$emit('update:confirmingData', {

@@ -8,17 +8,18 @@ import { getChainApi } from '@/utils/chainApi';
 import { Message } from 'element-ui';
 import { decimalToInteger } from '@/utils/convertors';
 import { WalletName, SingleTransactionStatus } from '@/utils/enums';
-import Base58 from 'base58-js';
+import { XummSdkJwt } from 'xumm-sdk';
 
 console.log(XummPkce);
 const auth = new XummPkce('9b461506-fd63-45f7-9e18-6329adf7807b');
 let sdk = null;
 const XUMM_CONNECTED_KEY = 'XUMM_CONNECTED';
+const XUMM_JWT_KEY = 'XUMM_JWT';
 const api = new RippleAPI({
   server: TARGET_MAINNET ? 'wss://s1.ripple.com' : 'wss://s.altnet.rippletest.net/', // Public rippled server hosted by Ripple, Inc.
 });
 
-async function queryState($payload) {
+function queryState($payload) {
   const addressHex = $payload.account;
   store.dispatch('updateWallet', {
     name: WalletName.XUMM,
@@ -46,17 +47,6 @@ function convertWalletError(error) {
   return new WalletError(error.message, { code, cause: error });
 }
 
-async function init() {
-  try {
-    store.dispatch('updateWallet', { name: WalletName.XUMM, installed: true });
-    if (sessionStorage.getItem(XUMM_CONNECTED_KEY) === 'true') {
-      await queryState();
-    }
-  } finally {
-    store.getters.getWallet(WalletName.XUMM).deferred.resolve();
-  }
-}
-
 async function getBalance({ chainId, address, tokenHash }) {
   debugger;
   await api.connect();
@@ -80,11 +70,41 @@ function connect() {
       authorized.sdk.ping().then(pong => console.log({ pong }));
       sdk = authorized.sdk;
       console.log(authorized);
+      sessionStorage.setItem(XUMM_CONNECTED_KEY, 'true');
+      sessionStorage.setItem(XUMM_JWT_KEY, authorized.jwt);
       queryState(authorized.me);
     })
     .catch(e => {
       console.log('Auth error', e);
     });
+}
+
+async function getState() {
+  const myJwt = sessionStorage.getItem(XUMM_JWT_KEY);
+  sdk = new XummSdkJwt(myJwt);
+  try {
+    const pingResult = await sdk.ping();
+    debugger;
+    const payload = {
+      account: pingResult.jwtData.sub,
+    };
+    queryState(payload);
+  } catch (error) {
+    sessionStorage.removeItem(XUMM_JWT_KEY);
+    sessionStorage.removeItem(XUMM_CONNECTED_KEY);
+    console.log(error);
+  }
+}
+
+async function init() {
+  try {
+    store.dispatch('updateWallet', { name: WalletName.XUMM, installed: true });
+    if (sessionStorage.getItem(XUMM_CONNECTED_KEY) === 'true') {
+      await getState();
+    }
+  } finally {
+    store.getters.getWallet(WalletName.XUMM).deferred.resolve();
+  }
 }
 
 async function getAllowance({ chainId, address, tokenHash, spender }) {

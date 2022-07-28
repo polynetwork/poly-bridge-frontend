@@ -243,6 +243,7 @@ export default {
       [TransactionStatus.SourceDone]: 'Pending',
       [TransactionStatus.SourceConfirmed]: 'Pending',
       [TransactionStatus.PolyConfirmed]: 'Pending',
+      [TransactionStatus.FromchainFeePending]: 'Pending',
     },
   },
   errors: {

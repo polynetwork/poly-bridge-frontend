@@ -156,12 +156,16 @@
       </div>
     </div>
     <ConnectWallet
-      v-if="steps && transaction.fromChainId !== 223 && transaction.fromChainId !== 27"
+      v-if="
+        steps && transaction && transaction.fromChainId !== 223 && transaction.fromChainId !== 27
+      "
       :visible.sync="connectWalletVisible"
       :toChainId="steps[2].chainId"
     />
     <ConnectWallet
-      v-if="steps && (transaction.fromChainId === 223 || transaction.fromChainId === 27)"
+      v-if="
+        steps && transaction && (transaction.fromChainId === 223 || transaction.fromChainId === 27)
+      "
       :visible.sync="connectWalletVisible"
       :fromChainId="steps[0].chainId"
     />
@@ -220,7 +224,6 @@ export default {
       return this.transaction && this.$store.getters.getChain(this.transaction.fromChainId);
     },
     getFeeParams() {
-      console.log(this.transaction);
       if (this.transaction) {
         return {
           fromChainId: this.transaction.fromChainId,
@@ -302,9 +305,20 @@ export default {
     hash() {
       this.speedUpMSGFlag = false;
     },
-    getFeeParams(value) {
-      console.log(value);
-      if (value) {
+    getFeeParams(value, oldValue) {
+      debugger;
+      if (!(value && !oldValue)) {
+        if (
+          value.fromChainId === oldValue.fromChainId &&
+          value.fromTokenHash === oldValue.fromTokenHash &&
+          value.toChainId === oldValue.toChainId &&
+          value.toTokenHash === oldValue.toTokenHash
+        ) {
+          console.log(value);
+        } else {
+          this.$store.dispatch('getFee', value);
+        }
+      } else {
         this.$store.dispatch('getFee', value);
       }
     },
