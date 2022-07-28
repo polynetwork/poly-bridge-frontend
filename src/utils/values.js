@@ -99,7 +99,7 @@ export const WALLETS = [
   },
   {
     name: WalletName.NeoLineN3,
-    supportedChainIds: [ChainId.N3],
+    supportedChainIds: [ChainId.N3, ChainId.N3T5],
     icon: require('@/assets/svg/neoline.svg'),
     downloadUrl:
       'https://chrome.google.com/webstore/detail/neoline/cphhlgmgameodnhkjdmkpanlelnlohao',
