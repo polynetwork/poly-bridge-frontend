@@ -91,6 +91,12 @@ export const WALLETS = [
       'https://chrome.google.com/webstore/detail/math-wallet/afbcbjpbpfadlkmhmclhkeeodmamcflc',
   },
   {
+    name: WalletName.XUMM,
+    supportedChainIds: [ChainId.Xrp],
+    icon: require('@/assets/png/xumm.png'),
+    downloadUrl: 'https://xumm.app/',
+  },
+  {
     name: WalletName.NeoLine,
     supportedChainIds: [ChainId.Neo],
     icon: require('@/assets/svg/neoline.svg'),
@@ -756,6 +762,29 @@ export const MAIN_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET ? 'https://clvscan.com/' : 'https://clvscan.com/',
     selfPay: true,
   },
+  {
+    id: ChainId.Conflux,
+    nativeFee: true,
+    icon: require('@/assets/svg/conflux.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://evm.confluxscan.net/tx/0x{txHash}'
+      : 'https://evmtestnet.confluxscan.net/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x5906777d34257a2b479c291871C9BFdFB922D67D'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xab7a3CA9bDcE476F0ECC04c127CFEe0F3D212BC5'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'CFX',
+    symbol: TARGET_MAINNET ? 'CFX' : 'CFX',
+    name: TARGET_MAINNET ? 'Conflux eSpace Hydra' : 'Conflux eSpace testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://evm.confluxrpc.com' : 'https://evmtestnet.confluxrpc.com',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://evm.confluxscan.net/'
+      : 'https://evmtestnet.confluxscan.net/',
+    selfPay: true,
+  },
 ];
 
 export const TEST_CHAINS = [
@@ -948,26 +977,20 @@ export const TEST_CHAINS = [
     selfPay: true,
   },
   {
-    id: ChainId.Conflux,
+    id: ChainId.Xrp,
     nativeFee: true,
-    icon: require('@/assets/svg/conflux.svg'),
+    icon: require('@/assets/png/xrp.png'),
     explorerUrl: TARGET_MAINNET
-      ? 'https://evm.confluxscan.net/tx/0x{txHash}'
-      : 'https://evmtestnet.confluxscan.net/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
-      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
-    dst_ccm: TARGET_MAINNET
-      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
-      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'CFX',
-    symbol: TARGET_MAINNET ? 'CFX' : 'CFX',
-    name: TARGET_MAINNET ? 'Conflux eSpace Hydra' : 'Conflux eSpace testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://evm.confluxrpc.com' : 'https://evmtestnet.confluxrpc.com',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://evm.confluxscan.net/'
-      : 'https://evmtestnet.confluxscan.net/',
+      ? 'https://xrpscan.com/tx/{txHash}'
+      : 'https://testnet.xrpl.org/transactions/{txHash}',
+    WrapperContract: TARGET_MAINNET
+      ? 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6'
+      : 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6',
+    lockProxyContractHash: TARGET_MAINNET
+      ? 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG'
+      : 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG',
+    nftFeeName: 'XRP',
+    nftFeeContractHash: '51fa7b7c1e0c79b54de202e6a24fef61bf54f442',
     selfPay: true,
   },
   {

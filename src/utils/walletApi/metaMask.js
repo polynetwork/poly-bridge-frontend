@@ -30,6 +30,7 @@ const ETH_NETWORK_CHAIN_ID_MAPS = EthNetworkChainIdMaps;
 let web3;
 
 function confirmLater(promise) {
+  debugger;
   return new Promise((resolve, reject) => {
     promise.on('transactionHash', resolve);
     promise.on('error', reject);
@@ -332,6 +333,7 @@ async function lock({
     const result = await confirmLater(
       lockContract.methods
         .lock(`0x${fromTokenHash}`, toChainId, `0x${toAddressHex}`, amountInt, feeInt, 0)
+        // .lock(`0x${fromTokenHash}`, toChainId, toAddressHex, amountInt, feeInt, 0)
         .send({
           from: fromAddress,
           gas: fromChainId === 24 ? 2000000 : null,
@@ -339,6 +341,7 @@ async function lock({
             fromTokenHash === '0000000000000000000000000000000000000000' ? amountInt : nativefeeInt,
         }),
     );
+    debugger;
     return toStandardHex(result);
   } catch (error) {
     throw convertWalletError(error);

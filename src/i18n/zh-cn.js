@@ -192,6 +192,7 @@ export default {
       [ChainId.Milkomeda]: 'Milkomeda',
       [ChainId.Cube]: 'Cube',
       [ChainId.Kava]: 'Kava',
+      [ChainId.Xrp]: 'Ripple',
       [ChainId.Celo]: 'Celo',
       [ChainId.CLV]: 'CLV P-Chain',
       [ChainId.zkSync]: 'zkSync',
@@ -231,6 +232,7 @@ export default {
       [ChainId.Milkomeda]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Cube]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Kava]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Xrp]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Celo]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.CLV]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.zkSync]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -243,6 +245,7 @@ export default {
       [TransactionStatus.SourceDone]: 'Pending',
       [TransactionStatus.SourceConfirmed]: 'Pending',
       [TransactionStatus.PolyConfirmed]: 'Pending',
+      [TransactionStatus.FromchainFeePending]: 'Pending',
     },
   },
   errors: {
