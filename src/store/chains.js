@@ -67,6 +67,9 @@ export default {
     async ensureChainWalletReady({ getters }, chainId) {
       const chain = getters.getChain(chainId);
       console.log(chain);
+      if (chain.id === 223) {
+        return;
+      }
       const wallet = getters.getChainConnectedWallet(chainId);
       if (!wallet) {
         throw new WalletError('Wallet is not connected.', {

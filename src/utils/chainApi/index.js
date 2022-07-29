@@ -39,6 +39,7 @@ const APIS = {
   [ChainId.Celo]: () => import('./eth'),
   [ChainId.CLV]: () => import('./eth'),
   [ChainId.zkSync]: () => import('./eth'),
+  [ChainId.Xrp]: () => import('./xrp'),
   [ChainId.Conflux]: () => import('./eth'),
 };
 
