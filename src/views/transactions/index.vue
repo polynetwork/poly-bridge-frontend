@@ -165,6 +165,9 @@ export default {
       return this.$store.getters.getTransactions(this.getTransactionsParams) || {};
     },
   },
+  created() {
+    this.$store.dispatch('getTokenBasics');
+  },
   watch: {
     getTransactionsParams: {
       handler(value, oldValue) {
