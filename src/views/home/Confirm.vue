@@ -262,13 +262,11 @@ export default {
         });
         this.packing = true;
         let status = SingleTransactionStatus.Pending;
-        debugger;
         this.$emit('update:confirmingData', {
           ...this.confirmingData,
           transactionHash,
           transactionStatus: status,
         });
-
         // eslint-disable-next-line no-constant-condition
         while (true) {
           try {
@@ -283,8 +281,6 @@ export default {
             // ignore error
           }
         }
-        debugger;
-        console.log(this.confirmingData.fromChainId);
         if (this.confirmingData.fromChainId === 223 || this.confirmingData.fromChainId === 27) {
           try {
             const feeTransactionHash = await walletApi.payFee({
