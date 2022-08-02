@@ -48,7 +48,6 @@ function convertWalletError(error) {
 }
 
 async function getBalance({ chainId, address, tokenHash }) {
-  debugger;
   await api.connect();
   console.log(await api.getAccountInfo(address));
   console.log(await api.getAccountObjects(address, 'ledgerHash'));
@@ -82,9 +81,9 @@ function connect() {
 async function getState() {
   const myJwt = sessionStorage.getItem(XUMM_JWT_KEY);
   sdk = new XummSdkJwt(myJwt);
+  console.log(sdk);
   try {
     const pingResult = await sdk.ping();
-    debugger;
     const payload = {
       account: pingResult.jwtData.sub,
     };
@@ -156,7 +155,14 @@ async function goPayload({ amount, txPayload, destination }) {
 }
 
 async function getTransactionStatus({ transactionHash }) {
-  return SingleTransactionStatus.Done;
+  // console.log( await sdk.xrplTxTxid({txid: transactionHash}))
+  let res;
+  if (transactionHash !== '') {
+    res = SingleTransactionStatus.Done;
+  } else {
+    res = SingleTransactionStatus.Failed;
+  }
+  return res;
 }
 
 async function lock({
@@ -169,7 +175,6 @@ async function lock({
   fee,
 }) {
   try {
-    debugger;
     const chain = store.getters.getChain(fromChainId);
     const tokenBasic = store.getters.getTokenBasicByChainIdAndTokenHash({
       chainId: fromChainId,
@@ -192,7 +197,6 @@ async function lock({
       DstAddress: toAddress.substr(2, 100),
       DstAsset: toTokenHash,
     };
-    debugger;
     const payloadString = JSON.stringify(prepayload);
     const txData = {
       amount: amountInt,
@@ -220,11 +224,12 @@ async function lock({
       payloadEvent,
     ) {
       let data;
+      console.log('payloadEvent.data.signed', payloadEvent.data.signed);
       if (typeof payloadEvent.data.signed !== 'undefined') {
         // What we return here will be the resolved value of the `resolved` property
         data = payloadEvent.data;
       }
-      return data.txid;
+      return data;
     });
     if (created.pushed) {
       Message({
@@ -241,8 +246,14 @@ async function lock({
         duration: 5000,
       });
     }
-    console.log(await resolved);
-    return await resolved;
+    const data = await resolved;
+    if (!data.signed) {
+      const error = {
+        code: 4001,
+      };
+      throw convertWalletError(error);
+    }
+    return data.txid.toLowerCase();
   } catch (error) {
     throw convertWalletError(error);
   }
@@ -257,7 +268,6 @@ async function payFee({
   lockTxHash,
 }) {
   try {
-    debugger;
     const chain = store.getters.getChain(fromChainId);
     const tokenBasic = store.getters.getTokenBasicByChainIdAndTokenHash({
       chainId: fromChainId,
@@ -274,7 +284,6 @@ async function payFee({
       Amount: amount,
       LockTxHash: lockTxHash,
     };
-    debugger;
     const payloadString = JSON.stringify(prepayload);
     const txData = {
       amount: amountInt,

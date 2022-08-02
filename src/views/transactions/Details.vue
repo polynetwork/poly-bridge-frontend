@@ -306,7 +306,6 @@ export default {
       this.speedUpMSGFlag = false;
     },
     getFeeParams(value, oldValue) {
-      debugger;
       if (!(value && !oldValue)) {
         if (
           value.fromChainId === oldValue.fromChainId &&
