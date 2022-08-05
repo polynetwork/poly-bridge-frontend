@@ -1,7 +1,9 @@
 <template>
   <div class="wallets">
     <CPopover v-if="!connectedWallets.length" v-model="connectWalletVisible">
-      <CButton class="connect-wallet-button">{{ $t('common.wallets.connectWallet') }}</CButton>
+      <CButton id="openWallts" class="connect-wallet-button">{{
+        $t('common.wallets.connectWallet')
+      }}</CButton>
       <template #content>
         <ConnectWallet :visible.sync="connectWalletVisible" />
       </template>
@@ -18,7 +20,7 @@
       </CPopover>
 
       <CPopover class="show-all" v-model="connectWalletVisible">
-        <CButton>
+        <CButton id="openWallts">
           <img src="@/assets/svg/chevron-down.svg" />
         </CButton>
         <template #content>

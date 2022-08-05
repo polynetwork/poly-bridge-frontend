@@ -103,6 +103,16 @@ export default {
     });
     return result;
   },
+  async getAirDropData({ sdata }) {
+    const result = await request({
+      method: 'post',
+      url: '/airdropofaddress',
+      data: {
+        Users: sdata,
+      },
+    });
+    return result;
+  },
   async getExpectTime({ fromChainId, toChainId }) {
     const result = await request({
       method: 'post',

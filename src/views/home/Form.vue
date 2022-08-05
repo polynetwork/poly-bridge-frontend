@@ -323,6 +323,7 @@
       :visible.sync="transactionDetailsVisible"
       :confirmingData="confirmingData"
     />
+    <AirDrop :visible.sync="airDropVisible" />
   </ValidationObserver>
 </template>
 
@@ -339,6 +340,7 @@ import { toStandardHex } from '@/utils/convertors';
 import SelectTokenBasic from './SelectTokenBasic';
 import SelectChain from './SelectChain';
 import ConnectWallet from './ConnectWallet';
+import AirDrop from './Airdrop';
 import Confirm from './Confirm';
 
 export default {
@@ -349,6 +351,7 @@ export default {
     ConnectWallet,
     Confirm,
     TransactionDetails,
+    AirDrop,
   },
   data() {
     return {
@@ -370,6 +373,7 @@ export default {
       selfPayChecked: false,
       confirmUuid: uuidv4(),
       healthFlag: true,
+      airDropVisible: false,
     };
   },
   computed: {
@@ -609,6 +613,10 @@ export default {
     },
   },
   created() {
+    if (!(sessionStorage.getItem('AIRDROP_BANNER') === 'true')) {
+      this.airDropVisible = true;
+      sessionStorage.setItem('AIRDROP_BANNER', 'true');
+    }
     this.$store.dispatch('getTokenBasics');
     this.getChainHealth();
     this.interval = setInterval(() => {

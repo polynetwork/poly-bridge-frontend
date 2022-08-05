@@ -9,6 +9,7 @@ import { Message } from 'element-ui';
 import { decimalToInteger } from '@/utils/convertors';
 import { WalletName, SingleTransactionStatus } from '@/utils/enums';
 import { XummSdkJwt } from 'xumm-sdk';
+import { tryToConvertAddressToHex } from '.';
 
 console.log(XummPkce);
 const auth = new XummPkce('9b461506-fd63-45f7-9e18-6329adf7807b');
@@ -19,8 +20,9 @@ const api = new RippleAPI({
   server: TARGET_MAINNET ? 'wss://s1.ripple.com' : 'wss://s.altnet.rippletest.net/', // Public rippled server hosted by Ripple, Inc.
 });
 
-function queryState($payload) {
-  const addressHex = $payload.account;
+async function queryState($payload) {
+  const addressHex = await tryToConvertAddressToHex(WalletName.XUMM, $payload.account);
+  // const addressHex = $payload.account;
   store.dispatch('updateWallet', {
     name: WalletName.XUMM,
     address: $payload.account,

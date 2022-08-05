@@ -252,6 +252,25 @@ export default {
       [TransactionStatus.FromchainFeePending]: 'Pending',
     },
   },
+  airdrop: {
+    title: 'NFT Airdrop launch',
+    thanksTitle: 'NFT Airdrop has ended, thanks for participating!',
+    winTitle: 'Congratulations, you have won ',
+    nft: ' NFT.',
+    nfts: ' NFTs.',
+    endTitle: 'NFT Airdrop has ended up',
+    desc1:
+      'Use Poly Bridge for cross-chain asset transfers. The top 1000 addresses in aggregate cross-chain expenditure will win limited edition NFTs. Come and participate!',
+    desc2: 'Cross-chain to win the limited edition NFT.',
+    desc3: 'Strive for the top 1000 places to win 1 NFT rewards!',
+    desc4: 'Go all out for the top 100 big league to win 2 NFTs rewards!',
+    desc12: ' Thanks for your support. Stay tuned for next activity.',
+    btn1: 'Connect Wallet',
+    btn2: 'Check Rules',
+    btn3: 'Bridge Now',
+    btn4: 'Claim Your NFT',
+    btn5: 'Check Your NFT',
+  },
   errors: {
     wallet: {
       UNKNOWN_ERROR: 'Unknown wallet error.',

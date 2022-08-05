@@ -17,6 +17,11 @@ const NETWORK_CHAIN_ID_MAPS = {
   [TARGET_MAINNET ? 'N3MainNet' : 'N3TestNet']: ChainId.N3,
 };
 
+const WALLET_CHAIN_ID_MAPS = {
+  N3MainNet: 14,
+  N3TestNet: 88,
+};
+
 let neoDapi;
 let n3Dapi;
 
@@ -63,6 +68,7 @@ async function queryState() {
     addressHex,
     connected: !!address,
     chainId: NETWORK_CHAIN_ID_MAPS[network],
+    walletChainId: WALLET_CHAIN_ID_MAPS[network],
   });
 }
 

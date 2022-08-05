@@ -70,6 +70,7 @@ async function queryState() {
     addressHex,
     connected: !!checksumAddress,
     chainId: NETWORK_CHAIN_ID_MAPS[Number(network)],
+    walletChainId: 2,
   });
 }
 

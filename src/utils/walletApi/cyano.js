@@ -64,7 +64,8 @@ async function queryState () {
     address,
     addressHex,
     connected: !!address,
-    chainId: NETWORK_CHAIN_ID_MAPS[network.type],
+    chainId: 3,
+    walletChainId: 3
   });
 }
 
