@@ -976,23 +976,23 @@ export const TEST_CHAINS = [
       : 'https://zksync2-testnet.zkscan.io/',
     selfPay: true,
   },
-  {
-    id: ChainId.Xrp,
-    nativeFee: true,
-    icon: require('@/assets/png/xrp.png'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://xrpscan.com/tx/{txHash}'
-      : 'https://testnet.xrpl.org/transactions/{txHash}',
-    WrapperContract: TARGET_MAINNET
-      ? 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6'
-      : 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6',
-    lockProxyContractHash: TARGET_MAINNET
-      ? 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG'
-      : 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG',
-    nftFeeName: 'XRP',
-    nftFeeContractHash: '51fa7b7c1e0c79b54de202e6a24fef61bf54f442',
-    selfPay: true,
-  },
+  // {
+  //   id: ChainId.Xrp,
+  //   nativeFee: true,
+  //   icon: require('@/assets/png/xrp.png'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://xrpscan.com/tx/{txHash}'
+  //     : 'https://testnet.xrpl.org/transactions/{txHash}',
+  //   WrapperContract: TARGET_MAINNET
+  //     ? 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6'
+  //     : 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6',
+  //   lockProxyContractHash: TARGET_MAINNET
+  //     ? 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG'
+  //     : 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG',
+  //   nftFeeName: 'XRP',
+  //   nftFeeContractHash: '51fa7b7c1e0c79b54de202e6a24fef61bf54f442',
+  //   selfPay: true,
+  // },
   {
     id: ChainId.N3T5,
     nativeFee: false,
