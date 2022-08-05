@@ -27,6 +27,9 @@
     font-weight: 400;
     font-size: 14px;
   }
+  th.el-table__cell {
+    background-color: #fff0;
+  }
 
   .cell {
     color: #ffffff;
@@ -42,7 +45,7 @@
 
   @include m(enable-row-hover) {
     .el-table__body tr:hover > td {
-      background-color: rgba(#000000, 0.15);
+      background-color: rgba(#000000, 0.15) !important;
     }
   }
 }

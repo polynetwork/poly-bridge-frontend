@@ -70,6 +70,7 @@ async function queryState() {
     addressHex,
     connected: !!checksumAddress,
     chainId: NETWORK_CHAIN_ID_MAPS[Number(network)],
+    walletChainId: 2,
   });
 }
 
@@ -332,6 +333,7 @@ async function lock({
     const result = await confirmLater(
       lockContract.methods
         .lock(`0x${fromTokenHash}`, toChainId, `0x${toAddressHex}`, amountInt, feeInt, 0)
+        // .lock(`0x${fromTokenHash}`, toChainId, toAddressHex, amountInt, feeInt, 0)
         .send({
           from: fromAddress,
           gas: fromChainId === 24 ? 2000000 : null,

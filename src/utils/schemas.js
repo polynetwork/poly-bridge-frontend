@@ -60,6 +60,7 @@ export const transactionStep = model({
 export const FeeToken = model({
   chainId: alias('ChainId'),
   name: alias('Name'),
+  hash: alias('Hash'),
 });
 
 export const SrcAsset = model({

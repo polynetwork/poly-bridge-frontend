@@ -192,10 +192,12 @@ export default {
       [ChainId.Milkomeda]: 'Milkomeda',
       [ChainId.Cube]: 'Cube',
       [ChainId.Kava]: 'Kava',
+      [ChainId.Xrp]: 'Ripple',
       [ChainId.Celo]: 'Celo',
       [ChainId.CLV]: 'CLV P-Chain',
       [ChainId.zkSync]: 'zkSync',
       [ChainId.Conflux]: 'Conflux eSpace',
+      [ChainId.N3T5]: 'N3T5',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -230,10 +232,12 @@ export default {
       [ChainId.Milkomeda]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Cube]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Kava]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Xrp]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Celo]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.CLV]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.zkSync]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Conflux]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.N3T5]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',
@@ -241,6 +245,7 @@ export default {
       [TransactionStatus.SourceDone]: 'Pending',
       [TransactionStatus.SourceConfirmed]: 'Pending',
       [TransactionStatus.PolyConfirmed]: 'Pending',
+      [TransactionStatus.FromchainFeePending]: 'Pending',
     },
   },
   errors: {

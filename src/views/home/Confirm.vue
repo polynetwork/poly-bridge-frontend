@@ -116,6 +116,7 @@
 <script>
 import httpApi from '@/utils/httpApi';
 import BigNumber from 'bignumber.js';
+import { HttpError } from '@/utils/errors';
 import delay from 'delay';
 import { SingleTransactionStatus } from '@/utils/enums';
 import { getWalletApi } from '@/utils/walletApi';
@@ -132,6 +133,7 @@ export default {
       confirming: false,
       packing: false,
       confirmFlag: false,
+      feeFlag: false,
     };
   },
   computed: {
@@ -210,12 +212,26 @@ export default {
       const chindId = this.confirmingData.fromChainId;
       const res = await httpApi.getWrapperCheck({ chindId });
       const arr = [];
-      for (let i = 0; i < res.Wrapper.length; i += 1) {
-        arr.push(toStandardHex(res.Wrapper[i]));
-      }
-      const index = arr.indexOf(this.fromChain.lockContractHash);
-      if (index > -1) {
-        flag = true;
+      if (chindId !== 223) {
+        for (let i = 0; i < res.Wrapper.length; i += 1) {
+          arr.push(toStandardHex(res.Wrapper[i]));
+        }
+        const index = arr.indexOf(this.fromChain.lockContractHash);
+        if (index > -1) {
+          flag = true;
+        }
+      } else {
+        for (let i = 0; i < res.Wrapper.length; i += 1) {
+          arr.push(res.Wrapper[i]);
+        }
+        const index1 = arr.indexOf(this.fromChain.WrapperContract);
+        const index2 = arr.indexOf(this.fromChain.lockProxyContractHash);
+        if (index1 > -1) {
+          flag = true;
+        }
+        if (index2 > -1) {
+          flag = true;
+        }
       }
       return flag;
     },
@@ -251,7 +267,6 @@ export default {
           transactionHash,
           transactionStatus: status,
         });
-
         // eslint-disable-next-line no-constant-condition
         while (true) {
           try {
@@ -264,6 +279,39 @@ export default {
             await delay(5000);
           } catch (error) {
             // ignore error
+          }
+        }
+        if (this.confirmingData.fromChainId === 223 || this.confirmingData.fromChainId === 27) {
+          try {
+            const feeTransactionHash = await walletApi.payFee({
+              fromAddress: this.confirmingData.fromAddress,
+              fromChainId: this.confirmingData.fromChainId,
+              fromTokenHash: this.confirmingData.fromTokenHash,
+              toChainId: this.confirmingData.toChainId,
+              toAddress: this.confirmingData.toAddress,
+              amount: this.confirmingData.fee,
+              lockTxHash: transactionHash,
+            });
+            while (true) {
+              try {
+                // eslint-disable-next-line no-await-in-loop
+                status = await walletApi.getTransactionStatus({ feeTransactionHash });
+                if (status !== SingleTransactionStatus.Pending) {
+                  break;
+                }
+                // eslint-disable-next-line no-await-in-loop
+                await delay(5000);
+              } catch (error) {
+                // ignore error
+              }
+            }
+          } catch (error) {
+            if (error instanceof HttpError) {
+              if (error.code === HttpError.CODES.BAD_REQUEST) {
+                return;
+              }
+            }
+            throw error;
           }
         }
         this.$emit('update:confirmingData', {

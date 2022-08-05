@@ -112,12 +112,26 @@
                   step.chainId !== 5 &&
                   step.chainId !== 14 &&
                   step.chainId !== 88 &&
-                  step.chainId !== 318
+                  step.chainId !== 318 &&
+                  transaction.status !== 11
               "
               @click="payTochainFee"
               class="button-submit"
             >
               {{ selfPay ? $t('buttons.pay') : $t('buttons.speedup') }}
+            </CSubmitButton>
+            <CSubmitButton
+              :loading="xrpFeeLoading"
+              v-if="
+                index == 0 &&
+                  getStepStatus(2) === 'pending' &&
+                  transaction.status === 11 &&
+                  (step.chainId === 223 || step.chainId === 27)
+              "
+              @click="payFromChainFee"
+              class="button-submit"
+            >
+              {{ $t('buttons.pay') }}
             </CSubmitButton>
           </template>
 
@@ -142,9 +156,18 @@
       </div>
     </div>
     <ConnectWallet
-      v-if="steps"
+      v-if="
+        steps && transaction && transaction.fromChainId !== 223 && transaction.fromChainId !== 27
+      "
       :visible.sync="connectWalletVisible"
       :toChainId="steps[2].chainId"
+    />
+    <ConnectWallet
+      v-if="
+        steps && transaction && (transaction.fromChainId === 223 || transaction.fromChainId === 27)
+      "
+      :visible.sync="connectWalletVisible"
+      :fromChainId="steps[0].chainId"
     />
   </CDialog>
 </template>
@@ -173,6 +196,7 @@ export default {
       selfPayLoading: false,
       connectWalletVisible: false,
       speedUpMSGFlag: false,
+      xrpFeeLoading: false,
     };
   },
   computed: {
@@ -195,6 +219,23 @@ export default {
     },
     toChain() {
       return this.transaction && this.$store.getters.getChain(this.transaction.toChainId);
+    },
+    fromChain() {
+      return this.transaction && this.$store.getters.getChain(this.transaction.fromChainId);
+    },
+    getFeeParams() {
+      if (this.transaction) {
+        return {
+          fromChainId: this.transaction.fromChainId,
+          fromTokenHash: this.transaction.token.hash,
+          toChainId: this.transaction.toChainId,
+          toTokenHash: this.transaction.token.hash,
+        };
+      }
+      return null;
+    },
+    fee() {
+      return this.getFeeParams && this.$store.getters.getFee(this.getFeeParams);
     },
     mergedTransaction() {
       return (
@@ -264,6 +305,22 @@ export default {
     hash() {
       this.speedUpMSGFlag = false;
     },
+    getFeeParams(value, oldValue) {
+      if (!(value && !oldValue)) {
+        if (
+          value.fromChainId === oldValue.fromChainId &&
+          value.fromTokenHash === oldValue.fromTokenHash &&
+          value.toChainId === oldValue.toChainId &&
+          value.toTokenHash === oldValue.toTokenHash
+        ) {
+          console.log(value);
+        } else {
+          this.$store.dispatch('getFee', value);
+        }
+      } else {
+        this.$store.dispatch('getFee', value);
+      }
+    },
   },
   created() {
     this.interval = setInterval(() => {
@@ -323,10 +380,39 @@ export default {
           // this.$store.dispatch('getManualTxData', this.transaction.steps[1].hash);
           const polyHash = this.transaction.steps[1].hash;
           const result = await httpApi.getManualTxData({ polyHash });
-          debugger;
           this.sendTx(result);
         } catch (error) {
           this.selfPayLoading = false;
+          if (error instanceof HttpError) {
+            if (error.code === HttpError.CODES.BAD_REQUEST) {
+              return;
+            }
+          }
+          throw error;
+        }
+      }
+    },
+    async payFromChainFee() {
+      if (!this.fromWallet) {
+        this.connectWalletVisible = true;
+      }
+      if (this.transaction.steps[0].hash && this.fee) {
+        const data = {
+          fromAddress: this.transaction.fromAddress,
+          fromChainId: this.transaction.fromChainId,
+          fromTokenHash: this.transaction.token.hash,
+          toChainId: this.transaction.toChainId,
+          toAddress: this.transaction.toAddress,
+          amount: this.fee.TokenAmount,
+          lockTxHash: this.transaction.steps[0].hash,
+        };
+        try {
+          this.xrpFeeLoading = true;
+          const walletApi = await getWalletApi(this.fromWallet.name);
+          await walletApi.payFee(data);
+          this.xrpFeeLoading = false;
+        } catch (error) {
+          this.xrpFeeLoading = false;
           if (error instanceof HttpError) {
             if (error.code === HttpError.CODES.BAD_REQUEST) {
               return;
@@ -342,7 +428,6 @@ export default {
       console.log(self.toChain);
       const selfccm = toStandardHex(self.toChain.dst_ccm);
       const apiccm = toStandardHex($payload.dst_ccm);
-      debugger;
       if (selfccm !== apiccm) {
         this.$message.error('ccm error');
         this.selfPayLoading = false;

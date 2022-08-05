@@ -11,6 +11,7 @@ export const WalletName = {
   Cyano: 'Cyano',
   WalletConnect: 'WalletConnnect',
   StarMask: 'StarMask',
+  XUMM: 'XUMM',
 };
 
 export const ChainId = {
@@ -46,10 +47,12 @@ export const ChainId = {
   Milkomeda: TARGET_MAINNET ? 810 : 810,
   Kava: TARGET_MAINNET ? 32 : 920,
   Cube: TARGET_MAINNET ? 35 : 930,
+  Xrp: TARGET_MAINNET ? 27 : 223,
   Celo: TARGET_MAINNET ? 36 : 960,
   CLV: TARGET_MAINNET ? 37 : 970,
   zkSync: TARGET_MAINNET ? 940 : 940,
-  Conflux: TARGET_MAINNET ? 38 : 980,
+  Conflux: TARGET_MAINNET ? 980 : 980,
+  N3T5: TARGET_MAINNET ? 14 : 888,
 };
 
 export const NetworkChainIdMaps = {
@@ -132,4 +135,5 @@ export const TransactionStatus = {
   SourceDone: 2,
   SourceConfirmed: 3,
   PolyConfirmed: 4,
+  FromchainFeePending: 11,
 };

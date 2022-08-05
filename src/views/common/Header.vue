@@ -8,11 +8,12 @@
     <Menu class="menu" />
     <CFlexSpan />
     <div class="side-menu">
+      <div class="airdrop" @click="toAirdrop()" v-if="$route.name !== 'airdrop'">Airdrop</div>
       <Wallets class="wallet" />
       <Networks class="network" />
     </div>
 
-    <div class="header-mobile" style="display:none">
+    <div class="header-mobile" style="display: none">
       <Wallets />
       <!-- <el-dropdown>
         <i class="el-icon-setting" style="font-size:30px"></i>
@@ -61,6 +62,11 @@ export default {
       mainnet: TARGET_MAINNET,
     };
   },
+  methods: {
+    toAirdrop() {
+      this.$router.push({ path: '/airdrop' });
+    },
+  },
 };
 </script>
 
@@ -90,11 +96,19 @@ export default {
   transform: translateY(-50%);
   display: flex;
   align-items: center;
-  @include child-margin-h(40px);
+  @include child-margin-h(20px);
 }
 
 .brand-name {
   font-size: 20px;
+}
+.airdrop {
+  background: linear-gradient(270deg, #282bdb 1.43%, #3ec7eb 100%);
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 21px;
+  cursor: pointer;
 }
 </style>
 <style lang="scss" scoped>

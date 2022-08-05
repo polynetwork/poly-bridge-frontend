@@ -91,6 +91,12 @@ export const WALLETS = [
       'https://chrome.google.com/webstore/detail/math-wallet/afbcbjpbpfadlkmhmclhkeeodmamcflc',
   },
   {
+    name: WalletName.XUMM,
+    supportedChainIds: [ChainId.Xrp],
+    icon: require('@/assets/png/xumm.png'),
+    downloadUrl: 'https://xumm.app/',
+  },
+  {
     name: WalletName.NeoLine,
     supportedChainIds: [ChainId.Neo],
     icon: require('@/assets/svg/neoline.svg'),
@@ -99,7 +105,7 @@ export const WALLETS = [
   },
   {
     name: WalletName.NeoLineN3,
-    supportedChainIds: [ChainId.N3],
+    supportedChainIds: [ChainId.N3, ChainId.N3T5],
     icon: require('@/assets/svg/neoline.svg'),
     downloadUrl:
       'https://chrome.google.com/webstore/detail/neoline/cphhlgmgameodnhkjdmkpanlelnlohao',
@@ -969,6 +975,37 @@ export const TEST_CHAINS = [
       ? 'https://zksync2-testnet.zkscan.io/'
       : 'https://zksync2-testnet.zkscan.io/',
     selfPay: true,
+  },
+  // {
+  //   id: ChainId.Xrp,
+  //   nativeFee: true,
+  //   icon: require('@/assets/png/xrp.png'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://xrpscan.com/tx/{txHash}'
+  //     : 'https://testnet.xrpl.org/transactions/{txHash}',
+  //   WrapperContract: TARGET_MAINNET
+  //     ? 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6'
+  //     : 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6',
+  //   lockProxyContractHash: TARGET_MAINNET
+  //     ? 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG'
+  //     : 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG',
+  //   nftFeeName: 'XRP',
+  //   nftFeeContractHash: '51fa7b7c1e0c79b54de202e6a24fef61bf54f442',
+  //   selfPay: true,
+  // },
+  {
+    id: ChainId.N3T5,
+    nativeFee: false,
+    icon: require('@/assets/svg/neo.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://neo3.neotube.io/transaction/{txHash}'
+      : 'https://n3t5.neotube.io/transaction/{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? 'f8328398c4c8e77b6c5843f5e404be0170d5012e'
+      : 'c3ac0347e9c4f65b7fff383201a1551da4301e09',
+    nftFeeContractHash: 'd2a4cff31913016155e38e474a2c06d08be276cf',
+    nftFeeName: 'GAS',
+    selfPay: false,
   },
   // {
   //   id: ChainId.OntEvm,
