@@ -78,7 +78,7 @@
             </el-dropdown>
           </div>
           <div class="item">
-            <div class="title">Cross-chain Expenditure</div>
+            <div class="title">Expenditure</div>
             <div class="address-data">{{ userData[currentId].Amount }} USD</div>
           </div>
         </div>
@@ -321,7 +321,7 @@ export default {
       flex-direction: column;
       align-items: center;
       .no {
-        width: 261px;
+        width: 120px;
         display: flex;
         flex-direction: row;
         align-items: center;
