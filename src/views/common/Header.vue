@@ -122,6 +122,9 @@ export default {
     margin-top: 110px;
     font-size: 2em;
   }
+  .airdrop {
+    display: none;
+  }
   .menu,
   .wallet,
   .network {
