@@ -62,7 +62,7 @@ export default {
     width: 1080px;
     height: 744px;
     // background: #171f31;
-    background-image: url('../../assets/png/giftbg.png') !important;
+    background-image: url('https://app.ont.io/poly/giftbg.png') !important;
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
@@ -220,12 +220,13 @@ export default {
     .header {
       padding: 0px !important;
       height: 0;
+      z-index: 100;
       .title {
         img {
           width: 36px;
           position: absolute;
-          right: -36px;
-          top: -36px;
+          right: 36px;
+          top: 36px;
         }
       }
     }
