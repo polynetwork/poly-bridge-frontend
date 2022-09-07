@@ -162,7 +162,16 @@
           </div>
         </div> -->
         <div class="content" v-if="getNFTFlag && !checkFlag[currentId]">
-          <div class="btn-out" v-if="currentChainId === 2 || currentChainId === 402">
+          <div
+            class="btn-out"
+            v-if="
+              currentChainId !== 3 &&
+                currentChainId !== 4 &&
+                currentChainId !== 5 &&
+                currentChainId !== 14 &&
+                currentChainId !== 88
+            "
+          >
             <div class="btn-in active" @click="claimNft()" v-if="claiming">
               <i class="el-icon-loading"></i> {{ $t('airdrop.btn6') }}
             </div>
@@ -348,6 +357,7 @@ export default {
       }
     },
     wallets() {
+      console.log(this.wallets);
       this.currentAddress = this.wallets[0].address;
       this.currentChainId = this.wallets[0].chainId;
       this.getAirdropData(this.wallets);
@@ -425,9 +435,9 @@ export default {
       if (this.claiming) {
         return;
       }
-      this.claiming = true;
       const chainId = TARGET_MAINNET ? 2 : 402;
       await this.$store.dispatch('ensureChainWalletReady', chainId);
+      this.claiming = true;
       const walletApi = await getWalletApi(this.fromWallet.name);
       const claimData = this.airDropClaimNft[this.currentId];
       let status = SingleTransactionStatus.Pending;
