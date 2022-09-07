@@ -435,11 +435,10 @@ export default {
               signature: claimData.NftTbSig,
             };
             const txhash = await walletApi.nftClaim(data1);
-            const txhashw = `0x${txhash}`;
             while (true) {
               try {
                 // eslint-disable-next-line no-await-in-loop
-                status = await walletApi.getTransactionStatus({ txhashw });
+                status = await walletApi.getTransactionStatus({ txhash });
                 if (status !== SingleTransactionStatus.Pending) {
                   break;
                 }
@@ -464,12 +463,11 @@ export default {
             };
             debugger;
             const txhash1 = await walletApi.nftClaim(data);
-            const txhashs = `0x${txhash1}`;
             console.log(txhash1);
             while (true) {
               try {
                 // eslint-disable-next-line no-await-in-loop
-                status = await walletApi.getTransactionStatus({ txhashs });
+                status = await walletApi.getTransactionStatus({ txhash1 });
                 if (status !== SingleTransactionStatus.Pending) {
                   break;
                 }
