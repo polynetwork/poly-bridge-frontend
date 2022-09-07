@@ -170,7 +170,7 @@
               {{ $t('airdrop.btn4') }}
             </div>
           </div>
-          <div class="btn-out" v-if="currentChainId !== 2 && currentChainId !== 402">
+          <div class="btn-out" v-if="currentChainId === 3 || 4 || 5 || 14 || 88">
             <div class="btn-in active" @click="openDiscord()">Contact us</div>
           </div>
           <div class="btn-out">
@@ -178,8 +178,15 @@
           </div>
         </div>
         <div class="content" v-if="getNFTFlag && checkFlag[currentId]">
-          <div class="btn-out">
-            <div class="btn-in active" @click="openNFT()">{{ $t('airdrop.btn5') }}</div>
+          <div class="btn-out" v-if="airDropClaimNft[currentId].NftDfOpenseaUrl">
+            <div class="btn-in active" @click="openNFT(airDropClaimNft[currentId].NftDfOpenseaUrl)">
+              {{ $t('airdrop.btn7') }}
+            </div>
+          </div>
+          <div class="btn-out" v-if="airDropClaimNft[currentId].NftTbOpenseaUrl">
+            <div class="btn-in active" @click="openNFT(airDropClaimNft[currentId].NftTbOpenseaUrl)">
+              {{ $t('airdrop.btn8') }}
+            </div>
           </div>
           <div class="btn-out">
             <div class="btn-in" @click="openRule()">{{ $t('airdrop.btn2') }}</div>
@@ -356,14 +363,8 @@ export default {
     openWallets() {
       this.connectWalletVisible = true;
     },
-    openNFT() {
-      const claimData = this.airDropClaimNft[this.currentId];
-      if (claimData.NftDfOpenseaUrl) {
-        window.open(claimData.NftDfOpenseaUrl);
-      }
-      if (claimData.NftTbOpenseaUrl) {
-        window.open(claimData.NftTbOpenseaUrl);
-      }
+    openNFT($url) {
+      window.open($url);
     },
     toBridge() {
       this.$router.push({
@@ -629,7 +630,7 @@ export default {
       justify-content: center !important;
     }
     .content {
-      width: 600px;
+      width: 660px;
       display: flex;
       justify-content: space-between;
       flex-direction: row;
