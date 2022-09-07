@@ -271,6 +271,7 @@ export default {
     btn3: 'Bridge Now',
     btn4: 'Claim Your NFT',
     btn5: 'Check Your NFT',
+    btn6: 'Pending',
   },
   errors: {
     wallet: {

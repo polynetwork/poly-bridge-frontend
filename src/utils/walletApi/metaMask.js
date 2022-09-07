@@ -347,6 +347,20 @@ async function lock({
   }
 }
 
+async function nftClaim({ contract, account, tokenId, uri, signature }) {
+  try {
+    const nftContract = new web3.eth.Contract(require('@/assets/json/nftclaim.json'), contract);
+    const result = await confirmLater(
+      nftContract.methods.claim(`0x${account}`, tokenId, uri, `0x${signature}`).send({
+        from: account,
+      }),
+    );
+    return toStandardHex(result);
+  } catch (error) {
+    throw convertWalletError(error);
+  }
+}
+
 async function nftLock({ fromChainId, fromAddress, fromTokenHash, toChainId, toAddress, id, fee }) {
   try {
     const chain = store.getters.getChain(fromChainId);
@@ -401,4 +415,5 @@ export default {
   getTotalSupply,
   getNFTApproved,
   changeChain,
+  nftClaim,
 };
