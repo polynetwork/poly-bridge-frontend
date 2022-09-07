@@ -170,7 +170,16 @@
               {{ $t('airdrop.btn4') }}
             </div>
           </div>
-          <div class="btn-out" v-if="currentChainId === 3 || 4 || 5 || 14 || 88">
+          <div
+            class="btn-out"
+            v-if="
+              currentChainId === 3 ||
+                currentChainId === 4 ||
+                currentChainId === 5 ||
+                currentChainId === 14 ||
+                currentChainId === 88
+            "
+          >
             <div class="btn-in active" @click="openDiscord()">Contact us</div>
           </div>
           <div class="btn-out">
@@ -435,11 +444,12 @@ export default {
               uri: claimData.NftTbIpfsUri,
               signature: claimData.NftTbSig,
             };
-            const txhash = await walletApi.nftClaim(data1);
+            const transactionHash = await walletApi.nftClaim(data1);
+            status = SingleTransactionStatus.Pending;
             while (true) {
               try {
                 // eslint-disable-next-line no-await-in-loop
-                status = await walletApi.getTransactionStatus({ txhash });
+                status = await walletApi.getTransactionStatus({ transactionHash });
                 if (status !== SingleTransactionStatus.Pending) {
                   break;
                 }
@@ -463,12 +473,14 @@ export default {
               signature: claimData.NftDfSig,
             };
             debugger;
-            const txhash1 = await walletApi.nftClaim(data);
-            console.log(txhash1);
+            const transactionHash = await walletApi.nftClaim(data);
+            console.log(transactionHash);
+            status = SingleTransactionStatus.Pending;
             while (true) {
+              debugger;
               try {
                 // eslint-disable-next-line no-await-in-loop
-                status = await walletApi.getTransactionStatus({ txhash1 });
+                status = await walletApi.getTransactionStatus({ transactionHash });
                 if (status !== SingleTransactionStatus.Pending) {
                   break;
                 }
@@ -836,13 +848,13 @@ export default {
     .content {
       width: 100vw;
       display: flex;
-      justify-content: space-between;
-      flex-direction: row;
+      align-items: center;
+      flex-direction: column;
       box-sizing: border-box;
       padding: 0 20px;
       .btn-out {
         height: 60px;
-        width: 140px;
+        width: 200px;
         border: 1px dashed rgba(255, 255, 255, 0.4);
         border-radius: 16px;
         display: flex;
