@@ -8,6 +8,9 @@
       <div class="info">
         <img src="@/assets/png/airdrop.png" />
         <div v-if="airdropStatus !== 2" class="info-title">{{ $t('airdrop.title') }}</div>
+        <div v-if="airdropStatus === 2 && !addressFlag" class="info-title">
+          {{ $t('airdrop.endTitle') }}
+        </div>
         <p v-if="airdropStatus === 1 && !addressFlag">
           <span>{{ $t('airdrop.desc1') }}</span>
         </p>
@@ -24,15 +27,45 @@
         >
           <span>{{ $t('airdrop.desc4') }}</span>
         </p>
-        <div v-if="airdropStatus === 2" class="info-title">{{ $t('airdrop.thanksTitle') }}</div>
-        <div v-if="airdropStatus === 2" class="info-title">
+        <!-- in 1000 -->
+        <div
+          v-if="
+            airdropStatus === 2 && userData[currentId].Rank > 0 && userData[currentId].Rank < 1001
+          "
+          class="info-title"
+        >
+          {{ $t('airdrop.congratulationTitle') }}
+        </div>
+        <p
+          v-if="
+            airdropStatus === 2 && userData[currentId].Rank > 100 && userData[currentId].Rank < 1001
+          "
+        >
           {{ $t('airdrop.winTitle') }} 1 {{ $t('airdrop.nft') }}
-        </div>
-        <div v-if="airdropStatus === 2" class="info-title">
+        </p>
+        <p
+          v-if="
+            airdropStatus === 2 && userData[currentId].Rank > 0 && userData[currentId].Rank < 101
+          "
+        >
           {{ $t('airdrop.winTitle') }} 2 {{ $t('airdrop.nfts') }}
+        </p>
+        <!-- over 1000 -->
+        <div
+          v-if="
+            airdropStatus === 2 &&
+              (userData[currentId].Rank > 1000 || userData[currentId].Rank === 0)
+          "
+          class="info-title"
+        >
+          {{ $t('airdrop.endTitle') }}
         </div>
-        <div v-if="airdropStatus === 2" class="info-title">{{ $t('airdrop.endTitle') }}</div>
-        <p v-if="airdropStatus === 2">
+        <p
+          v-if="
+            airdropStatus === 2 &&
+              (userData[currentId].Rank > 1000 || userData[currentId].Rank === 0)
+          "
+        >
           <span>{{ $t('airdrop.desc12') }}</span>
         </p>
       </div>
@@ -103,10 +136,22 @@
             <div class="btn-in" @click="openRule()">{{ $t('airdrop.btn2') }}</div>
           </div>
         </div>
-        <div class="content" v-if="addressFlag">
+        <div class="content" v-if="addressFlag && airdropStatus === 1">
           <div class="btn-out">
             <div class="btn-in active" @click="toBridge()">{{ $t('airdrop.btn3') }}</div>
           </div>
+          <div class="btn-out">
+            <div class="btn-in" @click="openRule()">{{ $t('airdrop.btn2') }}</div>
+          </div>
+        </div>
+        <div
+          class="content content-one"
+          v-if="
+            addressFlag &&
+              airdropStatus === 2 &&
+              (userData[currentId].Rank > 1000 || userData[currentId].Rank === 0)
+          "
+        >
           <div class="btn-out">
             <div class="btn-in" @click="openRule()">{{ $t('airdrop.btn2') }}</div>
           </div>
@@ -118,12 +163,15 @@
         </div> -->
         <div class="content" v-if="getNFTFlag">
           <div class="btn-out">
-            <div class="btn-in">{{ $t('airdrop.btn4') }}</div>
+            <div class="btn-in active" @click="claimNft()">{{ $t('airdrop.btn4') }}</div>
+          </div>
+          <div class="btn-out">
+            <div class="btn-in" @click="openRule()">{{ $t('airdrop.btn2') }}</div>
           </div>
         </div>
-        <div class="content" v-if="getNFTFlag">
+        <div class="content" v-if="getNFTFlag && checkFlag[currentId]">
           <div class="btn-out">
-            <div class="btn-in">{{ $t('airdrop.btn5') }}</div>
+            <div class="btn-in active">{{ $t('airdrop.btn5') }}</div>
           </div>
         </div>
       </div>
@@ -137,6 +185,7 @@
 import _ from 'lodash';
 import httpApi from '@/utils/httpApi';
 import Page from '@/views/common/Page';
+import { TARGET_MAINNET } from '@/utils/env';
 import ConnectWallet from './ConnectWallet';
 
 export default {
@@ -147,7 +196,6 @@ export default {
   },
   data() {
     return {
-      getNFTFlag: false,
       connectWalletVisible: false,
       joinFlag: false,
       currentAddress: '',
@@ -157,16 +205,52 @@ export default {
           rank: 'N/A',
         },
       ],
+      airDropClaimNft: [],
     };
   },
   computed: {
+    getNFTFlag() {
+      const res =
+        this.airdropStatus === 2 &&
+        this.userData[this.currentId].Rank > 0 &&
+        this.userData[this.currentId].Rank < 1001;
+      return res;
+    },
+    claimFlag() {
+      return this.airDropClaimNft;
+    },
+    checkFlag() {
+      const checkFlagArr = [];
+      for (let i = 0; i < this.wallets.length; i += 1) {
+        if (this.airDropClaimNft[i]) {
+          let dfFlag;
+          if (this.airDropClaimNft[i].NftDfContract === '') {
+            dfFlag = true;
+          } else {
+            dfFlag = this.airDropClaimNft[i].IsClaimDf;
+          }
+          let tbFlag;
+          if (this.airDropClaimNft[i].NftTbContract === '') {
+            tbFlag = true;
+          } else {
+            tbFlag = this.airDropClaimNft[i].IsClaimTb;
+          }
+          checkFlagArr.push(dfFlag && tbFlag);
+        } else {
+          checkFlagArr.push(false);
+        }
+      }
+      console.log(checkFlagArr);
+      return checkFlagArr;
+    },
     airdropStatus() {
       const timestamp = new Date().getTime();
       let res = 0;
       if (timestamp < 1659927600000) {
         res = 0;
       }
-      if (timestamp >= 1659927600000 && timestamp < 1662620400000) {
+      /* 1662606000000 */
+      if (timestamp >= 1659927600000 && timestamp < 1662606000000) {
         res = 1;
       }
       if (timestamp >= 1662606000000) {
@@ -200,6 +284,10 @@ export default {
     },
     netTransactions() {
       return this.$store.getters.getTransactions(this.getTransactionsParams) || {};
+    },
+    fromWallet() {
+      const chainId = TARGET_MAINNET ? 2 : 402;
+      return this.$store.getters.getChainConnectedWallet(chainId);
     },
   },
   created() {
@@ -274,6 +362,30 @@ export default {
         }
         this.userData = res.Users;
         console.log(res);
+        // this.getAirDropClaimData();
+      }
+    },
+    async getAirDropClaimData() {
+      console.log(this.userData);
+      const data = [];
+      if (this.userData.length > 0) {
+        for (let i = 0; i < this.userData.length; i += 1) {
+          if (this.userData[i].AirDropAddr !== '') {
+            data.push(this.userData[i].AirDropAddr);
+          }
+        }
+        const res = await httpApi.getAirDropClaimData({ data });
+        this.airDropClaimNft = res.AirDropClaimNft;
+        console.log(res);
+      }
+    },
+    async claimNft() {
+      const chainId = TARGET_MAINNET ? 2 : 402;
+      console.log(this.fromWallet);
+      await this.$store.dispatch('ensureChainWalletReady', chainId);
+      const claimData = this.airDropClaimNft[this.currentId];
+      if (claimData.NftDfContract !== '' && !claimData.IsClaimDf) {
+        console.log(this.airDropClaimNft[this.currentId]);
       }
     },
   },
@@ -411,6 +523,10 @@ export default {
     align-items: center;
     flex-direction: column;
     padding-top: 40px;
+    .content-one {
+      display: flex;
+      justify-content: center !important;
+    }
     .content {
       width: 600px;
       display: flex;

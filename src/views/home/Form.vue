@@ -408,6 +408,9 @@ export default {
           res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
           res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
         }
+        /* if (!this.fee.IsNative && this.fromChain.id === 3) {
+          res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
+        } */
         if (res < 0) {
           res = 0;
         }

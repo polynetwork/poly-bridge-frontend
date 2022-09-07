@@ -217,7 +217,7 @@ export const MAIN_CHAINS = [
   },
   {
     id: ChainId.xDai,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/png/xdai.png'),
     explorerUrl: TARGET_MAINNET
       ? 'https://blockscout.com/xdai/mainnet/tx/0x{txHash}'
@@ -240,7 +240,7 @@ export const MAIN_CHAINS = [
   },
   {
     id: ChainId.Metis,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/png/metis.png'),
     explorerUrl: TARGET_MAINNET
       ? 'https://andromeda-explorer.metis.io/tx/0x{txHash}'
@@ -265,7 +265,7 @@ export const MAIN_CHAINS = [
   },
   {
     id: ChainId.Boba,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/png/boba.png'),
     explorerUrl: TARGET_MAINNET
       ? 'https://blockexplorer.boba.network/tx/0x{txHash}'
@@ -348,7 +348,7 @@ export const MAIN_CHAINS = [
   },
   {
     id: ChainId.Oasis,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/png/oasis.png'),
     explorerUrl: TARGET_MAINNET
       ? 'https://explorer.emerald.oasis.dev/tx/0x{txHash}'
@@ -496,7 +496,7 @@ export const MAIN_CHAINS = [
   },
   {
     id: ChainId.Palette,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/svg/plt.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
@@ -607,9 +607,9 @@ export const MAIN_CHAINS = [
       : 'a5c101afa9e04e9dd2c912983795005a49e02efa',
     selfPay: false,
   },
-  {
+  /*   {
     id: ChainId.Stc,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/svg/stc.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://stcscan.io/main/transactions/detail/0x{txHash}'
@@ -622,10 +622,10 @@ export const MAIN_CHAINS = [
       : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript',
     nftFeeContractHash: '0x00000000000000000000000000000001::STC::STC',
     nftFeeName: 'STC',
-  },
+  }, */
   {
     id: ChainId.HSC,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/png/hoo.png'),
     explorerUrl: TARGET_MAINNET
       ? 'https://hooscan.com/tx/0x{txHash}'
@@ -648,7 +648,7 @@ export const MAIN_CHAINS = [
   } /* waiting info */,
   {
     id: ChainId.Kcc,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/png/kcc.png'),
     explorerUrl: TARGET_MAINNET
       ? 'https://explorer.kcc.io/tx/0x{txHash}'
@@ -671,7 +671,7 @@ export const MAIN_CHAINS = [
   },
   {
     id: ChainId.Harmony,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/svg/Harmony.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://explorer.harmony.one/tx/0x{txHash}'
@@ -694,7 +694,7 @@ export const MAIN_CHAINS = [
   },
   {
     id: ChainId.BYTOM,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/png/bytom.png'),
     explorerUrl: TARGET_MAINNET
       ? 'https://bmc.blockmeta.com/tx/0x{txHash}'
@@ -790,7 +790,7 @@ export const MAIN_CHAINS = [
 export const TEST_CHAINS = [
   // {
   //   id: ChainId.BcsPalette,
-  //   nativeFee: false,
+  //   nativeFee: true,
   //   icon: require('@/assets/svg/plt.svg'),
   //   explorerUrl: TARGET_MAINNET
   //     ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
@@ -819,7 +819,7 @@ export const TEST_CHAINS = [
   // } /* waiting */,
   {
     id: ChainId.BcsPalette2,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/svg/plt.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
@@ -904,7 +904,7 @@ export const TEST_CHAINS = [
   } /* waiting info */,
   {
     id: ChainId.Rinkeby,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/svg/eth.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://rinkeby.etherscan.io/tx/0x{txHash}'
@@ -933,7 +933,7 @@ export const TEST_CHAINS = [
   },
   {
     id: ChainId.Oasis1,
-    nativeFee: false,
+    nativeFee: true,
     icon: require('@/assets/png/oasis.png'),
     explorerUrl: TARGET_MAINNET
       ? 'https://explorer.emerald.oasis.dev/tx/0x{txHash}'

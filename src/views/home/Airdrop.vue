@@ -33,8 +33,6 @@
 </template>
 
 <script>
-import { TOP_TOKEN_BASIC_NAMES } from '@/utils/values';
-
 export default {
   name: 'airdrop',
   inheritAttrs: false,
