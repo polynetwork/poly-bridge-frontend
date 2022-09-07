@@ -255,7 +255,8 @@ export default {
   airdrop: {
     title: 'NFT Airdrop launch',
     thanksTitle: 'NFT Airdrop has ended, thanks for participating!',
-    winTitle: 'Congratulations, you have won ',
+    winTitle: 'You have won ',
+    congratulationTitle: 'Congratulations',
     nft: ' NFT.',
     nfts: ' NFTs.',
     endTitle: 'NFT Airdrop has ended up',

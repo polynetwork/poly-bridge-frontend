@@ -113,6 +113,16 @@ export default {
     });
     return result;
   },
+  async getAirDropClaimData({ data }) {
+    const result = await request({
+      method: 'post',
+      url: '/airdropclaim',
+      data: {
+        AirDropAddrs: data,
+      },
+    });
+    return result;
+  },
   async getExpectTime({ fromChainId, toChainId }) {
     const result = await request({
       method: 'post',
