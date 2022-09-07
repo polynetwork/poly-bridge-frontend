@@ -272,6 +272,8 @@ export default {
     btn4: 'Claim Your NFT',
     btn5: 'Check Your NFT',
     btn6: 'Pending',
+    btn7: 'Check Your NFT 1',
+    btn8: 'Check Your NFT 2',
   },
   errors: {
     wallet: {
