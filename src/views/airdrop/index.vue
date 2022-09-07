@@ -169,7 +169,8 @@
                 currentChainId !== 4 &&
                 currentChainId !== 5 &&
                 currentChainId !== 14 &&
-                currentChainId !== 88
+                currentChainId !== 88 &&
+                currentChainId !== 888
             "
           >
             <div class="btn-in active" @click="claimNft()" v-if="claiming">
@@ -186,7 +187,8 @@
                 currentChainId === 4 ||
                 currentChainId === 5 ||
                 currentChainId === 14 ||
-                currentChainId === 88
+                currentChainId === 88 ||
+                currentChainId === 888
             "
           >
             <div class="btn-in active" @click="openDiscord()">Contact us</div>
@@ -335,7 +337,7 @@ export default {
     sessionStorage.setItem('AIRDROP_BANNER', 'true');
     this.getAirdropData(this.wallets);
     this.currentAddress = this.wallets[0].address;
-    this.currentChainId = this.wallets[0].chainId;
+    this.currentChainId = this.wallets[0].walletChainId;
     this.currentId = 0;
   },
   watch: {
@@ -359,7 +361,7 @@ export default {
     wallets() {
       console.log(this.wallets);
       this.currentAddress = this.wallets[0].address;
-      this.currentChainId = this.wallets[0].chainId;
+      this.currentChainId = this.wallets[0].walletChainId;
       this.getAirdropData(this.wallets);
     },
   },
@@ -392,8 +394,8 @@ export default {
     },
     handleCommand(command) {
       this.currentAddress = this.wallets[command].address;
+      this.currentChainId = this.wallets[command].walletChainId;
       this.currentId = command;
-      this.currentChainId = this.wallets[command].chainId;
     },
     async getAirdropData($wallets) {
       const sdata = [];
