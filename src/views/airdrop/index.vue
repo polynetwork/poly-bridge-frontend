@@ -161,9 +161,17 @@
             <div class="btn-in">{{ $t('airdrop.btn2') }}</div>
           </div>
         </div> -->
-        <div class="content" v-if="getNFTFlag">
-          <div class="btn-out">
-            <div class="btn-in active" @click="claimNft()">{{ $t('airdrop.btn4') }}</div>
+        <div class="content" v-if="getNFTFlag && !checkFlag[currentId]">
+          <div class="btn-out" v-if="currentChainId === 2 || currentChainId === 402">
+            <div class="btn-in active" @click="claimNft()" v-if="claiming">
+              <i class="el-icon-loading"></i> {{ $t('airdrop.btn6') }}
+            </div>
+            <div class="btn-in active" @click="claimNft()" v-if="!claiming">
+              {{ $t('airdrop.btn4') }}
+            </div>
+          </div>
+          <div class="btn-out" v-if="currentChainId !== 2 && currentChainId !== 402">
+            <div class="btn-in active" @click="openDiscord()">Contact us</div>
           </div>
           <div class="btn-out">
             <div class="btn-in" @click="openRule()">{{ $t('airdrop.btn2') }}</div>
@@ -171,7 +179,10 @@
         </div>
         <div class="content" v-if="getNFTFlag && checkFlag[currentId]">
           <div class="btn-out">
-            <div class="btn-in active">{{ $t('airdrop.btn5') }}</div>
+            <div class="btn-in active" @click="openNFT()">{{ $t('airdrop.btn5') }}</div>
+          </div>
+          <div class="btn-out">
+            <div class="btn-in" @click="openRule()">{{ $t('airdrop.btn2') }}</div>
           </div>
         </div>
       </div>
@@ -185,7 +196,10 @@
 import _ from 'lodash';
 import httpApi from '@/utils/httpApi';
 import Page from '@/views/common/Page';
+import delay from 'delay';
 import { TARGET_MAINNET } from '@/utils/env';
+import { getWalletApi } from '@/utils/walletApi';
+import { SingleTransactionStatus } from '@/utils/enums';
 import ConnectWallet from './ConnectWallet';
 
 export default {
@@ -198,8 +212,10 @@ export default {
     return {
       connectWalletVisible: false,
       joinFlag: false,
+      claiming: false,
       currentAddress: '',
       currentId: 0,
+      currentChainId: 0,
       userData: [
         {
           rank: 'N/A',
@@ -250,10 +266,10 @@ export default {
         res = 0;
       }
       /* 1662606000000 */
-      if (timestamp >= 1659927600000 && timestamp < 1662606000000) {
+      if (timestamp >= 1659927600000 && timestamp < 1659927600001) {
         res = 1;
       }
-      if (timestamp >= 1662606000000) {
+      if (timestamp >= 1659927600001) {
         res = 2;
       }
       console.log(res);
@@ -294,6 +310,7 @@ export default {
     sessionStorage.setItem('AIRDROP_BANNER', 'true');
     this.getAirdropData(this.wallets);
     this.currentAddress = this.wallets[0].address;
+    this.currentChainId = this.wallets[0].chainId;
     this.currentId = 0;
   },
   watch: {
@@ -316,6 +333,7 @@ export default {
     },
     wallets() {
       this.currentAddress = this.wallets[0].address;
+      this.currentChainId = this.wallets[0].chainId;
       this.getAirdropData(this.wallets);
     },
   },
@@ -324,6 +342,9 @@ export default {
       window.open(
         'https://medium.com/poly-network/poly-network-celebrates-the-second-anniversary-releases-limited-edition-nfts-162423f1f632',
       );
+    },
+    openDiscord() {
+      window.open('https://discord.com/invite/y6MuEnq');
     },
     getChain(chainId) {
       return this.$store.getters.getChain(chainId);
@@ -335,6 +356,15 @@ export default {
     openWallets() {
       this.connectWalletVisible = true;
     },
+    openNFT() {
+      const claimData = this.airDropClaimNft[this.currentId];
+      if (claimData.NftDfOpenseaUrl) {
+        window.open(claimData.NftDfOpenseaUrl);
+      }
+      if (claimData.NftTbOpenseaUrl) {
+        window.open(claimData.NftTbOpenseaUrl);
+      }
+    },
     toBridge() {
       this.$router.push({
         name: 'home',
@@ -343,6 +373,7 @@ export default {
     handleCommand(command) {
       this.currentAddress = this.wallets[command].address;
       this.currentId = command;
+      this.currentChainId = this.wallets[command].chainId;
     },
     async getAirdropData($wallets) {
       const sdata = [];
@@ -362,7 +393,7 @@ export default {
         }
         this.userData = res.Users;
         console.log(res);
-        // this.getAirDropClaimData();
+        this.getAirDropClaimData();
       }
     },
     async getAirDropClaimData() {
@@ -374,18 +405,90 @@ export default {
             data.push(this.userData[i].AirDropAddr);
           }
         }
-        const res = await httpApi.getAirDropClaimData({ data });
-        this.airDropClaimNft = res.AirDropClaimNft;
-        console.log(res);
+        if (data.length > 0) {
+          const res = await httpApi.getAirDropClaimData({ data });
+          this.airDropClaimNft = res.AirDropClaimNft;
+        }
       }
     },
     async claimNft() {
+      if (this.claiming) {
+        return;
+      }
+      this.claiming = true;
       const chainId = TARGET_MAINNET ? 2 : 402;
-      console.log(this.fromWallet);
       await this.$store.dispatch('ensureChainWalletReady', chainId);
+      const walletApi = await getWalletApi(this.fromWallet.name);
       const claimData = this.airDropClaimNft[this.currentId];
-      if (claimData.NftDfContract !== '' && !claimData.IsClaimDf) {
-        console.log(this.airDropClaimNft[this.currentId]);
+      let status = SingleTransactionStatus.Pending;
+      // this.interval1 = setInterval(() => {
+      //   this.getAirDropClaimData();
+      // }, 6000);
+      try {
+        if (claimData.NftTbContract !== '' && !claimData.IsClaimTb) {
+          try {
+            const data1 = {
+              contract: claimData.NftTbContract,
+              account: this.wallets[this.currentId].addressHex,
+              tokenId: claimData.NftTbId,
+              uri: claimData.NftTbIpfsUri,
+              signature: claimData.NftTbSig,
+            };
+            const txhash = await walletApi.nftClaim(data1);
+            const txhashw = `0x${txhash}`;
+            while (true) {
+              try {
+                // eslint-disable-next-line no-await-in-loop
+                status = await walletApi.getTransactionStatus({ txhashw });
+                if (status !== SingleTransactionStatus.Pending) {
+                  break;
+                }
+                // eslint-disable-next-line no-await-in-loop
+                await delay(5000);
+              } catch (error) {
+                // ignore error
+              }
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        if (claimData.NftDfContract !== '' && !claimData.IsClaimDf) {
+          try {
+            const data = {
+              contract: claimData.NftDfContract,
+              account: this.wallets[this.currentId].addressHex,
+              tokenId: claimData.NftDfId,
+              uri: claimData.NftDfIpfsUri,
+              signature: claimData.NftDfSig,
+            };
+            debugger;
+            const txhash1 = await walletApi.nftClaim(data);
+            const txhashs = `0x${txhash1}`;
+            console.log(txhash1);
+            while (true) {
+              try {
+                // eslint-disable-next-line no-await-in-loop
+                status = await walletApi.getTransactionStatus({ txhashs });
+                if (status !== SingleTransactionStatus.Pending) {
+                  break;
+                }
+                debugger;
+                // eslint-disable-next-line no-await-in-loop
+                await delay(5000);
+              } catch (error) {
+                debugger;
+                // ignore error
+              }
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      } finally {
+        this.claiming = false;
+        // clearInterval(this.interval1);
+        this.getAirDropClaimData();
       }
     },
   },
