@@ -7,11 +7,14 @@
     <div class="airdrop-container">
       <div class="info">
         <img src="@/assets/png/airdrop.png" />
-        <div v-if="airdropStatus !== 2" class="info-title">{{ $t('airdrop.title') }}</div>
+        <div v-if="airdropStatus !== 2" class="info-title">{{ $t('airdrop.thanksTitle') }}</div>
         <div v-if="airdropStatus === 2 && !addressFlag" class="info-title">
           {{ $t('airdrop.endTitle') }}
         </div>
-        <p v-if="airdropStatus === 1 && !addressFlag">
+        <p v-if="airdropStatus === 1">
+          <span>Make sure to claim your NFT between Sep 9th and Sep 20th, 2022.</span>
+        </p>
+        <!-- <p v-if="airdropStatus === 1 && !addressFlag">
           <span>{{ $t('airdrop.desc1') }}</span>
         </p>
         <p v-if="airdropStatus === 1 && userData[currentId].Rank === 0">
@@ -26,7 +29,7 @@
           "
         >
           <span>{{ $t('airdrop.desc4') }}</span>
-        </p>
+        </p> -->
         <!-- in 1000 -->
         <div
           v-if="
@@ -293,10 +296,12 @@ export default {
         res = 0;
       }
       /* 1662606000000 */
-      if (timestamp >= 1659927600000 && timestamp < 1659927600001) {
+      /* 1662739199000 */
+      /* 202209092359 */
+      if (timestamp >= 1659927600000 && timestamp < 1662739199000) {
         res = 1;
       }
-      if (timestamp >= 1659927600001) {
+      if (timestamp >= 1662739199000) {
         res = 2;
       }
       console.log(res);
@@ -415,7 +420,7 @@ export default {
         }
         this.userData = res.Users;
         console.log(res);
-        this.getAirDropClaimData();
+        // this.getAirDropClaimData();
       }
     },
     async getAirDropClaimData() {
