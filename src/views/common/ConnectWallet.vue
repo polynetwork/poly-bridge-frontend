@@ -47,7 +47,7 @@
       </div>
       <div class="chains" v-if="$route.name == 'airdrop'">
         <CButton
-          v-for="chain in chains"
+          v-for="chain in airChains"
           :key="chain.id"
           class="chain"
           :class="{ selected: chainIdWithDefault === chain.id }"
@@ -134,7 +134,9 @@ export default {
   },
   computed: {
     chains() {
-      const arr = this.$store.getters.chains.filter(chain => chain.id !== ChainId.Poly);
+      const arr = this.$store.getters.chains.filter(
+        chain => chain.id !== ChainId.Poly && chain.id !== ChainId.Stc,
+      );
       const obj = arr[2];
       arr.splice(2, 1);
       arr.push(obj);
@@ -142,8 +144,15 @@ export default {
     },
     nftChains() {
       return this.$store.getters.chains.filter(
-        chain => chain.id !== ChainId.Poly && chain.id !== ChainId.Ont && chain.id !== ChainId.Neo,
+        chain =>
+          chain.id !== ChainId.Poly &&
+          chain.id !== ChainId.Ont &&
+          chain.id !== ChainId.Neo &&
+          chain.id !== ChainId.Stc,
       );
+    },
+    airChains() {
+      return this.$store.getters.chains.filter(chain => chain.id !== ChainId.Poly);
     },
     airdropChains() {
       return this.$store.getters.chains.filter(

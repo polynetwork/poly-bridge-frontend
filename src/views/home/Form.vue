@@ -432,7 +432,7 @@ export default {
         this.$store.getters
           .getTokensByTokenBasicName(this.tokenBasic.name)
           .map(token => this.$store.getters.getChain(token.chainId))
-          .filter(chain => chain)
+          .filter(chain => chain.id !== ChainId.Stc)
       );
     },
     fromChain() {

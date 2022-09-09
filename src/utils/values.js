@@ -607,7 +607,7 @@ export const MAIN_CHAINS = [
       : 'a5c101afa9e04e9dd2c912983795005a49e02efa',
     selfPay: false,
   },
-  /*   {
+  {
     id: ChainId.Stc,
     nativeFee: true,
     icon: require('@/assets/svg/stc.svg'),
@@ -622,7 +622,7 @@ export const MAIN_CHAINS = [
       : '0x416b32009fe49fcab1d5f2ba0153838f::CrossChainScript',
     nftFeeContractHash: '0x00000000000000000000000000000001::STC::STC',
     nftFeeName: 'STC',
-  }, */
+  },
   {
     id: ChainId.HSC,
     nativeFee: true,
