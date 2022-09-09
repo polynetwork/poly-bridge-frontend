@@ -71,6 +71,18 @@
         >
           <span>{{ $t('airdrop.desc12') }}</span>
         </p>
+        <p
+          v-if="
+            airdropStatus === 2 &&
+              userData[currentId].Rank > 0 &&
+              userData[currentId].Rank < 1001 &&
+              isNoEvm
+          "
+        >
+          Please connect your ETH wallet ({{ userData[currentId].AirDropAddr.substr(0, 8) }} ...{{
+            userData[currentId].AirDropAddr.substr(32, 100)
+          }})
+        </p>
       </div>
       <div class="data">
         <div v-if="!addressFlag" class="content">
@@ -265,6 +277,16 @@ export default {
     claimFlag() {
       return this.airDropClaimNft;
     },
+    isNoEvm() {
+      return (
+        this.currentChainId === 3 ||
+        this.currentChainId === 4 ||
+        this.currentChainId === 5 ||
+        this.currentChainId === 14 ||
+        this.currentChainId === 88 ||
+        this.currentChainId === 888
+      );
+    },
     checkFlag() {
       const checkFlagArr = [];
       for (let i = 0; i < this.wallets.length; i += 1) {
@@ -298,10 +320,10 @@ export default {
       /* 1662606000000 */
       /* 1662739199000 */
       /* 202209092359 */
-      if (timestamp >= 1659927600000 && timestamp < 1662739199000) {
+      if (timestamp >= 1659927600000 && timestamp < 1659927600001) {
         res = 1;
       }
-      if (timestamp >= 1662739199000) {
+      if (timestamp >= 1659927600001) {
         res = 2;
       }
       console.log(res);
@@ -363,8 +385,8 @@ export default {
         this.transactions = value;
       }
     },
-    wallets() {
-      console.log(this.wallets);
+    wallets(value, oldValue) {
+      console.log('this.wallets', this.wallets);
       this.currentAddress = this.wallets[0].address;
       this.currentChainId = this.wallets[0].walletChainId;
       this.getAirdropData(this.wallets);
@@ -420,7 +442,7 @@ export default {
         }
         this.userData = res.Users;
         console.log(res);
-        // this.getAirDropClaimData();
+        this.getAirDropClaimData();
       }
     },
     async getAirDropClaimData() {
