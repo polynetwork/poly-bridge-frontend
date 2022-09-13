@@ -386,10 +386,12 @@ export default {
         ) {
           res = 0;
         } else {
-          res = this.fee ? this.fee.TokenAmount : 0;
+          // res = this.fee ? this.fee.TokenAmount : 0;
+          res = 0;
         }
       } else {
-        res = this.fee ? this.fee.TokenAmount : 0;
+        // res = this.fee ? this.fee.TokenAmount : 0;
+        res = 0;
       }
       return res;
     },
