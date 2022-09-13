@@ -511,23 +511,19 @@ export default {
               uri: claimData.NftDfIpfsUri,
               signature: claimData.NftDfSig,
             };
-            debugger;
             const transactionHash = await walletApi.nftClaim(data);
             console.log(transactionHash);
             status = SingleTransactionStatus.Pending;
             while (true) {
-              debugger;
               try {
                 // eslint-disable-next-line no-await-in-loop
                 status = await walletApi.getTransactionStatus({ transactionHash });
                 if (status !== SingleTransactionStatus.Pending) {
                   break;
                 }
-                debugger;
                 // eslint-disable-next-line no-await-in-loop
                 await delay(5000);
               } catch (error) {
-                debugger;
                 // ignore error
               }
             }

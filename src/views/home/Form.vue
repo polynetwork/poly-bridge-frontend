@@ -386,10 +386,12 @@ export default {
         ) {
           res = 0;
         } else {
-          res = this.fee ? this.fee.TokenAmount : 0;
+          // res = this.fee ? this.fee.TokenAmount : 0;
+          res = 0;
         }
       } else {
-        res = this.fee ? this.fee.TokenAmount : 0;
+        // res = this.fee ? this.fee.TokenAmount : 0;
+        res = 0;
       }
       return res;
     },
@@ -408,9 +410,12 @@ export default {
           res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
           res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
         }
-        /* if (!this.fee.IsNative && this.fromChain.id === 3) {
+        if (
+          !this.fee.IsNative &&
+          (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
+        ) {
           res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-        } */
+        }
         if (res < 0) {
           res = 0;
         }
@@ -432,7 +437,7 @@ export default {
         this.$store.getters
           .getTokensByTokenBasicName(this.tokenBasic.name)
           .map(token => this.$store.getters.getChain(token.chainId))
-          .filter(chain => chain.id !== ChainId.Stc)
+          .filter(chain => chain)
       );
     },
     fromChain() {
@@ -466,7 +471,9 @@ export default {
       return (
         this.tokenMaps &&
         this.tokenMaps
-          .map(tokenMap => this.$store.getters.getChain(tokenMap.toToken.chainId))
+          .map(tokenMap =>
+            this.$store.getters.getChain(tokenMap.toToken ? tokenMap.toToken.chainId : -1),
+          )
           .filter(chain => chain)
       );
     },
@@ -704,7 +711,10 @@ export default {
         res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
         res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
       }
-      if (!this.fee.IsNative && this.fromChainId === 3) {
+      if (
+        !this.fee.IsNative &&
+        (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
+      ) {
         res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
       }
       if (res < 0) {
