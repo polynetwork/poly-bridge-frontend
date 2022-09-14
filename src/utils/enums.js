@@ -28,6 +28,7 @@ export const ChainId = {
   Heco: 7,
   Ok: TARGET_MAINNET ? 12 : 200,
   Palette: TARGET_MAINNET ? 8 : 107,
+  Palette2: TARGET_MAINNET ? 108 : 108,
   Polygon: TARGET_MAINNET ? 17 : 202,
   Arbitrum: TARGET_MAINNET ? 19 : 205,
   Optimistic: TARGET_MAINNET ? 23 : 210,
@@ -51,6 +52,7 @@ export const ChainId = {
   Celo: TARGET_MAINNET ? 36 : 960,
   CLV: TARGET_MAINNET ? 37 : 970,
   zkSync: TARGET_MAINNET ? 940 : 940,
+  Astar: TARGET_MAINNET ? 990 : 990,
   Conflux: TARGET_MAINNET ? 38 : 980,
   N3T5: TARGET_MAINNET ? 888 : 888,
 };
@@ -65,7 +67,8 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 188 : 189]: ChainId.BYTOM,
   [TARGET_MAINNET ? 1666600000 : 1666700000]: ChainId.Harmony,
   [TARGET_MAINNET ? 137 : 80001]: ChainId.Polygon,
-  [TARGET_MAINNET ? 1718 : 101]: ChainId.Palette,
+  [TARGET_MAINNET ? 1718 : 1718]: ChainId.Palette,
+  [TARGET_MAINNET ? 101 : 101]: ChainId.Palette2,
   [TARGET_MAINNET ? 42161 : 421611]: ChainId.Arbitrum,
   [TARGET_MAINNET ? 10 : 69]: ChainId.Optimistic,
   [TARGET_MAINNET ? 250 : 4002]: ChainId.Fantom,
@@ -85,6 +88,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 42220 : 44787]: ChainId.Celo,
   [TARGET_MAINNET ? 1024 : 1023]: ChainId.CLV,
   [TARGET_MAINNET ? 280 : 280]: ChainId.zkSync,
+  [TARGET_MAINNET ? 592 : 81]: ChainId.Astar,
   [TARGET_MAINNET ? 1030 : 71]: ChainId.Conflux,
 };
 
@@ -98,7 +102,8 @@ export const EthNetworkChainIdMaps = {
   [ChainId.HSC]: TARGET_MAINNET ? 70 : 70,
   [ChainId.BYTOM]: TARGET_MAINNET ? 188 : 189,
   [ChainId.Polygon]: TARGET_MAINNET ? 137 : 80001,
-  [ChainId.Palette]: TARGET_MAINNET ? 1718 : 101,
+  [ChainId.Palette]: TARGET_MAINNET ? 1718 : 1718,
+  [ChainId.Palette2]: TARGET_MAINNET ? 101 : 101,
   [ChainId.Arbitrum]: TARGET_MAINNET ? 42161 : 421611,
   [ChainId.Optimistic]: TARGET_MAINNET ? 10 : 69,
   [ChainId.Fantom]: TARGET_MAINNET ? 250 : 4002,
@@ -119,6 +124,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Celo]: TARGET_MAINNET ? 42220 : 44787,
   [ChainId.CLV]: TARGET_MAINNET ? 1024 : 1023,
   [ChainId.zkSync]: TARGET_MAINNET ? 280 : 280,
+  [ChainId.Astar]: TARGET_MAINNET ? 592 : 81,
   [ChainId.Conflux]: TARGET_MAINNET ? 1030 : 71,
 };
 

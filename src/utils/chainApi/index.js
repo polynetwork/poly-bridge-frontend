@@ -11,6 +11,7 @@ const APIS = {
   [ChainId.Ont]: () => import('./ont'),
   [ChainId.Ok]: () => import('./eth'),
   [ChainId.Palette]: () => import('./eth'),
+  [ChainId.Palette2]: () => import('./eth'),
   [ChainId.Polygon]: () => import('./eth'),
   [ChainId.Arbitrum]: () => import('./eth'),
   [ChainId.xDai]: () => import('./eth'),
@@ -39,6 +40,7 @@ const APIS = {
   [ChainId.Celo]: () => import('./eth'),
   [ChainId.CLV]: () => import('./eth'),
   [ChainId.zkSync]: () => import('./eth'),
+  [ChainId.Astar]: () => import('./eth'),
   [ChainId.Xrp]: () => import('./xrp'),
   [ChainId.Conflux]: () => import('./eth'),
 };

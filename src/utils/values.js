@@ -23,6 +23,7 @@ export const WALLETS = [
       ChainId.Ok,
       ChainId.Polygon,
       ChainId.Palette,
+      ChainId.Palette2,
       ChainId.BcsPalette,
       ChainId.BcsPalette2,
       ChainId.Milkomeda,
@@ -48,6 +49,7 @@ export const WALLETS = [
       ChainId.Celo,
       ChainId.CLV,
       ChainId.zkSync,
+      ChainId.Astar,
       ChainId.Conflux,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
@@ -974,6 +976,60 @@ export const TEST_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://zksync2-testnet.zkscan.io/'
       : 'https://zksync2-testnet.zkscan.io/',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Astar,
+    nativeFee: true,
+    icon: require('@/assets/png/astar.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://blockscout.com/astar/tx/0x{txHash}'
+      : 'https://blockscout.com/shibuya/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xdD5CcD4B40afb869F00A092Ace0255f1942185De'
+      : '0xdD5CcD4B40afb869F00A092Ace0255f1942185De',
+    dst_ccm: TARGET_MAINNET
+      ? '0xFeE651E032197770B65516EFbBdeD11483533264'
+      : '0xFeE651E032197770B65516EFbBdeD11483533264',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'ASTR',
+    symbol: TARGET_MAINNET ? 'ASTR' : 'SBY',
+    name: TARGET_MAINNET ? 'Astar Network' : 'ASTAR Shibuya Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://evm.astar.network' : 'https://evm.shibuya.astar.network',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://blockscout.com/astar/'
+      : 'https://blockscout.com/shibuya/',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Palette2,
+    nativeFee: true,
+    icon: require('@/assets/svg/plt.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
+      : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
+    nftexplorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/tx/0x{txHash}'
+      : 'http://106.75.251.68/#/chain/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xfe510c41f375e9839826def8e31a6e647f8354bc'
+      : '0xfe510c41f375e9839826def8e31a6e647f8354bc',
+    nftLockContractHash: TARGET_MAINNET
+      ? '0xc996f81548f7ea423c6d7d50ae9d135ccd30d616'
+      : '0xc996f81548f7ea423c6d7d50ae9d135ccd30d616',
+    dst_ccm: TARGET_MAINNET
+      ? '0x09ac48c414690d0e577583b7ad1174a473e32e1a'
+      : '0x09ac48c414690d0e577583b7ad1174a473e32e1a',
+    nftFeeContractHash: '0000000000000000000000000000000000000103',
+    nftFeeName: 'PLT',
+    symbol: TARGET_MAINNET ? 'PLT' : 'PLT',
+    name: TARGET_MAINNET ? 'PLT Mainnet' : 'PLT Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://testnet.palette-rpc.com:22000'
+      : 'https://testnet.palette-rpc.com:22000',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://palettescan.com/#/chain/'
+      : 'http://106.75.251.68/#/chain/',
     selfPay: true,
   },
   // {
