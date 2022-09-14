@@ -21,7 +21,6 @@ export default {
     setTokens(state, tokens) {
       state.tokenMap = tokens.reduce((pre, cur) => {
         const hash = toStandardHex(cur.hash);
-        console.log(hash);
         return {
           ...pre,
           [getStoreKey({ chainId: cur.chainId, hash })]: { ...cur, hash },

@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <CCard>
+  <CDialog v-bind="$attrs" v-on="$listeners">
     <div class="header-mobile" style="display: none">
       <div class="header-mobile-title">Connect wallet</div>
       <CButton class="header-mobile-close" @click="$emit('close')">
@@ -24,6 +24,30 @@
       <div class="chains" v-if="$route.name == 'transactions'">
         <CButton
           v-for="chain in chains"
+          :key="chain.id"
+          class="chain"
+          :class="{ selected: chainIdWithDefault === chain.id }"
+          @click="chainId = chain.id"
+          @mouseover="chainId = chain.id"
+        >
+          <img class="chain-icon" :src="chain.icon" />
+        </CButton>
+      </div>
+      <div class="chains" v-if="$route.name == 'token'">
+        <CButton
+          v-for="chain in chains"
+          :key="chain.id"
+          class="chain"
+          :class="{ selected: chainIdWithDefault === chain.id }"
+          @click="chainId = chain.id"
+          @mouseover="chainId = chain.id"
+        >
+          <img class="chain-icon" :src="chain.icon" />
+        </CButton>
+      </div>
+      <div class="chains" v-if="$route.name == 'airdrop'">
+        <CButton
+          v-for="chain in airChains"
           :key="chain.id"
           class="chain"
           :class="{ selected: chainIdWithDefault === chain.id }"
@@ -94,7 +118,7 @@
         </div>
       </transition>
     </div>
-  </CCard>
+  </CDialog>
 </template>
 
 <script>
@@ -110,11 +134,29 @@ export default {
   },
   computed: {
     chains() {
-      return this.$store.getters.chains.filter(chain => chain.id !== ChainId.Poly);
+      const arr = this.$store.getters.chains.filter(
+        chain => chain.id !== ChainId.Poly && chain.id !== ChainId.Stc,
+      );
+      const obj = arr[2];
+      arr.splice(2, 1);
+      arr.push(obj);
+      return arr;
     },
     nftChains() {
       return this.$store.getters.chains.filter(
-        chain => chain.id !== ChainId.Poly && chain.id !== ChainId.Ont && chain.id !== ChainId.Neo,
+        chain =>
+          chain.id !== ChainId.Poly &&
+          chain.id !== ChainId.Ont &&
+          chain.id !== ChainId.Neo &&
+          chain.id !== ChainId.Stc,
+      );
+    },
+    airChains() {
+      return this.$store.getters.chains.filter(chain => chain.id !== ChainId.Poly);
+    },
+    airdropChains() {
+      return this.$store.getters.chains.filter(
+        chain => chain.id !== ChainId.Poly && chain.id !== ChainId.Xrp,
       );
     },
     chainIdWithDefault() {
@@ -152,6 +194,7 @@ export default {
 .content {
   display: flex;
   min-width: 310px;
+  width: 640px;
   max-height: calc(100vh - 100px);
 }
 
@@ -200,6 +243,7 @@ export default {
 }
 
 .wallets {
+  width: 136px;
   display: flex;
   flex-direction: column;
   flex: 1;

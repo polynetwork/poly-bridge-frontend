@@ -70,6 +70,7 @@ async function queryState() {
     addressHex,
     connected: !!checksumAddress,
     chainId: NETWORK_CHAIN_ID_MAPS[Number(network)],
+    walletChainId: 2,
   });
 }
 
@@ -118,14 +119,42 @@ async function connect() {
   }
 }
 
-async function changeChain(waitChainId) {
+async function changeChain(waitChainId, chaindata) {
   try {
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: waitChainId }],
     });
   } catch (error) {
-    throw convertWalletError(error);
+    console.log('wallet', error);
+    if (error.code === 4902) {
+      try {
+        await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: waitChainId,
+              chainName: chaindata.name,
+              rpcUrls: [chaindata.rpcUrl],
+              blockExplorerUrls: [chaindata.chainExplorerUrl],
+              nativeCurrency: {
+                name: chaindata.symbol,
+                symbol: chaindata.symbol, // 2-6 characters long
+                decimals: 18,
+              },
+            },
+          ],
+        });
+      } catch (addError) {
+        if (addError.code !== -32602) {
+          throw convertWalletError(addError);
+        } else {
+          console.log(addError);
+        }
+      }
+    } else if (error.code !== -32002 && error.code !== -32602) {
+      throw convertWalletError(error);
+    }
   }
 }
 
@@ -304,12 +333,27 @@ async function lock({
     const result = await confirmLater(
       lockContract.methods
         .lock(`0x${fromTokenHash}`, toChainId, `0x${toAddressHex}`, amountInt, feeInt, 0)
+        // .lock(`0x${fromTokenHash}`, toChainId, toAddressHex, amountInt, feeInt, 0)
         .send({
           from: fromAddress,
           gas: fromChainId === 24 ? 2000000 : null,
           value:
             fromTokenHash === '0000000000000000000000000000000000000000' ? amountInt : nativefeeInt,
         }),
+    );
+    return toStandardHex(result);
+  } catch (error) {
+    throw convertWalletError(error);
+  }
+}
+
+async function nftClaim({ contract, account, tokenId, uri, signature }) {
+  try {
+    const nftContract = new web3.eth.Contract(require('@/assets/json/nftclaim.json'), contract);
+    const result = await confirmLater(
+      nftContract.methods.claim(`0x${account}`, tokenId, uri, `0x${signature}`).send({
+        from: account,
+      }),
     );
     return toStandardHex(result);
   } catch (error) {
@@ -371,4 +415,5 @@ export default {
   getTotalSupply,
   getNFTApproved,
   changeChain,
+  nftClaim,
 };

@@ -14,7 +14,7 @@
           </div>
         </div>
       </div> -->
-      <div class="title">{{ $t('home.form.title') }}</div>
+      <!-- <div class="title">{{ $t('home.form.title') }}</div> -->
       <div class="fields">
         <div class="field">
           <div class="label">{{ $t('home.form.asset') }}</div>
@@ -24,89 +24,9 @@
               <span class="select-token-basic-name">{{ tokenBasicName }}</span>
             </template>
             <CFlexSpan />
-            <img src="@/assets/svg/chevron-right.svg" />
+            <img src="@/assets/svg/down2.svg" />
           </CButton>
         </div>
-        <div class="fields-row">
-          <div class="field">
-            <div class="label">{{ $t('home.form.from') }}</div>
-            <CButton
-              class="select-chain"
-              :disabled="!tokenBasic"
-              @click="selectFromChainVisible = true"
-            >
-              <div class="select-chain-content">
-                <template v-if="fromChain">
-                  <img class="select-chain-icon" :src="fromChain.icon" />
-                  <span class="select-chain-name">
-                    {{
-                      $t('home.form.chainName', {
-                        chainName: $formatEnum(fromChainId, { type: 'chainName' }),
-                      })
-                    }}
-                  </span>
-                </template>
-                <template v-else>
-                  <img class="select-chain-icon" src="@/assets/svg/from.svg" />
-                  <span class="select-chain-name">
-                    {{ $t('home.form.chainName', { chainName: $t('home.form.from') }) }}
-                  </span>
-                </template>
-                <img class="chevron-down" src="@/assets/svg/chevron-right.svg" />
-              </div>
-            </CButton>
-            <div v-if="fromWallet" class="address">
-              <span class="address-value">
-                {{ $formatLongText(fromWallet.address, { headTailLength: 6 }) }}
-              </span>
-              <CButton @click="copy(fromWallet.address)">
-                <img src="@/assets/svg/copy.svg" />
-              </CButton>
-            </div>
-          </div>
-
-          <CButton :disabled="!toChainId" @click="exchangeFromTo">
-            <img src="@/assets/svg/exchange.svg" />
-          </CButton>
-
-          <div class="field">
-            <div class="label">{{ $t('home.form.to') }}</div>
-            <CButton
-              class="select-chain"
-              :disabled="!toChains"
-              @click="selectToChainVisible = true"
-            >
-              <div class="select-chain-content">
-                <template v-if="toChain">
-                  <img class="select-chain-icon" :src="toChain.icon" />
-                  <span class="select-chain-name">
-                    {{
-                      $t('home.form.chainName', {
-                        chainName: $formatEnum(toChainId, { type: 'chainName' }),
-                      })
-                    }}
-                  </span>
-                </template>
-                <template v-else>
-                  <img class="select-chain-icon" src="@/assets/svg/to.svg" />
-                  <span class="select-chain-name">
-                    {{ $t('home.form.chainName', { chainName: $t('home.form.to') }) }}
-                  </span>
-                </template>
-                <img class="chevron-down" src="@/assets/svg/chevron-right.svg" />
-              </div>
-            </CButton>
-            <div v-if="toWallet" class="address">
-              <span class="address-value">
-                {{ $formatLongText(toWallet.address, { headTailLength: 6 }) }}
-              </span>
-              <CButton @click="copy(toWallet.address)">
-                <img src="@/assets/svg/copy.svg" />
-              </CButton>
-            </div>
-          </div>
-        </div>
-
         <ValidationProvider
           ref="amountValidation"
           tag="div"
@@ -121,14 +41,121 @@
           }"
           v-slot="{ errors }"
         >
-          <div class="label">{{ $t('home.form.amount') }}</div>
-          <div class="input">
-            <CInput class="input-inner" v-model="amount" />
-            <CButton v-if="balance" class="use-max" @click="transferAll">
-              {{ $t('home.form.max') }}
+          <div class="fields-row">
+            <div class="field">
+              <div class="label">
+                <div class="label-left">
+                  <div class="label-name">{{ $t('home.form.from') }}</div>
+                  <div v-if="fromWallet" class="address">
+                    <span class="address-value">
+                      {{ $formatLongText(fromWallet.address, { headTailLength: 6 }) }}
+                    </span>
+                    <CButton @click="copy(fromWallet.address)">
+                      <img class="copy-icon" src="@/assets/svg/copy.svg" />
+                    </CButton>
+                  </div>
+                </div>
+                <div class="label-right"></div>
+              </div>
+              <div class="field-wrapper">
+                <CButton
+                  class="select-chain"
+                  :disabled="!tokenBasic"
+                  @click="selectFromChainVisible = true"
+                >
+                  <div class="select-chain-content">
+                    <template v-if="fromChain">
+                      <img class="select-chain-icon" :src="fromChain.icon" />
+                      <span class="select-chain-name">
+                        {{
+                          $t('home.form.chainName', {
+                            chainName: $formatEnum(fromChainId, { type: 'chainName' }),
+                          })
+                        }}
+                      </span>
+                    </template>
+                    <template v-else>
+                      <img class="select-chain-icon" src="@/assets/svg/from.svg" />
+                      <span class="select-chain-name">
+                        {{ $t('home.form.chainName', { chainName: $t('home.form.from') }) }}
+                      </span>
+                    </template>
+                    <img class="chevron-right" src="@/assets/svg/down2.svg" />
+                  </div>
+                </CButton>
+                <!-- <div class="input">
+                  <CInput class="input-inner" v-model="amount" placeholder="0.00" />
+                  <CButton v-if="balance" class="use-max" @click="transferAll">
+                    {{ $t('home.form.max') }}
+                  </CButton>
+                </div> -->
+              </div>
+              <!-- <div class="input-error">{{ errors[0] }}</div> -->
+            </div>
+
+            <CButton class="exchange" :disabled="!toChainId" @click="exchangeFromTo">
+              <img class="exchange-icon" src="@/assets/svg/exchange.svg" />
             </CButton>
+            <div class="field">
+              <div class="label">
+                <div class="label-left">
+                  <div class="label-name">{{ $t('home.form.to') }}</div>
+                  <div v-if="toWallet" class="address">
+                    <span class="address-value">
+                      {{ $formatLongText(toWallet.address, { headTailLength: 6 }) }}
+                    </span>
+                    <CButton @click="copy(toWallet.address)">
+                      <img src="@/assets/svg/copy.svg" />
+                    </CButton>
+                  </div>
+                </div>
+              </div>
+              <div class="field-wrapper">
+                <CButton
+                  class="select-chain"
+                  :disabled="!toChains"
+                  @click="selectToChainVisible = true"
+                >
+                  <div class="select-chain-content">
+                    <template v-if="toChain">
+                      <img class="select-chain-icon" :src="toChain.icon" />
+                      <span class="select-chain-name">
+                        {{
+                          $t('home.form.chainName', {
+                            chainName: $formatEnum(toChainId, { type: 'chainName' }),
+                          })
+                        }}
+                      </span>
+                    </template>
+                    <template v-else>
+                      <img class="select-chain-icon" src="@/assets/svg/to.svg" />
+                      <span class="select-chain-name">
+                        {{ $t('home.form.chainName', { chainName: $t('home.form.to') }) }}
+                      </span>
+                    </template>
+                    <img class="chevron-right" src="@/assets/svg/down2.svg" />
+                  </div>
+                </CButton>
+              </div>
+            </div>
           </div>
-          <div class="input-error">{{ errors[0] }}</div>
+          <div class="field">
+            <div class="label">
+              <div class="label-left">
+                <div class="label-name">{{ $t('home.form.amount') }}</div>
+              </div>
+              <div class="label-right"></div>
+            </div>
+            <div class="field-wrapper">
+              <div class="input">
+                <CInput class="input-inner" v-model="amount" placeholder="0.00" />
+                <CButton v-if="balance" class="use-max" @click="transferAll">
+                  {{ $t('home.form.max') }}
+                </CButton>
+              </div>
+            </div>
+            <div class="input-error">{{ errors[0] }}</div>
+          </div>
           <div
             v-if="
               fee &&
@@ -164,6 +191,19 @@
               </CTooltip>
             </el-checkbox>
           </div> -->
+          <div v-if="balance" class="balance">
+            <span class="label">{{ $t('home.form.balance') }}:</span>
+            <CFlexSpan />
+            <span class="value"> {{ $formatNumber(balance) }} </span>
+            <img class="fee-icon" :src="tokenBasic.meta" />
+            <span class="fee-token">{{ fromToken.name }}</span>
+            <CTooltip v-if="fromToken.tokenBasicName === 'O3'">
+              <img class="tooltip-icon" src="@/assets/svg/question.svg" />
+              <template #content>
+                {{ $t('home.form.o3ToolTip') }}
+              </template>
+            </CTooltip>
+          </div>
           <div v-if="fee" class="fee">
             <span class="label">{{ $t('home.form.maxamount') }}</span>
             <CTooltip>
@@ -176,17 +216,6 @@
             <span class="fee-value">{{ $formatNumber(fee.Balance) }}</span>
             <img class="fee-icon" :src="tokenBasic.meta" />
             <span class="fee-token">{{ fromToken.name }}</span>
-          </div>
-          <div v-if="balance" class="balance">
-            <span class="label">{{ $t('home.form.balance') }}</span>
-            <CFlexSpan />
-            <span class="value"> {{ $formatNumber(balance) }} {{ fromToken.name }} </span>
-            <CTooltip v-if="fromToken.tokenBasicName === 'O3'">
-              <img class="tooltip-icon" src="@/assets/svg/question.svg" />
-              <template #content>
-                {{ $t('home.form.o3ToolTip') }}
-              </template>
-            </CTooltip>
           </div>
           <div v-if="fee" class="fee">
             <span class="label">{{ $t('home.form.fee') }}</span>
@@ -216,35 +245,42 @@
           </div>
         </ValidationProvider>
       </div>
-
-      <CSubmitButton
-        v-if="fromChain && toChain && !(fromWallet && toWallet)"
-        @click="connectWalletVisible = true"
-      >
-        {{ $t('home.form.connectWallet') }}
-      </CSubmitButton>
-      <div v-else-if="!invalid && fromToken && toToken && needApproval" class="approve-wrapper">
-        <el-checkbox v-model="approveInfinityChecked"
-          >{{ $t('home.form.approveInfinity') }}
-          <CTooltip>
-            <img class="tooltip-icon" src="@/assets/svg/question.svg" />
-            <template #content>
-              {{ $t('home.form.approveInfinitytip') }}
-            </template>
-          </CTooltip>
-        </el-checkbox>
-        <CSubmitButton :loading="approving" @click="approve">
-          {{ approving ? $t('buttons.approving') : $t('buttons.approve') }}
+      <div v-if="healthFlag">
+        <CSubmitButton
+          v-if="fromChain && toChain && !(fromWallet && toWallet)"
+          @click="connectWalletVisible = true"
+        >
+          {{ $t('home.form.connectWallet') }}
+        </CSubmitButton>
+        <div v-else-if="!invalid && fromToken && toToken && needApproval" class="approve-wrapper">
+          <el-checkbox v-model="approveInfinityChecked"
+            >{{ $t('home.form.approveInfinity') }}
+            <CTooltip>
+              <img class="tooltip-icon" src="@/assets/svg/question.svg" />
+              <template #content>
+                {{ $t('home.form.approveInfinitytip') }}
+              </template>
+            </CTooltip>
+          </el-checkbox>
+          <CSubmitButton :loading="approving" @click="approve">
+            {{ approving ? $t('buttons.approving') : $t('buttons.approve') }}
+          </CSubmitButton>
+        </div>
+        <CSubmitButton
+          v-else
+          :disabled="invalid || !(fromToken && toToken)"
+          @click="next"
+          class="button-submit"
+        >
+          {{ $t('buttons.next') }}
         </CSubmitButton>
       </div>
-      <CSubmitButton
-        v-else
-        :disabled="invalid || !(fromToken && toToken)"
-        @click="next"
-        class="button-submit"
-      >
-        {{ $t('buttons.next') }}
-      </CSubmitButton>
+      <div v-else>
+        <div v-if="invalid || !valid">
+          Poly Bridge is suspended now due to network problems. We will resume services once the
+          network is stable. Sorry for the inconvenience.
+        </div>
+      </div>
     </div>
 
     <div class="history">
@@ -287,10 +323,12 @@
       :visible.sync="transactionDetailsVisible"
       :confirmingData="confirmingData"
     />
+    <AirDrop :visible.sync="airDropVisible" />
   </ValidationObserver>
 </template>
 
 <script>
+import httpApi from '@/utils/httpApi';
 import BigNumber from 'bignumber.js';
 import copy from 'clipboard-copy';
 import { v4 as uuidv4 } from 'uuid';
@@ -298,9 +336,11 @@ import { DEFAULT_TOKEN_BASIC_NAME } from '@/utils/values';
 import { ChainId } from '@/utils/enums';
 import TransactionDetails from '@/views/transactions/Details';
 import { getWalletApi } from '@/utils/walletApi';
+import { toStandardHex } from '@/utils/convertors';
 import SelectTokenBasic from './SelectTokenBasic';
 import SelectChain from './SelectChain';
 import ConnectWallet from './ConnectWallet';
+import AirDrop from './Airdrop';
 import Confirm from './Confirm';
 
 export default {
@@ -311,6 +351,7 @@ export default {
     ConnectWallet,
     Confirm,
     TransactionDetails,
+    AirDrop,
   },
   data() {
     return {
@@ -331,6 +372,8 @@ export default {
       approveInfinityChecked: false,
       selfPayChecked: false,
       confirmUuid: uuidv4(),
+      healthFlag: true,
+      airDropVisible: false,
     };
   },
   computed: {
@@ -343,16 +386,18 @@ export default {
         ) {
           res = 0;
         } else {
-          res = this.fee ? this.fee.TokenAmount : 0;
+          // res = this.fee ? this.fee.TokenAmount : 0;
+          res = 0;
         }
       } else {
-        res = this.fee ? this.fee.TokenAmount : 0;
+        // res = this.fee ? this.fee.TokenAmount : 0;
+        res = 0;
       }
       return res;
     },
     maxAmount() {
       let res;
-      if (this.fee && this.tofee) {
+      if (this.fee) {
         if (Number(this.fee.Balance) > Number(this.balance)) {
           res = this.balance;
         } else {
@@ -361,12 +406,15 @@ export default {
         if (this.fromToken.name === 'C' && res > 2000000000000) {
           res = 2000000000000;
         }
+        if (this.fee.IsNative) {
+          res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
+          res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
+        }
         if (
-          this.fromToken.hash === '0000000000000000000000000000000000000000' ||
-          this.fromToken.hash === 'deaddeaddeaddeaddeaddeaddeaddeaddead0000'
+          !this.fee.IsNative &&
+          (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
         ) {
           res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-          res = new BigNumber(res).minus(this.tofee.TokenAmount).toNumber();
         }
         if (res < 0) {
           res = 0;
@@ -423,7 +471,9 @@ export default {
       return (
         this.tokenMaps &&
         this.tokenMaps
-          .map(tokenMap => this.$store.getters.getChain(tokenMap.toToken.chainId))
+          .map(tokenMap =>
+            this.$store.getters.getChain(tokenMap.toToken ? tokenMap.toToken.chainId : -1),
+          )
           .filter(chain => chain)
       );
     },
@@ -489,17 +539,17 @@ export default {
       }
       return null;
     },
-    getToFeeParams() {
-      if (this.toToken && this.fromChainId) {
-        return {
-          fromChainId: this.toChainId,
-          fromTokenHash: this.toToken.hash,
-          toChainId: this.fromChainId,
-          toTokenHash: this.toToken.hash,
-        };
-      }
-      return null;
-    },
+    // getToFeeParams() {
+    //   if (this.toToken && this.fromChainId) {
+    //     return {
+    //       fromChainId: this.toChainId,
+    //       fromTokenHash: this.toToken.hash,
+    //       toChainId: this.fromChainId,
+    //       toTokenHash: this.toToken.hash,
+    //     };
+    //   }
+    //   return null;
+    // },
     getExpectTimeParams() {
       if (this.fromToken && this.toChainId) {
         return {
@@ -517,8 +567,16 @@ export default {
     fee() {
       return this.getFeeParams && this.$store.getters.getFee(this.getFeeParams);
     },
-    tofee() {
-      return this.getToFeeParams && this.$store.getters.getFee(this.getToFeeParams);
+    // tofee() {
+    //   return this.getToFeeParams && this.$store.getters.getFee(this.getToFeeParams);
+    // },
+    getChainsHealthParams() {
+      const arr = [];
+      arr.push(0);
+      if (this.fromChain) {
+        arr.push(this.fromChainId);
+      }
+      return arr;
     },
   },
   watch: {
@@ -533,11 +591,11 @@ export default {
         this.$store.dispatch('getFee', value);
       }
     },
-    getToFeeParams(value) {
-      if (value) {
-        this.$store.dispatch('getFee', value);
-      }
-    },
+    // getToFeeParams(value) {
+    //   if (value) {
+    //     this.$store.dispatch('getFee', value);
+    //   }
+    // },
     getExpectTimeParams(value) {
       if (value) {
         this.$store.dispatch('getExpectTime', value);
@@ -565,7 +623,12 @@ export default {
     },
   },
   created() {
+    if (!(sessionStorage.getItem('AIRDROP_BANNER') === 'true')) {
+      this.airDropVisible = true;
+      sessionStorage.setItem('AIRDROP_BANNER', 'true');
+    }
     this.$store.dispatch('getTokenBasics');
+    this.getChainHealth();
     this.interval = setInterval(() => {
       if (
         this.getBalanceParams &&
@@ -582,11 +645,25 @@ export default {
         this.$store.dispatch('getAllowance', this.getAllowanceParams);
       }
     }, 5000);
+    this.interval1 = setInterval(() => {
+      this.getChainHealth();
+    }, 60000);
   },
   beforeDestroy() {
     clearInterval(this.interval);
+    clearInterval(this.interval1);
   },
   methods: {
+    async getChainHealth() {
+      const chindIds = this.getChainsHealthParams;
+      const res = await httpApi.getHealthData({ chindIds });
+      const polyHealth = res.Result[0];
+      let tempFlag = polyHealth;
+      if (this.fromChainId) {
+        tempFlag = tempFlag && res.Result[this.fromChainId];
+      }
+      this.healthFlag = tempFlag;
+    },
     changeTokenBasicName(tokenBasicName) {
       this.tokenBasicName = tokenBasicName;
       this.fromChainId = null;
@@ -597,10 +674,12 @@ export default {
       this.fromChainId = chainId;
       this.toChainId = null;
       this.clearAmount();
+      this.getChainHealth();
     },
     changeToChainId(chainId) {
       this.toChainId = chainId;
       this.clearAmount();
+      this.getChainHealth();
     },
     async exchangeFromTo() {
       await this.$store.dispatch('getTokenMaps', {
@@ -615,6 +694,7 @@ export default {
         this.toChainId = null;
       }
       this.clearAmount();
+      this.getChainHealth();
     },
     copy(text) {
       copy(text);
@@ -627,12 +707,15 @@ export default {
       } else {
         res = this.fee.Balance;
       }
+      if (this.fee.IsNative) {
+        res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
+        res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
+      }
       if (
-        this.fromToken.hash === '0000000000000000000000000000000000000000' ||
-        this.fromToken.hash === 'deaddeaddeaddeaddeaddeaddeaddeaddead0000'
+        !this.fee.IsNative &&
+        (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
       ) {
         res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-        res = new BigNumber(res).minus(this.tofee.TokenAmount).toNumber();
       }
       if (res < 0) {
         this.$message.error(this.$t('errors.wallet.INSUFFICIENT_FUNDS'));
@@ -641,9 +724,29 @@ export default {
       this.amount = res;
       this.$nextTick(() => this.$refs.amountValidation.validate());
     },
+    async getWrapperCheck() {
+      let flag = false;
+      const chindId = this.fromChainId;
+      const res = await httpApi.getWrapperCheck({ chindId });
+      const arr = [];
+      for (let i = 0; i < res.Wrapper.length; i += 1) {
+        arr.push(toStandardHex(res.Wrapper[i]));
+      }
+      const index = arr.indexOf(this.fromChain.lockContractHash);
+      if (index > -1) {
+        flag = true;
+      }
+      return flag;
+    },
     async approve() {
       await this.$store.dispatch('ensureChainWalletReady', this.fromChainId);
       // const InfinityAmount = 9999999999999
+      const flag = await this.getWrapperCheck();
+      if (!flag) {
+        this.$message.error('wrapper contract error');
+        this.packing = false;
+        return;
+      }
       try {
         this.approving = true;
         const walletApi = await getWalletApi(this.fromWallet.name);
@@ -779,10 +882,10 @@ export default {
 
 .card {
   box-sizing: border-box;
-  width: 452px;
-  padding: 40px 50px 54px;
-  background: #171f31;
-  box-shadow: 0px 2px 18px 7px rgba(#000000, 0.1);
+  width: 640px;
+  //padding: 40px 50px 54px;
+  //background: #171f31;
+  //box-shadow: 0px 2px 18px 7px rgba(#000000, 0.1);
   border-radius: 10px;
   position: relative;
 }
@@ -814,23 +917,51 @@ export default {
   @include child-margin-v(20px);
   @include next-margin-v(40px);
 }
+.field-wrapper {
+  display: flex;
+  background: rgba(19, 27, 46, 1);
+  border-radius: 24px;
+  margin-top: 15px;
+  height: 100px;
+}
 
 .fields-row {
   display: flex;
-  @include child-margin-h(18px);
+  flex-direction: row;
+  justify-content: space-between;
+  @include child-margin-h(0px);
 }
 
+.fields-row .field {
+  width: 300px;
+  flex: inherit;
+}
 .field {
   flex: 1;
-  @include child-margin-v(10px);
+  @include child-margin-v(15px);
 }
 
 .label {
-  opacity: 0.6;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 16px;
+  line-height: 21px;
+  display: flex;
 }
-
+.label-left {
+  display: flex;
+  width: 33%;
+}
+.label-left {
+  flex: 1;
+  display: flex;
+}
+.label-name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+}
+.copy-icon {
+}
 .value {
   font-size: 10px;
 }
@@ -839,83 +970,134 @@ export default {
   display: flex;
   align-items: center;
   width: stretch;
-  height: 40px;
-  padding: 0 14px;
-  background: rgba(#000000, 0.26);
-  border-radius: 4px;
+  height: 100px;
+  padding: 30px;
+  background: rgba(19, 27, 46, 1);
+  border-radius: 24px;
   @include child-margin-h(8px);
 }
 
 .select-token-basic-icon {
-  width: 20px;
-  border-radius: 10px;
+  width: 30px;
+  border-radius: 15px;
 }
 
 .select-token-basic-name {
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .select-chain {
   width: 100%;
+  padding: 35px 0 35px 30px;
+  display: flex;
+  align-items: center;
 }
 
 .select-chain-content {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   width: stretch;
-  padding: 15px;
-  border: 1px solid rgba(#ffffff, 0.1);
-  border-radius: 4px;
-  background: rgba(#ffffff, 0.04);
+  // padding: 15px;
+  // border: 1px solid rgba(#ffffff, 0.1);
+  // border-radius: 4px;
+  // background: rgba(#ffffff, 0.04);
 }
 
 .select-chain-icon {
-  width: 40px;
-  @include next-margin-v(8px);
+  width: 30px;
+  @include next-margin-v(0px);
 }
 
 .select-chain-name {
-  font-size: 14px;
-  white-space: pre-line;
+  font-size: 18px;
+  line-height: 27px;
   text-align: left;
+  margin-left: 10px;
 }
 
 .address {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: 10px;
 }
-
+.address > .c-button {
+  display: flex;
+}
 .address-value {
-  font-size: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-right: 10px;
 }
 
 .chevron-down {
   align-self: flex-end;
 }
+.chevron-right {
+  margin-left: 10px;
+}
 
 .input {
   display: flex;
-  padding: 18px 14px;
-  background: rgba(#000000, 0.26);
+  align-items: center;
+  padding: 30px;
+  background: rgba(#000000, 0);
   border-radius: 4px;
+  text-align: end !important;
+  width: 100%;
+  box-sizing: border-box;
 }
-
+.input-inner {
+  text-align: start !important;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 400;
+  font-family: 'DIN Pro';
+}
+.input-show {
+  opacity: 0.6;
+}
 .input-error {
   color: $--color-danger;
   font-size: 12px;
+  text-align: right;
 }
 
 .use-max {
+  margin-left: 10px;
   padding: 5px;
   border-radius: 4px;
   color: rgba(#ffffff, 0.6);
   background: rgba(#ffffff, 0.05);
   font-weight: 600;
   font-size: 12px;
+  height: 20px;
 }
 
+.exchange {
+  margin-top: 34px;
+}
+.exchange-icon {
+  height: 15px;
+}
+
+.balance > .label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.3);
+}
+.balance > .value {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 1);
+}
+.fee > .label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.3);
+}
+.fee > .value {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 1);
+}
 .balance,
 .fee {
   display: flex;
@@ -961,6 +1143,26 @@ export default {
   }
   .chevron-down {
     margin-top: -12px;
+  }
+
+  .fields-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .fields-row > .field {
+    width: 100%;
+  }
+  .exchange-icon {
+    transform: rotate(90deg);
+  }
+  .header {
+    padding-right: 10px;
+  }
+  .footer {
+    box-sizing: content-box;
+  }
+  .form > .card {
+    padding: 20px 10px;
   }
 }
 </style>

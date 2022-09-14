@@ -6,7 +6,10 @@
     </div>
     <div class="content">
       <div class="content-inner">
-        <div class="title">{{ $t('transactions.index.title') }}</div>
+        <div class="title">
+          <CLink class="back" :to="{ name: 'home' }"><i class="el-icon-back"></i> Back</CLink>
+          <span>{{ $t('transactions.index.title') }}</span>
+        </div>
 
         <div class="table-wrapper">
           <ElTable :data="transactions.items" class="table">
@@ -31,7 +34,7 @@
                   })
                 "
                 target="_blank"
-                :disabled="!row.fromTransactionHash"
+                :disabled="!row.fromTransactionHash || row.fromChainId === 970"
               >
                 {{
                   $t('transactions.index.hash', {
@@ -60,7 +63,7 @@
                   })
                 "
                 target="_blank"
-                :disabled="!row.toTransactionHash"
+                :disabled="!row.toTransactionHash || row.toChainId === 970"
               >
                 {{
                   $t('transactions.index.hash', {
@@ -77,7 +80,7 @@
               {{ $formatNumber(row.amount) }} {{ row.tokenBasicName }}
             </ElTableColumn>
             <ElTableColumn #default="{ row }" min-width="120" :label="$t('transactions.index.fee')">
-              {{ $formatNumber(row.fee) }} {{ row.txfeeToken.name }}
+              {{ $formatNumber(row.fee) }} {{ row.txfeeToken ? row.txfeeToken.name : '' }}
             </ElTableColumn>
             <!-- <ElTableColumn :label="$t('transactions.index.asset')"
                            prop="tokenBasicName" /> -->
@@ -140,6 +143,7 @@ export default {
       transactions: {
         items: [],
         pageCount: 0,
+        total: 0,
       },
     };
   },
@@ -158,9 +162,11 @@ export default {
       };
     },
     netTransactions() {
-      console.log(this.$store.getters.getTransactions(this.getTransactionsParams));
       return this.$store.getters.getTransactions(this.getTransactionsParams) || {};
     },
+  },
+  created() {
+    this.$store.dispatch('getTokenBasics');
   },
   watch: {
     getTransactionsParams: {
@@ -173,10 +179,7 @@ export default {
     },
     netTransactions(value, oldValue) {
       if (oldValue.items) {
-        if (value.items.length >= oldValue.items.length) {
-          console.log('value.items.length');
-          console.log(value.items.length);
-          console.log(oldValue.items.length);
+        if (value.total >= this.transactions.total) {
           this.transactions = value;
         }
       } else {
@@ -237,7 +240,21 @@ export default {
 }
 
 .title {
-  font-size: 20px;
+  font-size: 32px;
+  line-height: 64px;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+  .back {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+  }
 }
 
 .table-wrapper {
@@ -291,13 +308,19 @@ export default {
   .content {
     margin-top: 40px;
     .title {
-      display: none;
-      // margin-top: 20px;
-      // text-align: center;
+      margin: 30px 0 10px;
+      span {
+        display: none;
+        // margin-top: 20px;
+        // text-align: center;
+      }
     }
     .content-inner {
       margin-top: 0;
     }
+  }
+  .table-wrapper {
+    margin-top: 60px !important;
   }
 }
 </style>

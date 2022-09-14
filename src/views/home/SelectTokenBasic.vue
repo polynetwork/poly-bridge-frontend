@@ -1,8 +1,15 @@
 <template>
-  <CDrawer v-bind="$attrs" v-on="$listeners">
+  <CDialog v-bind="$attrs" v-on="$listeners">
     <div class="content">
       <div class="header">
-        <div class="title">{{ $t('home.selectTokenBasic.title') }}</div>
+        <div class="title">
+          {{ $t('home.selectTokenBasic.title') }}
+          <img
+            class="close-btn"
+            src="@/assets/svg/close.svg"
+            @click="$emit('update:visible', false)"
+          />
+        </div>
         <div class="input">
           <CInput
             v-model="keyword"
@@ -30,7 +37,7 @@
         <div
           v-for="tokenBasic in filteredTokenBasics"
           :key="tokenBasic.name"
-          class="token-basic"
+          :class="tokenBasicName === tokenBasic.name ? 'token-basic select' : 'token-basic'"
           @click="select(tokenBasic)"
         >
           <span class="token-basic-left">
@@ -41,7 +48,7 @@
         </div>
       </div>
     </div>
-  </CDrawer>
+  </CDialog>
 </template>
 
 <script>
@@ -97,7 +104,20 @@ export default {
 }
 
 .title {
+  font-size: 24px;
+  line-height: 36px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .close-btn {
+    width: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 }
 
 .input {
@@ -123,9 +143,9 @@ export default {
 }
 
 .popular-token-basic {
-  height: 30px;
+  height: 36px;
   padding: 0 16px;
-  border-radius: 15px;
+  border-radius: 8px;
   background: rgba(#000000, 0.3);
   border: 1px solid transparent;
   overflow: hidden;
@@ -148,15 +168,15 @@ export default {
 }
 
 .hint {
-  padding: 0 50px;
-  opacity: 0.8;
-  font-size: 12px;
+  padding: 0 40px;
+  opacity: 0.6;
+  font-size: 16px;
   @include next-margin-v(17px);
 }
 
 .scroll {
   flex: 1;
-  padding: 8px 10px;
+  padding: 8px 20px;
   overflow-y: auto;
   @include scroll-bar(rgba(#fff, 0.2), transparent);
 }
@@ -167,7 +187,8 @@ export default {
   align-items: center;
   justify-content: space-between;
   height: 56px;
-  padding: 0 40px;
+  padding: 0 20px;
+  border-radius: 8px;
   transition: all 0.3s;
   @include child-margin-h(16px);
 
@@ -175,6 +196,10 @@ export default {
     background: rgba(#000000, 0.3);
     opacity: 0.8;
   }
+}
+.select {
+  background: rgba(#000000, 0.3);
+  opacity: 0.8;
 }
 
 .token-basic-left {
@@ -192,9 +217,11 @@ export default {
 @media screen and (max-width: 900px) {
   .content {
     width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
   }
   .header {
-    padding: 80px 20px 40px;
+    padding: 80px 0px 40px !important;
   }
   .hint {
     padding: 0 20px;

@@ -83,6 +83,46 @@ export default {
     });
     return result;
   },
+  async getHealthData({ chindIds }) {
+    const result = await request({
+      method: 'post',
+      url: '/chainhealth',
+      data: {
+        ChainIds: chindIds,
+      },
+    });
+    return result;
+  },
+  async getWrapperCheck({ chindId }) {
+    const result = await request({
+      method: 'post',
+      url: '/wrappercheck',
+      data: {
+        ChainId: chindId,
+      },
+    });
+    return result;
+  },
+  async getAirDropData({ sdata }) {
+    const result = await request({
+      method: 'post',
+      url: '/airdropofaddress',
+      data: {
+        Users: sdata,
+      },
+    });
+    return result;
+  },
+  async getAirDropClaimData({ data }) {
+    const result = await request({
+      method: 'post',
+      url: '/airdropclaim',
+      data: {
+        AirDropAddrs: data,
+      },
+    });
+    return result;
+  },
   async getExpectTime({ fromChainId, toChainId }) {
     const result = await request({
       method: 'post',
@@ -108,6 +148,7 @@ export default {
     return {
       items: transactions.map(mapTransactionToDo),
       pageCount: result.TotalPage,
+      total: result.TotalCount,
     };
   },
   async getTransaction({ hash }) {
@@ -184,7 +225,7 @@ export default {
     return result;
   },
   async getNftFee(params) {
-    const result = await nftRequest({
+    const result = await request({
       method: 'post',
       url: '/getfee',
       data: {
@@ -210,6 +251,7 @@ export default {
     return {
       items: transactions.map(mapTransactionToDo),
       pageCount: result.data.TotalPage,
+      total: result.data.TotalCount,
     };
   },
   async getNftTransaction({ hash }) {

@@ -1,5 +1,5 @@
 <template>
-  <CDrawer
+  <CDialog
     v-bind="$attrs"
     :closeOnClickModal="!confirming"
     :closeOnPressEscape="!confirming"
@@ -7,7 +7,14 @@
   >
     <transition v-if="confirmingData" name="fade" mode="out-in">
       <div class="content">
-        <div class="title">{{ $t('home.confirm.title') }}</div>
+        <div class="title">
+          {{ $t('home.confirm.title') }}
+          <img
+            class="close-btn"
+            src="@/assets/svg/close.svg"
+            @click="$emit('update:visible', false)"
+          />
+        </div>
         <CDivider />
         <div v-if="!packing" class="scroll">
           <div class="fields">
@@ -103,14 +110,17 @@
         </div>
       </div>
     </transition>
-  </CDrawer>
+  </CDialog>
 </template>
 
 <script>
+import httpApi from '@/utils/httpApi';
 import BigNumber from 'bignumber.js';
+import { HttpError } from '@/utils/errors';
 import delay from 'delay';
 import { SingleTransactionStatus } from '@/utils/enums';
 import { getWalletApi } from '@/utils/walletApi';
+import { toStandardHex } from '@/utils/convertors';
 
 export default {
   name: 'Confirm',
@@ -122,6 +132,8 @@ export default {
     return {
       confirming: false,
       packing: false,
+      confirmFlag: false,
+      feeFlag: false,
     };
   },
   computed: {
@@ -159,14 +171,15 @@ export default {
       );
     },
     receivingAmount() {
-      let res;
-      if (this.fromChain.nftFeeName && this.fromChain.nftFeeName !== 'PLT') {
-        res = this.confirmingData && new BigNumber(this.confirmingData.amount).toString();
-      } else {
-        res =
-          this.confirmingData &&
-          new BigNumber(this.confirmingData.amount).minus(this.confirmingData.fee).toString();
-      }
+      // let res;
+      // if (this.fromChain.nftFeeName && this.fromChain.nftFeeName !== 'PLT') {
+      //   res = this.confirmingData && new BigNumber(this.confirmingData.amount).toString();
+      // } else {
+      //   res =
+      //     this.confirmingData &&
+      //     new BigNumber(this.confirmingData.amount).minus(this.confirmingData.fee).toString();
+      // }
+      const res = this.confirmingData && new BigNumber(this.confirmingData.amount).toString();
       return res;
     },
     payAmount() {
@@ -180,7 +193,9 @@ export default {
           res = this.confirmingData && new BigNumber(this.confirmingData.amount).toString();
         }
       } else {
-        res = this.confirmingData && new BigNumber(this.confirmingData.amount).toString();
+        res =
+          this.confirmingData &&
+          new BigNumber(this.confirmingData.amount).plus(this.confirmingData.fee).toString();
       }
       return res;
     },
@@ -192,9 +207,47 @@ export default {
     },
   },
   methods: {
+    async getWrapperCheck() {
+      let flag = false;
+      const chindId = this.confirmingData.fromChainId;
+      const res = await httpApi.getWrapperCheck({ chindId });
+      const arr = [];
+      if (chindId !== 223) {
+        for (let i = 0; i < res.Wrapper.length; i += 1) {
+          arr.push(toStandardHex(res.Wrapper[i]));
+        }
+        const index = arr.indexOf(this.fromChain.lockContractHash);
+        if (index > -1) {
+          flag = true;
+        }
+      } else {
+        for (let i = 0; i < res.Wrapper.length; i += 1) {
+          arr.push(res.Wrapper[i]);
+        }
+        const index1 = arr.indexOf(this.fromChain.WrapperContract);
+        const index2 = arr.indexOf(this.fromChain.lockProxyContractHash);
+        if (index1 > -1) {
+          flag = true;
+        }
+        if (index2 > -1) {
+          flag = true;
+        }
+      }
+      return flag;
+    },
     async confirm() {
+      if (this.confirmFlag) {
+        return;
+      }
+      this.confirmFlag = true;
       await this.$store.dispatch('ensureChainWalletReady', this.confirmingData.fromChainId);
       console.log(this.confirmingData);
+      const flag = await this.getWrapperCheck();
+      if (!flag) {
+        this.$message.error('wrapper contract error');
+        this.packing = false;
+        return;
+      }
       try {
         this.confirming = true;
         const walletApi = await getWalletApi(this.fromWallet.name);
@@ -214,7 +267,6 @@ export default {
           transactionHash,
           transactionStatus: status,
         });
-
         // eslint-disable-next-line no-constant-condition
         while (true) {
           try {
@@ -229,6 +281,39 @@ export default {
             // ignore error
           }
         }
+        if (this.confirmingData.fromChainId === 223 || this.confirmingData.fromChainId === 27) {
+          try {
+            const feeTransactionHash = await walletApi.payFee({
+              fromAddress: this.confirmingData.fromAddress,
+              fromChainId: this.confirmingData.fromChainId,
+              fromTokenHash: this.confirmingData.fromTokenHash,
+              toChainId: this.confirmingData.toChainId,
+              toAddress: this.confirmingData.toAddress,
+              amount: this.confirmingData.fee,
+              lockTxHash: transactionHash,
+            });
+            while (true) {
+              try {
+                // eslint-disable-next-line no-await-in-loop
+                status = await walletApi.getTransactionStatus({ feeTransactionHash });
+                if (status !== SingleTransactionStatus.Pending) {
+                  break;
+                }
+                // eslint-disable-next-line no-await-in-loop
+                await delay(5000);
+              } catch (error) {
+                // ignore error
+              }
+            }
+          } catch (error) {
+            if (error instanceof HttpError) {
+              if (error.code === HttpError.CODES.BAD_REQUEST) {
+                return;
+              }
+            }
+            throw error;
+          }
+        }
         this.$emit('update:confirmingData', {
           ...this.confirmingData,
           transactionHash,
@@ -237,6 +322,7 @@ export default {
         this.$emit('packed');
         this.$emit('update:visible', false);
       } finally {
+        this.confirmFlag = false;
         this.confirming = false;
         this.packing = false;
       }
@@ -250,14 +336,26 @@ export default {
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 100vh;
   background: #171f31;
   box-shadow: 0px 2px 18px 7px rgba(#000000, 0.1);
 }
 
 .title {
-  padding: 80px 50px 20px;
+  padding: 40px;
   font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .close-btn {
+    width: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 }
 
 .scroll {
@@ -290,7 +388,8 @@ export default {
 
 .amount-value {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 32px;
+  line-height: 48px;
 }
 
 .token-basic-name {
@@ -305,7 +404,7 @@ export default {
 }
 
 .chain-icon {
-  width: 20px;
+  width: 30px;
 }
 
 .chain-name {
@@ -326,7 +425,8 @@ export default {
 
 .fee-value {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 18px;
+  line-height: 23px;
 }
 
 .packing {

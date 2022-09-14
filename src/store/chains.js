@@ -65,8 +65,12 @@ export default {
       dispatch('saveChainSelectedWallets');
     },
     async ensureChainWalletReady({ getters }, chainId) {
+      const chain = getters.getChain(chainId);
+      console.log(chain);
+      if (chain.id === 223) {
+        return;
+      }
       const wallet = getters.getChainConnectedWallet(chainId);
-      const walletApi = await getWalletApi(wallet.name);
       if (!wallet) {
         throw new WalletError('Wallet is not connected.', {
           code: WalletError.CODES.NOT_CONNECTED,
@@ -75,6 +79,7 @@ export default {
           },
         });
       }
+      const walletApi = await getWalletApi(wallet.name);
       if (wallet.chainId !== chainId) {
         const fromChainId = ETH_NETWORK_CHAIN_ID_MAPS[chainId];
         const waitChainId = `0x${fromChainId.toString(16)}`;
@@ -83,9 +88,9 @@ export default {
             method: 'wallet_switchEthereumChain',
             params: [{ chainId: waitChainId }],
           }); */
-          walletApi.changeChain(waitChainId);
+          walletApi.changeChain(waitChainId, chain);
         } catch (switchError) {
-          console.log(switchError);
+          console.log('chain', switchError);
         }
         throw new WalletError('Wallet is not in correct network.', {
           code: WalletError.CODES.INCORRECT_NETWORK,
