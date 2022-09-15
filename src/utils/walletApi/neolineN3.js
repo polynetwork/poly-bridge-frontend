@@ -13,13 +13,18 @@ const NEW_GAS = TARGET_MAINNET
   ? '0xd2a4cff31913016155e38e474a2c06d08be276cf'
   : '0xd2a4cff31913016155e38e474a2c06d08be276cf';
 
+// const NETWORK_CHAIN_ID_MAPS = {
+//   [TARGET_MAINNET ? 'N3MainNet' : 'N3TestNet']: ChainId.N3,
+// };
+
 const NETWORK_CHAIN_ID_MAPS = {
-  [TARGET_MAINNET ? 'N3MainNet' : 'N3TestNet']: ChainId.N3,
+  N3MainNet: ChainId.N3,
+  N3TestNet: ChainId.N3T5,
 };
 
 const WALLET_CHAIN_ID_MAPS = {
   N3MainNet: 14,
-  N3TestNet: 88,
+  N3TestNet: 888,
 };
 
 let neoDapi;
