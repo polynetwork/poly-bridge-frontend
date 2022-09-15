@@ -23,7 +23,13 @@
         <div class="title2">NFT Airdrop</div>
       </div>
       <div class="foot">
-        <img class="poly2y" src="@/assets/png/poly2y.png" />
+        <div class="poly2y">
+          <img class="poly2y-image" src="@/assets/png/airdroplogo.png" />
+          <div class="poly2y-text">
+            <div class="poly2y-text-title">2<span>nd </span> MainNet Anniversary</div>
+            <div class="poly2y-text-t">Claim your NFT between Sep 9th and Sep 20th</div>
+          </div>
+        </div>
         <div class="btn-out">
           <div class="btn-in active" @click="goAirdrop()">Go</div>
         </div>
@@ -157,6 +163,42 @@ export default {
       align-items: center;
       .poly2y {
         height: 60px;
+        display: flex;
+        align-items: center;
+      }
+      .poly2y-image {
+        height: 60px;
+        display: flex;
+        margin-right: 14px;
+      }
+      .poly2y-text {
+        height: 60px;
+        .poly2y-text-title {
+          display: flex;
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 30px;
+          letter-spacing: 0.1em;
+          color: #ffffff;
+          align-items: flex-start;
+          span {
+            font-size: 12px;
+            line-height: 20px;
+            margin-right: 5px;
+          }
+        }
+        .poly2y-text-t {
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 30px;
+          /* identical to box height */
+
+          color: rgba(255, 255, 255, 0.6);
+        }
       }
       .btn-out {
         height: 51px;
@@ -304,8 +346,42 @@ export default {
       align-items: center;
       flex-direction: column;
       .poly2y {
-        width: 100%;
-        max-width: 360px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+      }
+      .poly2y-image {
+        height: 40px;
+        display: flex;
+        margin-right: 8px;
+      }
+      .poly2y-text {
+        .poly2y-text-title {
+          display: flex;
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 20px;
+          letter-spacing: 0.1em;
+          color: #ffffff;
+          align-items: flex-start;
+          span {
+            font-size: 12px;
+            line-height: 24px;
+            margin-right: 5px;
+          }
+        }
+        .poly2y-text-t {
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 20px;
+          /* identical to box height */
+
+          color: rgba(255, 255, 255, 0.6);
+        }
       }
       .btn-out {
         height: 51px;
