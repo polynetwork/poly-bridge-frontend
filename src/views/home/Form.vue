@@ -386,12 +386,12 @@ export default {
         ) {
           res = 0;
         } else {
-          // res = this.fee ? this.fee.TokenAmount : 0;
-          res = 0;
+          res = this.fee ? this.fee.TokenAmount : 0;
+          // res = 0;
         }
       } else {
-        // res = this.fee ? this.fee.TokenAmount : 0;
-        res = 0;
+        res = this.fee ? this.fee.TokenAmount : 0;
+        // res = 0;
       }
       return res;
     },
@@ -410,12 +410,15 @@ export default {
           res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
           res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
         }
-        if (
-          !this.fee.IsNative &&
-          (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
-        ) {
+        if (!this.fee.IsNative && this.fromChain.id === 3) {
           res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
         }
+        // if (
+        //   !this.fee.IsNative &&
+        //   (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
+        // ) {
+        //   res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
+        // }
         if (res < 0) {
           res = 0;
         }
@@ -711,10 +714,13 @@ export default {
         res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
         res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
       }
-      if (
+      /* if (
         !this.fee.IsNative &&
         (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
       ) {
+        res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
+      } */
+      if (!this.fee.IsNative && this.fromChain.id === 3) {
         res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
       }
       if (res < 0) {
