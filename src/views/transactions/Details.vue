@@ -306,19 +306,21 @@ export default {
       this.speedUpMSGFlag = false;
     },
     getFeeParams(value, oldValue) {
-      if (!(value && !oldValue)) {
-        if (
-          value.fromChainId === oldValue.fromChainId &&
-          value.fromTokenHash === oldValue.fromTokenHash &&
-          value.toChainId === oldValue.toChainId &&
-          value.toTokenHash === oldValue.toTokenHash
-        ) {
-          console.log(value);
+      if (value.fromChainId === 27 || value.fromChainId === 223) {
+        if (!(value && !oldValue)) {
+          if (
+            value.fromChainId === oldValue.fromChainId &&
+            value.fromTokenHash === oldValue.fromTokenHash &&
+            value.toChainId === oldValue.toChainId &&
+            value.toTokenHash === oldValue.toTokenHash
+          ) {
+            console.log(value);
+          } else {
+            this.$store.dispatch('getFee', value);
+          }
         } else {
           this.$store.dispatch('getFee', value);
         }
-      } else {
-        this.$store.dispatch('getFee', value);
       }
     },
   },
