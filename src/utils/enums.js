@@ -19,7 +19,7 @@ export const ChainId = {
   Eth: 2,
   Ont: 3,
   Neo: TARGET_MAINNET ? 4 : 5,
-  N3: TARGET_MAINNET ? 14 : 88,
+  N3: TARGET_MAINNET ? 14 : 888,
   xDai: TARGET_MAINNET ? 20 : 206,
   HSC: TARGET_MAINNET ? 28 : 603,
   Harmony: TARGET_MAINNET ? 27 : 800,
@@ -52,7 +52,6 @@ export const ChainId = {
   CLV: TARGET_MAINNET ? 37 : 970,
   zkSync: TARGET_MAINNET ? 940 : 940,
   Conflux: TARGET_MAINNET ? 38 : 980,
-  N3T5: TARGET_MAINNET ? 888 : 888,
 };
 
 export const NetworkChainIdMaps = {
