@@ -8,7 +8,9 @@
     <Menu class="menu" />
     <CFlexSpan />
     <div class="side-menu">
-      <div class="airdrop" @click="toAirdrop()" v-if="$route.name !== 'airdrop'">Airdrop</div>
+      <div class="airdrop" @click="toAirdrop()" v-if="TARGET_MAINNET && $route.name !== 'airdrop'">
+        Airdrop
+      </div>
       <Wallets class="wallet" />
       <Networks class="network" />
     </div>

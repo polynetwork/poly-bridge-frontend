@@ -337,6 +337,7 @@ import { ChainId } from '@/utils/enums';
 import TransactionDetails from '@/views/transactions/Details';
 import { getWalletApi } from '@/utils/walletApi';
 import { toStandardHex } from '@/utils/convertors';
+import { TARGET_MAINNET } from '@/utils/env';
 import SelectTokenBasic from './SelectTokenBasic';
 import SelectChain from './SelectChain';
 import ConnectWallet from './ConnectWallet';
@@ -626,9 +627,13 @@ export default {
     },
   },
   created() {
-    if (!(sessionStorage.getItem('AIRDROP_BANNER') === 'true')) {
-      this.airDropVisible = true;
-      sessionStorage.setItem('AIRDROP_BANNER', 'true');
+    if (TARGET_MAINNET) {
+      if (!(sessionStorage.getItem('AIRDROP_BANNER') === 'true')) {
+        this.airDropVisible = true;
+        sessionStorage.setItem('AIRDROP_BANNER', 'true');
+      }
+    } else {
+      this.airDropVisible = false;
     }
     this.$store.dispatch('getTokenBasics');
     this.getChainHealth();
