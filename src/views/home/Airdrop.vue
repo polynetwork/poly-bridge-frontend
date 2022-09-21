@@ -27,7 +27,7 @@
           <img class="poly2y-image" src="@/assets/png/airdroplogo.png" />
           <div class="poly2y-text">
             <div class="poly2y-text-title">2<span>nd </span> MainNet Anniversary</div>
-            <div class="poly2y-text-t">Claim your NFT between Sep 9th and Sep 20th</div>
+            <div class="poly2y-text-t">Remember to claim your NFT before Dec 31st, 2022</div>
           </div>
         </div>
         <div class="btn-out">
