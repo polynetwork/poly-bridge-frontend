@@ -387,12 +387,12 @@ export default {
         ) {
           res = 0;
         } else {
-          res = this.fee ? this.fee.TokenAmount : 0;
-          // res = 0;
+          // res = this.fee ? this.fee.TokenAmount : 0;
+          res = 0;
         }
       } else {
-        res = this.fee ? this.fee.TokenAmount : 0;
-        // res = 0;
+        // res = this.fee ? this.fee.TokenAmount : 0;
+        res = 0;
       }
       return res;
     },
@@ -408,18 +408,15 @@ export default {
           res = 2000000000000;
         }
         if (this.fee.IsNative) {
-          res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-          res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
+          res = new BigNumber(res).minus(this.fee.TokenAmount).toString();
+          res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toString();
         }
-        if (!this.fee.IsNative && this.fromChain.id === 3) {
-          res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
+        if (
+          !this.fee.IsNative &&
+          (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
+        ) {
+          res = new BigNumber(res).minus(this.fee.TokenAmount).toString();
         }
-        // if (
-        //   !this.fee.IsNative &&
-        //   (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
-        // ) {
-        //   res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-        // }
         if (res < 0) {
           res = 0;
         }
@@ -710,23 +707,21 @@ export default {
     },
     transferAll() {
       let res;
+      debugger;
       if (Number(this.fee.Balance) > Number(this.balance)) {
         res = this.balance;
       } else {
         res = this.fee.Balance;
       }
       if (this.fee.IsNative) {
-        res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-        res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
+        res = new BigNumber(res).minus(this.fee.TokenAmount).toString();
+        res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toString();
       }
-      /* if (
+      if (
         !this.fee.IsNative &&
         (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
       ) {
-        res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-      } */
-      if (!this.fee.IsNative && this.fromChain.id === 3) {
-        res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
+        res = new BigNumber(res).minus(this.fee.TokenAmount).toString();
       }
       if (res < 0) {
         this.$message.error(this.$t('errors.wallet.INSUFFICIENT_FUNDS'));
