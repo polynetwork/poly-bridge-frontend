@@ -10,6 +10,7 @@ const APIS = {
   [ChainId.Ont]: () => import('./ont'),
   [ChainId.Ok]: () => import('./eth'),
   [ChainId.Palette]: () => import('./eth'),
+  [ChainId.Palette2]: () => import('./eth'),
   [ChainId.Polygon]: () => import('./eth'),
   [ChainId.Arbitrum]: () => import('./eth'),
   [ChainId.xDai]: () => import('./eth'),
