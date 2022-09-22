@@ -48,7 +48,7 @@ export const ChainId = {
   Milkomeda: TARGET_MAINNET ? 810 : 810,
   Kava: TARGET_MAINNET ? 32 : 920,
   Cube: TARGET_MAINNET ? 35 : 930,
-  Xrp: TARGET_MAINNET ? 27 : 223,
+  Xrp: TARGET_MAINNET ? 39 : 223,
   Celo: TARGET_MAINNET ? 36 : 960,
   CLV: TARGET_MAINNET ? 37 : 970,
   zkSync: TARGET_MAINNET ? 940 : 940,
