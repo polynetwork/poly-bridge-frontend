@@ -40,6 +40,7 @@ const APIS = {
   [ChainId.CLV]: () => import('./eth'),
   [ChainId.zkSync]: () => import('./eth'),
   [ChainId.Xrp]: () => import('./xrp'),
+  [ChainId.Astar]: () => import('./eth'),
   [ChainId.Conflux]: () => import('./eth'),
 };
 

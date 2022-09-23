@@ -53,6 +53,7 @@ export const ChainId = {
   CLV: TARGET_MAINNET ? 37 : 970,
   zkSync: TARGET_MAINNET ? 940 : 940,
   Conflux: TARGET_MAINNET ? 38 : 980,
+  Astar: TARGET_MAINNET ? 990 : 990,
 };
 
 export const NetworkChainIdMaps = {
@@ -87,6 +88,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 1024 : 1023]: ChainId.CLV,
   [TARGET_MAINNET ? 280 : 280]: ChainId.zkSync,
   [TARGET_MAINNET ? 1030 : 71]: ChainId.Conflux,
+  [TARGET_MAINNET ? 592 : 81]: ChainId.Astar,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -121,6 +123,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Celo]: TARGET_MAINNET ? 42220 : 44787,
   [ChainId.CLV]: TARGET_MAINNET ? 1024 : 1023,
   [ChainId.zkSync]: TARGET_MAINNET ? 280 : 280,
+  [ChainId.Astar]: TARGET_MAINNET ? 592 : 81,
   [ChainId.Conflux]: TARGET_MAINNET ? 1030 : 71,
 };
 
