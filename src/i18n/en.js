@@ -200,6 +200,7 @@ export default {
       [ChainId.Celo]: 'Celo',
       [ChainId.CLV]: 'CLV P-Chain',
       [ChainId.zkSync]: 'zkSync',
+      [ChainId.Astar]: 'Astar',
       [ChainId.Conflux]: 'Conflux eSpace',
       [ChainId.N3T5]: 'N3T5',
     },
@@ -243,6 +244,7 @@ export default {
       [ChainId.CLV]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.zkSync]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Conflux]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Astar]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.N3T5]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
