@@ -1040,7 +1040,7 @@ export const TEST_CHAINS = [
       ? '0xFeE651E032197770B65516EFbBdeD11483533264'
       : '0xFeE651E032197770B65516EFbBdeD11483533264',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'ASTR',
+    nftFeeName: TARGET_MAINNET ? 'ASTR' : 'SBY',
     symbol: TARGET_MAINNET ? 'ASTR' : 'SBY',
     name: TARGET_MAINNET ? 'Astar Network' : 'ASTAR Shibuya Testnet',
     rpcUrl: TARGET_MAINNET ? 'https://evm.astar.network' : 'https://evm.shibuya.astar.network',
