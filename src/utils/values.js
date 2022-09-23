@@ -1026,29 +1026,29 @@ export const TEST_CHAINS = [
       : 'http://106.75.251.68/#/chain/',
     selfPay: true,
   },
-  {
-    id: ChainId.Astar,
-    nativeFee: true,
-    icon: require('@/assets/png/astar.png'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://blockscout.com/astar/tx/0x{txHash}'
-      : 'https://blockscout.com/shibuya/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xdD5CcD4B40afb869F00A092Ace0255f1942185De'
-      : '0xdD5CcD4B40afb869F00A092Ace0255f1942185De',
-    dst_ccm: TARGET_MAINNET
-      ? '0xFeE651E032197770B65516EFbBdeD11483533264'
-      : '0xFeE651E032197770B65516EFbBdeD11483533264',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'ASTR',
-    symbol: TARGET_MAINNET ? 'ASTR' : 'SBY',
-    name: TARGET_MAINNET ? 'Astar Network' : 'ASTAR Shibuya Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://evm.astar.network' : 'https://evm.shibuya.astar.network',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://blockscout.com/astar/'
-      : 'https://blockscout.com/shibuya/',
-    selfPay: true,
-  },
+  // {
+  //   id: ChainId.Astar,
+  //   nativeFee: true,
+  //   icon: require('@/assets/png/astar.png'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://blockscout.com/astar/tx/0x{txHash}'
+  //     : 'https://blockscout.com/shibuya/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0xdD5CcD4B40afb869F00A092Ace0255f1942185De'
+  //     : '0xdD5CcD4B40afb869F00A092Ace0255f1942185De',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0xFeE651E032197770B65516EFbBdeD11483533264'
+  //     : '0xFeE651E032197770B65516EFbBdeD11483533264',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
+  //   nftFeeName: 'ASTR',
+  //   symbol: TARGET_MAINNET ? 'ASTR' : 'SBY',
+  //   name: TARGET_MAINNET ? 'Astar Network' : 'ASTAR Shibuya Testnet',
+  //   rpcUrl: TARGET_MAINNET ? 'https://evm.astar.network' : 'https://evm.shibuya.astar.network',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://blockscout.com/astar/'
+  //     : 'https://blockscout.com/shibuya/',
+  //   selfPay: true,
+  // },
   // {
   //   id: ChainId.OntEvm,
   //   nativeFee: true,
