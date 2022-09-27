@@ -53,7 +53,7 @@ export const ChainId = {
   CLV: TARGET_MAINNET ? 37 : 970,
   zkSync: TARGET_MAINNET ? 940 : 940,
   Conflux: TARGET_MAINNET ? 38 : 980,
-  Astar: TARGET_MAINNET ? 990 : 990,
+  Astar: TARGET_MAINNET ? 40 : 990,
 };
 
 export const NetworkChainIdMaps = {
