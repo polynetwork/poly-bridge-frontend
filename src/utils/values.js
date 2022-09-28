@@ -804,6 +804,29 @@ export const MAIN_CHAINS = [
     nftFeeContractHash: '51fa7b7c1e0c79b54de202e6a24fef61bf54f442',
     selfPay: true,
   },
+  {
+    id: ChainId.Astar,
+    nativeFee: true,
+    icon: require('@/assets/png/astar.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://blockscout.com/astar/tx/0x{txHash}'
+      : 'https://blockscout.com/shibuya/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x5906777d34257a2b479c291871c9bfdfb922d67d'
+      : '0xdD5CcD4B40afb869F00A092Ace0255f1942185De',
+    dst_ccm: TARGET_MAINNET
+      ? '0xab7a3CA9bDcE476F0ECC04c127CFEe0F3D212BC5'
+      : '0xFeE651E032197770B65516EFbBdeD11483533264',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: TARGET_MAINNET ? 'ASTR' : 'SBY',
+    symbol: TARGET_MAINNET ? 'ASTR' : 'SBY',
+    name: TARGET_MAINNET ? 'Astar Network' : 'ASTAR Shibuya Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://evm.astar.network' : 'https://evm.shibuya.astar.network',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://blockscout.com/astar/'
+      : 'https://blockscout.com/shibuya/',
+    selfPay: true,
+  },
 ];
 
 export const TEST_CHAINS = [
@@ -1024,29 +1047,6 @@ export const TEST_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://palettescan.com/#/chain/'
       : 'http://106.75.251.68/#/chain/',
-    selfPay: true,
-  },
-  {
-    id: ChainId.Astar,
-    nativeFee: true,
-    icon: require('@/assets/png/astar.png'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://blockscout.com/astar/tx/0x{txHash}'
-      : 'https://blockscout.com/shibuya/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xdD5CcD4B40afb869F00A092Ace0255f1942185De'
-      : '0xdD5CcD4B40afb869F00A092Ace0255f1942185De',
-    dst_ccm: TARGET_MAINNET
-      ? '0xFeE651E032197770B65516EFbBdeD11483533264'
-      : '0xFeE651E032197770B65516EFbBdeD11483533264',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: TARGET_MAINNET ? 'ASTR' : 'SBY',
-    symbol: TARGET_MAINNET ? 'ASTR' : 'SBY',
-    name: TARGET_MAINNET ? 'Astar Network' : 'ASTAR Shibuya Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://evm.astar.network' : 'https://evm.shibuya.astar.network',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://blockscout.com/astar/'
-      : 'https://blockscout.com/shibuya/',
     selfPay: true,
   },
   // {
