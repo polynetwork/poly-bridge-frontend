@@ -479,21 +479,21 @@ export const MAIN_CHAINS = [
     icon: require('@/assets/svg/Arbitrum.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://arbiscan.io/tx/0x{txHash}'
-      : 'https://testnet.arbiscan.io/tx/0x{txHash}',
+      : 'https://goerli.arbiscan.io/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
       ? '0x0f8C16BA16E58525Eb2aDc231ff360cfa00bB527'
-      : '0x27eb74B4Db37517F1dC6dE67364e19782624402F',
+      : '0xAefD220aE393144dcb5EFD6Ab55ABDf6a3d0444d',
     dst_ccm: TARGET_MAINNET
       ? '0x7ceA671DABFBa880aF6723bDdd6B9f4caA15C87B'
-      : '0x3A77dB10eAa7436e608a99643Ab2bEB2E901C72C',
+      : '0x55a59c57a133d1c999b3Eaf5B16ad5c1F2e365c8',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ETH',
     symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
-    name: TARGET_MAINNET ? 'Arbitrum Mainnet' : 'Arbitrum Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://arb1.arbitrum.io/rpc' : 'https://rinkeby.arbitrum.io/rpc',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://arbiscan.io/'
-      : 'https://rinkeby-explorer.arbitrum.io/#/',
+    name: TARGET_MAINNET ? 'Arbitrum Mainnet' : 'Arbitrum Goerli',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://arb1.arbitrum.io/rpc'
+      : 'https://goerli-rollup.arbitrum.io/rpc',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://arbiscan.io/' : 'https://goerli.arbiscan.io/',
     selfPay: true,
   },
   {

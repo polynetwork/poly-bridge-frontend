@@ -30,7 +30,7 @@ export const ChainId = {
   Palette: TARGET_MAINNET ? 8 : 107,
   Palette2: TARGET_MAINNET ? 108 : 108,
   Polygon: TARGET_MAINNET ? 17 : 202,
-  Arbitrum: TARGET_MAINNET ? 19 : 205,
+  Arbitrum: TARGET_MAINNET ? 19 : 215,
   Optimistic: TARGET_MAINNET ? 23 : 210,
   Boba: TARGET_MAINNET ? 25 : 400,
   Oasis: TARGET_MAINNET ? 26 : 500,
