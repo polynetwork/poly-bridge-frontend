@@ -203,6 +203,7 @@ export default {
       [ChainId.Astar]: 'Astar',
       [ChainId.Conflux]: 'Conflux eSpace',
       [ChainId.N3T5]: 'N3T5',
+      [ChainId.Aptos]: 'Aptos',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -246,6 +247,7 @@ export default {
       [ChainId.Conflux]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Astar]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.N3T5]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Aptos]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',

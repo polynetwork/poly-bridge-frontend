@@ -12,6 +12,7 @@ export const WalletName = {
   WalletConnect: 'WalletConnnect',
   StarMask: 'StarMask',
   XUMM: 'XUMM',
+  Martian: 'Martian',
 };
 
 export const ChainId = {
@@ -54,6 +55,7 @@ export const ChainId = {
   zkSync: TARGET_MAINNET ? 940 : 940,
   Conflux: TARGET_MAINNET ? 38 : 980,
   Astar: TARGET_MAINNET ? 40 : 990,
+  Aptos: TARGET_MAINNET ? 998 : 998,
 };
 
 export const NetworkChainIdMaps = {
