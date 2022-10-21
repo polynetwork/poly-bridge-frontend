@@ -12,6 +12,7 @@ import fees from './fees';
 import health from './health';
 import expecttime from './expecttime';
 import nftAssetsBasics from './nftAssetsBasics';
+import register from './register';
 
 Vue.use(Vuex);
 
@@ -29,5 +30,6 @@ export default new Vuex.Store({
     health,
     expecttime,
     nftAssetsBasics,
+    register,
   },
 });

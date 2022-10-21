@@ -113,6 +113,7 @@
                   step.chainId !== 14 &&
                   step.chainId !== 88 &&
                   step.chainId !== 318 &&
+                  step.chainId !== 998 &&
                   transaction.status !== 11
               "
               @click="payTochainFee"

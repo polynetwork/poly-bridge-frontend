@@ -149,6 +149,20 @@ export const WALLETS = [
   },
   //   ]
   // : []),
+  {
+    name: WalletName.Martian,
+    supportedChainIds: [ChainId.Aptos],
+    icon: require('@/assets/png/martian.png'),
+    downloadUrl:
+      'https://chrome.google.com/webstore/detail/martian-aptos-wallet/efbglgofoippbgcjepnhiblaibcnclgk',
+  },
+  // {
+  //   name: WalletName.Petra,
+  //   supportedChainIds: [ChainId.Aptos],
+  //   icon: require('@/assets/png/martian.png'),
+  //   downloadUrl:
+  //     'https://chrome.google.com/webstore/detail/petra-aptos-wallet/ejjladinnckdgjemekebdpeokbikhfci',
+  // },
 ];
 
 export const MAIN_CHAINS = [
@@ -802,6 +816,24 @@ export const MAIN_CHAINS = [
       : 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG',
     nftFeeName: 'XRP',
     nftFeeContractHash: '51fa7b7c1e0c79b54de202e6a24fef61bf54f442',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Aptos,
+    nativeFee: true,
+    icon: require('@/assets/png/aptos.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.aptoslabs.com/txn/0x{txHash}'
+      : 'https://explorer.aptoslabs.com/txn/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xf12a4ff673797d20307f081103186c6a725a6c8609a551bdc13ee30862f2ce15'
+      : '0xf12a4ff673797d20307f081103186c6a725a6c8609a551bdc13ee30862f2ce15',
+    dst_ccm: TARGET_MAINNET
+      ? '0xFcf7A3207b7442F29a9f88e2d7638633B494843f'
+      : '0xFcf7A3207b7442F29a9f88e2d7638633B494843f',
+    nftFeeContractHash: '0x1::aptos_coin::AptosCoin',
+    nftFeeName: 'APT',
+    symbol: TARGET_MAINNET ? 'APT' : 'APT',
     selfPay: true,
   },
   {

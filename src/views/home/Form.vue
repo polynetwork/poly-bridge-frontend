@@ -266,6 +266,15 @@
             {{ approving ? $t('buttons.approving') : $t('buttons.approve') }}
           </CSubmitButton>
         </div>
+        <div v-else-if="!isRegisterd" class="approve-wrapper">
+          <CSubmitButton
+            :loading="registering"
+            @click="register"
+            :disabled="isRegisterd !== false && registering"
+          >
+            {{ registering ? $t('buttons.registering') : $t('buttons.register') }}
+          </CSubmitButton>
+        </div>
         <CSubmitButton
           v-else
           :disabled="invalid || !(fromToken && toToken)"
@@ -375,6 +384,7 @@ export default {
       confirmUuid: uuidv4(),
       healthFlag: true,
       airDropVisible: false,
+      registering: false,
     };
   },
   computed: {
@@ -568,6 +578,22 @@ export default {
     fee() {
       return this.getFeeParams && this.$store.getters.getFee(this.getFeeParams);
     },
+    isRegisterdParams() {
+      if ((this.toChainId === 998 || this.toChainId === 41) && this.toWallet) {
+        return {
+          chainId: this.toChainId,
+          address: this.toWallet.address,
+          tokenHash: this.toToken.hash,
+        };
+      }
+      return null;
+    },
+    isRegisterd() {
+      return (
+        (this.toChainId !== 998 && this.toChainId !== 41) ||
+        (this.isRegisterdParams && this.$store.getters.getReigster(this.isRegisterdParams))
+      );
+    },
     // tofee() {
     //   return this.getToFeeParams && this.$store.getters.getFee(this.getToFeeParams);
     // },
@@ -590,6 +616,12 @@ export default {
     getFeeParams(value) {
       if (value) {
         this.$store.dispatch('getFee', value);
+      }
+    },
+    isRegisterdParams(value) {
+      console.log(value);
+      if (value) {
+        this.$store.dispatch('getReigster', value);
       }
     },
     // getToFeeParams(value) {
@@ -659,6 +691,16 @@ export default {
     clearInterval(this.interval1);
   },
   methods: {
+    async register() {
+      const data = {
+        chainid: this.toChainId,
+        address: this.toWallet.address,
+        tokenHash: this.toToken.hash,
+      };
+      const walletApi = await getWalletApi(this.toWallet.name);
+      const tx = await walletApi.registerCoin(data);
+      this.$store.dispatch('getReigster', this.isRegisterdParams);
+    },
     async getChainHealth() {
       const chindIds = this.getChainsHealthParams;
       const res = await httpApi.getHealthData({ chindIds });
@@ -707,7 +749,6 @@ export default {
     },
     transferAll() {
       let res;
-      debugger;
       if (Number(this.fee.Balance) > Number(this.balance)) {
         res = this.balance;
       } else {
@@ -807,6 +848,7 @@ export default {
       if (!finalCheck) {
         return;
       }
+      const payfeeAmount = this.fee ? this.fee.TokenAmount : 0.0001;
       this.confirmingData = {
         fromAddress: this.fromWallet.address,
         toAddress: this.toWallet.address,
@@ -815,8 +857,9 @@ export default {
         fromTokenHash: this.fromToken.hash,
         toTokenHash: this.toToken.hash,
         amount: this.amount,
-        fee: this.selfPayChecked ? 0 : this.fee.TokenAmount,
+        fee: this.selfPayChecked ? 0 : payfeeAmount,
       };
+      console.log(this.confirmingData);
       this.confirmVisible = true;
     },
     handleClosed() {
