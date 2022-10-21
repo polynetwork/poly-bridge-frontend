@@ -67,7 +67,7 @@ export default {
     async ensureChainWalletReady({ getters }, chainId) {
       const chain = getters.getChain(chainId);
       console.log(chain);
-      if (chain.id === 223) {
+      if (chain.id === ChainId.Xrp || chain.id === ChainId.Aptos) {
         return;
       }
       const wallet = getters.getChainConnectedWallet(chainId);

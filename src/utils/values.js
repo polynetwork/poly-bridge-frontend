@@ -156,6 +156,13 @@ export const WALLETS = [
     downloadUrl:
       'https://chrome.google.com/webstore/detail/martian-aptos-wallet/efbglgofoippbgcjepnhiblaibcnclgk',
   },
+  // {
+  //   name: WalletName.Petra,
+  //   supportedChainIds: [ChainId.Aptos],
+  //   icon: require('@/assets/png/martian.png'),
+  //   downloadUrl:
+  //     'https://chrome.google.com/webstore/detail/petra-aptos-wallet/ejjladinnckdgjemekebdpeokbikhfci',
+  // },
 ];
 
 export const MAIN_CHAINS = [
@@ -812,6 +819,24 @@ export const MAIN_CHAINS = [
     selfPay: true,
   },
   {
+    id: ChainId.Aptos,
+    nativeFee: true,
+    icon: require('@/assets/png/aptos.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.aptoslabs.com/txn/0x{txHash}'
+      : 'https://explorer.aptoslabs.com/txn/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xf12a4ff673797d20307f081103186c6a725a6c8609a551bdc13ee30862f2ce15'
+      : '0xf12a4ff673797d20307f081103186c6a725a6c8609a551bdc13ee30862f2ce15',
+    dst_ccm: TARGET_MAINNET
+      ? '0xFcf7A3207b7442F29a9f88e2d7638633B494843f'
+      : '0xFcf7A3207b7442F29a9f88e2d7638633B494843f',
+    nftFeeContractHash: '0x1::aptos_coin::AptosCoin',
+    nftFeeName: 'APT',
+    symbol: TARGET_MAINNET ? 'APT' : 'APT',
+    selfPay: true,
+  },
+  {
     id: ChainId.Astar,
     nativeFee: true,
     icon: require('@/assets/png/astar.png'),
@@ -918,24 +943,6 @@ export const TEST_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://explorer-mainnet-cardano-evm.c1.milkomeda.com'
       : 'https://explorer-devnet-cardano-evm.c1.milkomeda.com',
-    selfPay: true,
-  },
-  {
-    id: ChainId.Aptos,
-    nativeFee: true,
-    icon: require('@/assets/png/aptos.png'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://explorer.aptoslabs.com/txn/0x{txHash}'
-      : 'https://explorer.aptoslabs.com/txn/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xf4B609a3ca7353a8f379069f939964Db351B39c1'
-      : '0xf4B609a3ca7353a8f379069f939964Db351B39c1',
-    dst_ccm: TARGET_MAINNET
-      ? '0xFcf7A3207b7442F29a9f88e2d7638633B494843f'
-      : '0xFcf7A3207b7442F29a9f88e2d7638633B494843f',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'APT',
-    symbol: TARGET_MAINNET ? 'APT' : 'APT',
     selfPay: true,
   },
   {

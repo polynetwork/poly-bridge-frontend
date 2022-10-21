@@ -18,6 +18,7 @@ const APIS = {
   [WalletName.StarMask]: () => import('./starMask'),
   [WalletName.XUMM]: () => import('./xumm'),
   [WalletName.Martian]: () => import('./martian'),
+  [WalletName.Petra]: () => import('./petra'),
 };
 
 export async function getWalletApi (walletName) {

@@ -13,6 +13,7 @@ export const WalletName = {
   StarMask: 'StarMask',
   XUMM: 'XUMM',
   Martian: 'Martian',
+  Petra: 'Petra',
 };
 
 export const ChainId = {

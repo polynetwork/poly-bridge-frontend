@@ -144,6 +144,8 @@ export default {
     confirming: 'Confirming...',
     approve: 'Approve',
     approving: 'Approving...',
+    register: 'Register',
+    registering: 'Registering',
   },
   messages: {
     copied: '"{text}" has been copied to clipboard.',
@@ -294,6 +296,7 @@ export default {
       INSUFFICIENT_FUNDS: 'Insufficient funds.',
       COMMUNICATE_FAILED: 'Communicate failed with wallet.',
       TOKEN_IS_NOT_ACCEPT: 'Token is not accepted by the address on the target chain.',
+      NOT_CREATED_ACCOUNT: 'Please create Account first',
     },
     chain: {
       UNKNOWN_ERROR: 'Unknown chain error.',
