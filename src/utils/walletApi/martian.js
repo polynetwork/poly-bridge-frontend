@@ -114,6 +114,7 @@ async function connect() {
 
 async function isAccountRegistered({ address, tokenHash }) {
   try {
+    debugger;
     await window.martian.connect();
     console.log(tokenHash);
     if (!address || !tokenHash) {

@@ -579,7 +579,7 @@ export default {
       return this.getFeeParams && this.$store.getters.getFee(this.getFeeParams);
     },
     isRegisterdParams() {
-      if (this.toChainId === 998 && this.toWallet) {
+      if ((this.toChainId === 998 || this.toChainId === 41) && this.toWallet) {
         return {
           chainId: this.toChainId,
           address: this.toWallet.address,
@@ -590,7 +590,7 @@ export default {
     },
     isRegisterd() {
       return (
-        this.toChainId !== 998 ||
+        (this.toChainId !== 998 && this.toChainId !== 41) ||
         (this.isRegisterdParams && this.$store.getters.getReigster(this.isRegisterdParams))
       );
     },
@@ -619,6 +619,7 @@ export default {
       }
     },
     isRegisterdParams(value) {
+      console.log(value);
       if (value) {
         this.$store.dispatch('getReigster', value);
       }
