@@ -140,6 +140,8 @@ async function getBalance({ chainId, address, tokenHash }) {
   try {
     await window.martian.connect();
     const tokenBasic = store.getters.getTokenBasicByChainIdAndTokenHash({ chainId, tokenHash });
+    const tokenBasicName = tokenBasic.name;
+    const token = store.getters.getTokenByTokenBasicNameAndChainId({ tokenBasicName, chainId });
     const resources = await window.martian.getAccountResources(address);
     let tokenResource;
     for (let i = 0; i < resources.length; i += 1) {
@@ -149,7 +151,7 @@ async function getBalance({ chainId, address, tokenHash }) {
     }
     let res;
     if (tokenResource) {
-      res = integerToDecimal(tokenResource.data.coin.value, tokenBasic.decimals);
+      res = integerToDecimal(tokenResource.data.coin.value, token.decimals);
     } else {
       res = 0;
     }
