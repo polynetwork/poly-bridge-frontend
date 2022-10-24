@@ -187,10 +187,12 @@ async function lock(fromChainId, fromAddress, fromTokenHash, toChainId, toAddres
       chainId: fromChainId,
       tokenHash: fromTokenHash,
     });
+    const tokenBasicName = tokenBasic.name;
+    const token = store.getters.getTokenByTokenBasicNameAndChainId({ tokenBasicName, fromChainId });
     const toChainApi = await getChainApi(toChainId);
     const toAddressHex = await toChainApi.addressToHex(toAddress);
-    const amountInt = decimalToInteger(amount, tokenBasic.decimals);
-    const feeInt = decimalToInteger(fee, chain.nftFeeName ? 18 : tokenBasic.decimals);
+    const amountInt = decimalToInteger(amount, token.decimals);
+    const feeInt = decimalToInteger(fee, chain.nftFeeName ? 8 : token.decimals);
     const toAddressUnit8 = Buffer.from(toAddressHex, 'hex');
     const payload = {
       arguments: [amountInt, feeInt, toChainId, toAddressUnit8],
