@@ -201,6 +201,7 @@ export default {
       [ChainId.Astar]: 'Astar',
       [ChainId.N3T5]: 'N3T5',
       [ChainId.Aptos]: 'Aptos',
+      [ChainId.Bitgert]: 'Bitgert',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -244,6 +245,7 @@ export default {
       [ChainId.Astar]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.N3T5]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Aptos]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Bitgert]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',
