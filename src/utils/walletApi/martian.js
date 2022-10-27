@@ -11,6 +11,7 @@ import {
 import { WalletName } from '@/utils/enums';
 import { WalletError } from '@/utils/errors';
 import { TARGET_MAINNET } from '@/utils/env';
+import { formatEnum } from '@/utils/formatters';
 import { tryToConvertAddressToHex } from '.';
 
 const MARTIAN_CONNECTED_KEY = 'MARTIAN_CONNECTED';
@@ -114,9 +115,18 @@ async function connect() {
 
 async function isAccountRegistered({ address, tokenHash }) {
   try {
-    debugger;
     await window.martian.connect();
-    console.log(tokenHash);
+    const { chainId } = await window.martian.getChainId();
+    const targetChainID = TARGET_MAINNET ? 1 : 2;
+    if (chainId !== targetChainID) {
+      throw new WalletError('Wallet is not in correct network.', {
+        code: WalletError.CODES.INCORRECT_NETWORK,
+        detail: {
+          walletName: formatEnum('Martain', { type: 'walletName' }),
+          chainNetworkName: formatEnum(TARGET_MAINNET ? 41 : 998, { type: 'chainNetworkName' }),
+        },
+      });
+    }
     if (!address || !tokenHash) {
       return true;
     }
@@ -164,6 +174,17 @@ async function getBalance({ chainId, address, tokenHash }) {
 async function registerCoin({ chainid, address, tokenHash }) {
   try {
     await window.martian.connect();
+    const { chainId } = await window.martian.getChainId();
+    const targetChainID = TARGET_MAINNET ? 1 : 2;
+    if (chainId !== targetChainID) {
+      throw new WalletError('Wallet is not in correct network.', {
+        code: WalletError.CODES.INCORRECT_NETWORK,
+        detail: {
+          walletName: formatEnum('Martain', { type: 'walletName' }),
+          chainNetworkName: formatEnum(TARGET_MAINNET ? 41 : 998, { type: 'chainNetworkName' }),
+        },
+      });
+    }
     const chain = store.getters.getChain(chainid);
     const sender = address;
     const payload = {
