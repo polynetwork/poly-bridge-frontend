@@ -35,7 +35,7 @@
             required: true,
             number: true,
             positive: true,
-            maxDecimals: tokenBasic && tokenBasic.decimals,
+            maxDecimals: tokenSpBasics && tokenSpBasics.decimals,
             maxValue: maxAmount,
             minValue: { min: minAmount, excluded: true },
           }"
@@ -438,6 +438,13 @@ export default {
     },
     tokenBasic() {
       return this.$store.getters.getTokenBasic(this.tokenBasicName);
+    },
+    tokenSpBasics() {
+      const data = {
+        tokenBasicName: this.tokenBasicName,
+        chainId: this.fromChainId,
+      };
+      return this.$store.getters.getTokenByTokenBasicNameAndChainId(data);
     },
     chains() {
       return this.$store.getters.chains.filter(chain => chain.id !== ChainId.Poly);
