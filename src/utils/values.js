@@ -51,6 +51,8 @@ export const WALLETS = [
       ChainId.zkSync,
       ChainId.Conflux,
       ChainId.Astar,
+      ChainId.Goerli,
+      ChainId.Bitgert,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -1006,6 +1008,32 @@ export const TEST_CHAINS = [
       : 'https://rinkeby.etherscan.io',
   },
   {
+    id: ChainId.Goerli,
+    nativeFee: true,
+    icon: require('@/assets/svg/eth.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://goerli.etherscan.io/tx/0x{txHash}'
+      : 'https://goerli.etherscan.io/tx/0x{txHash}',
+    nftexplorerUrl: TARGET_MAINNET
+      ? 'https://goerli.etherscan.io/tx/0x{txHash}'
+      : 'https://goerli.etherscan.io/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xA058FC5427d3E634698d1185C1BA01ADAf998E14'
+      : '0xA058FC5427d3E634698d1185C1BA01ADAf998E14',
+    dst_ccm: TARGET_MAINNET
+      ? '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126'
+      : '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'GoerliETH',
+    selfPay: true,
+    symbol: TARGET_MAINNET ? 'GoerliETH' : 'GoerliETH',
+    name: TARGET_MAINNET ? 'Goerli Test Network' : 'Goerli Test Network',
+    rpcUrl: TARGET_MAINNET ? 'https://goerli.infura.io/v3/' : 'https://goerli.infura.io/v3/',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://goerli.etherscan.io'
+      : 'https://goerli.etherscan.io',
+  },
+  {
     id: ChainId.Oasis1,
     nativeFee: true,
     icon: require('@/assets/png/oasis.png'),
@@ -1079,6 +1107,31 @@ export const TEST_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://palettescan.com/#/chain/'
       : 'http://106.75.251.68/#/chain/',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Bitgert,
+    nativeFee: true,
+    icon: require('@/assets/jpg/bitgert.jpeg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://brisescan.com/tx/0x{txHash}'
+      : 'https://testnet-explorer.brisescan.com/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'BRISE',
+    symbol: TARGET_MAINNET ? 'BRISE' : 'BRISE',
+    name: TARGET_MAINNET ? 'Bitgert Main' : 'Bitgert Test',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://testnet-rpc.brisescan.com'
+      : 'https://testnet-rpc.brisescan.com',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://brisescan.com'
+      : 'https://testnet-explorer.brisescan.com',
     selfPay: true,
   },
   // {

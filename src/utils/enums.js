@@ -57,6 +57,8 @@ export const ChainId = {
   Conflux: TARGET_MAINNET ? 38 : 980,
   Astar: TARGET_MAINNET ? 40 : 990,
   Aptos: TARGET_MAINNET ? 41 : 998,
+  Goerli: TARGET_MAINNET ? 502 : 502,
+  Bitgert: TARGET_MAINNET ? 1010 : 1010,
 };
 
 export const NetworkChainIdMaps = {
@@ -92,6 +94,8 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 280 : 280]: ChainId.zkSync,
   [TARGET_MAINNET ? 1030 : 71]: ChainId.Conflux,
   [TARGET_MAINNET ? 592 : 81]: ChainId.Astar,
+  [TARGET_MAINNET ? 5 : 5]: ChainId.Goerli,
+  [TARGET_MAINNET ? 64668 : 64668]: ChainId.Bitgert,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -128,6 +132,8 @@ export const EthNetworkChainIdMaps = {
   [ChainId.zkSync]: TARGET_MAINNET ? 280 : 280,
   [ChainId.Astar]: TARGET_MAINNET ? 592 : 81,
   [ChainId.Conflux]: TARGET_MAINNET ? 1030 : 71,
+  [ChainId.Goerli]: TARGET_MAINNET ? 5 : 5,
+  [ChainId.Bitgert]: TARGET_MAINNET ? 64668 : 64668,
 };
 
 export const SingleTransactionStatus = {
