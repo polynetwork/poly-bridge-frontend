@@ -8,9 +8,10 @@ import {
   integerToHex,
   reverseHex,
 } from '@/utils/convertors';
-import { WalletName } from '@/utils/enums';
+import { WalletName, SingleTransactionStatus } from '@/utils/enums';
 import { WalletError } from '@/utils/errors';
 import { TARGET_MAINNET } from '@/utils/env';
+import { formatEnum } from '@/utils/formatters';
 import { tryToConvertAddressToHex } from '.';
 
 const MARTIAN_CONNECTED_KEY = 'MARTIAN_CONNECTED';
@@ -23,17 +24,17 @@ const client = new AptosClient(NODE_URL);
 
 const faucetClient = new FaucetClient(NODE_URL, FAUCET_URL, null);
 
-// function confirmLater(promise) {
-//   return new Promise((resolve, reject) => {
-//     promise.on('transactionHash', resolve);
-//     promise.on('error', reject);
+function confirmLater(promise) {
+  return new Promise((resolve, reject) => {
+    promise.on('transactionHash', resolve);
+    promise.on('error', reject);
 
-//     function onConfirm(confNumber, receipt) {
-//       promise.off('confirmation', onConfirm);
-//     }
-//     promise.on('confirmation', onConfirm);
-//   });
-// }
+    function onConfirm(confNumber, receipt) {
+      promise.off('confirmation', onConfirm);
+    }
+    promise.on('confirmation', onConfirm);
+  });
+}
 
 function convertWalletError(error) {
   if (error instanceof WalletError) {
@@ -56,6 +57,7 @@ function convertWalletError(error) {
 }
 
 async function queryState() {
+  await window.martian.connect();
   const accounts = await window.martian.account();
   const saddress = accounts.address || null;
   const addressHex = saddress;
@@ -111,12 +113,34 @@ async function connect() {
     throw convertWalletError(error);
   }
 }
+async function getTransactionStatus({ transactionHash }) {
+  try {
+    const transactionReceipt = await window.martian.getTransaction(`0x${transactionHash}`);
+    if (transactionReceipt) {
+      return transactionReceipt.success
+        ? SingleTransactionStatus.Done
+        : SingleTransactionStatus.Failed;
+    }
+    return SingleTransactionStatus.Pending;
+  } catch (error) {
+    throw convertWalletError(error);
+  }
+}
 
 async function isAccountRegistered({ address, tokenHash }) {
   try {
-    debugger;
     await window.martian.connect();
-    console.log(tokenHash);
+    const { chainId } = await window.martian.getChainId();
+    const targetChainID = TARGET_MAINNET ? 1 : 2;
+    if (chainId !== targetChainID) {
+      throw new WalletError('Wallet is not in correct network.', {
+        code: WalletError.CODES.INCORRECT_NETWORK,
+        detail: {
+          walletName: formatEnum('Martain', { type: 'walletName' }),
+          chainNetworkName: formatEnum(TARGET_MAINNET ? 41 : 998, { type: 'chainNetworkName' }),
+        },
+      });
+    }
     if (!address || !tokenHash) {
       return true;
     }
@@ -164,6 +188,17 @@ async function getBalance({ chainId, address, tokenHash }) {
 async function registerCoin({ chainid, address, tokenHash }) {
   try {
     await window.martian.connect();
+    const { chainId } = await window.martian.getChainId();
+    const targetChainID = TARGET_MAINNET ? 1 : 2;
+    if (chainId !== targetChainID) {
+      throw new WalletError('Wallet is not in correct network.', {
+        code: WalletError.CODES.INCORRECT_NETWORK,
+        detail: {
+          walletName: formatEnum('Martain', { type: 'walletName' }),
+          chainNetworkName: formatEnum(TARGET_MAINNET ? 41 : 998, { type: 'chainNetworkName' }),
+        },
+      });
+    }
     const chain = store.getters.getChain(chainid);
     const sender = address;
     const payload = {
@@ -180,7 +215,15 @@ async function registerCoin({ chainid, address, tokenHash }) {
   }
 }
 
-async function lock(fromChainId, fromAddress, fromTokenHash, toChainId, toAddress, amount, fee) {
+async function lock({
+  fromChainId,
+  fromAddress,
+  fromTokenHash,
+  toChainId,
+  toAddress,
+  amount,
+  fee,
+}) {
   try {
     const chain = store.getters.getChain(fromChainId);
     const tokenBasic = store.getters.getTokenBasicByChainIdAndTokenHash({
@@ -188,21 +231,24 @@ async function lock(fromChainId, fromAddress, fromTokenHash, toChainId, toAddres
       tokenHash: fromTokenHash,
     });
     const tokenBasicName = tokenBasic.name;
-    const token = store.getters.getTokenByTokenBasicNameAndChainId({ tokenBasicName, fromChainId });
+    const chainId = fromChainId;
+    const token = store.getters.getTokenByTokenBasicNameAndChainId({ tokenBasicName, chainId });
     const toChainApi = await getChainApi(toChainId);
     const toAddressHex = await toChainApi.addressToHex(toAddress);
     const amountInt = decimalToInteger(amount, token.decimals);
     const feeInt = decimalToInteger(fee, chain.nftFeeName ? 8 : token.decimals);
     const toAddressUnit8 = Buffer.from(toAddressHex, 'hex');
+    const toAddressVector = Array.from(toAddressUnit8);
     const payload = {
-      arguments: [amountInt, feeInt, toChainId, toAddressUnit8],
-      function: `${chain.lockContractHash}::wrapper_v1::lock_and_pay_fee`,
+      arguments: [amountInt, feeInt, toChainId, toAddressVector],
+      function: `0x${chain.lockContractHash}::wrapper_v1::lock_and_pay_fee`,
       type: 'entry_function_payload',
       type_arguments: [fromTokenHash],
     };
     const transaction = await window.martian.generateTransaction(fromAddress, payload);
-    const ret = await window.martian.signAndSubmitTransaction(transaction);
-    return toStandardHex(ret);
+    const result = await window.martian.signAndSubmitTransaction(transaction);
+    console.log(result);
+    return toStandardHex(result);
   } catch (e) {
     throw convertWalletError(e);
   }
@@ -214,5 +260,6 @@ export default {
   getBalance,
   registerCoin,
   isAccountRegistered,
+  getTransactionStatus,
   lock,
 };
