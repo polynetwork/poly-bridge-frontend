@@ -861,6 +861,31 @@ export const MAIN_CHAINS = [
       : 'https://blockscout.com/shibuya/',
     selfPay: true,
   },
+  {
+    id: ChainId.Bitgert,
+    nativeFee: true,
+    icon: require('@/assets/jpg/bitgert.jpeg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://brisescan.com/tx/0x{txHash}'
+      : 'https://testnet-explorer.brisescan.com/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x5906777d34257a2b479c291871C9BFdFB922D67D'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xab7a3CA9bDcE476F0ECC04c127CFEe0F3D212BC5'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'BRISE',
+    symbol: TARGET_MAINNET ? 'BRISE' : 'BRISE',
+    name: TARGET_MAINNET ? 'Bitgert Main' : 'Bitgert Test',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://mainnet-rpc.brisescan.com'
+      : 'https://testnet-rpc.brisescan.com',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://brisescan.com'
+      : 'https://testnet-explorer.brisescan.com',
+    selfPay: true,
+  },
 ];
 
 export const TEST_CHAINS = [
@@ -1107,31 +1132,6 @@ export const TEST_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://palettescan.com/#/chain/'
       : 'http://106.75.251.68/#/chain/',
-    selfPay: true,
-  },
-  {
-    id: ChainId.Bitgert,
-    nativeFee: true,
-    icon: require('@/assets/jpg/bitgert.jpeg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://brisescan.com/tx/0x{txHash}'
-      : 'https://testnet-explorer.brisescan.com/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
-      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
-    dst_ccm: TARGET_MAINNET
-      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
-      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'BRISE',
-    symbol: TARGET_MAINNET ? 'BRISE' : 'BRISE',
-    name: TARGET_MAINNET ? 'Bitgert Main' : 'Bitgert Test',
-    rpcUrl: TARGET_MAINNET
-      ? 'https://testnet-rpc.brisescan.com'
-      : 'https://testnet-rpc.brisescan.com',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://brisescan.com'
-      : 'https://testnet-explorer.brisescan.com',
     selfPay: true,
   },
   // {
