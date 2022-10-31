@@ -42,6 +42,8 @@ const APIS = {
   [ChainId.Xrp]: () => import('./xrp'),
   [ChainId.Astar]: () => import('./eth'),
   [ChainId.Conflux]: () => import('./eth'),
+  [ChainId.Aptos]: () => import('./aptos'),
+  [ChainId.Goerli]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {

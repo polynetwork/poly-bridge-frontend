@@ -144,6 +144,8 @@ export default {
     confirming: 'Confirming...',
     approve: 'Approve',
     approving: 'Approving...',
+    register: 'Register',
+    registering: 'Registering',
   },
   messages: {
     copied: '"{text}" has been copied to clipboard.',
@@ -203,6 +205,9 @@ export default {
       [ChainId.Astar]: 'Astar',
       [ChainId.Conflux]: 'Conflux eSpace',
       [ChainId.N3T5]: 'N3T5',
+      [ChainId.Aptos]: 'Aptos',
+      [ChainId.Goerli]: 'Goerli',
+      [ChainId.Bitgert]: 'Bitgert',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -246,6 +251,9 @@ export default {
       [ChainId.Conflux]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Astar]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.N3T5]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Aptos]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Goerli]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Bitgert]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',
@@ -292,6 +300,7 @@ export default {
       INSUFFICIENT_FUNDS: 'Insufficient funds.',
       COMMUNICATE_FAILED: 'Communicate failed with wallet.',
       TOKEN_IS_NOT_ACCEPT: 'Token is not accepted by the address on the target chain.',
+      NOT_CREATED_ACCOUNT: 'Please create Account first',
     },
     chain: {
       UNKNOWN_ERROR: 'Unknown chain error.',
