@@ -218,6 +218,9 @@ export const MAIN_CHAINS = [
     lockContractHash: TARGET_MAINNET
       ? 'f8328398c4c8e77b6c5843f5e404be0170d5012e'
       : 'c3ac0347e9c4f65b7fff383201a1551da4301e09',
+    nftLockContractHash: TARGET_MAINNET
+      ? '0x6187d315b2ba2aadd52d88955d23a840473d5e25'
+      : '0x6187d315b2ba2aadd52d88955d23a840473d5e25',
     nftFeeContractHash: 'd2a4cff31913016155e38e474a2c06d08be276cf',
     nftFeeName: 'GAS',
     selfPay: false,
