@@ -251,16 +251,17 @@ async function nftLock({ fromChainId, fromAddress, fromTokenHash, toChainId, toA
     const fromAddressHash = await fromChainApi.addressToHash(fromAddress);
     const toAddressHex = toChainApi.addressToHex(toAddress);
     const toAddressBase64 = hex2base64(toAddressHex);
+    const tokenId = hex2base64(id);
     const feeInt = decimalToInteger(fee, 8);
     const params = {
       scriptHash: fromChain.nftLockContractHash,
       operation: 'lock',
       args: [
-        { type: 'Hash160', value: fromTokenHash },
-        { type: 'Hash160', value: fromAddress },
+        { type: 'Hash160', value: `0x${fromTokenHash}` },
+        { type: 'Hash160', value: `0x${fromAddressHash}` },
         { type: 'Integer', value: toChainId },
         { type: 'ByteArray', value: toAddressBase64 },
-        { type: 'String', value: id },
+        { type: 'ByteArray', value: tokenId },
         { type: 'Integer', value: feeInt },
         { type: 'Integer', value: 0 },
       ],

@@ -43,7 +43,7 @@ export default {
   inheritAttrs: false,
   props: {
     itemId: String,
-    items: Array,
+    items: Object,
     page: Number,
   },
   data() {
