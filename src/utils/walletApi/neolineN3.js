@@ -21,6 +21,10 @@ const NETWORK_CHAIN_ID_MAPS = {
   N3MainNet: ChainId.N3,
   N3TestNet: ChainId.N3T5,
 };
+// const NETWORK_CHAIN_ID_MAPS = {
+//   N3MainNet: ChainId.N3,
+//   N3TestNet: ChainId.N3T5,
+// };
 
 const WALLET_CHAIN_ID_MAPS = {
   N3MainNet: 14,

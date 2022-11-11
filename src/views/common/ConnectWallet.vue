@@ -134,9 +134,7 @@ export default {
   },
   computed: {
     chains() {
-      const arr = this.$store.getters.chains.filter(
-        chain => chain.id !== ChainId.Poly && chain.id !== ChainId.Stc,
-      );
+      const arr = this.$store.getters.chains.filter(chain => chain.id !== ChainId.Poly);
       const obj = arr[2];
       arr.splice(2, 1);
       arr.push(obj);
@@ -144,11 +142,7 @@ export default {
     },
     nftChains() {
       return this.$store.getters.chains.filter(
-        chain =>
-          chain.id !== ChainId.Poly &&
-          chain.id !== ChainId.Ont &&
-          chain.id !== ChainId.Neo &&
-          chain.id !== ChainId.Stc,
+        chain => chain.id !== ChainId.Poly && chain.id !== ChainId.Ont && chain.id !== ChainId.Neo,
       );
     },
     airChains() {

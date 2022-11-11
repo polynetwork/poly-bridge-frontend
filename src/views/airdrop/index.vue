@@ -185,7 +185,9 @@
                 currentChainId !== 5 &&
                 currentChainId !== 14 &&
                 currentChainId !== 88 &&
-                currentChainId !== 888
+                currentChainId !== 888 &&
+                currentChainId !== 31 &&
+                currentChainId !== 318
             "
           >
             <div class="btn-in active" @click="claimNft()" v-if="claiming">
@@ -203,7 +205,9 @@
                 currentChainId === 5 ||
                 currentChainId === 14 ||
                 currentChainId === 88 ||
-                currentChainId === 888
+                currentChainId === 888 ||
+                currentChainId === 31 ||
+                currentChainId === 318
             "
           >
             <div class="btn-in active" @click="openDiscord()">Contact us</div>
@@ -278,13 +282,16 @@ export default {
       return this.airDropClaimNft;
     },
     isNoEvm() {
+      console.log('this.currentChainId', this.currentChainId);
       return (
         this.currentChainId === 3 ||
         this.currentChainId === 4 ||
         this.currentChainId === 5 ||
         this.currentChainId === 14 ||
         this.currentChainId === 88 ||
-        this.currentChainId === 888
+        this.currentChainId === 888 ||
+        this.currentChainId === 31 ||
+        this.currentChainId === 318
       );
     },
     checkFlag() {
@@ -326,7 +333,6 @@ export default {
       if (timestamp >= 1659927600001) {
         res = 2;
       }
-      console.log(res);
       return res;
     },
     addressFlag() {
@@ -386,7 +392,6 @@ export default {
       }
     },
     wallets(value, oldValue) {
-      console.log('this.wallets', this.wallets);
       this.currentAddress = this.wallets[0].address;
       this.currentChainId = this.wallets[0].walletChainId;
       this.getAirdropData(this.wallets);
@@ -421,7 +426,9 @@ export default {
     },
     handleCommand(command) {
       this.currentAddress = this.wallets[command].address;
-      this.currentChainId = this.wallets[command].walletChainId;
+      this.currentChainId = this.wallets[command].walletChainId
+        ? this.wallets[command].walletChainId
+        : this.wallets[command].chainId;
       this.currentId = command;
     },
     async getAirdropData($wallets) {
@@ -429,7 +436,7 @@ export default {
       if ($wallets.length > 0) {
         for (let i = 0; i < $wallets.length; i += 1) {
           const user = {
-            ChainId: $wallets[i].walletChainId,
+            ChainId: $wallets[i].walletChainId ? $wallets[i].walletChainId : $wallets[i].chainId,
             Address: $wallets[i].addressHex,
           };
           sdata.push(user);
@@ -441,7 +448,7 @@ export default {
           this.joinFlag = true;
         }
         this.userData = res.Users;
-        console.log(res);
+        console.log('userData', res);
         this.getAirDropClaimData();
       }
     },

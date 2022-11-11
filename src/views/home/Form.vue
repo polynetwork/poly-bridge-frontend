@@ -35,7 +35,7 @@
             required: true,
             number: true,
             positive: true,
-            maxDecimals: tokenBasic && tokenBasic.decimals,
+            maxDecimals: tokenSpBasics && tokenSpBasics.decimals,
             maxValue: maxAmount,
             minValue: { min: minAmount, excluded: true },
           }"
@@ -266,6 +266,15 @@
             {{ approving ? $t('buttons.approving') : $t('buttons.approve') }}
           </CSubmitButton>
         </div>
+        <div v-else-if="!isRegisterd" class="approve-wrapper">
+          <CSubmitButton
+            :loading="registering"
+            @click="register"
+            :disabled="isRegisterd !== false && registering"
+          >
+            {{ registering ? $t('buttons.registering') : $t('buttons.register') }}
+          </CSubmitButton>
+        </div>
         <CSubmitButton
           v-else
           :disabled="invalid || !(fromToken && toToken)"
@@ -337,6 +346,7 @@ import { ChainId } from '@/utils/enums';
 import TransactionDetails from '@/views/transactions/Details';
 import { getWalletApi } from '@/utils/walletApi';
 import { toStandardHex } from '@/utils/convertors';
+import { TARGET_MAINNET } from '@/utils/env';
 import SelectTokenBasic from './SelectTokenBasic';
 import SelectChain from './SelectChain';
 import ConnectWallet from './ConnectWallet';
@@ -374,6 +384,7 @@ export default {
       confirmUuid: uuidv4(),
       healthFlag: true,
       airDropVisible: false,
+      registering: false,
     };
   },
   computed: {
@@ -407,14 +418,14 @@ export default {
           res = 2000000000000;
         }
         if (this.fee.IsNative) {
-          res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-          res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
+          res = new BigNumber(res).minus(this.fee.TokenAmount).toString();
+          res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toString();
         }
         if (
           !this.fee.IsNative &&
           (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
         ) {
-          res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
+          res = new BigNumber(res).minus(this.fee.TokenAmount).toString();
         }
         if (res < 0) {
           res = 0;
@@ -427,6 +438,13 @@ export default {
     },
     tokenBasic() {
       return this.$store.getters.getTokenBasic(this.tokenBasicName);
+    },
+    tokenSpBasics() {
+      const data = {
+        tokenBasicName: this.tokenBasicName,
+        chainId: this.fromChainId,
+      };
+      return this.$store.getters.getTokenByTokenBasicNameAndChainId(data);
     },
     chains() {
       return this.$store.getters.chains.filter(chain => chain.id !== ChainId.Poly);
@@ -567,6 +585,23 @@ export default {
     fee() {
       return this.getFeeParams && this.$store.getters.getFee(this.getFeeParams);
     },
+    isRegisterdParams() {
+      console.log(this.fromWallet);
+      if ((this.toChainId === 998 || this.toChainId === 41) && this.toWallet) {
+        return {
+          chainId: this.toChainId,
+          address: this.toWallet.address,
+          tokenHash: this.toToken.hash,
+        };
+      }
+      return null;
+    },
+    isRegisterd() {
+      return (
+        (this.toChainId !== 998 && this.toChainId !== 41) ||
+        (this.isRegisterdParams && this.$store.getters.getReigster(this.isRegisterdParams))
+      );
+    },
     // tofee() {
     //   return this.getToFeeParams && this.$store.getters.getFee(this.getToFeeParams);
     // },
@@ -589,6 +624,12 @@ export default {
     getFeeParams(value) {
       if (value) {
         this.$store.dispatch('getFee', value);
+      }
+    },
+    isRegisterdParams(value) {
+      console.log(value);
+      if (value) {
+        this.$store.dispatch('getReigster', value);
       }
     },
     // getToFeeParams(value) {
@@ -623,9 +664,13 @@ export default {
     },
   },
   created() {
-    if (!(sessionStorage.getItem('AIRDROP_BANNER') === 'true')) {
-      this.airDropVisible = true;
-      sessionStorage.setItem('AIRDROP_BANNER', 'true');
+    if (TARGET_MAINNET) {
+      if (!(sessionStorage.getItem('AIRDROP_BANNER') === 'true')) {
+        this.airDropVisible = true;
+        sessionStorage.setItem('AIRDROP_BANNER', 'true');
+      }
+    } else {
+      this.airDropVisible = false;
     }
     this.$store.dispatch('getTokenBasics');
     this.getChainHealth();
@@ -654,6 +699,16 @@ export default {
     clearInterval(this.interval1);
   },
   methods: {
+    async register() {
+      const data = {
+        chainid: this.toChainId,
+        address: this.toWallet.address,
+        tokenHash: this.toToken.hash,
+      };
+      const walletApi = await getWalletApi(this.toWallet.name);
+      const tx = await walletApi.registerCoin(data);
+      this.$store.dispatch('getReigster', this.isRegisterdParams);
+    },
     async getChainHealth() {
       const chindIds = this.getChainsHealthParams;
       const res = await httpApi.getHealthData({ chindIds });
@@ -708,14 +763,14 @@ export default {
         res = this.fee.Balance;
       }
       if (this.fee.IsNative) {
-        res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
-        res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toNumber();
+        res = new BigNumber(res).minus(this.fee.TokenAmount).toString();
+        res = new BigNumber(res).minus(this.fee.NativeTokenAmount).toString();
       }
       if (
         !this.fee.IsNative &&
         (this.fromChain.id === 3 || this.fromChain.id === 4 || this.fromChain.id === 5)
       ) {
-        res = new BigNumber(res).minus(this.fee.TokenAmount).toNumber();
+        res = new BigNumber(res).minus(this.fee.TokenAmount).toString();
       }
       if (res < 0) {
         this.$message.error(this.$t('errors.wallet.INSUFFICIENT_FUNDS'));
@@ -801,6 +856,7 @@ export default {
       if (!finalCheck) {
         return;
       }
+      const payfeeAmount = this.fee ? this.fee.TokenAmount : 0.0001;
       this.confirmingData = {
         fromAddress: this.fromWallet.address,
         toAddress: this.toWallet.address,
@@ -809,8 +865,9 @@ export default {
         fromTokenHash: this.fromToken.hash,
         toTokenHash: this.toToken.hash,
         amount: this.amount,
-        fee: this.selfPayChecked ? 0 : this.fee.TokenAmount,
+        fee: this.selfPayChecked ? 0 : payfeeAmount,
       };
+      console.log(this.confirmingData);
       this.confirmVisible = true;
     },
     handleClosed() {
