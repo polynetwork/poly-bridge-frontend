@@ -12,6 +12,8 @@ export const WalletName = {
   WalletConnect: 'WalletConnnect',
   StarMask: 'StarMask',
   XUMM: 'XUMM',
+  Martian: 'Martian',
+  Petra: 'Petra',
 };
 
 export const ChainId = {
@@ -19,7 +21,7 @@ export const ChainId = {
   Eth: 2,
   Ont: 3,
   Neo: TARGET_MAINNET ? 4 : 5,
-  N3: TARGET_MAINNET ? 14 : 88,
+  N3: TARGET_MAINNET ? 14 : 888,
   xDai: TARGET_MAINNET ? 20 : 206,
   HSC: TARGET_MAINNET ? 28 : 603,
   Harmony: TARGET_MAINNET ? 27 : 800,
@@ -30,7 +32,7 @@ export const ChainId = {
   Palette: TARGET_MAINNET ? 8 : 107,
   Palette2: TARGET_MAINNET ? 108 : 108,
   Polygon: TARGET_MAINNET ? 17 : 202,
-  Arbitrum: TARGET_MAINNET ? 19 : 205,
+  Arbitrum: TARGET_MAINNET ? 19 : 215,
   Optimistic: TARGET_MAINNET ? 23 : 210,
   Boba: TARGET_MAINNET ? 25 : 400,
   Oasis: TARGET_MAINNET ? 26 : 500,
@@ -48,13 +50,15 @@ export const ChainId = {
   Milkomeda: TARGET_MAINNET ? 810 : 810,
   Kava: TARGET_MAINNET ? 32 : 920,
   Cube: TARGET_MAINNET ? 35 : 930,
-  Xrp: TARGET_MAINNET ? 27 : 223,
+  Xrp: TARGET_MAINNET ? 39 : 223,
   Celo: TARGET_MAINNET ? 36 : 960,
   CLV: TARGET_MAINNET ? 37 : 970,
   zkSync: TARGET_MAINNET ? 940 : 940,
-  Astar: TARGET_MAINNET ? 990 : 990,
   Conflux: TARGET_MAINNET ? 38 : 980,
-  N3T5: TARGET_MAINNET ? 888 : 888,
+  Astar: TARGET_MAINNET ? 40 : 990,
+  Aptos: TARGET_MAINNET ? 41 : 998,
+  Goerli: TARGET_MAINNET ? 502 : 502,
+  Bitgert: TARGET_MAINNET ? 42 : 1010,
 };
 
 export const NetworkChainIdMaps = {
@@ -69,7 +73,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 137 : 80001]: ChainId.Polygon,
   [TARGET_MAINNET ? 1718 : 1718]: ChainId.Palette,
   [TARGET_MAINNET ? 101 : 101]: ChainId.Palette2,
-  [TARGET_MAINNET ? 42161 : 421611]: ChainId.Arbitrum,
+  [TARGET_MAINNET ? 42161 : 421613]: ChainId.Arbitrum,
   [TARGET_MAINNET ? 10 : 69]: ChainId.Optimistic,
   [TARGET_MAINNET ? 250 : 4002]: ChainId.Fantom,
   [TARGET_MAINNET ? 43114 : 43113]: ChainId.Avalanche,
@@ -88,8 +92,10 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 42220 : 44787]: ChainId.Celo,
   [TARGET_MAINNET ? 1024 : 1023]: ChainId.CLV,
   [TARGET_MAINNET ? 280 : 280]: ChainId.zkSync,
-  [TARGET_MAINNET ? 592 : 81]: ChainId.Astar,
   [TARGET_MAINNET ? 1030 : 71]: ChainId.Conflux,
+  [TARGET_MAINNET ? 592 : 81]: ChainId.Astar,
+  [TARGET_MAINNET ? 5 : 5]: ChainId.Goerli,
+  [TARGET_MAINNET ? 32520 : 64668]: ChainId.Bitgert,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -104,7 +110,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Polygon]: TARGET_MAINNET ? 137 : 80001,
   [ChainId.Palette]: TARGET_MAINNET ? 1718 : 1718,
   [ChainId.Palette2]: TARGET_MAINNET ? 101 : 101,
-  [ChainId.Arbitrum]: TARGET_MAINNET ? 42161 : 421611,
+  [ChainId.Arbitrum]: TARGET_MAINNET ? 42161 : 421613,
   [ChainId.Optimistic]: TARGET_MAINNET ? 10 : 69,
   [ChainId.Fantom]: TARGET_MAINNET ? 250 : 4002,
   [ChainId.Avalanche]: TARGET_MAINNET ? 43114 : 43113,
@@ -126,6 +132,8 @@ export const EthNetworkChainIdMaps = {
   [ChainId.zkSync]: TARGET_MAINNET ? 280 : 280,
   [ChainId.Astar]: TARGET_MAINNET ? 592 : 81,
   [ChainId.Conflux]: TARGET_MAINNET ? 1030 : 71,
+  [ChainId.Goerli]: TARGET_MAINNET ? 5 : 5,
+  [ChainId.Bitgert]: TARGET_MAINNET ? 32520 : 64668,
 };
 
 export const SingleTransactionStatus = {

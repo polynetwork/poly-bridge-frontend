@@ -22,6 +22,12 @@ module.exports = {
         },
       ]);
     } */
+    config.module
+      .rule('mjs')
+      .test(/\.mjs$/)
+      .type('javascript/auto')
+      .include.add(/node_modules/)
+      .end();
   },
   pluginOptions: {
     i18n: {

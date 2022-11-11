@@ -51,6 +51,9 @@ export const WALLETS = [
       ChainId.zkSync,
       ChainId.Astar,
       ChainId.Conflux,
+      ChainId.Astar,
+      ChainId.Goerli,
+      ChainId.Bitgert,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -107,7 +110,7 @@ export const WALLETS = [
   },
   {
     name: WalletName.NeoLineN3,
-    supportedChainIds: [ChainId.N3, ChainId.N3T5],
+    supportedChainIds: [ChainId.N3],
     icon: require('@/assets/svg/neoline.svg'),
     downloadUrl:
       'https://chrome.google.com/webstore/detail/neoline/cphhlgmgameodnhkjdmkpanlelnlohao',
@@ -149,6 +152,20 @@ export const WALLETS = [
   },
   //   ]
   // : []),
+  {
+    name: WalletName.Martian,
+    supportedChainIds: [ChainId.Aptos],
+    icon: require('@/assets/png/martian.png'),
+    downloadUrl:
+      'https://chrome.google.com/webstore/detail/martian-aptos-wallet/efbglgofoippbgcjepnhiblaibcnclgk',
+  },
+  // {
+  //   name: WalletName.Petra,
+  //   supportedChainIds: [ChainId.Aptos],
+  //   icon: require('@/assets/png/martian.png'),
+  //   downloadUrl:
+  //     'https://chrome.google.com/webstore/detail/petra-aptos-wallet/ejjladinnckdgjemekebdpeokbikhfci',
+  // },
 ];
 
 export const MAIN_CHAINS = [
@@ -198,10 +215,16 @@ export const MAIN_CHAINS = [
     icon: require('@/assets/svg/neo.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://neo3.neotube.io/transaction/{txHash}'
-      : 'https://neo3.testnet.neotube.io/transaction/{txHash}',
+      : 'https://n3t5.neotube.io/transaction/{txHash}',
+    nftexplorerUrl: TARGET_MAINNET
+      ? 'https://neo3.neotube.io/transaction/{txHash}'
+      : 'https://n3t5.neotube.io/transaction/{txHash}',
     lockContractHash: TARGET_MAINNET
       ? 'f8328398c4c8e77b6c5843f5e404be0170d5012e'
-      : 'd63810ca692b43e0ed35bfa40e653d05b2cb3585',
+      : 'c3ac0347e9c4f65b7fff383201a1551da4301e09',
+    nftLockContractHash: TARGET_MAINNET
+      ? '6187d315b2ba2aadd52d88955d23a840473d5e25'
+      : '6187d315b2ba2aadd52d88955d23a840473d5e25',
     nftFeeContractHash: 'd2a4cff31913016155e38e474a2c06d08be276cf',
     nftFeeName: 'GAS',
     selfPay: false,
@@ -479,21 +502,21 @@ export const MAIN_CHAINS = [
     icon: require('@/assets/svg/Arbitrum.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://arbiscan.io/tx/0x{txHash}'
-      : 'https://testnet.arbiscan.io/tx/0x{txHash}',
+      : 'https://goerli.arbiscan.io/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
       ? '0x0f8C16BA16E58525Eb2aDc231ff360cfa00bB527'
-      : '0x27eb74B4Db37517F1dC6dE67364e19782624402F',
+      : '0xAefD220aE393144dcb5EFD6Ab55ABDf6a3d0444d',
     dst_ccm: TARGET_MAINNET
       ? '0x7ceA671DABFBa880aF6723bDdd6B9f4caA15C87B'
-      : '0x3A77dB10eAa7436e608a99643Ab2bEB2E901C72C',
+      : '0x55a59c57a133d1c999b3Eaf5B16ad5c1F2e365c8',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ETH',
     symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
-    name: TARGET_MAINNET ? 'Arbitrum Mainnet' : 'Arbitrum Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://arb1.arbitrum.io/rpc' : 'https://rinkeby.arbitrum.io/rpc',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://arbiscan.io/'
-      : 'https://rinkeby-explorer.arbitrum.io/#/',
+    name: TARGET_MAINNET ? 'Arbitrum Mainnet' : 'Arbitrum Goerli',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://arb1.arbitrum.io/rpc'
+      : 'https://goerli-rollup.arbitrum.io/rpc',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://arbiscan.io/' : 'https://goerli.arbiscan.io/',
     selfPay: true,
   },
   {
@@ -787,6 +810,89 @@ export const MAIN_CHAINS = [
       : 'https://evmtestnet.confluxscan.net/',
     selfPay: true,
   },
+  {
+    id: ChainId.Xrp,
+    nativeFee: true,
+    icon: require('@/assets/png/xrp.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://xrpscan.com/tx/{txHash}'
+      : 'https://testnet.xrpl.org/transactions/{txHash}',
+    WrapperContract: TARGET_MAINNET
+      ? 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6'
+      : 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6',
+    lockProxyContractHash: TARGET_MAINNET
+      ? 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG'
+      : 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG',
+    nftFeeName: 'XRP',
+    nftFeeContractHash: '51fa7b7c1e0c79b54de202e6a24fef61bf54f442',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Aptos,
+    nativeFee: true,
+    icon: require('@/assets/png/aptos.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.aptoslabs.com/txn/0x{txHash}'
+      : 'https://explorer.aptoslabs.com/txn/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xf12a4ff673797d20307f081103186c6a725a6c8609a551bdc13ee30862f2ce15'
+      : '0xf12a4ff673797d20307f081103186c6a725a6c8609a551bdc13ee30862f2ce15',
+    dst_ccm: TARGET_MAINNET
+      ? '0xFcf7A3207b7442F29a9f88e2d7638633B494843f'
+      : '0xFcf7A3207b7442F29a9f88e2d7638633B494843f',
+    nftFeeContractHash: '0x1::aptos_coin::AptosCoin',
+    nftFeeName: 'APT',
+    symbol: TARGET_MAINNET ? 'APT' : 'APT',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Astar,
+    nativeFee: true,
+    icon: require('@/assets/png/astar.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://blockscout.com/astar/tx/0x{txHash}'
+      : 'https://blockscout.com/shibuya/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x5906777d34257a2b479c291871c9bfdfb922d67d'
+      : '0xdD5CcD4B40afb869F00A092Ace0255f1942185De',
+    dst_ccm: TARGET_MAINNET
+      ? '0xab7a3CA9bDcE476F0ECC04c127CFEe0F3D212BC5'
+      : '0xFeE651E032197770B65516EFbBdeD11483533264',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: TARGET_MAINNET ? 'ASTR' : 'SBY',
+    symbol: TARGET_MAINNET ? 'ASTR' : 'SBY',
+    name: TARGET_MAINNET ? 'Astar Network' : 'ASTAR Shibuya Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://evm.astar.network' : 'https://evm.shibuya.astar.network',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://blockscout.com/astar/'
+      : 'https://blockscout.com/shibuya/',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Bitgert,
+    nativeFee: true,
+    icon: require('@/assets/jpg/bitgert.jpeg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://brisescan.com/tx/0x{txHash}'
+      : 'https://testnet-explorer.brisescan.com/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x5906777d34257a2b479c291871C9BFdFB922D67D'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xab7a3CA9bDcE476F0ECC04c127CFEe0F3D212BC5'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'BRISE',
+    symbol: TARGET_MAINNET ? 'BRISE' : 'BRISE',
+    name: TARGET_MAINNET ? 'Bitgert Main' : 'Bitgert Test',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://mainnet-rpc.brisescan.com'
+      : 'https://testnet-rpc.brisescan.com',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://brisescan.com'
+      : 'https://testnet-explorer.brisescan.com',
+    selfPay: true,
+  },
 ];
 
 export const TEST_CHAINS = [
@@ -934,6 +1040,35 @@ export const TEST_CHAINS = [
       : 'https://rinkeby.etherscan.io',
   },
   {
+    id: ChainId.Goerli,
+    nativeFee: true,
+    icon: require('@/assets/svg/eth.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://goerli.etherscan.io/tx/0x{txHash}'
+      : 'https://goerli.etherscan.io/tx/0x{txHash}',
+    nftexplorerUrl: TARGET_MAINNET
+      ? 'https://goerli.etherscan.io/tx/0x{txHash}'
+      : 'https://goerli.etherscan.io/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xA058FC5427d3E634698d1185C1BA01ADAf998E14'
+      : '0xA058FC5427d3E634698d1185C1BA01ADAf998E14',
+    dst_ccm: TARGET_MAINNET
+      ? '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126'
+      : '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126',
+    nftLockContractHash: TARGET_MAINNET
+      ? '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C'
+      : '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'GoerliETH',
+    selfPay: true,
+    symbol: TARGET_MAINNET ? 'GoerliETH' : 'GoerliETH',
+    name: TARGET_MAINNET ? 'Goerli Test Network' : 'Goerli Test Network',
+    rpcUrl: TARGET_MAINNET ? 'https://goerli.infura.io/v3/' : 'https://goerli.infura.io/v3/',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://goerli.etherscan.io'
+      : 'https://goerli.etherscan.io',
+  },
+  {
     id: ChainId.Oasis1,
     nativeFee: true,
     icon: require('@/assets/png/oasis.png'),
@@ -979,29 +1114,6 @@ export const TEST_CHAINS = [
     selfPay: true,
   },
   {
-    id: ChainId.Astar,
-    nativeFee: true,
-    icon: require('@/assets/png/astar.png'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://blockscout.com/astar/tx/0x{txHash}'
-      : 'https://blockscout.com/shibuya/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xdD5CcD4B40afb869F00A092Ace0255f1942185De'
-      : '0xdD5CcD4B40afb869F00A092Ace0255f1942185De',
-    dst_ccm: TARGET_MAINNET
-      ? '0xFeE651E032197770B65516EFbBdeD11483533264'
-      : '0xFeE651E032197770B65516EFbBdeD11483533264',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'ASTR',
-    symbol: TARGET_MAINNET ? 'ASTR' : 'SBY',
-    name: TARGET_MAINNET ? 'Astar Network' : 'ASTAR Shibuya Testnet',
-    rpcUrl: TARGET_MAINNET ? 'https://evm.astar.network' : 'https://evm.shibuya.astar.network',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://blockscout.com/astar/'
-      : 'https://blockscout.com/shibuya/',
-    selfPay: true,
-  },
-  {
     id: ChainId.Palette2,
     nativeFee: true,
     icon: require('@/assets/svg/plt.svg'),
@@ -1031,37 +1143,6 @@ export const TEST_CHAINS = [
       ? 'https://palettescan.com/#/chain/'
       : 'http://106.75.251.68/#/chain/',
     selfPay: true,
-  },
-  // {
-  //   id: ChainId.Xrp,
-  //   nativeFee: true,
-  //   icon: require('@/assets/png/xrp.png'),
-  //   explorerUrl: TARGET_MAINNET
-  //     ? 'https://xrpscan.com/tx/{txHash}'
-  //     : 'https://testnet.xrpl.org/transactions/{txHash}',
-  //   WrapperContract: TARGET_MAINNET
-  //     ? 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6'
-  //     : 'rNLAvVYSiVzrVLvk1GVnZnMd26YRKvYVL6',
-  //   lockProxyContractHash: TARGET_MAINNET
-  //     ? 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG'
-  //     : 'r37ToMmnEYrrTf4WWu47Myn8m5vVgHa3yG',
-  //   nftFeeName: 'XRP',
-  //   nftFeeContractHash: '51fa7b7c1e0c79b54de202e6a24fef61bf54f442',
-  //   selfPay: true,
-  // },
-  {
-    id: ChainId.N3T5,
-    nativeFee: false,
-    icon: require('@/assets/svg/neo.svg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://neo3.neotube.io/transaction/{txHash}'
-      : 'https://n3t5.neotube.io/transaction/{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? 'f8328398c4c8e77b6c5843f5e404be0170d5012e'
-      : 'c3ac0347e9c4f65b7fff383201a1551da4301e09',
-    nftFeeContractHash: 'd2a4cff31913016155e38e474a2c06d08be276cf',
-    nftFeeName: 'GAS',
-    selfPay: false,
   },
   // {
   //   id: ChainId.OntEvm,
