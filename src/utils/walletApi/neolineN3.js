@@ -244,6 +244,54 @@ async function lock({
   }
 }
 
+function getNFTApproved({ fromChainId, toChainId, tokenHash, id }) {
+  return false;
+}
+
+async function nftLock({ fromChainId, fromAddress, fromTokenHash, toChainId, toAddress, id, fee }) {
+  try {
+    const fromChain = store.getters.getChain(fromChainId);
+    const toChainApi = await getChainApi(toChainId);
+    const fromChainApi = await getChainApi(fromChainId);
+    const fromAddressHash = await fromChainApi.addressToHash(fromAddress);
+    const toAddressHex = toChainApi.addressToHex(toAddress);
+    const toAddressBase64 = hex2base64(toAddressHex);
+    const tokenId = hex2base64(id);
+    const feeInt = decimalToInteger(fee, 8);
+    const params = {
+      scriptHash: fromChain.nftLockContractHash,
+      operation: 'lock',
+      args: [
+        { type: 'Hash160', value: `0x${fromTokenHash}` },
+        { type: 'Hash160', value: `0x${fromAddressHash}` },
+        { type: 'Integer', value: toChainId },
+        { type: 'ByteArray', value: toAddressBase64 },
+        { type: 'ByteArray', value: tokenId },
+        { type: 'Integer', value: feeInt },
+        { type: 'Integer', value: 0 },
+      ],
+      broadcastOverride: false,
+      signers: [
+        {
+          account: fromAddressHash,
+          scopes: 17,
+          allowedContracts: [
+            `0x${fromTokenHash}`,
+            NEW_GAS,
+            '0x50ccb797f4fe825767656facab8fb7853a806ff8',
+            '0x6187d315b2ba2aadd52d88955d23a840473d5e25',
+          ],
+        },
+      ],
+    };
+    console.log(params);
+    const result = await n3Dapi.invoke(params);
+    return result.txid.substr(2, 64);
+  } catch (error) {
+    throw convertWalletError(error);
+  }
+}
+
 export default {
   install: init,
   connect,
@@ -252,4 +300,6 @@ export default {
   getTransactionStatus,
   approve,
   lock,
+  getNFTApproved,
+  nftLock,
 };

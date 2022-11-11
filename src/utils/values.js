@@ -216,9 +216,15 @@ export const MAIN_CHAINS = [
     explorerUrl: TARGET_MAINNET
       ? 'https://neo3.neotube.io/transaction/{txHash}'
       : 'https://n3t5.neotube.io/transaction/{txHash}',
+    nftexplorerUrl: TARGET_MAINNET
+      ? 'https://neo3.neotube.io/transaction/{txHash}'
+      : 'https://n3t5.neotube.io/transaction/{txHash}',
     lockContractHash: TARGET_MAINNET
       ? 'f8328398c4c8e77b6c5843f5e404be0170d5012e'
       : 'c3ac0347e9c4f65b7fff383201a1551da4301e09',
+    nftLockContractHash: TARGET_MAINNET
+      ? '6187d315b2ba2aadd52d88955d23a840473d5e25'
+      : '6187d315b2ba2aadd52d88955d23a840473d5e25',
     nftFeeContractHash: 'd2a4cff31913016155e38e474a2c06d08be276cf',
     nftFeeName: 'GAS',
     selfPay: false,
@@ -1049,6 +1055,9 @@ export const TEST_CHAINS = [
     dst_ccm: TARGET_MAINNET
       ? '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126'
       : '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126',
+    nftLockContractHash: TARGET_MAINNET
+      ? '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C'
+      : '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'GoerliETH',
     selfPay: true,
