@@ -70,7 +70,7 @@
               min-width="150"
               :label="$t('transactions.index.collection')"
             >
-              {{ row.asset.name }}
+              {{ row.asset ? row.asset.name : '-' }}
             </ElTableColumn>
             <ElTableColumn #default="{ row }" min-width="120" :label="$t('transactions.index.fee')">
               {{ $formatNumber(row.fee) }} {{ row.nftFee.name }}

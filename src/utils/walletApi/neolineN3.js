@@ -2,7 +2,7 @@ import delay from 'delay';
 import _ from 'lodash';
 import store from '@/store';
 import { getChainApi } from '@/utils/chainApi';
-import { decimalToInteger, toStandardHex } from '@/utils/convertors';
+import { decimalToInteger, toStandardHex, integerToHex } from '@/utils/convertors';
 import { WalletName, ChainId, SingleTransactionStatus } from '@/utils/enums';
 import { WalletError } from '@/utils/errors';
 import { TARGET_MAINNET } from '@/utils/env';
@@ -256,7 +256,7 @@ async function nftLock({ fromChainId, fromAddress, fromTokenHash, toChainId, toA
     const fromAddressHash = await fromChainApi.addressToHash(fromAddress);
     const toAddressHex = toChainApi.addressToHex(toAddress);
     const toAddressBase64 = hex2base64(toAddressHex);
-    const tokenId = hex2base64(id);
+    const tokenId = hex2base64(integerToHex(id));
     const feeInt = decimalToInteger(fee, 8);
     const params = {
       scriptHash: fromChain.nftLockContractHash,
