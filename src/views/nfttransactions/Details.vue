@@ -371,6 +371,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.speedup {
+  opacity: 0.6;
+  padding-top: 20px;
+}
+.button-submit {
+  margin-top: 30px;
+}
 .content {
   display: flex;
   flex-direction: column;
