@@ -92,13 +92,16 @@ export default {
         } catch (switchError) {
           console.log('chain', switchError);
         }
-        throw new WalletError('Wallet is not in correct network.', {
-          code: WalletError.CODES.INCORRECT_NETWORK,
-          detail: {
-            walletName: formatEnum(wallet.name, { type: 'walletName' }),
-            chainNetworkName: formatEnum(chainId, { type: 'chainNetworkName' }),
-          },
-        });
+        /* okwallet auto change */
+        if (wallet.name !== 'OkWallet') {
+          throw new WalletError('Wallet is not in correct network.', {
+            code: WalletError.CODES.INCORRECT_NETWORK,
+            detail: {
+              walletName: formatEnum(wallet.name, { type: 'walletName' }),
+              chainNetworkName: formatEnum(chainId, { type: 'chainNetworkName' }),
+            },
+          });
+        }
       }
     },
   },
