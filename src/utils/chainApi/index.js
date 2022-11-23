@@ -44,6 +44,7 @@ const APIS = {
   [ChainId.Conflux]: () => import('./eth'),
   [ChainId.Aptos]: () => import('./aptos'),
   [ChainId.Goerli]: () => import('./eth'),
+  [ChainId.Bitgert]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {
