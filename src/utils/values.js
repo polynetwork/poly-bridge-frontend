@@ -629,7 +629,7 @@ export const MAIN_CHAINS = [
       : 'https://explorer.ont.io/transaction/{txHash}/testnet',
     lockContractHash: TARGET_MAINNET
       ? 'c93837e82178d406af8c84e1841c6960af251cb5'
-      : 'a5c101afa9e04e9dd2c912983795005a49e02efa',
+      : 'c16b8cd1effb3c103b18e43ebad8386ccf2e0db6',
     selfPay: false,
   },
   {
