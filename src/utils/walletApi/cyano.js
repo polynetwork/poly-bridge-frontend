@@ -252,7 +252,8 @@ async function lock ({
     let parameters = [
       { type: 'ByteArray', value: fromAddressHex },
       { type: 'ByteArray', value: fromTokenHashReversed },
-      { type: 'ByteArray', value: hexChainid },
+      // { type: 'ByteArray', value: hexChainid },
+      { type: 'Integer', value: toChainId },
       { type: 'ByteArray', value: toAddressHex },
       { type: 'Long', value: amountInt },
       { type: 'Long', value: feeInt },
