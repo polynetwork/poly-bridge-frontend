@@ -373,7 +373,7 @@ async function nftLock({ fromChainId, fromAddress, fromTokenHash, toChainId, toA
       nftContract,
     );
     const toChainApi = await getChainApi(toChainId);
-    const toAddressHex = toChainApi.addressToHex(toAddress);
+    const toAddressHex = await toChainApi.addressToHex(toAddress);
     const tokenID = decimalToInteger(id, 0);
     const feeInt = decimalToInteger(fee, 18);
     const feeTokenHash =

@@ -209,7 +209,7 @@
       :itemId="item ? item.TokenId : null"
       @update:item="changeItem"
       @update:page="changeItemPage"
-      :items="items || []"
+      :items="items || {}"
       :page="currentPage"
     />
     <ConnectWallet
@@ -336,8 +336,8 @@ export default {
       //   ? this.$store.getters.getItemsShow.Assets
       //   : [];
       // const itemsShow = AssetsShow[0] ? AssetsShow[0].Items : [];
-      const items = this.assetHash ? this.$store.getters.getItems : [];
-      return this.fromWallet ? items : [];
+      const items = this.assetHash ? this.$store.getters.getItems : {};
+      return this.fromWallet ? items : {};
     },
     itemsShow() {
       return this.$store.getters.getItemsShow.Assets;

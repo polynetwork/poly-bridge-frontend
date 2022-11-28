@@ -61,8 +61,67 @@
             <CButton v-if="step.hash" @click="copy(step.hash)">
               <img class="copy-icon" src="@/assets/svg/copy.svg" />
             </CButton>
-          </template>
+            <div
+              class="speedup"
+              v-if="
+                index == 2 &&
+                  getStepStatus(2) === 'pending' &&
+                  $route.name === 'nft' &&
+                  step.chainId !== 3 &&
+                  step.chainId !== 4 &&
+                  step.chainId !== 5 &&
+                  step.chainId !== 14 &&
+                  step.chainId !== 88 &&
+                  step.chainId !== 318
+              "
+            >
+              {{ $t('home.form.speedup') }}
+              <a
+                target="_blank"
+                href="https://medium.com/poly-network/poly-bridge-new-acceleration-function-pc-user-manual-cd0b6cacceea"
+                style="color: #fff"
+                >Link</a
+              >
+            </div>
 
+            <div
+              class="speedup"
+              v-if="
+                index == 2 &&
+                  getStepStatus(2) === 'pending' &&
+                  $route.name === 'nfttransactions' &&
+                  speedUpMSGFlag &&
+                  step.chainId !== 3 &&
+                  step.chainId !== 4 &&
+                  step.chainId !== 5 &&
+                  step.chainId !== 14 &&
+                  step.chainId !== 888 &&
+                  step.chainId !== 318
+              "
+            >
+              {{ $t('home.form.speedUpMSG') }}
+            </div>
+            <CSubmitButton
+              :loading="selfPayLoading"
+              v-if="
+                index == 2 &&
+                  getStepStatus(2) === 'pending' &&
+                  $route.name === 'nfttransactions' &&
+                  step.chainId !== 3 &&
+                  step.chainId !== 4 &&
+                  step.chainId !== 5 &&
+                  step.chainId !== 14 &&
+                  step.chainId !== 888 &&
+                  step.chainId !== 318 &&
+                  step.chainId !== 998 &&
+                  transaction.status !== 11
+              "
+              @click="payTochainFee"
+              class="button-submit"
+            >
+              {{ selfPay ? $t('buttons.pay') : $t('buttons.speedup') }}
+            </CSubmitButton>
+          </template>
           <template v-else-if="step.failed">
             <img class="step-icon failed" src="@/assets/svg/status-failed.svg" />
             <div v-if="index !== steps.length - 1" class="step-line" />
@@ -90,6 +149,10 @@
 import { ChainId, SingleTransactionStatus, TransactionStatus } from '@/utils/enums';
 import { HttpError } from '@/utils/errors';
 import copy from 'clipboard-copy';
+import { getWalletApi } from '@/utils/walletApi';
+import { toStandardHex } from '@/utils/convertors';
+import httpApi from '@/utils/httpApi';
+import ConnectWallet from '../home/ConnectWallet';
 
 export default {
   name: 'Details',
@@ -98,12 +161,51 @@ export default {
     hash: String,
     confirmingData: Object,
   },
+  data() {
+    return {
+      selfPayLoading: false,
+      connectWalletVisible: false,
+      speedUpMSGFlag: false,
+      xrpFeeLoading: false,
+    };
+  },
   computed: {
     mergedHash() {
       return this.hash || (this.confirmingData && this.confirmingData.transactionHash);
     },
     transaction() {
       return this.$store.getters.getNftTransaction(this.mergedHash);
+    },
+    fromWallet() {
+      return (
+        this.transaction &&
+        this.$store.getters.getChainConnectedWallet(this.transaction.fromChainId)
+      );
+    },
+    toWallet() {
+      return (
+        this.transaction && this.$store.getters.getChainConnectedWallet(this.transaction.toChainId)
+      );
+    },
+    toChain() {
+      return this.transaction && this.$store.getters.getChain(this.transaction.toChainId);
+    },
+    fromChain() {
+      return this.transaction && this.$store.getters.getChain(this.transaction.fromChainId);
+    },
+    getFeeParams() {
+      if (this.transaction) {
+        return {
+          fromChainId: this.transaction.fromChainId,
+          fromTokenHash: this.transaction.token.hash,
+          toChainId: this.transaction.toChainId,
+          toTokenHash: this.transaction.token.hash,
+        };
+      }
+      return null;
+    },
+    fee() {
+      return this.getFeeParams && this.$store.getters.getFee(this.getFeeParams);
     },
     mergedTransaction() {
       return (
@@ -136,6 +238,9 @@ export default {
         steps = [...steps, { finished: this.finished }];
       }
       return steps;
+    },
+    selfPay() {
+      return Number(this.transaction.fee) === 0;
     },
     failed() {
       return (
@@ -210,11 +315,69 @@ export default {
         }
       }
     },
+    async payTochainFee() {
+      if (!this.toWallet) {
+        this.connectWalletVisible = true;
+      }
+      await this.$store.dispatch('ensureChainWalletReady', this.transaction.toChainId);
+      if (this.transaction.steps[1].hash) {
+        try {
+          this.selfPayLoading = true;
+          // this.$store.dispatch('getManualTxData', this.transaction.steps[1].hash);
+          const polyHash = this.transaction.steps[1].hash;
+          const result = await httpApi.getManualTxData({ polyHash });
+          this.sendTx(result);
+        } catch (error) {
+          this.selfPayLoading = false;
+          if (error instanceof HttpError) {
+            if (error.code === HttpError.CODES.BAD_REQUEST) {
+              return;
+            }
+          }
+          throw error;
+        }
+      }
+    },
+    async sendTx($payload) {
+      const self = this;
+      console.log(self.toWallet);
+      console.log(self.toChain);
+      const selfccm = toStandardHex(self.toChain.dst_ccm);
+      const apiccm = toStandardHex($payload.dst_ccm);
+      if (selfccm !== apiccm) {
+        this.$message.error('ccm error');
+        this.selfPayLoading = false;
+        return;
+      }
+      const walletApi = await getWalletApi(self.toWallet.name);
+      const params = {
+        data: $payload.data,
+        toAddress: $payload.dst_ccm,
+        toChainId: self.steps[2].chainId,
+      };
+      try {
+        await walletApi.sendSelfPayTx(params);
+        this.selfPayLoading = false;
+        this.speedUpMSGFlag = true;
+      } catch (error) {
+        console.log(error);
+        if (error && error.toString().indexOf('promise') < 0) {
+          this.selfPayLoading = false;
+        }
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.speedup {
+  opacity: 0.6;
+  padding-top: 20px;
+}
+.button-submit {
+  margin-top: 30px;
+}
 .content {
   display: flex;
   flex-direction: column;
