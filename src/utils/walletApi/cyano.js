@@ -21,7 +21,7 @@ const NETWORK_CHAIN_ID_MAPS = {
   [TARGET_MAINNET ? 'MAIN' : 'TEST']: ChainId.Ont,
 };
 
-function convertWalletError (error) {  
+function convertWalletError(error) {
   if (error instanceof WalletError) {
     return error;
   }
@@ -55,7 +55,7 @@ function convertWalletError (error) {
   return new WalletError(error.message || error.description, { code, cause: error });
 }
 
-async function queryState () {
+async function queryState() {
   const address = await client.api.asset.getAccount()
   const network = await client.api.network.getNetwork();
   const addressHex = await tryToConvertAddressToHex(WalletName.Cyano, address);
@@ -69,9 +69,9 @@ async function queryState () {
   });
 }
 
-async function init () {
+async function init() {
   let cyanoProvider;
-  async function onReady () {
+  async function onReady() {
     try {
       store.dispatch('updateWallet', { name: WalletName.Cyano, installed: true });
       if (sessionStorage.getItem(CYANO_CONNECTED_KEY) === 'true') {
@@ -82,19 +82,19 @@ async function init () {
     }
   }
 
-  try{
+  try {
     await client.api.provider.getProvider();
     onReady();
-  } catch(e){
-    try{
+  } catch (e) {
+    try {
       await delay(2000);
       await client.api.provider.getProvider();
       onReady();
-    } catch(e){}
+    } catch (e) { }
   }
 }
 
-async function connect () {
+async function connect() {
   try {
     await queryState();
     sessionStorage.setItem(CYANO_CONNECTED_KEY, 'true');
@@ -103,7 +103,7 @@ async function connect () {
   }
 }
 
-async function getBalance ({ chainId, address, tokenHash }) {
+async function getBalance({ chainId, address, tokenHash }) {
   try {
     const token = store.getters.getToken({ chainId, hash: tokenHash });
     const tokenBasic = store.getters.getTokenBasicByChainIdAndTokenHash({ chainId, tokenHash });
@@ -119,7 +119,7 @@ async function getBalance ({ chainId, address, tokenHash }) {
     throw convertWalletError(error);
   }
 }
-async function getNativeBalance ($address) {
+async function getNativeBalance($address) {
   let url = TARGET_MAINNET ? 'https://dappnode1.ont.io:10334/' : 'https://polaris1.ont.io:10334/'
   url = url + 'api/v1/balance/' + $address
   let res = await axios({ method: 'get', url: url })
@@ -129,7 +129,7 @@ async function getNativeBalance ($address) {
   return balance
 }
 
-async function smartContractBalance ($hash, $decimals, $chainId) {
+async function smartContractBalance($hash, $decimals, $chainId) {
   const wallet = store.getters.getChainConnectedWallet($chainId);
   let values = {}
   values.contract = $hash
@@ -201,11 +201,11 @@ const removeDecimals = ($amount, $decimals) => {
   return z
 }
 
-async function getAllowance () {
+async function getAllowance() {
   return null;
 }
 
-async function getTransactionStatus ({ transactionHash }) {
+async function getTransactionStatus({ transactionHash }) {
   try {
     let url = TARGET_MAINNET ? 'https://dappnode1.ont.io:10334/' : 'https://polaris1.ont.io:10334/'
     url = url + 'api/v1/transaction/' + transactionHash + '?raw=0'
@@ -216,11 +216,11 @@ async function getTransactionStatus ({ transactionHash }) {
   }
 }
 
-async function approve () {
+async function approve() {
   throw new Error('Method not implemented');
 }
 
-async function lock ({
+async function lock({
   fromChainId,
   fromAddress,
   fromTokenHash,
@@ -248,7 +248,19 @@ async function lock ({
     const toAddressHex = await toChainApi.addressToHex(toAddress);
     const amountInt = decimalToInteger(amount, tokenBasic.decimals);
     const feeInt = decimalToInteger(fee, tokenBasic.decimals);
-    const hexChainid = utils.num2VarInt(toChainId)
+    let hexChainid
+    let malformedError = {
+      type: 'MALFORMED_INPUT'
+    }
+    if (toChainId < 0xfd) {
+      hexChainid = utils.num2hexstring(toChainId, 1, true);
+    } else if (toChainId <= 0xffff) {
+      // uint16
+      hexChainid = utils.num2hexstring(toChainId, 2, true);
+    } else {
+      // uint32
+      throw convertWalletError(malformedError);
+    }
     let parameters = [
       { type: 'ByteArray', value: fromAddressHex },
       { type: 'ByteArray', value: fromTokenHashReversed },

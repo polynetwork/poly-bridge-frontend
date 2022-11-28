@@ -1,16 +1,9 @@
 import Vue from 'vue';
-import {
-  reverseHex,
-  integerToHex,
-  toStandardHex,
-  objectToBase64,
-  base64ToObject,
-} from '@/utils/convertors';
+import { toStandardHex, objectToBase64, base64ToObject } from '@/utils/convertors';
 import { ChainId, EthNetworkChainIdMaps } from '@/utils/enums';
 import { WalletError } from '@/utils/errors';
 import { formatEnum } from '@/utils/formatters';
 import { CHAINS } from '@/utils/values';
-import { TARGET_MAINNET } from '@/utils/env';
 import { getWalletApi } from '@/utils/walletApi';
 
 const CHAIN_SELECTED_WALLETS_KEY = 'CHAIN_SELECTED_WALLETS';
@@ -66,8 +59,7 @@ export default {
     },
     async ensureChainWalletReady({ getters }, chainId) {
       const chain = getters.getChain(chainId);
-      console.log(chain);
-      if (chain.id === ChainId.Xrp || chain.id === ChainId.Aptos) {
+      if (chain.id === ChainId.Xrp || chain.id === ChainId.Aptos || chain.id === ChainId.N3) {
         return;
       }
       const wallet = getters.getChainConnectedWallet(chainId);
