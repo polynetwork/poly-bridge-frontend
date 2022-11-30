@@ -100,8 +100,9 @@ export const WALLETS = [
       ChainId.Avalanche,
       ChainId.Boba,
       ChainId.Kcc,
+      ChainId.Goerli,
     ],
-    icon: require('@/assets/jpg/okwallet.jpeg'),
+    icon: require('@/assets/png/okwallet.png'),
     downloadUrl:
       'https://chrome.google.com/webstore/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge',
   },
