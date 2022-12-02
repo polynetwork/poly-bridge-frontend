@@ -89,6 +89,24 @@ export const WALLETS = [
       'https://chrome.google.com/webstore/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad',
   },
   {
+    name: WalletName.OkWallet,
+    supportedChainIds: [
+      ChainId.Eth,
+      ChainId.Bsc,
+      ChainId.Ok,
+      ChainId.Polygon,
+      ChainId.Arbitrum,
+      ChainId.Optimistic,
+      ChainId.Avalanche,
+      ChainId.Boba,
+      ChainId.Kcc,
+      ChainId.Goerli,
+    ],
+    icon: require('@/assets/png/okwallet.png'),
+    downloadUrl:
+      'https://chrome.google.com/webstore/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge',
+  },
+  {
     name: WalletName.Math,
     supportedChainIds: [ChainId.Eth, ChainId.Bsc, ChainId.Heco, ChainId.Ok],
     icon: require('@/assets/png/math.png'),
