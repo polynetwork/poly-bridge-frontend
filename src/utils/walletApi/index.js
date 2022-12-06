@@ -7,6 +7,7 @@ import { formatEnum } from '@/utils/formatters';
 
 const APIS = {
   [WalletName.MetaMask]: () => import('./metaMask'),
+  [WalletName.OkWallet]: () => import('./okwallet'),
   [WalletName.CoinBase]: () => import('./coinBase'),
   [WalletName.Math]: () => import('./math'),
   [WalletName.NeoLine]: () => import('./neoline'),
