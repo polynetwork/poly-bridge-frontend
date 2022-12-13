@@ -332,7 +332,6 @@
       :visible.sync="transactionDetailsVisible"
       :confirmingData="confirmingData"
     />
-    <AirDrop :visible.sync="airDropVisible" />
   </ValidationObserver>
 </template>
 
@@ -383,7 +382,6 @@ export default {
       selfPayChecked: false,
       confirmUuid: uuidv4(),
       healthFlag: true,
-      airDropVisible: false,
       registering: false,
     };
   },
@@ -664,14 +662,6 @@ export default {
     },
   },
   created() {
-    if (TARGET_MAINNET) {
-      if (!(sessionStorage.getItem('AIRDROP_BANNER') === 'true')) {
-        this.airDropVisible = true;
-        sessionStorage.setItem('AIRDROP_BANNER', 'true');
-      }
-    } else {
-      this.airDropVisible = false;
-    }
     this.$store.dispatch('getTokenBasics');
     this.getChainHealth();
     this.interval = setInterval(() => {
