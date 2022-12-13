@@ -208,6 +208,7 @@ export default {
       [ChainId.Aptos]: 'Aptos',
       [ChainId.Goerli]: 'Goerli',
       [ChainId.Bitgert]: 'Bitgert',
+      [ChainId.Dexit]: 'Dexit',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -255,6 +256,7 @@ export default {
       [ChainId.Aptos]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Goerli]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Bitgert]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Dexit]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',

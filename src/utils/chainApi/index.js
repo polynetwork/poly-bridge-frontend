@@ -46,6 +46,7 @@ const APIS = {
   [ChainId.Aptos]: () => import('./aptos'),
   [ChainId.Goerli]: () => import('./eth'),
   [ChainId.Bitgert]: () => import('./eth'),
+  [ChainId.Dexit]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {
