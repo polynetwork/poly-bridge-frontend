@@ -54,6 +54,7 @@ export const WALLETS = [
       ChainId.Astar,
       ChainId.Goerli,
       ChainId.Bitgert,
+      ChainId.Dexit,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -909,6 +910,27 @@ export const MAIN_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://brisescan.com'
       : 'https://testnet-explorer.brisescan.com',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Dexit,
+    nativeFee: true,
+    icon: require('@/assets/png/dexit.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://dxtscan.com/tx/0x{txHash}'
+      : 'https://testnet.dxtscan.com/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x80C99516c49dB5e1F002c47c9d17ABF6208E8736'
+      : '0xc2d365475eef3ec83e59d1bcdf3a291d7b23ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xab7a3CA9bDcE476F0ECC04c127CFEe0F3D212BC5'
+      : '0xd6fc5374649cea121395a4860fdb33f21783c4af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'DXT',
+    symbol: TARGET_MAINNET ? 'DXT' : 'DXT',
+    name: TARGET_MAINNET ? 'Dexit Main' : 'Dexit Test',
+    rpcUrl: TARGET_MAINNET ? 'https://dxt.dexit.network' : 'https://testnet.dexit.network',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://dxtscan.com' : 'https://testnet.dxtscan.com',
     selfPay: true,
   },
 ];
