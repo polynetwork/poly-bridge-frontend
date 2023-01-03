@@ -34,11 +34,11 @@ const routes = [
     name: 'nfttransactions',
     component: () => import('@/views/nfttransactions'),
   },
-  {
+  /* {
     path: '/airdrop',
     name: 'airdrop',
     component: () => import('@/views/airdrop'),
-  },
+  }, */
 ];
 
 const router = new VueRouter({
