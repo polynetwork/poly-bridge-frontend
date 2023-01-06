@@ -205,6 +205,7 @@ export default {
       [ChainId.Goerli]: 'Goerli',
       [ChainId.Bitgert]: 'Bitgert',
       [ChainId.Dexit]: 'Dexit',
+      [ChainId.CloudTx]: 'CloudTx_testnet',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -252,6 +253,7 @@ export default {
       [ChainId.Goerli]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Bitgert]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Dexit]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.CloudTx]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',

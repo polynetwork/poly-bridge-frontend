@@ -61,6 +61,7 @@ export const ChainId = {
   Goerli: TARGET_MAINNET ? 502 : 502,
   Bitgert: TARGET_MAINNET ? 42 : 1010,
   Dexit: TARGET_MAINNET ? 43 : 1020,
+  CloudTx: TARGET_MAINNET ? 1030 : 1030,
 };
 
 export const NetworkChainIdMaps = {
@@ -99,6 +100,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 5 : 5]: ChainId.Goerli,
   [TARGET_MAINNET ? 32520 : 64668]: ChainId.Bitgert,
   [TARGET_MAINNET ? 877 : 899]: ChainId.Dexit,
+  [TARGET_MAINNET ? 31223 : 31224]: ChainId.CloudTx,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -138,6 +140,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Goerli]: TARGET_MAINNET ? 5 : 5,
   [ChainId.Bitgert]: TARGET_MAINNET ? 32520 : 64668,
   [ChainId.Dexit]: TARGET_MAINNET ? 877 : 899,
+  [ChainId.CloudTx]: TARGET_MAINNET ? 31223 : 31224,
 };
 
 export const SingleTransactionStatus = {

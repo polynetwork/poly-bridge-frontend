@@ -47,6 +47,7 @@ const APIS = {
   [ChainId.Goerli]: () => import('./eth'),
   [ChainId.Bitgert]: () => import('./eth'),
   [ChainId.Dexit]: () => import('./eth'),
+  [ChainId.CloudTx]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {
