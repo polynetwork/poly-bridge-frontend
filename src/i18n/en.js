@@ -209,7 +209,7 @@ export default {
       [ChainId.Goerli]: 'Goerli',
       [ChainId.Bitgert]: 'Bitgert',
       [ChainId.Dexit]: 'Dexit',
-      [ChainId.CloudTx]: 'CloudTx_testnet',
+      [ChainId.CloudTx]: 'CloudTx',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
