@@ -55,6 +55,7 @@ export const WALLETS = [
       ChainId.Goerli,
       ChainId.Bitgert,
       ChainId.Dexit,
+      ChainId.CloudTx,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -1182,6 +1183,28 @@ export const TEST_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://palettescan.com/#/chain/'
       : 'http://106.75.251.68/#/chain/',
+    selfPay: true,
+  },
+  {
+    id: ChainId.CloudTx,
+    nativeFee: true,
+    icon: require('@/assets/png/cloudtx.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.cloudtx.finance/tx/0x{txHash}'
+      : 'https://explorer.cloudtx.finance/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'CLD',
+    symbol: TARGET_MAINNET ? 'CLD' : 'CLD',
+    name: TARGET_MAINNET ? 'CloudTx Mainnet' : 'CloudTx Testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://mainnet-rpc.cloudtx.finance'
+      : 'https://testnet-rpc.cloudtx.finance',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.cloudtx.finance/'
+      : 'https://explorer.cloudtx.finance/',
     selfPay: true,
   },
   // {
