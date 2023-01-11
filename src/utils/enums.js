@@ -61,7 +61,7 @@ export const ChainId = {
   Goerli: TARGET_MAINNET ? 502 : 502,
   Bitgert: TARGET_MAINNET ? 42 : 1010,
   Dexit: TARGET_MAINNET ? 43 : 1020,
-  CloudTx: TARGET_MAINNET ? 1030 : 1030,
+  CloudTx: TARGET_MAINNET ? 44 : 1030,
 };
 
 export const NetworkChainIdMaps = {
