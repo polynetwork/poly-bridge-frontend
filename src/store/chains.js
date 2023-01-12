@@ -85,7 +85,7 @@ export default {
           console.log('chain', switchError);
         }
         /* okwallet auto change */
-        if (wallet.name !== 'OkWallet') {
+        if (wallet.name !== 'OKX Wallet') {
           throw new WalletError('Wallet is not in correct network.', {
             code: WalletError.CODES.INCORRECT_NETWORK,
             detail: {

@@ -14,7 +14,7 @@ export const WalletName = {
   XUMM: 'XUMM',
   Martian: 'Martian',
   Petra: 'Petra',
-  OkWallet: 'OkWallet',
+  OkWallet: 'OKX Wallet',
 };
 
 export const ChainId = {
