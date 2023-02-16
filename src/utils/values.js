@@ -1162,11 +1162,11 @@ export const TEST_CHAINS = [
       ? 'https://zksync2-testnet.zkscan.io/tx/0x{txHash}'
       : 'https://zksync2-testnet.zkscan.io/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? '0x5CcB95B0E39818546ea1F19AC0b190e8164180f9'
-      : '0x5CcB95B0E39818546ea1F19AC0b190e8164180f9',
+      ? '0xBBd81dBaF40BE09e7Fde684eF742259Fc1B6cfA6'
+      : '0xBBd81dBaF40BE09e7Fde684eF742259Fc1B6cfA6',
     dst_ccm: TARGET_MAINNET
-      ? '0xEa4395bbDeC0AB815E855F0856c2523fc25E8613'
-      : '0xEa4395bbDeC0AB815E855F0856c2523fc25E8613',
+      ? '0xaC2E341cb8E8B04b7a3BD98626626DE3187d8D0B'
+      : '0xaC2E341cb8E8B04b7a3BD98626626DE3187d8D0B',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     nftFeeName: 'ETH',
     symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
