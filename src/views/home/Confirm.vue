@@ -267,6 +267,7 @@ export default {
           transactionHash,
           transactionStatus: status,
         });
+        await delay(2000);
         // eslint-disable-next-line no-constant-condition
         while (true) {
           try {
