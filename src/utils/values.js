@@ -959,6 +959,31 @@ export const MAIN_CHAINS = [
       : 'https://explorer.cloudtx.finance/',
     selfPay: true,
   },
+  {
+    id: ChainId.zkSync,
+    nativeFee: true,
+    icon: require('@/assets/jpg/zk.jpeg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://zksync2-mainnet.zkscan.io/tx/0x{txHash}'
+      : 'https://zksync2-testnet.zkscan.io/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xe40C9F8e576cFF6E0A274dd230835d55fE50BBc9'
+      : '0xBBd81dBaF40BE09e7Fde684eF742259Fc1B6cfA6',
+    dst_ccm: TARGET_MAINNET
+      ? '0xb0cc68953b55E1eDE1B7985c7c70C428AF9abc3e'
+      : '0xaC2E341cb8E8B04b7a3BD98626626DE3187d8D0B',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'ETH',
+    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+    name: TARGET_MAINNET ? 'zkSync Era Mainnet' : 'zkSync alpha testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://zksync2-mainnet.zksync.io'
+      : 'https://zksync2-testnet.zksync.dev',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://zksync2-mainnet.zkscan.io/'
+      : 'https://zksync2-testnet.zkscan.io/',
+    selfPay: true,
+  },
 ];
 
 export const TEST_CHAINS = [
@@ -1152,31 +1177,6 @@ export const TEST_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://explorer.emerald.oasis.dev/'
       : 'https://testnet.explorer.emerald.oasis.dev/',
-    selfPay: true,
-  },
-  {
-    id: ChainId.zkSync,
-    nativeFee: true,
-    icon: require('@/assets/jpg/zk.jpeg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://zksync2-testnet.zkscan.io/tx/0x{txHash}'
-      : 'https://zksync2-testnet.zkscan.io/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0x5CcB95B0E39818546ea1F19AC0b190e8164180f9'
-      : '0x5CcB95B0E39818546ea1F19AC0b190e8164180f9',
-    dst_ccm: TARGET_MAINNET
-      ? '0xEa4395bbDeC0AB815E855F0856c2523fc25E8613'
-      : '0xEa4395bbDeC0AB815E855F0856c2523fc25E8613',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'ETH',
-    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
-    name: TARGET_MAINNET ? 'zkSync alpha testnet' : 'zkSync alpha testnet',
-    rpcUrl: TARGET_MAINNET
-      ? 'https://zksync2-testnet.zksync.dev'
-      : 'https://zksync2-testnet.zksync.dev',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://zksync2-testnet.zkscan.io/'
-      : 'https://zksync2-testnet.zkscan.io/',
     selfPay: true,
   },
   {
