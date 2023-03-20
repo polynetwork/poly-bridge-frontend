@@ -62,6 +62,9 @@ export const ChainId = {
   Bitgert: TARGET_MAINNET ? 42 : 1010,
   Dexit: TARGET_MAINNET ? 43 : 1020,
   CloudTx: TARGET_MAINNET ? 44 : 1030,
+  polygonZK_testnet: TARGET_MAINNET ? 1040 : 1040,
+  zebec_testnet: TARGET_MAINNET ? 1060 : 1060,
+  goshen_testnet: TARGET_MAINNET ? 1070 : 1070,
 };
 
 export const NetworkChainIdMaps = {
@@ -101,6 +104,9 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 32520 : 64668]: ChainId.Bitgert,
   [TARGET_MAINNET ? 877 : 899]: ChainId.Dexit,
   [TARGET_MAINNET ? 31223 : 31224]: ChainId.CloudTx,
+  [TARGET_MAINNET ? 1442 : 1442]: ChainId.polygonZK_testnet,
+  [TARGET_MAINNET ? 31229 : 31229]: ChainId.zebec_testnet,
+  [TARGET_MAINNET ? 21772 : 21772]: ChainId.goshen_testnet,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -141,6 +147,9 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Bitgert]: TARGET_MAINNET ? 32520 : 64668,
   [ChainId.Dexit]: TARGET_MAINNET ? 877 : 899,
   [ChainId.CloudTx]: TARGET_MAINNET ? 31223 : 31224,
+  [ChainId.polygonZK_testnet]: TARGET_MAINNET ? 1442 : 1442,
+  [ChainId.zebec_testnet]: TARGET_MAINNET ? 31229 : 31229,
+  [ChainId.goshen_testnet]: TARGET_MAINNET ? 21772 : 21772,
 };
 
 export const SingleTransactionStatus = {

@@ -56,6 +56,9 @@ export const WALLETS = [
       ChainId.Bitgert,
       ChainId.Dexit,
       ChainId.CloudTx,
+      ChainId.polygonZK_testnet,
+      ChainId.zebec_testnet,
+      ChainId.goshen_testnet,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -1209,6 +1212,81 @@ export const TEST_CHAINS = [
       ? 'https://palettescan.com/#/chain/'
       : 'http://106.75.251.68/#/chain/',
     selfPay: true,
+  },
+  {
+    id: ChainId.polygonZK_testnet,
+    nativeFee: true,
+    icon: require('@/assets/svg/polygon.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.public.zkevm-test.net/tx/0x{txHash}'
+      : 'https://explorer.public.zkevm-test.net/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'ETH',
+    selfPay: true,
+    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+    name: TARGET_MAINNET ? 'polygonZK_testnet' : 'polygonZK_testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://rpc.public.zkevm-test.net'
+      : 'https://rpc.public.zkevm-test.net',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.public.zkevm-test.net/'
+      : 'https://explorer.public.zkevm-test.net/',
+  },
+  {
+    id: ChainId.zebec_testnet,
+    nativeFee: true,
+    icon: require('@/assets/svg/unknown.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://triton.nautscan.com/tx/0x{txHash}'
+      : 'https://triton.nautscan.com/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'tZBC',
+    selfPay: true,
+    symbol: TARGET_MAINNET ? 'tZBC' : 'tZBC',
+    name: TARGET_MAINNET ? 'zebec_testnet' : 'zebec_testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://triton.api.nautchain.xyz'
+      : 'https://triton.api.nautchain.xyz',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://triton.nautscan.com/'
+      : 'https://triton.nautscan.com/',
+  },
+  {
+    id: ChainId.goshen_testnet,
+    nativeFee: true,
+    icon: require('@/assets/svg/unknown.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer-testnet.goshen.network/tx/0x{txHash}'
+      : 'https://explorer-testnet.goshen.network/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'ETH',
+    selfPay: true,
+    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+    name: TARGET_MAINNET ? 'goshen_testnet' : 'goshen_testnet',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://testnet-alpha.goshen.network/rpc/'
+      : 'https://testnet-alpha.goshen.network/rpc/',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer-testnet.goshen.network/'
+      : 'https://explorer-testnet.goshen.network/',
   },
   // {
   //   id: ChainId.OntEvm,

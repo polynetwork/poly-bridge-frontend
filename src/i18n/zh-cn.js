@@ -206,6 +206,9 @@ export default {
       [ChainId.Bitgert]: 'Bitgert',
       [ChainId.Dexit]: 'Dexit',
       [ChainId.CloudTx]: 'CloudTx',
+      [ChainId.polygonZK_testnet]: 'polygonZK_testnet',
+      [ChainId.zebec_testnet]: 'zebec_testnet',
+      [ChainId.goshen_testnet]: 'goshen_testnet',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -254,6 +257,9 @@ export default {
       [ChainId.Bitgert]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Dexit]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.CloudTx]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.polygonZK_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.zebec_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.goshen_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',
