@@ -213,6 +213,7 @@ export default {
       [ChainId.polygonZK_testnet]: 'polygonZK_testnet',
       [ChainId.zebec_testnet]: 'zebec_testnet',
       [ChainId.goshen_testnet]: 'goshen_testnet',
+      [ChainId.xinfin_testnet]: 'xinfin_testnet',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -265,6 +266,7 @@ export default {
       [ChainId.polygonZK_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.zebec_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.goshen_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.xinfin_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',

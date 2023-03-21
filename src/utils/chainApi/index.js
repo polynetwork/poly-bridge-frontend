@@ -51,6 +51,7 @@ const APIS = {
   [ChainId.polygonZK_testnet]: () => import('./eth'),
   [ChainId.zebec_testnet]: () => import('./eth'),
   [ChainId.goshen_testnet]: () => import('./eth'),
+  [ChainId.xinfin_testnet]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {

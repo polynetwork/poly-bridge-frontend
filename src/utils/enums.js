@@ -65,6 +65,7 @@ export const ChainId = {
   polygonZK_testnet: TARGET_MAINNET ? 1040 : 1040,
   zebec_testnet: TARGET_MAINNET ? 1060 : 1060,
   goshen_testnet: TARGET_MAINNET ? 1070 : 1070,
+  xinfin_testnet: TARGET_MAINNET ? 1070 : 1070,
 };
 
 export const NetworkChainIdMaps = {
@@ -107,6 +108,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 1442 : 1442]: ChainId.polygonZK_testnet,
   [TARGET_MAINNET ? 31229 : 31229]: ChainId.zebec_testnet,
   [TARGET_MAINNET ? 21772 : 21772]: ChainId.goshen_testnet,
+  [TARGET_MAINNET ? 50 : 51]: ChainId.xinfin_testnet,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -150,6 +152,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.polygonZK_testnet]: TARGET_MAINNET ? 1442 : 1442,
   [ChainId.zebec_testnet]: TARGET_MAINNET ? 31229 : 31229,
   [ChainId.goshen_testnet]: TARGET_MAINNET ? 21772 : 21772,
+  [ChainId.xinfin_testnet]: TARGET_MAINNET ? 50 : 51,
 };
 
 export const SingleTransactionStatus = {
