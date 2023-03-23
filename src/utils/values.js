@@ -57,7 +57,7 @@ export const WALLETS = [
       ChainId.Dexit,
       ChainId.CloudTx,
       ChainId.polygonZK_testnet,
-      ChainId.zebec_testnet,
+      ChainId.Nautilus,
       ChainId.goshen_testnet,
       ChainId.xinfin_testnet,
     ],
@@ -1269,7 +1269,7 @@ export const TEST_CHAINS = [
       : 'https://explorer.public.zkevm-test.net/',
   },
   {
-    id: ChainId.zebec_testnet,
+    id: ChainId.Nautilus,
     nativeFee: true,
     icon: require('@/assets/svg/unknown.svg'),
     explorerUrl: TARGET_MAINNET
@@ -1285,7 +1285,7 @@ export const TEST_CHAINS = [
     nftFeeName: 'tZBC',
     selfPay: true,
     symbol: TARGET_MAINNET ? 'tZBC' : 'tZBC',
-    name: TARGET_MAINNET ? 'zebec_testnet' : 'zebec_testnet',
+    name: TARGET_MAINNET ? 'Nautilus' : 'Nautilus',
     rpcUrl: TARGET_MAINNET
       ? 'https://triton.api.nautchain.xyz'
       : 'https://triton.api.nautchain.xyz',

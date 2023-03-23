@@ -49,7 +49,7 @@ const APIS = {
   [ChainId.Dexit]: () => import('./eth'),
   [ChainId.CloudTx]: () => import('./eth'),
   [ChainId.polygonZK_testnet]: () => import('./eth'),
-  [ChainId.zebec_testnet]: () => import('./eth'),
+  [ChainId.Nautilus]: () => import('./eth'),
   [ChainId.goshen_testnet]: () => import('./eth'),
   [ChainId.xinfin_testnet]: () => import('./eth'),
 };
