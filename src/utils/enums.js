@@ -63,7 +63,7 @@ export const ChainId = {
   Dexit: TARGET_MAINNET ? 43 : 1020,
   CloudTx: TARGET_MAINNET ? 44 : 1030,
   polygonZK_testnet: TARGET_MAINNET ? 1040 : 1040,
-  zebec_testnet: TARGET_MAINNET ? 1060 : 1060,
+  Nautilus: TARGET_MAINNET ? 1060 : 1060,
   goshen_testnet: TARGET_MAINNET ? 1070 : 1070,
   xinfin_testnet: TARGET_MAINNET ? 1070 : 1070,
 };
@@ -106,7 +106,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 877 : 899]: ChainId.Dexit,
   [TARGET_MAINNET ? 31223 : 31224]: ChainId.CloudTx,
   [TARGET_MAINNET ? 1442 : 1442]: ChainId.polygonZK_testnet,
-  [TARGET_MAINNET ? 31229 : 31229]: ChainId.zebec_testnet,
+  [TARGET_MAINNET ? 31229 : 31229]: ChainId.Nautilus,
   [TARGET_MAINNET ? 21772 : 21772]: ChainId.goshen_testnet,
   [TARGET_MAINNET ? 50 : 51]: ChainId.xinfin_testnet,
 };
@@ -150,7 +150,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Dexit]: TARGET_MAINNET ? 877 : 899,
   [ChainId.CloudTx]: TARGET_MAINNET ? 31223 : 31224,
   [ChainId.polygonZK_testnet]: TARGET_MAINNET ? 1442 : 1442,
-  [ChainId.zebec_testnet]: TARGET_MAINNET ? 31229 : 31229,
+  [ChainId.Nautilus]: TARGET_MAINNET ? 31229 : 31229,
   [ChainId.goshen_testnet]: TARGET_MAINNET ? 21772 : 21772,
   [ChainId.xinfin_testnet]: TARGET_MAINNET ? 50 : 51,
 };
