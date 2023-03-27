@@ -298,10 +298,9 @@ async function sendSelfPayTx({ data, toAddress, toChainId }) {
       to: toAddress, // Required except during contract publications.
       from: address, // must match user's active address.
       value: '0x00', // Only required to send ether to the recipient from the initiating external account.
-      data: txdata, // Optional, but used for defining smart contract creation and interaction.
+      data: `0x${txdata}`, // Optional, but used for defining smart contract creation and interaction.
       chainId: `0x${reverseHex(integerToHex(toEthChainID))}`, // Used to prevent transaction reuse across blockchains. Auto-filled by Bitkeep.
     };
-
     const result = await Provider.request({
       method: 'eth_sendTransaction',
       params: [transactionParameters],
