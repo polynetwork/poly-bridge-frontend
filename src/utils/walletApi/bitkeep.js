@@ -57,6 +57,9 @@ function convertWalletError(error) {
   if (error.code === 4001) {
     code = WalletError.CODES.USER_REJECTED;
   }
+  if (error.code === -32603) {
+    code = WalletError.CODES.USER_REJECTED;
+  }
   if (error.toString().indexOf('32005') > -1) {
     return null;
   }

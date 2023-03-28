@@ -15,7 +15,7 @@ export function formatEnum(value, { type, ingoreMissing = false } = {}) {
   if (i18n.te(`enums.${type}.${value}`)) {
     return i18n.t(`enums.${type}.${value}`);
   }
-  if (!ingoreMissing) {
+  if (ingoreMissing) {
     console.warn(`Enum path not found: ${`enums.${type}.${value}`}`);
   }
   return value;
