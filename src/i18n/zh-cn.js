@@ -208,8 +208,8 @@ export default {
       [ChainId.CloudTx]: 'CloudTx',
       [ChainId.polygonZK_testnet]: 'polygonZK_testnet',
       [ChainId.Nautilus]: 'Nautilus',
-      [ChainId.goshen_testnet]: 'goshen_testnet',
-      [ChainId.xinfin_testnet]: 'xinfin_testnet',
+      [ChainId.Goshen]: 'Goshen',
+      [ChainId.Xinfin]: 'Xinfin',
       [ChainId.Sepolia]: 'Sepolia',
     },
     chainNetworkName: {
@@ -261,8 +261,8 @@ export default {
       [ChainId.CloudTx]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.polygonZK_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Nautilus]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
-      [ChainId.goshen_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
-      [ChainId.xinfin_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Goshen]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Xinfin]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Sepolia]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {

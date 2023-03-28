@@ -58,8 +58,8 @@ export const WALLETS = [
       ChainId.CloudTx,
       ChainId.polygonZK_testnet,
       ChainId.Nautilus,
-      ChainId.goshen_testnet,
-      ChainId.xinfin_testnet,
+      ChainId.Goshen,
+      ChainId.Xinfin,
       ChainId.Sepolia,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
@@ -1318,7 +1318,7 @@ export const TEST_CHAINS = [
       : 'https://triton.nautscan.com/',
   },
   {
-    id: ChainId.goshen_testnet,
+    id: ChainId.Goshen,
     nativeFee: true,
     icon: require('@/assets/svg/unknown.svg'),
     explorerUrl: TARGET_MAINNET
@@ -1334,7 +1334,7 @@ export const TEST_CHAINS = [
     nftFeeName: 'ETH',
     selfPay: true,
     symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
-    name: TARGET_MAINNET ? 'goshen_testnet' : 'goshen_testnet',
+    name: TARGET_MAINNET ? 'Goshen' : 'Goshen',
     rpcUrl: TARGET_MAINNET
       ? 'https://testnet-alpha.goshen.network/rpc/'
       : 'https://testnet-alpha.goshen.network/rpc/',
@@ -1343,7 +1343,7 @@ export const TEST_CHAINS = [
       : 'https://explorer-testnet.goshen.network/',
   },
   {
-    id: ChainId.xinfin_testnet,
+    id: ChainId.Xinfin,
     nativeFee: true,
     icon: require('@/assets/svg/unknown.svg'),
     explorerUrl: TARGET_MAINNET
@@ -1359,7 +1359,7 @@ export const TEST_CHAINS = [
     nftFeeName: 'XDC',
     selfPay: true,
     symbol: TARGET_MAINNET ? 'XDC' : 'XDC',
-    name: TARGET_MAINNET ? 'xinfin_testnet' : 'xinfin_testnet',
+    name: TARGET_MAINNET ? 'Xinfin' : 'Xinfin',
     rpcUrl: TARGET_MAINNET ? 'https://erpc.apothem.network' : 'https://erpc.apothem.network',
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://explorer.apothem.network/'

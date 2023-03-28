@@ -65,8 +65,8 @@ export const ChainId = {
   CloudTx: TARGET_MAINNET ? 44 : 1030,
   polygonZK_testnet: TARGET_MAINNET ? 1040 : 1040,
   Nautilus: TARGET_MAINNET ? 1060 : 1060,
-  goshen_testnet: TARGET_MAINNET ? 1070 : 1070,
-  xinfin_testnet: TARGET_MAINNET ? 1050 : 1050,
+  Goshen: TARGET_MAINNET ? 1070 : 1070,
+  Xinfin: TARGET_MAINNET ? 1050 : 1050,
   Sepolia: TARGET_MAINNET ? 602 : 602,
 };
 
@@ -109,8 +109,8 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 31223 : 31224]: ChainId.CloudTx,
   [TARGET_MAINNET ? 1442 : 1442]: ChainId.polygonZK_testnet,
   [TARGET_MAINNET ? 31229 : 31229]: ChainId.Nautilus,
-  [TARGET_MAINNET ? 21772 : 21772]: ChainId.goshen_testnet,
-  [TARGET_MAINNET ? 50 : 51]: ChainId.xinfin_testnet,
+  [TARGET_MAINNET ? 21772 : 21772]: ChainId.Goshen,
+  [TARGET_MAINNET ? 50 : 51]: ChainId.Xinfin,
   [TARGET_MAINNET ? 11155111 : 11155111]: ChainId.Sepolia,
 };
 
@@ -154,8 +154,8 @@ export const EthNetworkChainIdMaps = {
   [ChainId.CloudTx]: TARGET_MAINNET ? 31223 : 31224,
   [ChainId.polygonZK_testnet]: TARGET_MAINNET ? 1442 : 1442,
   [ChainId.Nautilus]: TARGET_MAINNET ? 31229 : 31229,
-  [ChainId.goshen_testnet]: TARGET_MAINNET ? 21772 : 21772,
-  [ChainId.xinfin_testnet]: TARGET_MAINNET ? 50 : 51,
+  [ChainId.Goshen]: TARGET_MAINNET ? 21772 : 21772,
+  [ChainId.Xinfin]: TARGET_MAINNET ? 50 : 51,
   [ChainId.Sepolia]: TARGET_MAINNET ? 11155111 : 11155111,
 };
 
