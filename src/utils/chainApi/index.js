@@ -52,6 +52,7 @@ const APIS = {
   [ChainId.Nautilus]: () => import('./eth'),
   [ChainId.goshen_testnet]: () => import('./eth'),
   [ChainId.xinfin_testnet]: () => import('./eth'),
+  [ChainId.Sepolia]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {

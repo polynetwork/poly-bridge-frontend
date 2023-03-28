@@ -67,6 +67,7 @@ export const ChainId = {
   Nautilus: TARGET_MAINNET ? 1060 : 1060,
   goshen_testnet: TARGET_MAINNET ? 1070 : 1070,
   xinfin_testnet: TARGET_MAINNET ? 1070 : 1070,
+  Sepolia: TARGET_MAINNET ? 602 : 602,
 };
 
 export const NetworkChainIdMaps = {
@@ -110,6 +111,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 31229 : 31229]: ChainId.Nautilus,
   [TARGET_MAINNET ? 21772 : 21772]: ChainId.goshen_testnet,
   [TARGET_MAINNET ? 50 : 51]: ChainId.xinfin_testnet,
+  [TARGET_MAINNET ? 11155111 : 11155111]: ChainId.Sepolia,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -154,6 +156,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Nautilus]: TARGET_MAINNET ? 31229 : 31229,
   [ChainId.goshen_testnet]: TARGET_MAINNET ? 21772 : 21772,
   [ChainId.xinfin_testnet]: TARGET_MAINNET ? 50 : 51,
+  [ChainId.Sepolia]: TARGET_MAINNET ? 11155111 : 11155111,
 };
 
 export const SingleTransactionStatus = {
