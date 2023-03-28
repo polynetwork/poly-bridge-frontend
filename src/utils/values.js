@@ -473,7 +473,7 @@ export const MAIN_CHAINS = [
     name: TARGET_MAINNET ? 'Polygon Mainnet' : 'Polygon Testnet',
     rpcUrl: TARGET_MAINNET
       ? 'https://rpc-mainnet.maticvigil.com/'
-      : 'https://rpc-mumbai.matic.today/',
+      : 'https://rpc-mumbai.maticvigil.com',
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://polygonscan.com/'
       : 'https://mumbai.polygonscan.com',
