@@ -66,7 +66,7 @@ export const ChainId = {
   polygonZK_testnet: TARGET_MAINNET ? 1040 : 1040,
   Nautilus: TARGET_MAINNET ? 1060 : 1060,
   goshen_testnet: TARGET_MAINNET ? 1070 : 1070,
-  xinfin_testnet: TARGET_MAINNET ? 1070 : 1070,
+  xinfin_testnet: TARGET_MAINNET ? 1050 : 1050,
   Sepolia: TARGET_MAINNET ? 602 : 602,
 };
 

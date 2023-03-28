@@ -1295,7 +1295,7 @@ export const TEST_CHAINS = [
   {
     id: ChainId.Nautilus,
     nativeFee: true,
-    icon: require('@/assets/svg/unknown.svg'),
+    icon: require('@/assets/svg/naut.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://triton.nautscan.com/tx/0x{txHash}'
       : 'https://triton.nautscan.com/tx/0x{txHash}',
