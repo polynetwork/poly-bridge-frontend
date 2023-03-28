@@ -238,29 +238,29 @@ export const MAIN_CHAINS = [
     icon: require('@/assets/svg/eth.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://etherscan.io/tx/0x{txHash}'
-      : 'https://ropsten.etherscan.io/tx/0x{txHash}',
+      : 'https://goerli.etherscan.io/tx/0x{txHash}',
     nftexplorerUrl: TARGET_MAINNET
       ? 'https://etherscan.io/tx/0x{txHash}'
-      : 'https://ropsten.etherscan.io/tx/0x{txHash}',
+      : 'https://goerli.etherscan.io/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
       ? '0x81910675DbaF69deE0fD77570BFD07f8E436386A'
       : //   : '0xe498fb7D00468a67A79dE5D4Ca264d3350165280',
-        '0xc58eF4F49BBbd6bdfFeEA8159481C1AFAfBCFD0e',
+        '0xA058FC5427d3E634698d1185C1BA01ADAf998E14',
     nftLockContractHash: TARGET_MAINNET
       ? '0xe5204d62361A353C665668C858Ea213070CA159c'
-      : '0x940300dc3Fc26e3A330a300be766184C0b5Fe019',
+      : '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C',
     pltNftLockContractHash: TARGET_MAINNET
       ? '0xD728e9844af285fA116806c273aa413686aE65e8'
       : '0xbaBaAF5CF7f63437755aAAFE7a4106463c5cD540',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     dst_ccm: TARGET_MAINNET
       ? '0x14413419452Aaf089762A0c5e95eD2A13bBC488C'
-      : '0xf989E80AAd477cB6059f366C0170a498909C4a55',
+      : '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126',
     nftFeeName: 'ETH',
     symbol: 'ETH',
-    name: TARGET_MAINNET ? 'Ethereum Mainnet' : 'Ropsten TestNet',
-    rpcUrl: TARGET_MAINNET ? 'https://mainnet.infura.io/v3/' : 'https://ropsten.infura.io/v3/',
-    chainExplorerUrl: TARGET_MAINNET ? 'https://etherscan.io/' : 'https://ropsten.etherscan.io/',
+    name: TARGET_MAINNET ? 'Ethereum Mainnet' : 'Goerli TestNet',
+    rpcUrl: TARGET_MAINNET ? 'https://mainnet.infura.io/v3/' : 'https://goerli.infura.io/v3/',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://etherscan.io/' : 'https://goerli.etherscan.io',
     selfPay: true,
   },
   {
@@ -1164,35 +1164,35 @@ export const TEST_CHAINS = [
   //     ? 'https://rinkeby.etherscan.io'
   //     : 'https://rinkeby.etherscan.io',
   // },
-  {
-    id: ChainId.Goerli,
-    nativeFee: true,
-    icon: require('@/assets/svg/eth.svg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://goerli.etherscan.io/tx/0x{txHash}'
-      : 'https://goerli.etherscan.io/tx/0x{txHash}',
-    nftexplorerUrl: TARGET_MAINNET
-      ? 'https://goerli.etherscan.io/tx/0x{txHash}'
-      : 'https://goerli.etherscan.io/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xA058FC5427d3E634698d1185C1BA01ADAf998E14'
-      : '0xA058FC5427d3E634698d1185C1BA01ADAf998E14',
-    dst_ccm: TARGET_MAINNET
-      ? '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126'
-      : '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126',
-    nftLockContractHash: TARGET_MAINNET
-      ? '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C'
-      : '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'GoerliETH',
-    selfPay: true,
-    symbol: TARGET_MAINNET ? 'GoerliETH' : 'GoerliETH',
-    name: TARGET_MAINNET ? 'Goerli Test Network' : 'Goerli Test Network',
-    rpcUrl: TARGET_MAINNET ? 'https://goerli.infura.io/v3/' : 'https://goerli.infura.io/v3/',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://goerli.etherscan.io'
-      : 'https://goerli.etherscan.io',
-  },
+  // {
+  //   id: ChainId.Goerli,
+  //   nativeFee: true,
+  //   icon: require('@/assets/svg/eth.svg'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://goerli.etherscan.io/tx/0x{txHash}'
+  //     : 'https://goerli.etherscan.io/tx/0x{txHash}',
+  //   nftexplorerUrl: TARGET_MAINNET
+  //     ? 'https://goerli.etherscan.io/tx/0x{txHash}'
+  //     : 'https://goerli.etherscan.io/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0xA058FC5427d3E634698d1185C1BA01ADAf998E14'
+  //     : '0xA058FC5427d3E634698d1185C1BA01ADAf998E14',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126'
+  //     : '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126',
+  //   nftLockContractHash: TARGET_MAINNET
+  //     ? '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C'
+  //     : '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
+  //   nftFeeName: 'GoerliETH',
+  //   selfPay: true,
+  //   symbol: TARGET_MAINNET ? 'GoerliETH' : 'GoerliETH',
+  //   name: TARGET_MAINNET ? 'Goerli Test Network' : 'Goerli Test Network',
+  //   rpcUrl: TARGET_MAINNET ? 'https://goerli.infura.io/v3/' : 'https://goerli.infura.io/v3/',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://goerli.etherscan.io'
+  //     : 'https://goerli.etherscan.io',
+  // },
   {
     id: ChainId.Sepolia,
     nativeFee: true,

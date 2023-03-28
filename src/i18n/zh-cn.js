@@ -159,7 +159,7 @@ export default {
     },
     chainName: {
       [ChainId.Poly]: 'Poly',
-      [ChainId.Eth]: 'Ethereum',
+      [ChainId.Eth]: TARGET_MAINNET ? 'Ethereum' : 'Goerli',
       [ChainId.Neo]: 'Neo',
       [ChainId.N3]: 'N3',
       [ChainId.xDai]: 'Gnosis Chain',
