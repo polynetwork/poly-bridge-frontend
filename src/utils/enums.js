@@ -15,11 +15,12 @@ export const WalletName = {
   Martian: 'Martian',
   Petra: 'Petra',
   OkWallet: 'OKX Wallet',
+  Bitkeep: 'Bitkeep',
 };
 
 export const ChainId = {
   Poly: 0,
-  Eth: 2,
+  Eth: TARGET_MAINNET ? 2 : 502,
   Ont: 3,
   Neo: TARGET_MAINNET ? 4 : 5,
   N3: TARGET_MAINNET ? 14 : 888,
@@ -58,14 +59,19 @@ export const ChainId = {
   Conflux: TARGET_MAINNET ? 38 : 980,
   Astar: TARGET_MAINNET ? 40 : 990,
   Aptos: TARGET_MAINNET ? 41 : 998,
-  Goerli: TARGET_MAINNET ? 502 : 502,
+  // Goerli: TARGET_MAINNET ? 502 : 502,
   Bitgert: TARGET_MAINNET ? 42 : 1010,
   Dexit: TARGET_MAINNET ? 43 : 1020,
   CloudTx: TARGET_MAINNET ? 44 : 1030,
+  polygonZK_testnet: TARGET_MAINNET ? 1040 : 1040,
+  Nautilus: TARGET_MAINNET ? 1060 : 1060,
+  Goshen: TARGET_MAINNET ? 1070 : 1070,
+  Xinfin: TARGET_MAINNET ? 1050 : 1050,
+  Sepolia: TARGET_MAINNET ? 602 : 602,
 };
 
 export const NetworkChainIdMaps = {
-  [TARGET_MAINNET ? 1 : 3]: ChainId.Eth,
+  [TARGET_MAINNET ? 1 : 5]: ChainId.Eth,
   [TARGET_MAINNET ? 56 : 97]: ChainId.Bsc,
   [TARGET_MAINNET ? 128 : 256]: ChainId.Heco,
   [TARGET_MAINNET ? 66 : 65]: ChainId.Ok,
@@ -97,14 +103,19 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 324 : 280]: ChainId.zkSync,
   [TARGET_MAINNET ? 1030 : 71]: ChainId.Conflux,
   [TARGET_MAINNET ? 592 : 81]: ChainId.Astar,
-  [TARGET_MAINNET ? 5 : 5]: ChainId.Goerli,
+  // [TARGET_MAINNET ? 5 : 5]: ChainId.Goerli,
   [TARGET_MAINNET ? 32520 : 64668]: ChainId.Bitgert,
   [TARGET_MAINNET ? 877 : 899]: ChainId.Dexit,
   [TARGET_MAINNET ? 31223 : 31224]: ChainId.CloudTx,
+  [TARGET_MAINNET ? 1442 : 1442]: ChainId.polygonZK_testnet,
+  [TARGET_MAINNET ? 31229 : 31229]: ChainId.Nautilus,
+  [TARGET_MAINNET ? 21772 : 21772]: ChainId.Goshen,
+  [TARGET_MAINNET ? 50 : 51]: ChainId.Xinfin,
+  [TARGET_MAINNET ? 11155111 : 11155111]: ChainId.Sepolia,
 };
 
 export const EthNetworkChainIdMaps = {
-  [ChainId.Eth]: TARGET_MAINNET ? 1 : 3,
+  [ChainId.Eth]: TARGET_MAINNET ? 1 : 5,
   [ChainId.Bsc]: TARGET_MAINNET ? 56 : 97,
   [ChainId.Heco]: TARGET_MAINNET ? 128 : 256,
   [ChainId.Ok]: TARGET_MAINNET ? 66 : 65,
@@ -137,10 +148,15 @@ export const EthNetworkChainIdMaps = {
   [ChainId.zkSync]: TARGET_MAINNET ? 324 : 280,
   [ChainId.Astar]: TARGET_MAINNET ? 592 : 81,
   [ChainId.Conflux]: TARGET_MAINNET ? 1030 : 71,
-  [ChainId.Goerli]: TARGET_MAINNET ? 5 : 5,
+  // [ChainId.Goerli]: TARGET_MAINNET ? 5 : 5,
   [ChainId.Bitgert]: TARGET_MAINNET ? 32520 : 64668,
   [ChainId.Dexit]: TARGET_MAINNET ? 877 : 899,
   [ChainId.CloudTx]: TARGET_MAINNET ? 31223 : 31224,
+  [ChainId.polygonZK_testnet]: TARGET_MAINNET ? 1442 : 1442,
+  [ChainId.Nautilus]: TARGET_MAINNET ? 31229 : 31229,
+  [ChainId.Goshen]: TARGET_MAINNET ? 21772 : 21772,
+  [ChainId.Xinfin]: TARGET_MAINNET ? 50 : 51,
+  [ChainId.Sepolia]: TARGET_MAINNET ? 11155111 : 11155111,
 };
 
 export const SingleTransactionStatus = {

@@ -48,6 +48,11 @@ const APIS = {
   [ChainId.Bitgert]: () => import('./eth'),
   [ChainId.Dexit]: () => import('./eth'),
   [ChainId.CloudTx]: () => import('./eth'),
+  [ChainId.polygonZK_testnet]: () => import('./eth'),
+  [ChainId.Nautilus]: () => import('./eth'),
+  [ChainId.Goshen]: () => import('./eth'),
+  [ChainId.Xinfin]: () => import('./eth'),
+  [ChainId.Sepolia]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {

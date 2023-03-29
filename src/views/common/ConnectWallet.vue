@@ -69,6 +69,18 @@
           <img class="chain-icon" :src="chain.icon" />
         </CButton>
       </div>
+      <div class="chains" v-if="$route.name == 'nfttransactions'">
+        <CButton
+          v-for="chain in nftChains"
+          :key="chain.id"
+          class="chain"
+          :class="{ selected: chainIdWithDefault === chain.id }"
+          @click="chainId = chain.id"
+          @mouseover="chainId = chain.id"
+        >
+          <img class="chain-icon" :src="chain.icon" />
+        </CButton>
+      </div>
       <!-- <div class="chains" v-if="$route.name == 'transactions'">
         <CButton
           v-for="chain in chains"
@@ -141,9 +153,10 @@ export default {
       return arr;
     },
     nftChains() {
-      return this.$store.getters.chains.filter(
+      const arr = this.$store.getters.chains.filter(
         chain => chain.id !== ChainId.Poly && chain.id !== ChainId.Ont && chain.id !== ChainId.Neo,
       );
+      return arr;
     },
     airChains() {
       return this.$store.getters.chains.filter(chain => chain.id !== ChainId.Poly);
@@ -154,6 +167,9 @@ export default {
       );
     },
     chainIdWithDefault() {
+      if (this.$route.name.indexOf('nft') > -1) {
+        return this.chainId ? this.chainId : this.nftChains[0].id;
+      }
       return this.chainId ? this.chainId : this.chains[0].id;
     },
     chain() {

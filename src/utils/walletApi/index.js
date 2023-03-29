@@ -20,9 +20,10 @@ const APIS = {
   [WalletName.XUMM]: () => import('./xumm'),
   [WalletName.Martian]: () => import('./martian'),
   [WalletName.Petra]: () => import('./petra'),
+  [WalletName.Bitkeep]: () => import('./bitkeep'),
 };
 
-export async function getWalletApi (walletName) {
+export async function getWalletApi(walletName) {
   if (!APIS[walletName]) {
     throw new WalletError('Wallet is not supported', {
       code: WalletError.CODES.NOT_SUPPORTED,
@@ -31,7 +32,7 @@ export async function getWalletApi (walletName) {
   return (await APIS[walletName]()).default;
 }
 
-export async function tryToConvertAddressToHex (walletName, address) {
+export async function tryToConvertAddressToHex(walletName, address) {
   if (!address) {
     return null;
   }

@@ -164,7 +164,7 @@ export default {
     },
     chainName: {
       [ChainId.Poly]: 'Poly',
-      [ChainId.Eth]: 'Ethereum',
+      [ChainId.Eth]: TARGET_MAINNET ? 'Ethereum' : 'Goerli',
       [ChainId.Neo]: 'Neo',
       [ChainId.N3]: 'N3',
       [ChainId.xDai]: 'Gnosis Chain',
@@ -210,6 +210,11 @@ export default {
       [ChainId.Bitgert]: 'Bitgert',
       [ChainId.Dexit]: 'Dexit',
       [ChainId.CloudTx]: 'CloudTx',
+      [ChainId.polygonZK_testnet]: 'polygonZK_testnet',
+      [ChainId.Nautilus]: 'Nautilus',
+      [ChainId.Goshen]: 'Goshen',
+      [ChainId.Xinfin]: 'Xinfin',
+      [ChainId.Sepolia]: 'Sepolia',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -259,6 +264,11 @@ export default {
       [ChainId.Bitgert]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Dexit]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.CloudTx]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.polygonZK_testnet]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Nautilus]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Goshen]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Xinfin]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Sepolia]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',

@@ -56,6 +56,11 @@ export const WALLETS = [
       ChainId.Bitgert,
       ChainId.Dexit,
       ChainId.CloudTx,
+      ChainId.polygonZK_testnet,
+      ChainId.Nautilus,
+      ChainId.Goshen,
+      ChainId.Xinfin,
+      ChainId.Sepolia,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -89,6 +94,35 @@ export const WALLETS = [
     icon: require('@/assets/png/coinbase.png'),
     downloadUrl:
       'https://chrome.google.com/webstore/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad',
+  },
+  {
+    name: WalletName.Bitkeep,
+    supportedChainIds: [
+      ChainId.Eth,
+      ChainId.Bsc,
+      ChainId.Heco,
+      ChainId.Ok,
+      ChainId.Polygon,
+      ChainId.Palette,
+      ChainId.BcsPalette,
+      ChainId.Arbitrum,
+      ChainId.xDai,
+      ChainId.HSC,
+      ChainId.Harmony,
+      ChainId.BYTOM,
+      ChainId.Optimistic,
+      ChainId.Fantom,
+      ChainId.Avalanche,
+      ChainId.Metis,
+      ChainId.Pixie,
+      ChainId.Rinkeby,
+      ChainId.Boba,
+      ChainId.Oasis,
+      ChainId.Kcc,
+    ],
+    icon: require('@/assets/svg/bitkeep.svg'),
+    downloadUrl:
+      'https://chrome.google.com/webstore/detail/bitkeep-crypto-nft-wallet/jiidiaalihmmhddjgbnbgdfflelocpak',
   },
   {
     name: WalletName.OkWallet,
@@ -204,29 +238,29 @@ export const MAIN_CHAINS = [
     icon: require('@/assets/svg/eth.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://etherscan.io/tx/0x{txHash}'
-      : 'https://ropsten.etherscan.io/tx/0x{txHash}',
+      : 'https://goerli.etherscan.io/tx/0x{txHash}',
     nftexplorerUrl: TARGET_MAINNET
       ? 'https://etherscan.io/tx/0x{txHash}'
-      : 'https://ropsten.etherscan.io/tx/0x{txHash}',
+      : 'https://goerli.etherscan.io/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
       ? '0x81910675DbaF69deE0fD77570BFD07f8E436386A'
       : //   : '0xe498fb7D00468a67A79dE5D4Ca264d3350165280',
-        '0xc58eF4F49BBbd6bdfFeEA8159481C1AFAfBCFD0e',
+        '0xA058FC5427d3E634698d1185C1BA01ADAf998E14',
     nftLockContractHash: TARGET_MAINNET
       ? '0xe5204d62361A353C665668C858Ea213070CA159c'
-      : '0x940300dc3Fc26e3A330a300be766184C0b5Fe019',
+      : '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C',
     pltNftLockContractHash: TARGET_MAINNET
       ? '0xD728e9844af285fA116806c273aa413686aE65e8'
       : '0xbaBaAF5CF7f63437755aAAFE7a4106463c5cD540',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
     dst_ccm: TARGET_MAINNET
       ? '0x14413419452Aaf089762A0c5e95eD2A13bBC488C'
-      : '0xf989E80AAd477cB6059f366C0170a498909C4a55',
+      : '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126',
     nftFeeName: 'ETH',
     symbol: 'ETH',
-    name: TARGET_MAINNET ? 'Ethereum Mainnet' : 'Ropsten TestNet',
-    rpcUrl: TARGET_MAINNET ? 'https://mainnet.infura.io/v3/' : 'https://ropsten.infura.io/v3/',
-    chainExplorerUrl: TARGET_MAINNET ? 'https://etherscan.io/' : 'https://ropsten.etherscan.io/',
+    name: TARGET_MAINNET ? 'Ethereum Mainnet' : 'Goerli TestNet',
+    rpcUrl: TARGET_MAINNET ? 'https://mainnet.infura.io/v3/' : 'https://goerli.infura.io/v3/',
+    chainExplorerUrl: TARGET_MAINNET ? 'https://etherscan.io/' : 'https://goerli.etherscan.io',
     selfPay: true,
   },
   {
@@ -439,7 +473,7 @@ export const MAIN_CHAINS = [
     name: TARGET_MAINNET ? 'Polygon Mainnet' : 'Polygon Testnet',
     rpcUrl: TARGET_MAINNET
       ? 'https://rpc-mainnet.maticvigil.com/'
-      : 'https://rpc-mumbai.matic.today/',
+      : 'https://rpc-mumbai.maticvigil.com',
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://polygonscan.com/'
       : 'https://mumbai.polygonscan.com',
@@ -1101,63 +1135,86 @@ export const TEST_CHAINS = [
       : 'https://scan-testnet.chain.pixie.xyz',
     selfPay: true,
   } /* waiting info */,
+  // {
+  //   id: ChainId.Rinkeby,
+  //   nativeFee: true,
+  //   icon: require('@/assets/svg/eth.svg'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://rinkeby.etherscan.io/tx/0x{txHash}'
+  //     : 'https://rinkeby.etherscan.io/tx/0x{txHash}',
+  //   nftexplorerUrl: TARGET_MAINNET
+  //     ? 'https://rinkeby.etherscan.io/tx/0x{txHash}'
+  //     : 'https://rinkeby.etherscan.io/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12'
+  //     : '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12',
+  //   nftLockContractHash: TARGET_MAINNET
+  //     ? '0x25BB8E9C0Cc03B30d09769735208a47d389Ff36c'
+  //     : '0x25BB8E9C0Cc03B30d09769735208a47d389Ff36c',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6'
+  //     : '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
+  //   nftFeeName: 'ETH',
+  //   selfPay: true,
+  //   symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+  //   name: TARGET_MAINNET ? 'Rinkeby Test Network' : 'Rinkeby Test Network',
+  //   rpcUrl: TARGET_MAINNET ? 'https://rinkeby.infura.io/v3/' : 'https://rinkeby.infura.io/v3/',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://rinkeby.etherscan.io'
+  //     : 'https://rinkeby.etherscan.io',
+  // },
+  // {
+  //   id: ChainId.Goerli,
+  //   nativeFee: true,
+  //   icon: require('@/assets/svg/eth.svg'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://goerli.etherscan.io/tx/0x{txHash}'
+  //     : 'https://goerli.etherscan.io/tx/0x{txHash}',
+  //   nftexplorerUrl: TARGET_MAINNET
+  //     ? 'https://goerli.etherscan.io/tx/0x{txHash}'
+  //     : 'https://goerli.etherscan.io/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0xA058FC5427d3E634698d1185C1BA01ADAf998E14'
+  //     : '0xA058FC5427d3E634698d1185C1BA01ADAf998E14',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126'
+  //     : '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126',
+  //   nftLockContractHash: TARGET_MAINNET
+  //     ? '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C'
+  //     : '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
+  //   nftFeeName: 'GoerliETH',
+  //   selfPay: true,
+  //   symbol: TARGET_MAINNET ? 'GoerliETH' : 'GoerliETH',
+  //   name: TARGET_MAINNET ? 'Goerli Test Network' : 'Goerli Test Network',
+  //   rpcUrl: TARGET_MAINNET ? 'https://goerli.infura.io/v3/' : 'https://goerli.infura.io/v3/',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://goerli.etherscan.io'
+  //     : 'https://goerli.etherscan.io',
+  // },
   {
-    id: ChainId.Rinkeby,
+    id: ChainId.Sepolia,
     nativeFee: true,
     icon: require('@/assets/svg/eth.svg'),
     explorerUrl: TARGET_MAINNET
-      ? 'https://rinkeby.etherscan.io/tx/0x{txHash}'
-      : 'https://rinkeby.etherscan.io/tx/0x{txHash}',
-    nftexplorerUrl: TARGET_MAINNET
-      ? 'https://rinkeby.etherscan.io/tx/0x{txHash}'
-      : 'https://rinkeby.etherscan.io/tx/0x{txHash}',
+      ? 'https://sepolia.etherscan.io/tx/0x{txHash}'
+      : 'https://sepolia.etherscan.io/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12'
-      : '0xD5a240f7F755bCa2aE992E807b06d24eB6DF7C12',
-    nftLockContractHash: TARGET_MAINNET
-      ? '0x25BB8E9C0Cc03B30d09769735208a47d389Ff36c'
-      : '0x25BB8E9C0Cc03B30d09769735208a47d389Ff36c',
-    dst_ccm: TARGET_MAINNET
-      ? '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6'
-      : '0xC8042579D6b60E0e35161F228827E3Fa0F51d5B6',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'ETH',
-    selfPay: true,
-    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
-    name: TARGET_MAINNET ? 'Rinkeby Test Network' : 'Rinkeby Test Network',
-    rpcUrl: TARGET_MAINNET ? 'https://rinkeby.infura.io/v3/' : 'https://rinkeby.infura.io/v3/',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://rinkeby.etherscan.io'
-      : 'https://rinkeby.etherscan.io',
-  },
-  {
-    id: ChainId.Goerli,
-    nativeFee: true,
-    icon: require('@/assets/svg/eth.svg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://goerli.etherscan.io/tx/0x{txHash}'
-      : 'https://goerli.etherscan.io/tx/0x{txHash}',
-    nftexplorerUrl: TARGET_MAINNET
-      ? 'https://goerli.etherscan.io/tx/0x{txHash}'
-      : 'https://goerli.etherscan.io/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xA058FC5427d3E634698d1185C1BA01ADAf998E14'
-      : '0xA058FC5427d3E634698d1185C1BA01ADAf998E14',
-    dst_ccm: TARGET_MAINNET
       ? '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126'
       : '0xbA6F835ECAE18f5Fc5eBc074e5A0B94422a13126',
-    nftLockContractHash: TARGET_MAINNET
-      ? '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C'
-      : '0xA4E492E0DFe2B930Bc0EaA94E3aa3531DE2Ef67C',
+    dst_ccm: TARGET_MAINNET
+      ? '0x509fB7A017e33f18101dDC0d28Ac06aEaf6Edb4B'
+      : '0x509fB7A017e33f18101dDC0d28Ac06aEaf6Edb4B',
     nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'GoerliETH',
+    nftFeeName: 'SepoliaETH',
     selfPay: true,
-    symbol: TARGET_MAINNET ? 'GoerliETH' : 'GoerliETH',
-    name: TARGET_MAINNET ? 'Goerli Test Network' : 'Goerli Test Network',
-    rpcUrl: TARGET_MAINNET ? 'https://goerli.infura.io/v3/' : 'https://goerli.infura.io/v3/',
+    symbol: TARGET_MAINNET ? 'SepoliaETH' : 'SepoliaETH',
+    name: TARGET_MAINNET ? 'Sepolia Test Network' : 'Sepolia Test Network',
+    rpcUrl: TARGET_MAINNET ? 'https://sepolia.infura.io/v3/' : 'https://sepolia.infura.io/v3/',
     chainExplorerUrl: TARGET_MAINNET
-      ? 'https://goerli.etherscan.io'
-      : 'https://goerli.etherscan.io',
+      ? 'https://sepolia.etherscan.io'
+      : 'https://sepolia.etherscan.io',
   },
   {
     id: ChainId.Oasis1,
@@ -1209,6 +1266,104 @@ export const TEST_CHAINS = [
       ? 'https://palettescan.com/#/chain/'
       : 'http://106.75.251.68/#/chain/',
     selfPay: true,
+  },
+  // {
+  //   id: ChainId.polygonZK_testnet,
+  //   nativeFee: true,
+  //   icon: require('@/assets/svg/polygon.svg'),
+  //   explorerUrl: TARGET_MAINNET
+  //     ? 'https://explorer.public.zkevm-test.net/tx/0x{txHash}'
+  //     : 'https://explorer.public.zkevm-test.net/tx/0x{txHash}',
+  //   lockContractHash: TARGET_MAINNET
+  //     ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+  //     : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+  //   dst_ccm: TARGET_MAINNET
+  //     ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
+  //     : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+  //   nftFeeContractHash: '0000000000000000000000000000000000000000',
+  //   nftFeeName: 'ETH',
+  //   selfPay: true,
+  //   symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+  //   name: TARGET_MAINNET ? 'polygonZK_testnet' : 'polygonZK_testnet',
+  //   rpcUrl: TARGET_MAINNET
+  //     ? 'https://rpc.public.zkevm-test.net'
+  //     : 'https://rpc.public.zkevm-test.net',
+  //   chainExplorerUrl: TARGET_MAINNET
+  //     ? 'https://explorer.public.zkevm-test.net/'
+  //     : 'https://explorer.public.zkevm-test.net/',
+  // },
+  {
+    id: ChainId.Nautilus,
+    nativeFee: true,
+    icon: require('@/assets/svg/naut.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://triton.nautscan.com/tx/0x{txHash}'
+      : 'https://triton.nautscan.com/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'tZBC',
+    selfPay: true,
+    symbol: TARGET_MAINNET ? 'tZBC' : 'tZBC',
+    name: TARGET_MAINNET ? 'Nautilus' : 'Nautilus',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://triton.api.nautchain.xyz'
+      : 'https://triton.api.nautchain.xyz',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://triton.nautscan.com/'
+      : 'https://triton.nautscan.com/',
+  },
+  {
+    id: ChainId.Goshen,
+    nativeFee: true,
+    icon: require('@/assets/svg/unknown.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer-testnet.goshen.network/tx/0x{txHash}'
+      : 'https://explorer-testnet.goshen.network/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99'
+      : '0xc2d365475EEf3ec83e59D1BcDF3A291D7B23Ba99',
+    dst_ccm: TARGET_MAINNET
+      ? '0xd6fc5374649cea121395a4860FdB33F21783c4Af'
+      : '0xd6fc5374649cea121395a4860FdB33F21783c4Af',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'ETH',
+    selfPay: true,
+    symbol: TARGET_MAINNET ? 'ETH' : 'ETH',
+    name: TARGET_MAINNET ? 'Goshen' : 'Goshen',
+    rpcUrl: TARGET_MAINNET
+      ? 'https://testnet-alpha.goshen.network/rpc/'
+      : 'https://testnet-alpha.goshen.network/rpc/',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer-testnet.goshen.network/'
+      : 'https://explorer-testnet.goshen.network/',
+  },
+  {
+    id: ChainId.Xinfin,
+    nativeFee: true,
+    icon: require('@/assets/svg/xdc.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.apothem.network/tx/0x{txHash}'
+      : 'https://explorer.apothem.network/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0xa65bD4431C38A4dD9c92ebE60dE3cb8C252c04E5'
+      : '0xa65bD4431C38A4dD9c92ebE60dE3cb8C252c04E5',
+    dst_ccm: TARGET_MAINNET
+      ? '0xFeE651E032197770B65516EFbBdeD11483533264'
+      : '0xFeE651E032197770B65516EFbBdeD11483533264',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'XDC',
+    selfPay: true,
+    symbol: TARGET_MAINNET ? 'XDC' : 'XDC',
+    name: TARGET_MAINNET ? 'Xinfin' : 'Xinfin',
+    rpcUrl: TARGET_MAINNET ? 'https://erpc.apothem.network' : 'https://erpc.apothem.network',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.apothem.network/'
+      : 'https://explorer.apothem.network/',
   },
   // {
   //   id: ChainId.OntEvm,
