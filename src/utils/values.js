@@ -1345,7 +1345,7 @@ export const TEST_CHAINS = [
   {
     id: ChainId.Xinfin,
     nativeFee: true,
-    icon: require('@/assets/svg/unknown.svg'),
+    icon: require('@/assets/svg/xdc.svg'),
     explorerUrl: TARGET_MAINNET
       ? 'https://explorer.apothem.network/tx/0x{txHash}'
       : 'https://explorer.apothem.network/tx/0x{txHash}',
