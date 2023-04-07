@@ -1,3 +1,4 @@
+/* eslint-disable */
 import XummPkce from 'xumm-oauth2-pkce/dist/browser';
 import store from '@/store';
 import { WalletError } from '@/utils/errors';
@@ -11,7 +12,6 @@ import { WalletName, SingleTransactionStatus } from '@/utils/enums';
 import { XummSdkJwt } from 'xumm-sdk';
 import { tryToConvertAddressToHex } from '.';
 
-console.log(XummPkce);
 const auth = new XummPkce('9b461506-fd63-45f7-9e18-6329adf7807b');
 let sdk = null;
 const XUMM_CONNECTED_KEY = 'XUMM_CONNECTED';
@@ -132,7 +132,7 @@ async function goPayload({ amount, txPayload, destination }) {
     },
   };
   try {
-    const { created, resolved } = sdk.payload.createAndSubscribe(payload, function(payloadEvent) {
+    const { created, resolved } = sdk.payload.createAndSubscribe(payload, function (payloadEvent) {
       let data;
       if (typeof payloadEvent.data.signed !== 'undefined') {
         // What we return here will be the resolved value of the `resolved` property
@@ -222,7 +222,7 @@ async function lock({
         ],
       },
     };
-    const { created, resolved } = await sdk.payload.createAndSubscribe(payload, function(
+    const { created, resolved } = await sdk.payload.createAndSubscribe(payload, function (
       payloadEvent,
     ) {
       let data;
@@ -309,7 +309,7 @@ async function payFee({
         ],
       },
     };
-    const { created, resolved } = await sdk.payload.createAndSubscribe(payload, function(
+    const { created, resolved } = await sdk.payload.createAndSubscribe(payload, function (
       payloadEvent,
     ) {
       let data;
