@@ -17,7 +17,7 @@ import {
 import { WalletError } from '@/utils/errors';
 import { tryToConvertAddressToHex } from '.';
 
-const META_MASK_CONNECTED_KEY = 'META_MASK_CONNECTED';
+const BITKEEP_CONNECTED_KEY = 'BITKEEP_CONNECTED';
 const NFT_FEE_TOKEN_HASH = '0x0000000000000000000000000000000000000000';
 const PLT_NFT_FEE_TOKEN_HASH = '0x0000000000000000000000000000000000000103';
 
@@ -29,9 +29,6 @@ let web3;
 
 function getProvider() {
   const provider = window.bitkeep && window.bitkeep.ethereum;
-  if (!provider) {
-    window.open('https://bitkeep.com/en/download?type=2');
-  }
   return provider;
 }
 
@@ -93,7 +90,7 @@ async function init() {
     web3 = new Web3(Provider);
     store.dispatch('updateWallet', { name: WalletName.Bitkeep, installed: true });
 
-    if (sessionStorage.getItem(META_MASK_CONNECTED_KEY) === 'true') {
+    if (sessionStorage.getItem(BITKEEP_CONNECTED_KEY) === 'true') {
       await queryState();
     }
 
@@ -124,7 +121,7 @@ async function connect() {
   try {
     await Provider.request({ method: 'eth_requestAccounts' });
     await queryState();
-    sessionStorage.setItem(META_MASK_CONNECTED_KEY, 'true');
+    sessionStorage.setItem(BITKEEP_CONNECTED_KEY, 'true');
   } catch (error) {
     throw convertWalletError(error);
   }

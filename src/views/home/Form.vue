@@ -584,7 +584,6 @@ export default {
       return this.getFeeParams && this.$store.getters.getFee(this.getFeeParams);
     },
     isRegisterdParams() {
-      console.log(this.fromWallet);
       if ((this.toChainId === 998 || this.toChainId === 41) && this.toWallet) {
         return {
           chainId: this.toChainId,
@@ -625,7 +624,6 @@ export default {
       }
     },
     isRegisterdParams(value) {
-      console.log(value);
       if (value) {
         this.$store.dispatch('getReigster', value);
       }

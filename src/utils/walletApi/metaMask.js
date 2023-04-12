@@ -121,6 +121,8 @@ async function connect() {
 
 async function changeChain(waitChainId, chaindata) {
   try {
+    console.log('metamaskjs-waitChainId', waitChainId);
+    console.log('metamaskjs-chaindata', chaindata);
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: waitChainId }],
