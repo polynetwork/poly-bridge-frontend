@@ -119,6 +119,7 @@ export const WALLETS = [
       ChainId.Boba,
       ChainId.Oasis,
       ChainId.Kcc,
+      ChainId.Xinfin,
     ],
     icon: require('@/assets/svg/bitkeep.svg'),
     downloadUrl:

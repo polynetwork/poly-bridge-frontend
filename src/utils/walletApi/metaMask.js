@@ -332,8 +332,6 @@ async function lock({
       fromTokenHash === '0000000000000000000000000000000000000103'
         ? 0
         : decimalToInteger(fee, chain.nftFeeName ? 18 : tokenBasic.decimals);
-    console.log('amountInt', amountInt);
-    console.log('nativefeeInt', nativefeeInt);
     const result = await confirmLater(
       lockContract.methods
         .lock(`0x${fromTokenHash}`, toChainId, `0x${toAddressHex}`, amountInt, feeInt, 0)
