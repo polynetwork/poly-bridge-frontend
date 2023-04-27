@@ -1019,6 +1019,29 @@ export const MAIN_CHAINS = [
       : 'https://zksync2-testnet.zkscan.io/',
     selfPay: true,
   },
+  {
+    id: ChainId.Xinfin,
+    nativeFee: true,
+    icon: require('@/assets/svg/xdc.svg'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://explorer.xinfin.network/tx/0x{txHash}'
+      : 'https://explorer.apothem.network/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x5906777d34257a2b479c291871C9BFdFB922D67D'
+      : '0xa65bD4431C38A4dD9c92ebE60dE3cb8C252c04E5',
+    dst_ccm: TARGET_MAINNET
+      ? '0xab7a3CA9bDcE476F0ECC04c127CFEe0F3D212BC5'
+      : '0xFeE651E032197770B65516EFbBdeD11483533264',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: 'XDC',
+    selfPay: true,
+    symbol: TARGET_MAINNET ? 'XDC' : 'XDC',
+    name: TARGET_MAINNET ? 'Xinfin Main' : 'Xinfin Test',
+    rpcUrl: TARGET_MAINNET ? 'https://erpc.xinfin.network' : 'https://erpc.apothem.network',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://explorer.xinfin.network/'
+      : 'https://explorer.apothem.network/',
+  },
 ];
 
 export const TEST_CHAINS = [
@@ -1342,29 +1365,6 @@ export const TEST_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://explorer-testnet.goshen.network/'
       : 'https://explorer-testnet.goshen.network/',
-  },
-  {
-    id: ChainId.Xinfin,
-    nativeFee: true,
-    icon: require('@/assets/svg/xdc.svg'),
-    explorerUrl: TARGET_MAINNET
-      ? 'https://explorer.apothem.network/tx/0x{txHash}'
-      : 'https://explorer.apothem.network/tx/0x{txHash}',
-    lockContractHash: TARGET_MAINNET
-      ? '0xa65bD4431C38A4dD9c92ebE60dE3cb8C252c04E5'
-      : '0xa65bD4431C38A4dD9c92ebE60dE3cb8C252c04E5',
-    dst_ccm: TARGET_MAINNET
-      ? '0xFeE651E032197770B65516EFbBdeD11483533264'
-      : '0xFeE651E032197770B65516EFbBdeD11483533264',
-    nftFeeContractHash: '0000000000000000000000000000000000000000',
-    nftFeeName: 'XDC',
-    selfPay: true,
-    symbol: TARGET_MAINNET ? 'XDC' : 'XDC',
-    name: TARGET_MAINNET ? 'Xinfin' : 'Xinfin',
-    rpcUrl: TARGET_MAINNET ? 'https://erpc.apothem.network' : 'https://erpc.apothem.network',
-    chainExplorerUrl: TARGET_MAINNET
-      ? 'https://explorer.apothem.network/'
-      : 'https://explorer.apothem.network/',
   },
   // {
   //   id: ChainId.OntEvm,
