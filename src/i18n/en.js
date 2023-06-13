@@ -215,6 +215,7 @@ export default {
       [ChainId.Goshen]: 'Goshen',
       [ChainId.Xinfin]: 'Xinfin',
       [ChainId.Sepolia]: 'Sepolia',
+      [ChainId.Cronos]: 'Cronos',
     },
     chainNetworkName: {
       [ChainId.Poly]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
@@ -269,6 +270,7 @@ export default {
       [ChainId.Goshen]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Xinfin]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
       [ChainId.Sepolia]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
+      [ChainId.Cronos]: TARGET_MAINNET ? 'MainNet' : 'TestNet',
     },
     transactionStatus: {
       [TransactionStatus.Finished]: 'Finished',

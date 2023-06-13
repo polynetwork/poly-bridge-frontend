@@ -68,6 +68,7 @@ export const ChainId = {
   Goshen: TARGET_MAINNET ? 1070 : 1070,
   Xinfin: TARGET_MAINNET ? 46 : 1050,
   Sepolia: TARGET_MAINNET ? 602 : 602,
+  Cronos: TARGET_MAINNET ? 114514 : 1080,
 };
 
 export const NetworkChainIdMaps = {
@@ -112,6 +113,7 @@ export const NetworkChainIdMaps = {
   [TARGET_MAINNET ? 21772 : 21772]: ChainId.Goshen,
   [TARGET_MAINNET ? 50 : 51]: ChainId.Xinfin,
   [TARGET_MAINNET ? 11155111 : 11155111]: ChainId.Sepolia,
+  [TARGET_MAINNET ? 25 : 338]: ChainId.Cronos,
 };
 
 export const EthNetworkChainIdMaps = {
@@ -157,6 +159,7 @@ export const EthNetworkChainIdMaps = {
   [ChainId.Goshen]: TARGET_MAINNET ? 21772 : 21772,
   [ChainId.Xinfin]: TARGET_MAINNET ? 50 : 51,
   [ChainId.Sepolia]: TARGET_MAINNET ? 11155111 : 11155111,
+  [ChainId.Cronos]: TARGET_MAINNET ? 25 : 338,
 };
 
 export const SingleTransactionStatus = {

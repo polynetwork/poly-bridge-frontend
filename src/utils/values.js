@@ -61,6 +61,7 @@ export const WALLETS = [
       ChainId.Goshen,
       ChainId.Xinfin,
       ChainId.Sepolia,
+      ChainId.Cronos,
     ],
     icon: require('@/assets/svg/meta-mask.svg'),
     downloadUrl:
@@ -992,6 +993,29 @@ export const MAIN_CHAINS = [
     chainExplorerUrl: TARGET_MAINNET
       ? 'https://scan.cloudtx.finance/'
       : 'https://explorer.cloudtx.finance/',
+    selfPay: true,
+  },
+  {
+    id: ChainId.Cronos,
+    nativeFee: true,
+    icon: require('@/assets/png/cronos.png'),
+    explorerUrl: TARGET_MAINNET
+      ? 'https://cronoscan.com/tx/0x{txHash}'
+      : 'https://cronos.org/explorer/testnet3/tx/0x{txHash}',
+    lockContractHash: TARGET_MAINNET
+      ? '0x5906777d34257a2b479c291871C9BFdFB922D67D'
+      : '0x8Ad22596CB5438ec244abc6a63f3d24307EF0D30',
+    dst_ccm: TARGET_MAINNET
+      ? '0xab7a3CA9bDcE476F0ECC04c127CFEe0F3D212BC5'
+      : '0x2eE29A1587cF0F68dA743D4BDF046D6652A2346f',
+    nftFeeContractHash: '0000000000000000000000000000000000000000',
+    nftFeeName: TARGET_MAINNET ? 'CRO' : 'TCRO',
+    symbol: TARGET_MAINNET ? 'CRO' : 'TCRO',
+    name: TARGET_MAINNET ? 'Cronos Mainnet Beta' : 'Cronos Testnet',
+    rpcUrl: TARGET_MAINNET ? 'https://evm.cronos.org' : 'https://evm-t3.cronos.org',
+    chainExplorerUrl: TARGET_MAINNET
+      ? 'https://cronoscan.com'
+      : 'https://cronos.org/explorer/testnet3',
     selfPay: true,
   },
   {
