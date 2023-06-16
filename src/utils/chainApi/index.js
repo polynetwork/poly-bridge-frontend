@@ -53,6 +53,7 @@ const APIS = {
   [ChainId.Goshen]: () => import('./eth'),
   [ChainId.Xinfin]: () => import('./eth'),
   [ChainId.Sepolia]: () => import('./eth'),
+  [ChainId.Cronos]: () => import('./eth'),
 };
 
 export async function getChainApi(chainId) {
