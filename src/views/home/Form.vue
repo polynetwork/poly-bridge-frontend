@@ -855,7 +855,7 @@ export default {
         amount: this.amount,
         fee: this.selfPayChecked ? 0 : payfeeAmount,
       };
-      console.log(this.confirmingData);
+
       this.confirmVisible = true;
     },
     handleClosed() {

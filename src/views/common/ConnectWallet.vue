@@ -181,7 +181,6 @@ export default {
   },
   methods: {
     async connect(chain, wallet) {
-      console.log(wallet);
       if (wallet.installed) {
         if (!wallet.connected) {
           const walletApi = await getWalletApi(wallet.name);
