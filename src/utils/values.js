@@ -303,7 +303,7 @@ export const MAIN_CHAINS = [
       ? 'https://blockscout.com/xdai/mainnet/tx/0x{txHash}'
       : 'https://blockscout.com/poa/sokol/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? '0x74A7f2A3aFa8B0CB577985663B5811901A860619'
+      ? '0xbc3B4E7517c06019F30Bf2f707eD2770b85f9928'
       : '0xa7eDA65F94A2a334a0de42d479585b65D27b2249',
     dst_ccm: TARGET_MAINNET
       ? '0x2f7ac9436ba4B548f9582af91CA1Ef02cd2F1f03'
@@ -460,7 +460,7 @@ export const MAIN_CHAINS = [
       ? 'https://polygonscan.com/tx/0x{txHash}'
       : 'https://mumbai.polygonscan.com/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? '0xB88f13682F3C602aCD84B4b2eEB96A9DD75Afd89'
+      ? '0x57b3F21f6aE54FCEEE652b4876a38DB414520b5b'
       : '0xD5d63Dce45E0275Ca76a8b2e9BD8C11679A57D0D',
     nftLockContractHash: TARGET_MAINNET
       ? '0x6cEB2EC1E82880812F6aA60DfA260679D6C8323d'
@@ -488,7 +488,7 @@ export const MAIN_CHAINS = [
       ? 'https://optimistic.etherscan.io/tx/0x{txHash}'
       : 'https://kovan-optimistic.etherscan.io/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? 'f06587dE89e289Ce480CDf21109A14547eb33A0d'
+      ? '9ad4dbAc5D02fCBe3339a58A8B715615C06c88b8'
       : 'E324EF8cd52833DD117e8ca87b483E78b30C3696',
     dst_ccm: TARGET_MAINNET
       ? '0x2aA63cd0b28FB4C31fA8e4E95Ec11815Be07b9Ac'
@@ -534,7 +534,7 @@ export const MAIN_CHAINS = [
       ? 'https://avascan.info/blockchain/c/tx/0x{txHash}'
       : 'https://testnet.avascan.info/blockchain/c/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? 'f06587dE89e289Ce480CDf21109A14547eb33A0d'
+      ? 'C9ea7913E978b178E4a9Bb9Aa38eef522b61803c'
       : 'ac0a6759696569B3729177ba6844D41FF6D57844',
     dst_ccm: TARGET_MAINNET
       ? '0x2aA63cd0b28FB4C31fA8e4E95Ec11815Be07b9Ac'
@@ -559,7 +559,7 @@ export const MAIN_CHAINS = [
       ? 'https://arbiscan.io/tx/0x{txHash}'
       : 'https://goerli.arbiscan.io/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? '0x0f8C16BA16E58525Eb2aDc231ff360cfa00bB527'
+      ? '0x33d9bF459b39a888422580916f01C4c44a68a615'
       : '0xAefD220aE393144dcb5EFD6Ab55ABDf6a3d0444d',
     dst_ccm: TARGET_MAINNET
       ? '0x7ceA671DABFBa880aF6723bDdd6B9f4caA15C87B'
@@ -611,7 +611,7 @@ export const MAIN_CHAINS = [
       ? 'https://www.oklink.com/okexchain/tx/0x{txHash}'
       : 'https://www.oklink.com/okexchain-test/tx/0x{txHash}',
     lockContractHash: TARGET_MAINNET
-      ? '0xbd4a08577476A521C41a21EF3f00b045b74175d5'
+      ? '0xAE5cD8943F93Ba59238dE1B81C81218C1Ce78F8B'
       : //  : '0x5598226aD2E8991deEFD03203739C87BdF6e6D03',
         '0xbAa40bBd7888f79614057d82bdcE88dF2D23bf55',
     dst_ccm: TARGET_MAINNET
